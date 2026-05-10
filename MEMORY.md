@@ -61,6 +61,13 @@ Use headings, bullet lists, and tables freely. Do NOT prune old entries — appe
 | L24 | **Cluster partition committed** in PLAN.md §17.B: 16xH100 → pretrain Stage-1; 4xA100 → aux predictor training in parallel; 4xA100 → preprocessing acceleration (cuML/FAISS-GPU); 8x 2-GPU jobs → Stage-2 sweep; 3x 4-8 GPU jobs → Stage-3 per-mode finetune; spare 1-4 A100s → Layer-1/Layer-2/debug. | 2026-05-10 | implementer |
 | L25 | **HARD RULE: NO FALLBACKS, NO PLACEHOLDERS, ALWAYS FOLLOW THE PLAN** (user directive 2026-05-10 after I deviated). Implementer (me) cannot invent stand-ins for planned components: no HeuristicRanker for inference, no rule-pack substitutes for trained generators, no Tanimoto-similarity retrieval as substitute for trained channel-1 embedding retrieval, no threshold tuning instead of trained classifier outputs. If a planned upstream phase is missing, BUILD IT. Detail: `~/.claude/.../memory/feedback_no_fallbacks_follow_plan.md`. | 2026-05-10 | user (HARD) |
 | L26 | **Rescue inference results from 2026-05-10 are flagged as DEVIATIONS, not real results.** They were produced with HeuristicRanker bypassing Stage 2. Do not cite as evidence of "rescue prediction works/doesn't work" — only as plumbing-tests-that-shouldn't-have-run. Real Stage-5 inference happens AFTER Phase A-4 completes + Stage-2 trained pairwise ranker exists. | 2026-05-10 | user/implementer |
+| L27 | **Pass 6 had a unilateral [5, 500] molecules-per-target filter** (NOT in spec) — excluded hERG (5K+ molecules) and CYPs/kinases entirely from analog graph. Sealed-case ADMET-001 IS hERG. Fix = Pass 6.5 supplementary script using FAISS top-K NN over Morgan FPs (script in repo: `scripts/pass_6_5_big_targets_faiss.py`). User chose Option B: let current Pass 6→13 finish, then run Pass 6.5 + re-run Passes 7-13 to incorporate. | 2026-05-10 | user (Option B) |
+| L28 | **TurboQuant-KV (https://github.com/ansschh/turboquant-kv) is for float-embedding similarity at LATER passes**, NOT for Pass 6.5 binary Morgan FPs. Quantizing 1-bit-per-dim binary data to 2-4 bits inflates with no benefit. Use TurboQuant-KV for: (a) Channel 1 inference-time retrieval over learned Stage-1 768-d embeddings; (b) Stage-2 hard-negative mining via embedding similarity. FAISS IndexBinaryFlat (exact Hamming → exact Tanimoto) is correct for binary FPs. | 2026-05-10 | implementer |
+| L29 | **vLLM RunPod /workspace = `mfs#us-md-1.runpod.net:9421`** (RunPod managed network FS), NOT container disk, even when no explicit volume attached. 334 TB available, persists for pod's lifetime, NOT across termination. Container `/` is overlay 500 GB. Llama-3.3-70B AWQ ~40 GB cached at /workspace/.cache/huggingface — fine for one session. | 2026-05-10 | implementer |
+| L30 | **Channel 6 (Learned Novelty Proposer per PLAN.md §B-6) trained in 2 variants:** SMILES (75M, max_len 130, char-vocab — `channel6_novelty_smiles.pt` 217 MB local, loss 0.65) and SELFIES (75M, max_len 256, SELFIES alphabet — re-launched after parquet corruption, awaiting completion as of 2026-05-10). Both autoregressive causal-masked transformers on 2.47M ChEMBL canonical SMILES. SELFIES variant has structural validity guarantee (Krenn et al. 2020). | 2026-05-10 | implementer |
+| L31 | **Stage-1 200M backbone variant trained**: d=1024, n_heads=16, n_layers=16, 12K steps, masked-LM on 2.47M ChEMBL. Loss 0.09 (vs 0.10 for 75M). Local: `smiles_lm_200m_chembl.pt` 770 MB. Sits alongside 75M backbone for downstream Stage-2 ranker init choice. | 2026-05-10 | implementer |
+| L32 | **vLLM serving uses runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-ubuntu22.04** (NOT vllm-latest community template — that one had container-not-running issues). Manual install of vllm 0.20.2. Direct TCP SSH works (sshd preinstalled). Currently loading `casperhansen/llama-3.3-70b-instruct-awq` (~29 GB / 40 GB downloaded at last check). HF_HOME=/workspace/.cache/huggingface. | 2026-05-10 | implementer |
+| L33 | **Quality > quantity in data curation, no count targets** (per `~/.claude/.../memory/feedback_data_quality_over_quantity.md`). User clarified after I cited "10K-100K papers" as a target — those are CEILINGS not goals. Drop low-signal rows. Spec gold-tier ~500-2K rescue pairs from ~100-500 carefully-selected papers, NOT mass extraction. Sources welcome (SureChEMBL/patents, DrugBank, etc.) but evaluated for signal density first. | 2026-05-10 | user (HARD) |
 
 ---
 
@@ -93,7 +100,97 @@ Use headings, bullet lists, and tables freely. Do NOT prune old entries — appe
 
 ## Log entries (newest first)
 
-### 2026-05-10 (latest) — Aggressive parallel-track shipping wave (commits 3 + 4)
+### 2026-05-10 (latest, context-clear handoff) — Full state dump for cold-start resume
+**Type:** reference + status snapshot
+**Phase:** Phase A-4 in progress, Channel 6 partly trained, vLLM coming up
+**Context:** User about to clear context; this entry captures everything not already in MEMORY.md so the next agent can resume cold without losing state.
+
+## Hard rules currently in force (re-read these FIRST)
+- **L25 NO FALLBACKS / PLACEHOLDERS / SHORTCUTS.** Build planned upstream phases. No HeuristicRanker as inference scorer. No rule-pack substitutes for trained generators. No threshold tuning instead of trained classifiers. Detail: `~/.claude/projects/A--rasyn-case-studies/memory/feedback_no_fallbacks_follow_plan.md`.
+- **L33 QUALITY > QUANTITY.** No count targets driving inclusion. Drop low-signal rows. Detail: `feedback_data_quality_over_quantity.md`.
+- **L5 PLAN-FIRST.** Every new phase: re-read PLAN.md + spec doc, write sub-plan, get user OK, then code.
+- **MEMORY.md is append-only** + maintain "Locked decisions snapshot" + "Open gates" tables at top.
+
+## Pod inventory + SSH details (use ~/.ssh/id_ed25519_h200 for algoverse pods, ~/.ssh/id_ed25519 for RunPod)
+- **Pod A (us-west-2):** `ubuntu@132.226.101.171` — Ch6 SMILES generative proposer DONE ✅
+- **Pod B (us-west-2):** `ubuntu@161.153.43.217` — Stage-1 200M backbone DONE ✅
+- **Pod C (asia-northeast-2):** `ubuntu@161.33.194.122` — Phase A-4 silver passes RUNNING (critical path)
+- **Pod D (europe-central-1):** `ubuntu@92.5.37.194` — Ch6 SELFIES re-launched after parquet corruption crash
+- **vLLM RunPod (us):** `root@154.54.102.45 -p 18129` — Llama-3.3-70B AWQ loading (~29/40 GB at last check)
+- All A100 pods are 8x A100-SXM4 40GB; vLLM pod is 1x A100 80GB; H200 pod (`root@210.157.233.86 -p 34931` if still alive) had 8x H200 141GB but should be terminated by now.
+
+## Local artifacts at `A:\rasyn-case-studies\artifacts\` (~6.5+ GB)
+- **registry/** — `sealed_case_registry.yaml` (3 ADMET cases populated; ADMET-003 answer SMILES still null), `canaries.yaml` (96 canaries)
+- **datasets/** — `molecules_canonical.parquet` (65 MB, 2.47M decontam ChEMBL); `chembl_extract_report.json` (zero canary survivors); `oxs_compound_search.json` (empty — confirms OXS008474 paper-only); `aux_admet_smiles_index.json` (TDC SMILES + tasks)
+- **checkpoints/** (all SCPed):
+  - `smiles_lm_pretrain_chembl.pt` 217 MB — Stage-1 backbone 75M, loss 0.10
+  - `smiles_lm_200m_chembl.pt` 770 MB — Stage-1 backbone 200M (NEW today), loss 0.09
+  - `aux_admet_step2000.pt` (121 MB) + `aux_admet_final.pt` (227 MB) — v1 56M
+  - `aux_admet_v2_final.pt` 605 MB — v2 200M (best from-scratch ClinTox 96.5%, hERG 78%)
+  - `aux_admet_v3_seed43.pt`, `aux_admet_v4_xl.pt`, `aux_admet_v5_xl_final.pt`, `aux_admet_v6_500m_final.pt` (1.7 GB), `aux_admet_v7_seed49.pt`, `aux_admet_v8.pt`
+  - `stage2_finetuned_seed42.pt`, `stage2_finetuned_seed43.pt`, `stage2_finetuned_seed44.pt`, `stage2_frozen_encoder.pt`, `stage2_finetuned_xl.pt` — Stage-2 finetunes (HIA 95% on frozen-encoder = best across all variants)
+  - All `*_per_task_metrics.json` paired with each checkpoint (22 ADMET tasks each)
+- **proposers/** (NEW today):
+  - `channel6_novelty_smiles.pt` 217 MB — first ML proposer trained per plan B-6
+  - `channel6_novelty_selfies.pt` PENDING (Pod D re-running after parquet corrupt crash)
+- **logs/** — full per-step training logs for all variants
+- **rescue_results/** — `ADMET-00{1,2,3}_results.json` + `_patched.json` versions. **All flagged as L26 deviations**, do NOT cite as real results.
+
+## Phase A-4 critical-path status (Pod C is the bottleneck)
+- ChEMBL bulk SQLite re-downloaded on Pod C, extracted, Pass 1 streamed activities to assay_facts.parquet ✅
+- Pass 2-3 ran (PubChem AIDs + TDC + MolNet) ✅
+- **Pass 6 (analog graph)** — Pod C was at "Computing Murcko + heavy_atom_diff for 4,449,617 edges" at last check. Will continue into Passes 7-13 then finalize.
+- **CRITICAL**: Pass 6 had unilateral [5, 500] mol/target filter excluding hERG/CYPs (L27). Pass 6.5 = supplementary script ready (`scripts/pass_6_5_big_targets_faiss.py`) using FAISS IndexBinaryFlat top-K NN. User chose Option B: let current chain finish, then run Pass 6.5 + re-run Passes 7-13.
+- After Phase A-4 + Pass 6.5 completes: `rescue_pair_candidates.parquet` + `candidate_sets.parquet` will be the unblocking artifacts for Stage-2.
+
+## Active monitors at handoff time (background SSH watchers)
+- `boj4mp40w` — Phase A-4 silver completion on Pod C (waits for "All done" / Traceback / Error in /tmp/phase_a4.log)
+- `bnwoj9c6h` — Pod D Ch6 SELFIES re-launch completion (post-parquet-corruption fix; waits for FINAL or step 8000)
+- `bin62q1x2` — vLLM /v1/models 200 OK (waits for endpoint to respond; was downloading 29/40 GB)
+- Several stale launcher-SSH-end notifications expected (b3o7ujt7p was the vLLM install-launcher SSH session, etc — IGNORE those if they fire)
+
+## Plan-aligned remaining work
+1. **Phase A-4 Pass 6→13 finish** (running on Pod C) → produces rescue_pair_candidates.parquet (PARTIAL — missing big targets)
+2. **Pass 6.5 FAISS top-K NN** → appends big-target edges (hERG, CYPs, kinases) to analog_edges.parquet
+3. **Re-run Pass 7-13** on augmented edges → final rescue_pair_candidates.parquet + candidate_sets.parquet
+4. **Phase A-5 final freeze** — manifest + canary audit
+5. **Stage 2 — train pairwise rescue ranker** on rescue_pair_candidates.parquet (pairwise transformer init from `smiles_lm_200m_chembl.pt`, multi-task heads, hard-negative mining from Pass 10 labels)
+6. **Channel 4 (learned inverse-delta proposer)** training — needs rescue pairs
+7. **Channel 5 (forward-reward optimizer)** training — needs rescue pairs + aux ADMET predictors (we have those)
+8. **Layer-2 verification** — single-target signal check on hERG slice
+9. **Paper extraction (PLAN.md §16, P-0 to P-5)** — runs against vLLM Llama-3.3-70B endpoint when ready. QUALITY-FIRST per L33: ~100-500 carefully selected papers, ~500-2K gold-tier rescue pairs target. NOT mass extraction.
+10. **Layer-3 preflight** at scale
+11. **Real Stage-5 sealed-case inference** with TRAINED pairwise ranker (replacing the L26 heuristic-ranker deviation)
+
+## Scripts in repo (what to use, what NOT to use)
+- USE: `scripts/build_rescue_pair_dataset.py` (Phase A-4 orchestrator, 11 passes)
+- USE: `scripts/pass_6_5_big_targets_faiss.py` (FAISS supplementary)
+- USE: `scripts/h200_smiles_lm_pretrain.py` (Stage-1 backbone)
+- USE: `scripts/h200_train_aux_admet.py` (multi-task ADMET)
+- USE: `scripts/h200_finetune_aux_with_pretrain.py` (Stage-2 finetune)
+- USE: `scripts/h200_extract_canonicalize_chembl.py` (ChEMBL processing)
+- USE: `scripts/train_channel6_novelty_proposer.py` (Ch6 SMILES variant)
+- USE: `scripts/train_channel6_novelty_selfies.py` (Ch6 SELFIES variant)
+- **DEPRECATED — DO NOT USE FOR INFERENCE:** `scripts/rescue_inference.py` (uses HeuristicRanker — L26 deviation). Salvage parts when writing the real Stage-5 inference script post Stage-2 training.
+
+## Key spec citations to re-read at next phase boundary
+- `proposer_system_test_cases.md` §1007–1049 (3 sealed cases) + §1635–1658 (decontamination)
+- `rasyn_curating_the_dataset.md` §13-passes (Phase A-4 spec)
+- `rasyn_admet_conditioning_architecture_benchmark_spec.md` §2-3 (challenge packet + evidence schema), §4 (rescue labels), §6-7 (baselines + eval modes), §8 (decontam)
+- `rasyn_admet_rescue_architecture_context.md` §3-4 (proposer-ranker decomposition)
+- `rasyn_heldout_discovery_demo_context.md` §65-76 (8 conditions for "discovered")
+
+## Decisions a future agent should NOT silently make
+- DO NOT replace trained ranker with HeuristicRanker as fallback (L25, L26)
+- DO NOT add per-target size caps in Pass 6 / Pass 6.5 (the whole point of L27 fix is to NOT cap)
+- DO NOT use Tanimoto threshold tuning as substitute for learned ranker scores
+- DO NOT pad dataset to hit count targets (L33)
+- DO NOT use TurboQuant-KV for binary Morgan FPs — only for float embeddings (L28)
+- DO ASK user before any architectural decision the spec doesn't pre-specify
+
+---
+
+### 2026-05-10 (earlier) — Aggressive parallel-track shipping wave (commits 3 + 4)
 **Type:** result + reference
 **Phase:** B-1 through B-8 (most), A-1 to A-3 (skeletons), training-stack scaffolds
 **Context:** User said "go ahead with next steps when you need the GPU let me know UNTIL extremely important do not stop the implement, EXTREMELY parallelize things to speed up." Implemented as much non-GPU work as possible in one session. Two commits totaling 60+ files, ~6000 LOC.
