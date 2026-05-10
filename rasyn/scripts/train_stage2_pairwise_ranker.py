@@ -105,51 +105,38 @@ def derive_rescue_label(retention: str, improvement: str) -> str:
 
 
 # ===== Evidence features =====
-# Engineered features built directly from the parquet row. 32-dim vector.
-EVIDENCE_DIM = 32
+# LEAKAGE-FREE feature set: only fields known at INFERENCE TIME.
+# Excludes:
+#   - candidate_activity_pchembl  (we don't know candidate's potency until measured)
+#   - candidate_liability_value   (same; this is what we predict)
+#   - activity_retention_bucket   (DERIVED from candidate's pchembl -> is our LABEL)
+#   - liability_improvement_category (DERIVED from candidate's liability -> is our LABEL)
+#   - hard_negative_type          (DERIVED from the above two labels)
+# At inference, only the structural + parent-side measurements exist.
+EVIDENCE_DIM = 12
+
+LIABILITY_TYPES_OH = ["hERG", "solubility", "metabolic_stability", "oral_exposure", "permeability", "unknown", "other"]
 
 
 def build_evidence_vector(row: dict) -> np.ndarray:
-    """Build 32-dim evidence vector from a rescue_pair row."""
+    """Build leakage-free 12-dim evidence vector from a rescue_pair row."""
     e = np.zeros(EVIDENCE_DIM, dtype=np.float32)
-    # 0-3: structural similarity
+    # 0-2: structural similarity (always available)
     e[0] = float(row.get("ecfp_tanimoto") or 0.0)
     e[1] = 1.0 if row.get("murcko_match") else 0.0
     e[2] = float(row.get("heavy_atom_diff") or 0.0)
-    # 3-7: activity context (potency)
-    e[3] = float(row.get("parent_activity_pchembl") or 0.0)
-    e[4] = float(row.get("candidate_activity_pchembl") or 0.0)
-    if e[3] != 0 and e[4] != 0:
-        e[5] = e[4] - e[3]  # delta pchembl
-    # 6-10: liability values (raw, log-scale)
+    # 3: parent activity pchembl (known from registry at inference)
+    pa = row.get("parent_activity_pchembl")
+    e[3] = float(pa) if pa is not None and not pd.isna(pa) else 0.0
+    # 4: parent liability value (log-scale; known if registry has it)
     pl = row.get("parent_liability_value")
-    cl = row.get("candidate_liability_value")
-    e[6] = float(np.log1p(abs(pl))) if pl is not None and not pd.isna(pl) else 0.0
-    e[7] = float(np.log1p(abs(cl))) if cl is not None and not pd.isna(cl) else 0.0
-    if pl is not None and cl is not None and not pd.isna(pl) and not pd.isna(cl):
-        e[8] = float(np.log1p(abs(cl)) - np.log1p(abs(pl)))
-    # 9-13: retention bucket one-hot
-    ret = row.get("activity_retention_bucket") or "unknown"
-    if ret in RETENTION2ID:
-        e[9 + RETENTION2ID[ret]] = 1.0
-    # 14-19: improvement category one-hot
-    imp = row.get("liability_improvement_category") or "unknown"
-    if imp in IMPROVEMENT2ID:
-        e[14 + IMPROVEMENT2ID[imp]] = 1.0
-    # 20-26: liability_type one-hot (4 v1 families + permeability + unknown + active_metabolite)
-    LIABILITY_TYPES = ["hERG", "solubility", "metabolic_stability", "oral_exposure", "permeability", "unknown", "other"]
+    e[4] = float(np.log1p(abs(pl))) if pl is not None and not pd.isna(pl) else 0.0
+    # 5-11: liability_type one-hot (known from challenge packet)
     lt = row.get("liability_type") or "unknown"
-    if lt in LIABILITY_TYPES:
-        e[20 + LIABILITY_TYPES.index(lt)] = 1.0
+    if lt in LIABILITY_TYPES_OH:
+        e[5 + LIABILITY_TYPES_OH.index(lt)] = 1.0
     else:
-        e[20 + 6] = 1.0  # other
-    # 27: hard_negative_type indicator
-    hn = row.get("hard_negative_type")
-    if hn == "improved_but_activity_lost":
-        e[27] = 1.0
-    elif hn == "retained_but_liability_unfixed":
-        e[28] = 1.0
-    # 29-31 reserved for future
+        e[5 + LIABILITY_TYPES_OH.index("other")] = 1.0
     return e
 
 
