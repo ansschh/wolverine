@@ -1,0 +1,24 @@
+{
+  "raw_rows": 2474590,
+  "canonicalized": 2474589,
+  "after_decontam": 2474556,
+  "elapsed_seconds": 734.2121229171753,
+  "decontam_report": {
+    "total_input": 2474589,
+    "total_kept": 2474556,
+    "removed_by_smiles": 0,
+    "removed_by_inchi_key": 8,
+    "removed_by_synonym": 0,
+    "removed_by_chembl_id": 0,
+    "removed_by_pubchem_cid": 0,
+    "removed_by_cas": 0,
+    "removed_by_doi": 0,
+    "removed_by_pmid": 0,
+    "removed_by_chembl_doc_id": 0,
+    "removed_by_assay_id": 0,
+    "removed_by_neighbor_to_answer": 2,
+    "removed_by_neighbor_with_context": 23,
+    "canary_survivors": []
+  },
+  "oxs_search_hits": 0
+}

@@ -1,0 +1,202 @@
+{"t": 1778413618.26731, "msg": "Pulling TDC datasets..."}
+{"t": 1778413618.2718859, "msg": "  Caco2_Wang: 910 rows (regression)"}
+{"t": 1778413618.2939715, "msg": "  PAMPA_NCATS: 2034 rows (binary)"}
+{"t": 1778413618.3380988, "msg": "  HIA_Hou: 578 rows (binary)"}
+{"t": 1778413618.3545134, "msg": "  Pgp_Broccatelli: 1218 rows (binary)"}
+{"t": 1778413618.3818414, "msg": "  Bioavailability_Ma: 640 rows (binary)"}
+{"t": 1778413618.403966, "msg": "  Lipophilicity_AstraZeneca: 4200 rows (regression)"}
+{"t": 1778413618.5086555, "msg": "  Solubility_AqSolDB: 9982 rows (regression)"}
+{"t": 1778413618.7195323, "msg": "  BBB_Martins: 2030 rows (binary)"}
+{"t": 1778413618.7719936, "msg": "  PPBR_AZ: 1614 rows (regression)"}
+{"t": 1778413618.8083253, "msg": "  VDss_Lombardo: 1130 rows (regression)"}
+{"t": 1778413618.8465154, "msg": "  CYP2D6_Veith: 13130 rows (binary)"}
+{"t": 1778413619.1159854, "msg": "  CYP3A4_Veith: 12328 rows (binary)"}
+{"t": 1778413619.379582, "msg": "  CYP1A2_Veith: 12579 rows (binary)"}
+{"t": 1778413619.644162, "msg": "  CYP2C9_Veith: 12092 rows (binary)"}
+{"t": 1778413619.882946, "msg": "  Half_Life_Obach: 667 rows (regression)"}
+{"t": 1778413619.900358, "msg": "  Clearance_Hepatocyte_AZ: 1213 rows (regression)"}
+{"t": 1778413619.9279535, "msg": "  Clearance_Microsome_AZ: 1102 rows (regression)"}
+{"t": 1778413619.9532344, "msg": "  hERG: 655 rows (binary)"}
+{"t": 1778413619.977947, "msg": "  AMES: 7278 rows (binary)"}
+{"t": 1778413620.1273124, "msg": "  DILI: 475 rows (binary)"}
+{"t": 1778413620.1409209, "msg": "  ClinTox: 1478 rows (binary)"}
+{"t": 1778413620.1847298, "msg": "  LD50_Zhu: 7385 rows (regression)"}
+{"t": 1778413620.366904, "msg": "Combined universe: 48987 unique SMILES, 22 tasks"}
+{"t": 1778413628.1776936, "msg": "Decontamination report: {'total_input': 48987, 'total_kept': 48974, 'removed_by_smiles': 4, 'removed_by_inchi_key': 0, 'removed_by_synonym': 0, 'removed_by_chembl_id': 0, 'removed_by_pubchem_cid': 0, 'removed_by_cas': 0, 'removed_by_doi': 0, 'removed_by_pmid': 0, 'removed_by_chembl_doc_id': 0, 'removed_by_assay_id': 0, 'removed_by_neighbor_to_answer': 3, 'removed_by_neighbor_with_context': 6, 'canary_survivors': []}"}
+{"t": 1778413628.1778862, "msg": "Post-decontam: 48974 SMILES"}
+{"t": 1778413630.6378207, "msg": "World size 8, n_tasks 22, n_smiles 48974"}
+{"t": 1778413631.5622818, "msg": "Model params: 315,086,102"}
+{"t": 1778413632.4830177, "msg": "Starting training: 8000 steps, bs=48 per GPU, effective bs=384"}
+{"t": 1778413638.487562, "msg": "step 50/8000 loss=2057.0269 lr=2.45e-05 throughput=3201 samp/s", "step": 50, "loss": 2057.02685546875}
+{"t": 1778413641.982944, "msg": "step 100/8000 loss=456.4489 lr=4.95e-05 throughput=4046 samp/s", "step": 100, "loss": 456.4488525390625}
+{"t": 1778413645.8554494, "msg": "step 150/8000 loss=427.1437 lr=7.45e-05 throughput=4309 samp/s", "step": 150, "loss": 427.1436767578125}
+{"t": 1778413649.4526482, "msg": "step 200/8000 loss=327.5540 lr=9.95e-05 throughput=4528 samp/s", "step": 200, "loss": 327.5539855957031}
+{"t": 1778413653.1426678, "msg": "step 250/8000 loss=310.5632 lr=1.25e-04 throughput=4651 samp/s", "step": 250, "loss": 310.5632019042969}
+{"t": 1778413656.4451234, "msg": "step 300/8000 loss=165.6346 lr=1.50e-04 throughput=4812 samp/s", "step": 300, "loss": 165.63458251953125}
+{"t": 1778413660.0976741, "msg": "step 350/8000 loss=648.1744 lr=1.75e-04 throughput=4871 samp/s", "step": 350, "loss": 648.1743774414062}
+{"t": 1778413663.437043, "msg": "step 400/8000 loss=1249.5612 lr=2.00e-04 throughput=4966 samp/s", "step": 400, "loss": 1249.5611572265625}
+{"t": 1778413666.8290882, "msg": "step 450/8000 loss=813.5004 lr=2.00e-04 throughput=5034 samp/s", "step": 450, "loss": 813.5003662109375}
+{"t": 1778413670.455053, "msg": "step 500/8000 loss=110.4120 lr=2.00e-04 throughput=5059 samp/s", "step": 500, "loss": 110.41201782226562}
+{"t": 1778413673.8593173, "msg": "step 550/8000 loss=623.5360 lr=2.00e-04 throughput=5105 samp/s", "step": 550, "loss": 623.5360107421875}
+{"t": 1778413677.6246548, "msg": "step 600/8000 loss=6.5777 lr=2.00e-04 throughput=5107 samp/s", "step": 600, "loss": 6.577742576599121}
+{"t": 1778413681.0442848, "msg": "step 650/8000 loss=893.4564 lr=1.99e-04 throughput=5140 samp/s", "step": 650, "loss": 893.4563598632812}
+{"t": 1778413684.6441586, "msg": "step 700/8000 loss=1556.7651 lr=1.99e-04 throughput=5155 samp/s", "step": 700, "loss": 1556.76513671875}
+{"t": 1778413688.139019, "msg": "step 750/8000 loss=55.7568 lr=1.99e-04 throughput=5176 samp/s", "step": 750, "loss": 55.75680160522461}
+{"t": 1778413691.9505374, "msg": "step 800/8000 loss=11.0894 lr=1.99e-04 throughput=5167 samp/s", "step": 800, "loss": 11.089444160461426}
+{"t": 1778413695.4974737, "msg": "step 850/8000 loss=0.9213 lr=1.98e-04 throughput=5181 samp/s", "step": 850, "loss": 0.9213182330131531}
+{"t": 1778413699.1296043, "msg": "step 900/8000 loss=594.8470 lr=1.98e-04 throughput=5187 samp/s", "step": 900, "loss": 594.8470458984375}
+{"t": 1778413702.7681062, "msg": "step 950/8000 loss=155.2180 lr=1.97e-04 throughput=5192 samp/s", "step": 950, "loss": 155.2179718017578}
+{"t": 1778413706.214582, "msg": "step 1000/8000 loss=381.1205 lr=1.97e-04 throughput=5209 samp/s", "step": 1000, "loss": 381.1205139160156}
+{"t": 1778413708.8314373, "msg": "step 1000 val metrics", "val": {"Caco2_Wang": {"rmse": 0.9386865795318775, "n": 86}, "PAMPA_NCATS": {"acc": 0.855, "n": 200}, "HIA_Hou": {"acc": 0.8771929824561403, "n": 57}, "Pgp_Broccatelli": {"acc": 0.6033057851239669, "n": 121}, "Bioavailability_Ma": {"acc": 0.8596491228070176, "n": 57}, "Lipophilicity_AstraZeneca": {"rmse": 1.2548449449385628, "n": 421}, "Solubility_AqSolDB": {"rmse": 2.347608029064255, "n": 1030}, "BBB_Martins": {"acc": 0.7952380952380952, "n": 210}, "PPBR_AZ": {"rmse": 16.68630545694736, "n": 160}, "VDss_Lombardo": {"rmse": 7.242338931460869, "n": 99}, "CYP2D6_Veith": {"acc": 0.8080657206870799, "n": 1339}, "CYP3A4_Veith": {"acc": 0.5953338696701529, "n": 1243}, "CYP1A2_Veith": {"acc": 0.5446570972886763, "n": 1254}, "CYP2C9_Veith": {"acc": 0.6799667497921862, "n": 1203}, "Half_Life_Obach": {"rmse": 25.594554107350774, "n": 65}, "Clearance_Hepatocyte_AZ": {"rmse": 55.13725689534885, "n": 91}, "Clearance_Microsome_AZ": {"rmse": 41.040333805512226, "n": 100}, "hERG": {"acc": 0.75, "n": 64}, "AMES": {"acc": 0.5439560439560439, "n": 728}, "DILI": {"acc": 0.49122807017543857, "n": 57}, "ClinTox": {"acc": 0.9612403100775194, "n": 129}, "LD50_Zhu": {"rmse": 1.013695120542459, "n": 744}}}
+{"t": 1778413712.6170433, "msg": "step 1050/8000 loss=166.9493 lr=1.96e-04 throughput=5033 samp/s", "step": 1050, "loss": 166.9492950439453}
+{"t": 1778413716.013896, "msg": "step 1100/8000 loss=22.4960 lr=1.96e-04 throughput=5058 samp/s", "step": 1100, "loss": 22.49603843688965}
+{"t": 1778413719.6960902, "msg": "step 1150/8000 loss=55.6658 lr=1.95e-04 throughput=5065 samp/s", "step": 1150, "loss": 55.66579818725586}
+{"t": 1778413723.1487188, "msg": "step 1200/8000 loss=32.2502 lr=1.95e-04 throughput=5085 samp/s", "step": 1200, "loss": 32.25022888183594}
+{"t": 1778413726.5176125, "msg": "step 1250/8000 loss=19.6990 lr=1.94e-04 throughput=5105 samp/s", "step": 1250, "loss": 19.699012756347656}
+{"t": 1778413730.5718575, "msg": "step 1300/8000 loss=49.9523 lr=1.93e-04 throughput=5091 samp/s", "step": 1300, "loss": 49.952274322509766}
+{"t": 1778413734.3900387, "msg": "step 1350/8000 loss=3.7216 lr=1.92e-04 throughput=5089 samp/s", "step": 1350, "loss": 3.721637725830078}
+{"t": 1778413738.1844363, "msg": "step 1400/8000 loss=541.2825 lr=1.92e-04 throughput=5087 samp/s", "step": 1400, "loss": 541.2825317382812}
+{"t": 1778413741.598675, "msg": "step 1450/8000 loss=449.6151 lr=1.91e-04 throughput=5104 samp/s", "step": 1450, "loss": 449.6151428222656}
+{"t": 1778413745.2587235, "msg": "step 1500/8000 loss=129.6838 lr=1.90e-04 throughput=5108 samp/s", "step": 1500, "loss": 129.68377685546875}
+{"t": 1778413748.620683, "msg": "step 1550/8000 loss=233.4326 lr=1.89e-04 throughput=5126 samp/s", "step": 1550, "loss": 233.4326171875}
+{"t": 1778413752.232981, "msg": "step 1600/8000 loss=10.7243 lr=1.88e-04 throughput=5132 samp/s", "step": 1600, "loss": 10.724279403686523}
+{"t": 1778413755.8577867, "msg": "step 1650/8000 loss=261.6189 lr=1.87e-04 throughput=5136 samp/s", "step": 1650, "loss": 261.6188659667969}
+{"t": 1778413759.3113816, "msg": "step 1700/8000 loss=107.4208 lr=1.86e-04 throughput=5148 samp/s", "step": 1700, "loss": 107.42082977294922}
+{"t": 1778413763.0739381, "msg": "step 1750/8000 loss=20.1930 lr=1.85e-04 throughput=5146 samp/s", "step": 1750, "loss": 20.192962646484375}
+{"t": 1778413766.6349256, "msg": "step 1800/8000 loss=6.9126 lr=1.84e-04 throughput=5153 samp/s", "step": 1800, "loss": 6.9126386642456055}
+{"t": 1778413770.3860033, "msg": "step 1850/8000 loss=3.9401 lr=1.83e-04 throughput=5152 samp/s", "step": 1850, "loss": 3.94008731842041}
+{"t": 1778413773.805897, "msg": "step 1900/8000 loss=7.9985 lr=1.81e-04 throughput=5163 samp/s", "step": 1900, "loss": 7.998457908630371}
+{"t": 1778413777.5355167, "msg": "step 1950/8000 loss=15.0113 lr=1.80e-04 throughput=5163 samp/s", "step": 1950, "loss": 15.011331558227539}
+{"t": 1778413781.0993817, "msg": "step 2000/8000 loss=2.1006 lr=1.79e-04 throughput=5168 samp/s", "step": 2000, "loss": 2.100614309310913}
+{"t": 1778413782.7558734, "msg": "step 2000 val metrics", "val": {"Caco2_Wang": {"rmse": 0.795352483422547, "n": 86}, "PAMPA_NCATS": {"acc": 0.855, "n": 200}, "HIA_Hou": {"acc": 0.8771929824561403, "n": 57}, "Pgp_Broccatelli": {"acc": 0.5041322314049587, "n": 121}, "Bioavailability_Ma": {"acc": 0.8596491228070176, "n": 57}, "Lipophilicity_AstraZeneca": {"rmse": 1.2031704666090417, "n": 421}, "Solubility_AqSolDB": {"rmse": 2.389693707619161, "n": 1030}, "BBB_Martins": {"acc": 0.7952380952380952, "n": 210}, "PPBR_AZ": {"rmse": 15.691812444559371, "n": 160}, "VDss_Lombardo": {"rmse": 7.429878785345377, "n": 99}, "CYP2D6_Veith": {"acc": 0.8080657206870799, "n": 1339}, "CYP3A4_Veith": {"acc": 0.5559131134352373, "n": 1243}, "CYP1A2_Veith": {"acc": 0.6259968102073366, "n": 1254}, "CYP2C9_Veith": {"acc": 0.6799667497921862, "n": 1203}, "Half_Life_Obach": {"rmse": 26.005078213127124, "n": 65}, "Clearance_Hepatocyte_AZ": {"rmse": 54.327799024269076, "n": 91}, "Clearance_Microsome_AZ": {"rmse": 42.43666428533849, "n": 100}, "hERG": {"acc": 0.75, "n": 64}, "AMES": {"acc": 0.5659340659340659, "n": 728}, "DILI": {"acc": 0.5964912280701754, "n": 57}, "ClinTox": {"acc": 0.9612403100775194, "n": 129}, "LD50_Zhu": {"rmse": 0.9896755319524194, "n": 744}}}
+{"t": 1778413783.4179, "msg": "Saved checkpoint at step 2000"}
+{"t": 1778413787.0193372, "msg": "step 2050/8000 loss=24.5493 lr=1.78e-04 throughput=5094 samp/s", "step": 2050, "loss": 24.549339294433594}
+{"t": 1778413790.7341568, "msg": "step 2100/8000 loss=194.2783 lr=1.76e-04 throughput=5096 samp/s", "step": 2100, "loss": 194.2782745361328}
+{"t": 1778413794.1370604, "msg": "step 2150/8000 loss=57.7381 lr=1.75e-04 throughput=5108 samp/s", "step": 2150, "loss": 57.738075256347656}
+{"t": 1778413797.8382573, "msg": "step 2200/8000 loss=8.0322 lr=1.74e-04 throughput=5110 samp/s", "step": 2200, "loss": 8.032160758972168}
+{"t": 1778413801.3926697, "msg": "step 2250/8000 loss=37.3891 lr=1.72e-04 throughput=5116 samp/s", "step": 2250, "loss": 37.38912582397461}
+{"t": 1778413805.2087624, "msg": "step 2300/8000 loss=147.1562 lr=1.71e-04 throughput=5114 samp/s", "step": 2300, "loss": 147.1562042236328}
+{"t": 1778413808.7464619, "msg": "step 2350/8000 loss=105.2905 lr=1.69e-04 throughput=5120 samp/s", "step": 2350, "loss": 105.29054260253906}
+{"t": 1778413812.4901092, "msg": "step 2400/8000 loss=487.3739 lr=1.68e-04 throughput=5120 samp/s", "step": 2400, "loss": 487.3739318847656}
+{"t": 1778413815.866838, "msg": "step 2450/8000 loss=59.6716 lr=1.66e-04 throughput=5131 samp/s", "step": 2450, "loss": 59.671573638916016}
+{"t": 1778413819.3634913, "msg": "step 2500/8000 loss=25.8124 lr=1.65e-04 throughput=5138 samp/s", "step": 2500, "loss": 25.812362670898438}
+{"t": 1778413823.1138914, "msg": "step 2550/8000 loss=115.2795 lr=1.63e-04 throughput=5137 samp/s", "step": 2550, "loss": 115.27947235107422}
+{"t": 1778413826.701012, "msg": "step 2600/8000 loss=1095.7827 lr=1.61e-04 throughput=5141 samp/s", "step": 2600, "loss": 1095.78271484375}
+{"t": 1778413830.428508, "msg": "step 2650/8000 loss=122.0630 lr=1.60e-04 throughput=5141 samp/s", "step": 2650, "loss": 122.06301879882812}
+{"t": 1778413833.8994842, "msg": "step 2700/8000 loss=26.1987 lr=1.58e-04 throughput=5148 samp/s", "step": 2700, "loss": 26.198747634887695}
+{"t": 1778413837.5727866, "msg": "step 2750/8000 loss=6.9350 lr=1.56e-04 throughput=5150 samp/s", "step": 2750, "loss": 6.93501615524292}
+{"t": 1778413841.0550728, "msg": "step 2800/8000 loss=68.9367 lr=1.55e-04 throughput=5156 samp/s", "step": 2800, "loss": 68.9366683959961}
+{"t": 1778413844.5303812, "msg": "step 2850/8000 loss=31.9999 lr=1.53e-04 throughput=5162 samp/s", "step": 2850, "loss": 31.99986457824707}
+{"t": 1778413848.2263901, "msg": "step 2900/8000 loss=392.4834 lr=1.51e-04 throughput=5162 samp/s", "step": 2900, "loss": 392.4833679199219}
+{"t": 1778413851.5500658, "msg": "step 2950/8000 loss=8.6042 lr=1.49e-04 throughput=5172 samp/s", "step": 2950, "loss": 8.604186058044434}
+{"t": 1778413855.3255334, "msg": "step 3000/8000 loss=330.3823 lr=1.48e-04 throughput=5170 samp/s", "step": 3000, "loss": 330.38226318359375}
+{"t": 1778413856.9774218, "msg": "step 3000 val metrics", "val": {"Caco2_Wang": {"rmse": 0.7623864670515408, "n": 86}, "PAMPA_NCATS": {"acc": 0.855, "n": 200}, "HIA_Hou": {"acc": 0.8596491228070176, "n": 57}, "Pgp_Broccatelli": {"acc": 0.5702479338842975, "n": 121}, "Bioavailability_Ma": {"acc": 0.8070175438596491, "n": 57}, "Lipophilicity_AstraZeneca": {"rmse": 1.1923544318909336, "n": 421}, "Solubility_AqSolDB": {"rmse": 2.259302045092667, "n": 1030}, "BBB_Martins": {"acc": 0.7952380952380952, "n": 210}, "PPBR_AZ": {"rmse": 15.853938167973471, "n": 160}, "VDss_Lombardo": {"rmse": 7.335289346931424, "n": 99}, "CYP2D6_Veith": {"acc": 0.8080657206870799, "n": 1339}, "CYP3A4_Veith": {"acc": 0.6065969428801288, "n": 1243}, "CYP1A2_Veith": {"acc": 0.6307814992025519, "n": 1254}, "CYP2C9_Veith": {"acc": 0.6807980049875312, "n": 1203}, "Half_Life_Obach": {"rmse": 24.972649561681653, "n": 65}, "Clearance_Hepatocyte_AZ": {"rmse": 55.35487387337004, "n": 91}, "Clearance_Microsome_AZ": {"rmse": 41.783480919657315, "n": 100}, "hERG": {"acc": 0.75, "n": 64}, "AMES": {"acc": 0.570054945054945, "n": 728}, "DILI": {"acc": 0.6140350877192983, "n": 57}, "ClinTox": {"acc": 0.9612403100775194, "n": 129}, "LD50_Zhu": {"rmse": 0.9725856398731471, "n": 744}}}
+{"t": 1778413860.5681722, "msg": "step 3050/8000 loss=3.2701 lr=1.46e-04 throughput=5135 samp/s", "step": 3050, "loss": 3.2701401710510254}
+{"t": 1778413864.234345, "msg": "step 3100/8000 loss=57.1740 lr=1.44e-04 throughput=5137 samp/s", "step": 3100, "loss": 57.17401123046875}
+{"t": 1778413867.6386268, "msg": "step 3150/8000 loss=185.9361 lr=1.42e-04 throughput=5144 samp/s", "step": 3150, "loss": 185.93606567382812}
+{"t": 1778413871.5713394, "msg": "step 3200/8000 loss=53.6007 lr=1.40e-04 throughput=5140 samp/s", "step": 3200, "loss": 53.600650787353516}
+{"t": 1778413875.0442476, "msg": "step 3250/8000 loss=10.2913 lr=1.38e-04 throughput=5145 samp/s", "step": 3250, "loss": 10.291291236877441}
+{"t": 1778413878.4820614, "msg": "step 3300/8000 loss=172.5337 lr=1.36e-04 throughput=5152 samp/s", "step": 3300, "loss": 172.5337371826172}
+{"t": 1778413882.1724987, "msg": "step 3350/8000 loss=12.4519 lr=1.34e-04 throughput=5152 samp/s", "step": 3350, "loss": 12.451931953430176}
+{"t": 1778413885.7059262, "msg": "step 3400/8000 loss=196.0570 lr=1.33e-04 throughput=5156 samp/s", "step": 3400, "loss": 196.0569610595703}
+{"t": 1778413889.354774, "msg": "step 3450/8000 loss=7.5636 lr=1.31e-04 throughput=5158 samp/s", "step": 3450, "loss": 7.563559055328369}
+{"t": 1778413892.7689936, "msg": "step 3500/8000 loss=19.1758 lr=1.29e-04 throughput=5164 samp/s", "step": 3500, "loss": 19.17581558227539}
+{"t": 1778413896.4473836, "msg": "step 3550/8000 loss=737.5300 lr=1.27e-04 throughput=5165 samp/s", "step": 3550, "loss": 737.5299682617188}
+{"t": 1778413900.0221107, "msg": "step 3600/8000 loss=146.0462 lr=1.25e-04 throughput=5167 samp/s", "step": 3600, "loss": 146.04615783691406}
+{"t": 1778413903.6734788, "msg": "step 3650/8000 loss=124.5170 lr=1.23e-04 throughput=5169 samp/s", "step": 3650, "loss": 124.51697540283203}
+{"t": 1778413907.067053, "msg": "step 3700/8000 loss=18.4741 lr=1.21e-04 throughput=5175 samp/s", "step": 3700, "loss": 18.47414779663086}
+{"t": 1778413910.4860616, "msg": "step 3750/8000 loss=283.9847 lr=1.19e-04 throughput=5180 samp/s", "step": 3750, "loss": 283.9847412109375}
+{"t": 1778413914.2654085, "msg": "step 3800/8000 loss=1.4105 lr=1.17e-04 throughput=5179 samp/s", "step": 3800, "loss": 1.4105230569839478}
+{"t": 1778413917.7655168, "msg": "step 3850/8000 loss=10.8384 lr=1.14e-04 throughput=5183 samp/s", "step": 3850, "loss": 10.838350296020508}
+{"t": 1778413921.356682, "msg": "step 3900/8000 loss=23.3630 lr=1.12e-04 throughput=5184 samp/s", "step": 3900, "loss": 23.3630428314209}
+{"t": 1778413924.6541438, "msg": "step 3950/8000 loss=147.8181 lr=1.10e-04 throughput=5192 samp/s", "step": 3950, "loss": 147.81808471679688}
+{"t": 1778413928.3008142, "msg": "step 4000/8000 loss=54.4840 lr=1.08e-04 throughput=5193 samp/s", "step": 4000, "loss": 54.48397445678711}
+{"t": 1778413929.9545758, "msg": "step 4000 val metrics", "val": {"Caco2_Wang": {"rmse": 0.7763696788130133, "n": 86}, "PAMPA_NCATS": {"acc": 0.855, "n": 200}, "HIA_Hou": {"acc": 0.8771929824561403, "n": 57}, "Pgp_Broccatelli": {"acc": 0.6694214876033058, "n": 121}, "Bioavailability_Ma": {"acc": 0.8596491228070176, "n": 57}, "Lipophilicity_AstraZeneca": {"rmse": 1.1816673591048592, "n": 421}, "Solubility_AqSolDB": {"rmse": 2.21927333879839, "n": 1030}, "BBB_Martins": {"acc": 0.7952380952380952, "n": 210}, "PPBR_AZ": {"rmse": 15.346886145513508, "n": 160}, "VDss_Lombardo": {"rmse": 7.262939335951796, "n": 99}, "CYP2D6_Veith": {"acc": 0.8095593726661687, "n": 1339}, "CYP3A4_Veith": {"acc": 0.6186645213193885, "n": 1243}, "CYP1A2_Veith": {"acc": 0.6650717703349283, "n": 1254}, "CYP2C9_Veith": {"acc": 0.6749792186201163, "n": 1203}, "Half_Life_Obach": {"rmse": 24.918818346793767, "n": 65}, "Clearance_Hepatocyte_AZ": {"rmse": 61.51027817761983, "n": 91}, "Clearance_Microsome_AZ": {"rmse": 47.24232984909683, "n": 100}, "hERG": {"acc": 0.78125, "n": 64}, "AMES": {"acc": 0.5755494505494505, "n": 728}, "DILI": {"acc": 0.631578947368421, "n": 57}, "ClinTox": {"acc": 0.9612403100775194, "n": 129}, "LD50_Zhu": {"rmse": 0.9745941420879294, "n": 744}}}
+{"t": 1778413930.7262452, "msg": "Saved checkpoint at step 4000"}
+{"t": 1778413934.2426233, "msg": "step 4050/8000 loss=51.0939 lr=1.06e-04 throughput=5154 samp/s", "step": 4050, "loss": 51.09390640258789}
+{"t": 1778413937.7867696, "msg": "step 4100/8000 loss=109.4047 lr=1.04e-04 throughput=5157 samp/s", "step": 4100, "loss": 109.40474700927734}
+{"t": 1778413941.6861763, "msg": "step 4150/8000 loss=172.7254 lr=1.02e-04 throughput=5154 samp/s", "step": 4150, "loss": 172.7253875732422}
+{"t": 1778413945.2165632, "msg": "step 4200/8000 loss=14.5382 lr=1.00e-04 throughput=5158 samp/s", "step": 4200, "loss": 14.53817367553711}
+{"t": 1778413948.8949122, "msg": "step 4250/8000 loss=206.8748 lr=9.80e-05 throughput=5158 samp/s", "step": 4250, "loss": 206.87477111816406}
+{"t": 1778413952.284382, "msg": "step 4300/8000 loss=95.9262 lr=9.59e-05 throughput=5163 samp/s", "step": 4300, "loss": 95.92622375488281}
+{"t": 1778413956.102805, "msg": "step 4350/8000 loss=22.8039 lr=9.38e-05 throughput=5162 samp/s", "step": 4350, "loss": 22.803926467895508}
+{"t": 1778413959.7126126, "msg": "step 4400/8000 loss=7.2170 lr=9.18e-05 throughput=5164 samp/s", "step": 4400, "loss": 7.216992378234863}
+{"t": 1778413963.4440012, "msg": "step 4450/8000 loss=18.5042 lr=8.97e-05 throughput=5163 samp/s", "step": 4450, "loss": 18.504215240478516}
+{"t": 1778413966.8518236, "msg": "step 4500/8000 loss=0.5797 lr=8.77e-05 throughput=5168 samp/s", "step": 4500, "loss": 0.5796859264373779}
+{"t": 1778413970.2006438, "msg": "step 4550/8000 loss=1.5737 lr=8.56e-05 throughput=5174 samp/s", "step": 4550, "loss": 1.573721170425415}
+{"t": 1778413974.0563965, "msg": "step 4600/8000 loss=10.1402 lr=8.36e-05 throughput=5172 samp/s", "step": 4600, "loss": 10.14023208618164}
+{"t": 1778413977.4845767, "msg": "step 4650/8000 loss=25.4470 lr=8.15e-05 throughput=5176 samp/s", "step": 4650, "loss": 25.44699478149414}
+{"t": 1778413981.1761956, "msg": "step 4700/8000 loss=95.2362 lr=7.95e-05 throughput=5176 samp/s", "step": 4700, "loss": 95.23619842529297}
+{"t": 1778413984.5638824, "msg": "step 4750/8000 loss=34.5393 lr=7.75e-05 throughput=5181 samp/s", "step": 4750, "loss": 34.539276123046875}
+{"t": 1778413988.179701, "msg": "step 4800/8000 loss=71.1775 lr=7.55e-05 throughput=5182 samp/s", "step": 4800, "loss": 71.17747497558594}
+{"t": 1778413991.6677816, "msg": "step 4850/8000 loss=42.3927 lr=7.35e-05 throughput=5185 samp/s", "step": 4850, "loss": 42.39274597167969}
+{"t": 1778413995.1453693, "msg": "step 4900/8000 loss=81.0477 lr=7.15e-05 throughput=5189 samp/s", "step": 4900, "loss": 81.0477066040039}
+{"t": 1778413999.0070097, "msg": "step 4950/8000 loss=75.8789 lr=6.95e-05 throughput=5186 samp/s", "step": 4950, "loss": 75.87893676757812}
+{"t": 1778414002.706656, "msg": "step 5000/8000 loss=108.1262 lr=6.76e-05 throughput=5186 samp/s", "step": 5000, "loss": 108.12616729736328}
+{"t": 1778414004.3691633, "msg": "step 5000 val metrics", "val": {"Caco2_Wang": {"rmse": 0.7652462336702721, "n": 86}, "PAMPA_NCATS": {"acc": 0.855, "n": 200}, "HIA_Hou": {"acc": 0.8771929824561403, "n": 57}, "Pgp_Broccatelli": {"acc": 0.7520661157024794, "n": 121}, "Bioavailability_Ma": {"acc": 0.8596491228070176, "n": 57}, "Lipophilicity_AstraZeneca": {"rmse": 1.1334879557798923, "n": 421}, "Solubility_AqSolDB": {"rmse": 2.1590835618167743, "n": 1030}, "BBB_Martins": {"acc": 0.7952380952380952, "n": 210}, "PPBR_AZ": {"rmse": 14.982654952395892, "n": 160}, "VDss_Lombardo": {"rmse": 7.2148148110926975, "n": 99}, "CYP2D6_Veith": {"acc": 0.8080657206870799, "n": 1339}, "CYP3A4_Veith": {"acc": 0.6427996781979083, "n": 1243}, "CYP1A2_Veith": {"acc": 0.6570972886762361, "n": 1254}, "CYP2C9_Veith": {"acc": 0.6758104738154613, "n": 1203}, "Half_Life_Obach": {"rmse": 26.788074843030774, "n": 65}, "Clearance_Hepatocyte_AZ": {"rmse": 61.36058117555017, "n": 91}, "Clearance_Microsome_AZ": {"rmse": 47.17613941165009, "n": 100}, "hERG": {"acc": 0.8125, "n": 64}, "AMES": {"acc": 0.5879120879120879, "n": 728}, "DILI": {"acc": 0.7017543859649122, "n": 57}, "ClinTox": {"acc": 0.9612403100775194, "n": 129}, "LD50_Zhu": {"rmse": 0.9575826838439457, "n": 744}}}
+{"t": 1778414008.1943114, "msg": "step 5050/8000 loss=42.5414 lr=6.56e-05 throughput=5162 samp/s", "step": 5050, "loss": 42.54136276245117}
+{"t": 1778414011.8168466, "msg": "step 5100/8000 loss=313.2833 lr=6.37e-05 throughput=5163 samp/s", "step": 5100, "loss": 313.2833251953125}
+{"t": 1778414015.605059, "msg": "step 5150/8000 loss=58.7991 lr=6.18e-05 throughput=5162 samp/s", "step": 5150, "loss": 58.799102783203125}
+{"t": 1778414018.9262917, "msg": "step 5200/8000 loss=16.3216 lr=5.99e-05 throughput=5167 samp/s", "step": 5200, "loss": 16.321645736694336}
+{"t": 1778414022.620909, "msg": "step 5250/8000 loss=17.6740 lr=5.80e-05 throughput=5168 samp/s", "step": 5250, "loss": 17.673974990844727}
+{"t": 1778414026.197861, "msg": "step 5300/8000 loss=34.7281 lr=5.61e-05 throughput=5170 samp/s", "step": 5300, "loss": 34.728145599365234}
+{"t": 1778414029.7993953, "msg": "step 5350/8000 loss=84.4155 lr=5.43e-05 throughput=5171 samp/s", "step": 5350, "loss": 84.41546630859375}
+{"t": 1778414033.565519, "msg": "step 5400/8000 loss=8.2963 lr=5.24e-05 throughput=5170 samp/s", "step": 5400, "loss": 8.296276092529297}
+{"t": 1778414037.0779746, "msg": "step 5450/8000 loss=1.0423 lr=5.06e-05 throughput=5173 samp/s", "step": 5450, "loss": 1.0423485040664673}
+{"t": 1778414041.0049148, "msg": "step 5500/8000 loss=125.9795 lr=4.88e-05 throughput=5170 samp/s", "step": 5500, "loss": 125.97954559326172}
+{"t": 1778414044.7698014, "msg": "step 5550/8000 loss=0.6579 lr=4.71e-05 throughput=5169 samp/s", "step": 5550, "loss": 0.6579388380050659}
+{"t": 1778414048.4322667, "msg": "step 5600/8000 loss=9.9393 lr=4.53e-05 throughput=5170 samp/s", "step": 5600, "loss": 9.93930721282959}
+{"t": 1778414051.759133, "msg": "step 5650/8000 loss=19.0229 lr=4.36e-05 throughput=5175 samp/s", "step": 5650, "loss": 19.022886276245117}
+{"t": 1778414055.0831108, "msg": "step 5700/8000 loss=25.1135 lr=4.19e-05 throughput=5180 samp/s", "step": 5700, "loss": 25.113483428955078}
+{"t": 1778414058.8960025, "msg": "step 5750/8000 loss=135.8805 lr=4.03e-05 throughput=5178 samp/s", "step": 5750, "loss": 135.88047790527344}
+{"t": 1778414062.4124198, "msg": "step 5800/8000 loss=13.9988 lr=3.86e-05 throughput=5181 samp/s", "step": 5800, "loss": 13.99878215789795}
+{"t": 1778414066.2356527, "msg": "step 5850/8000 loss=8.6717 lr=3.70e-05 throughput=5179 samp/s", "step": 5850, "loss": 8.671746253967285}
+{"t": 1778414069.848526, "msg": "step 5900/8000 loss=1.1001 lr=3.54e-05 throughput=5180 samp/s", "step": 5900, "loss": 1.1001200675964355}
+{"t": 1778414073.4761899, "msg": "step 5950/8000 loss=151.7736 lr=3.38e-05 throughput=5181 samp/s", "step": 5950, "loss": 151.77359008789062}
+{"t": 1778414076.8817766, "msg": "step 6000/8000 loss=52.2244 lr=3.23e-05 throughput=5185 samp/s", "step": 6000, "loss": 52.224449157714844}
+{"t": 1778414078.5034447, "msg": "step 6000 val metrics", "val": {"Caco2_Wang": {"rmse": 0.797744999031291, "n": 86}, "PAMPA_NCATS": {"acc": 0.855, "n": 200}, "HIA_Hou": {"acc": 0.8771929824561403, "n": 57}, "Pgp_Broccatelli": {"acc": 0.71900826446281, "n": 121}, "Bioavailability_Ma": {"acc": 0.8421052631578947, "n": 57}, "Lipophilicity_AstraZeneca": {"rmse": 1.1388553368964178, "n": 421}, "Solubility_AqSolDB": {"rmse": 2.1133141758391787, "n": 1030}, "BBB_Martins": {"acc": 0.7952380952380952, "n": 210}, "PPBR_AZ": {"rmse": 15.701674528364784, "n": 160}, "VDss_Lombardo": {"rmse": 7.147895925371192, "n": 99}, "CYP2D6_Veith": {"acc": 0.8080657206870799, "n": 1339}, "CYP3A4_Veith": {"acc": 0.6419951729686243, "n": 1243}, "CYP1A2_Veith": {"acc": 0.6188197767145136, "n": 1254}, "CYP2C9_Veith": {"acc": 0.6882793017456359, "n": 1203}, "Half_Life_Obach": {"rmse": 27.0277133679429, "n": 65}, "Clearance_Hepatocyte_AZ": {"rmse": 59.92056354165511, "n": 91}, "Clearance_Microsome_AZ": {"rmse": 46.30740142721159, "n": 100}, "hERG": {"acc": 0.78125, "n": 64}, "AMES": {"acc": 0.5796703296703297, "n": 728}, "DILI": {"acc": 0.6842105263157895, "n": 57}, "ClinTox": {"acc": 0.9612403100775194, "n": 129}, "LD50_Zhu": {"rmse": 0.9553598526766434, "n": 744}}}
+{"t": 1778414079.2375488, "msg": "Saved checkpoint at step 6000"}
+{"t": 1778414082.9205275, "msg": "step 6050/8000 loss=6.4852 lr=3.08e-05 throughput=5158 samp/s", "step": 6050, "loss": 6.485172271728516}
+{"t": 1778414086.3392599, "msg": "step 6100/8000 loss=60.1846 lr=2.93e-05 throughput=5161 samp/s", "step": 6100, "loss": 60.18461227416992}
+{"t": 1778414089.725951, "msg": "step 6150/8000 loss=37.2086 lr=2.79e-05 throughput=5165 samp/s", "step": 6150, "loss": 37.20859146118164}
+{"t": 1778414093.4042914, "msg": "step 6200/8000 loss=19.7725 lr=2.65e-05 throughput=5166 samp/s", "step": 6200, "loss": 19.772470474243164}
+{"t": 1778414096.7969224, "msg": "step 6250/8000 loss=43.9978 lr=2.51e-05 throughput=5169 samp/s", "step": 6250, "loss": 43.99775695800781}
+{"t": 1778414100.5787568, "msg": "step 6300/8000 loss=71.4803 lr=2.37e-05 throughput=5168 samp/s", "step": 6300, "loss": 71.48029327392578}
+{"t": 1778414103.9952934, "msg": "step 6350/8000 loss=17.8691 lr=2.24e-05 throughput=5172 samp/s", "step": 6350, "loss": 17.869142532348633}
+{"t": 1778414107.7446709, "msg": "step 6400/8000 loss=0.7644 lr=2.11e-05 throughput=5171 samp/s", "step": 6400, "loss": 0.7643753290176392}
+{"t": 1778414111.2153268, "msg": "step 6450/8000 loss=14.6100 lr=1.99e-05 throughput=5174 samp/s", "step": 6450, "loss": 14.610024452209473}
+{"t": 1778414114.983556, "msg": "step 6500/8000 loss=24.6304 lr=1.86e-05 throughput=5173 samp/s", "step": 6500, "loss": 24.630352020263672}
+{"t": 1778414118.3563795, "msg": "step 6550/8000 loss=6.6715 lr=1.75e-05 throughput=5177 samp/s", "step": 6550, "loss": 6.671492576599121}
+{"t": 1778414121.7273088, "msg": "step 6600/8000 loss=321.2278 lr=1.63e-05 throughput=5180 samp/s", "step": 6600, "loss": 321.22784423828125}
+{"t": 1778414125.5253384, "msg": "step 6650/8000 loss=3.5511 lr=1.52e-05 throughput=5179 samp/s", "step": 6650, "loss": 3.5511302947998047}
+{"t": 1778414128.9461493, "msg": "step 6700/8000 loss=12.6175 lr=1.41e-05 throughput=5182 samp/s", "step": 6700, "loss": 12.617493629455566}
+{"t": 1778414132.68513, "msg": "step 6750/8000 loss=3.8234 lr=1.31e-05 throughput=5182 samp/s", "step": 6750, "loss": 3.8234305381774902}
+{"t": 1778414136.12671, "msg": "step 6800/8000 loss=93.4753 lr=1.21e-05 throughput=5185 samp/s", "step": 6800, "loss": 93.47533416748047}
+{"t": 1778414139.83871, "msg": "step 6850/8000 loss=36.2731 lr=1.11e-05 throughput=5185 samp/s", "step": 6850, "loss": 36.273067474365234}
+{"t": 1778414143.2641385, "msg": "step 6900/8000 loss=40.9264 lr=1.02e-05 throughput=5187 samp/s", "step": 6900, "loss": 40.92636489868164}
+{"t": 1778414146.6766987, "msg": "step 6950/8000 loss=10.5000 lr=9.29e-06 throughput=5191 samp/s", "step": 6950, "loss": 10.500004768371582}
+{"t": 1778414150.341423, "msg": "step 7000/8000 loss=134.3722 lr=8.44e-06 throughput=5191 samp/s", "step": 7000, "loss": 134.37216186523438}
+{"t": 1778414152.005749, "msg": "step 7000 val metrics", "val": {"Caco2_Wang": {"rmse": 0.8173444964988424, "n": 86}, "PAMPA_NCATS": {"acc": 0.855, "n": 200}, "HIA_Hou": {"acc": 0.8771929824561403, "n": 57}, "Pgp_Broccatelli": {"acc": 0.7107438016528925, "n": 121}, "Bioavailability_Ma": {"acc": 0.8421052631578947, "n": 57}, "Lipophilicity_AstraZeneca": {"rmse": 1.1380632435154305, "n": 421}, "Solubility_AqSolDB": {"rmse": 2.1274505453259978, "n": 1030}, "BBB_Martins": {"acc": 0.780952380952381, "n": 210}, "PPBR_AZ": {"rmse": 15.85749558230684, "n": 160}, "VDss_Lombardo": {"rmse": 7.157296780637213, "n": 99}, "CYP2D6_Veith": {"acc": 0.8080657206870799, "n": 1339}, "CYP3A4_Veith": {"acc": 0.6500402252614642, "n": 1243}, "CYP1A2_Veith": {"acc": 0.6116427432216905, "n": 1254}, "CYP2C9_Veith": {"acc": 0.684954280964256, "n": 1203}, "Half_Life_Obach": {"rmse": 27.405485353696438, "n": 65}, "Clearance_Hepatocyte_AZ": {"rmse": 60.43122832927388, "n": 91}, "Clearance_Microsome_AZ": {"rmse": 47.34897803399079, "n": 100}, "hERG": {"acc": 0.78125, "n": 64}, "AMES": {"acc": 0.6002747252747253, "n": 728}, "DILI": {"acc": 0.6842105263157895, "n": 57}, "ClinTox": {"acc": 0.9612403100775194, "n": 129}, "LD50_Zhu": {"rmse": 0.9628112767513289, "n": 744}}}
+{"t": 1778414155.4073453, "msg": "step 7050/8000 loss=20.5020 lr=7.63e-06 throughput=5177 samp/s", "step": 7050, "loss": 20.502046585083008}
+{"t": 1778414159.0991445, "msg": "step 7100/8000 loss=15.2994 lr=6.86e-06 throughput=5177 samp/s", "step": 7100, "loss": 15.299427032470703}
+{"t": 1778414162.687754, "msg": "step 7150/8000 loss=16.7743 lr=6.12e-06 throughput=5179 samp/s", "step": 7150, "loss": 16.7742977142334}
+{"t": 1778414166.3744512, "msg": "step 7200/8000 loss=0.9660 lr=5.43e-06 throughput=5179 samp/s", "step": 7200, "loss": 0.9659887552261353}
+{"t": 1778414169.9276655, "msg": "step 7250/8000 loss=26.5659 lr=4.78e-06 throughput=5180 samp/s", "step": 7250, "loss": 26.565914154052734}
+{"t": 1778414173.6100607, "msg": "step 7300/8000 loss=47.5239 lr=4.17e-06 throughput=5181 samp/s", "step": 7300, "loss": 47.5239143371582}
+{"t": 1778414176.9750795, "msg": "step 7350/8000 loss=13.8552 lr=3.60e-06 throughput=5184 samp/s", "step": 7350, "loss": 13.855244636535645}
+{"t": 1778414180.323902, "msg": "step 7400/8000 loss=10.8762 lr=3.07e-06 throughput=5187 samp/s", "step": 7400, "loss": 10.876185417175293}
+{"t": 1778414183.9490972, "msg": "step 7450/8000 loss=24.6593 lr=2.58e-06 throughput=5188 samp/s", "step": 7450, "loss": 24.659259796142578}
+{"t": 1778414187.3474646, "msg": "step 7500/8000 loss=47.5693 lr=2.14e-06 throughput=5191 samp/s", "step": 7500, "loss": 47.56926345825195}
+{"t": 1778414190.9497192, "msg": "step 7550/8000 loss=2.2763 lr=1.73e-06 throughput=5191 samp/s", "step": 7550, "loss": 2.276304006576538}
+{"t": 1778414194.2691553, "msg": "step 7600/8000 loss=29.7288 lr=1.37e-06 throughput=5195 samp/s", "step": 7600, "loss": 29.72879409790039}
+{"t": 1778414197.9867857, "msg": "step 7650/8000 loss=18.7440 lr=1.05e-06 throughput=5195 samp/s", "step": 7650, "loss": 18.744020462036133}
+{"t": 1778414201.371079, "msg": "step 7700/8000 loss=22.9632 lr=7.73e-07 throughput=5198 samp/s", "step": 7700, "loss": 22.96320915222168}
+{"t": 1778414204.7493863, "msg": "step 7750/8000 loss=1.8186 lr=5.38e-07 throughput=5201 samp/s", "step": 7750, "loss": 1.8185559511184692}
+{"t": 1778414208.5027988, "msg": "step 7800/8000 loss=25.3411 lr=3.45e-07 throughput=5200 samp/s", "step": 7800, "loss": 25.341106414794922}
+{"t": 1778414211.8510768, "msg": "step 7850/8000 loss=19.6553 lr=1.95e-07 throughput=5203 samp/s", "step": 7850, "loss": 19.655254364013672}
+{"t": 1778414215.732769, "msg": "step 7900/8000 loss=50.3375 lr=8.71e-08 throughput=5201 samp/s", "step": 7900, "loss": 50.3375129699707}
+{"t": 1778414219.1358197, "msg": "step 7950/8000 loss=110.7703 lr=2.22e-08 throughput=5204 samp/s", "step": 7950, "loss": 110.770263671875}
+{"t": 1778414222.7842839, "msg": "step 8000/8000 loss=5.0748 lr=8.54e-12 throughput=5204 samp/s", "step": 8000, "loss": 5.074845790863037}
+{"t": 1778414224.4344156, "msg": "step 8000 val metrics", "val": {"Caco2_Wang": {"rmse": 0.8033795229779048, "n": 86}, "PAMPA_NCATS": {"acc": 0.855, "n": 200}, "HIA_Hou": {"acc": 0.8771929824561403, "n": 57}, "Pgp_Broccatelli": {"acc": 0.7024793388429752, "n": 121}, "Bioavailability_Ma": {"acc": 0.8596491228070176, "n": 57}, "Lipophilicity_AstraZeneca": {"rmse": 1.138347069673245, "n": 421}, "Solubility_AqSolDB": {"rmse": 2.1295717387133433, "n": 1030}, "BBB_Martins": {"acc": 0.7904761904761904, "n": 210}, "PPBR_AZ": {"rmse": 15.690853695716292, "n": 160}, "VDss_Lombardo": {"rmse": 7.185895368622361, "n": 99}, "CYP2D6_Veith": {"acc": 0.8080657206870799, "n": 1339}, "CYP3A4_Veith": {"acc": 0.6484312148028962, "n": 1243}, "CYP1A2_Veith": {"acc": 0.6084529505582137, "n": 1254}, "CYP2C9_Veith": {"acc": 0.6816292601828762, "n": 1203}, "Half_Life_Obach": {"rmse": 27.585663567795496, "n": 65}, "Clearance_Hepatocyte_AZ": {"rmse": 60.19805862054231, "n": 91}, "Clearance_Microsome_AZ": {"rmse": 47.25425923239207, "n": 100}, "hERG": {"acc": 0.78125, "n": 64}, "AMES": {"acc": 0.5837912087912088, "n": 728}, "DILI": {"acc": 0.6842105263157895, "n": 57}, "ClinTox": {"acc": 0.9612403100775194, "n": 129}, "LD50_Zhu": {"rmse": 0.9619104366464231, "n": 744}}}
+{"t": 1778414225.1719778, "msg": "Saved checkpoint at step 8000"}
+{"t": 1778414227.6056647, "msg": "FINAL", "val": {"Caco2_Wang": {"rmse": 0.8033795229779048, "n": 86}, "PAMPA_NCATS": {"acc": 0.855, "n": 200}, "HIA_Hou": {"acc": 0.8771929824561403, "n": 57}, "Pgp_Broccatelli": {"acc": 0.7024793388429752, "n": 121}, "Bioavailability_Ma": {"acc": 0.8596491228070176, "n": 57}, "Lipophilicity_AstraZeneca": {"rmse": 1.138347069673245, "n": 421}, "Solubility_AqSolDB": {"rmse": 2.1295717387133433, "n": 1030}, "BBB_Martins": {"acc": 0.7904761904761904, "n": 210}, "PPBR_AZ": {"rmse": 15.690853695716292, "n": 160}, "VDss_Lombardo": {"rmse": 7.185895368622361, "n": 99}, "CYP2D6_Veith": {"acc": 0.8080657206870799, "n": 1339}, "CYP3A4_Veith": {"acc": 0.6484312148028962, "n": 1243}, "CYP1A2_Veith": {"acc": 0.6084529505582137, "n": 1254}, "CYP2C9_Veith": {"acc": 0.6816292601828762, "n": 1203}, "Half_Life_Obach": {"rmse": 27.585663567795496, "n": 65}, "Clearance_Hepatocyte_AZ": {"rmse": 60.19805862054231, "n": 91}, "Clearance_Microsome_AZ": {"rmse": 47.25425923239207, "n": 100}, "hERG": {"acc": 0.78125, "n": 64}, "AMES": {"acc": 0.5837912087912088, "n": 728}, "DILI": {"acc": 0.6842105263157895, "n": 57}, "ClinTox": {"acc": 0.9612403100775194, "n": 129}, "LD50_Zhu": {"rmse": 0.9619104366464231, "n": 744}}, "total_seconds": 595.1225111484528}

@@ -23,6 +23,11 @@ rasyn/rasyn/data/clean/**
 *.safetensors
 checkpoints/
 
+# Datasets — large files stay local-only
+*.parquet
+*.csv.gz
+*.tar.gz
+
 # Editor / OS
 .DS_Store
 Thumbs.db
