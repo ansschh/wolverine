@@ -346,23 +346,56 @@ def main() -> int:
         from rasyn.proposer.mmp import MMPTransformerProposer
         from rasyn.proposer.liability_rules import LiabilityRulesProposer
         from rasyn.proposer.base import ProposerContext
-        from rasyn.schemas.challenge import ADMETChallengePacket, ActivityContext, LiabilityContext
-        # Build a minimal packet
+        from rasyn.schemas.challenge import (
+            ADMETChallengePacket, ActivityContext, LiabilityContext, RescueContextPacket,
+        )
+        # Per-case defaults for packet construction (target potency known at registry-lock).
+        CASE_DEFAULTS = {
+            "ADMET-001": {
+                "target_name": "Histamine H1 receptor",
+                "desired_pharmacology": "H1 receptor antagonism",
+                "parent_potency_value": 35.0,
+                "parent_potency_unit": "nM",
+                "parent_potency_endpoint": "IC50",
+                "measurement_endpoint": "hERG IC50",
+            },
+            "ADMET-002": {
+                "target_name": "HSV-1 thymidine kinase",
+                "desired_pharmacology": "antiviral (HSV TK activation)",
+                "parent_potency_value": 0.1,
+                "parent_potency_unit": "uM",
+                "parent_potency_endpoint": "IC50",
+                "measurement_endpoint": "oral bioavailability F%",
+            },
+            "ADMET-003": {
+                "target_name": "undisclosed kinase target",
+                "desired_pharmacology": "kinase inhibition",
+                "parent_potency_value": 100.0,
+                "parent_potency_unit": "nM",
+                "parent_potency_endpoint": "IC50",
+                "measurement_endpoint": "aqueous solubility logS",
+            },
+        }
+        defaults = CASE_DEFAULTS.get(case_id, CASE_DEFAULTS["ADMET-001"])
         packet = ADMETChallengePacket(
             case_id=case_id,
-            mode="A" if answer_smiles else "B",
             parent_canonical_smiles=parent_smiles,
-            parent_inchi_key=parent.get("inchi_key", ""),
+            parent_inchi_key=parent.get("inchi_key") or "UNKNOWN-UHFFFAOYSA-N",
             activity_context=ActivityContext(
-                desired_activity=case.get("activity_context", {}).get("desired_activity", "unknown"),
-                target_chembl_id=case.get("activity_context", {}).get("target_chembl_id"),
-                accepted_standard_types=case.get("activity_context", {}).get("accepted_standard_types", ["IC50"]),
-                acceptable_tradeoff="retain activity within 10x parent potency",
+                target_name=defaults["target_name"],
+                target_chembl_id=parent.get("chembl_id"),
+                desired_pharmacology=defaults["desired_pharmacology"],
+                parent_potency_value=defaults["parent_potency_value"],
+                parent_potency_unit=defaults["parent_potency_unit"],
+                parent_potency_endpoint=defaults["parent_potency_endpoint"],
             ),
             liability_context=LiabilityContext(
                 liability_type=liability_type,
+                measurement_endpoint=defaults["measurement_endpoint"],
+            ),
+            rescue_context=RescueContextPacket(
                 rescue_mode=case.get("rescue_mode", "direct_analog_safety_rescue"),
-                target_direction="improve",
+                goal_description=f"Find rescue candidate for {case_id} {liability_type}",
             ),
         )
         ctx = ProposerContext()
@@ -424,7 +457,7 @@ def main() -> int:
         out_locked = args.out / f"{case_id}_locked_prediction.json"
         out_locked.write_text(json.dumps({
             "case_id": case_id,
-            "mode": packet.mode,
+            "mode": "A" if answer_smiles else "B",
             "parent_canonical_smiles": parent_smiles,
             "n_pool": len(scored),
             "top_k": args.top_k,
