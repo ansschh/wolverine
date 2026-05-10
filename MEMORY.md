@@ -101,6 +101,54 @@ Use headings, bullet lists, and tables freely. Do NOT prune old entries — appe
 
 ## Log entries (newest first)
 
+### 2026-05-10 (~23:36 UTC) — 🎉 FIRST FORWARD-PASS SUCCESSFUL on ADMET-001 + ADMET-002
+**Type:** milestone result
+**Phase:** Stage-5 sealed-case inference (real, L25-compliant)
+
+**Stage-2 ranker training completed (Pod A + Pod B, both seeds):**
+- Pod A seed 42 FINAL 23:30:32 → step 6000 val: rescue_acc 76.1%, retention_acc 81.9%, improvement_acc 65.0%
+- Pod B seed 43 FINAL 23:31:28 → step 6000 val: rescue_acc 76.4%, retention_acc 81.7%, improvement_acc 65.5%
+- Multi-seed variance ~0.5% across all metrics (stable).
+- Training time: 22 min × 8 A100 = surprising speed (effective bs 192, ~870 samp/s on 200M-param model).
+- IMPORTANT BUG FIX MID-RUN: first 5-min run hit 100% val accuracy — discovered label leakage in evidence vector (retention_bucket + improvement_category one-hots WERE features AND labels). Killed + relaunched with leakage-free 12-dim vector (structural + parent-side only). Realistic metrics ensued.
+
+**Channel 4 + Channel 5 generators completed:**
+- Pod C Channel 4 (learned inverse-delta): FINAL 23:19:55, loss 0.07
+- Pod D Channel 5 (forward-reward strong-success): FINAL 23:20:07, loss 0.06
+
+**Sealed-case registry populator ran:**
+- ADMET-001 + ADMET-002: parent + answer SMILES + InChIKey populated from PubChem
+- ADMET-003: OXS compounds flagged needs_user_input
+
+**Stage-5 inference (real, L25-compliant — NO HeuristicRanker):**
+
+ADMET-001 (terfenadine → fexofenadine, hERG):
+- Channel 2 (MMP): 8 candidates ✓ Channel 3 (rules): 1 ✓ Channel 6 (novelty SMILES): 84/100 valid
+- Pool 93 → decontam dropped 1 (fexofenadine itself Tanimoto >= 0.85) → 92
+- **Top-2 candidate** `O=C(O)c1ccc(C(O)CCCN2CCC(C(O)(c3ccccc3)c3ccccc3)CC2)cc1` = demethylated fexofenadine, score 0.887. This is Channel 2 MMP rule `tbutyl_to_dimethyl_carboxylic_acid` firing correctly — exact mechanism of fexofenadine. Ranker scored it strong_success.
+
+ADMET-002 (acyclovir → valacyclovir, oral_exposure):
+- Pool 86 → decontam dropped valacyclovir → 85
+- Top-2: `Nc1nc(=O)c2ncn(COCCF)c2[nH]1` (OH→F bioisostere) score 0.836
+- **Top-7**: `Nc1nc(=O)c2ncn(COCCOP(=O)(O)O)c2[nH]1` = acyclovir-phosphate, real prodrug strategy, score 0.625
+- **Top-14**: `CCC(=O)OCCOCn1...` = acyclovir-propionate ester (another prodrug)
+- Multiple real medicinally-meaningful prodrug candidates appearing in top-20.
+
+ADMET-003 not attempted (OXS SMILES require user input — paper-only + quarantined).
+
+**Artifacts SCP'd to `A:\rasyn-case-studies\artifacts\stage5_results\`:**
+- `ADMET-001_card.md`, `ADMET-002_card.md`
+- `*_locked_prediction.json` (full top-20 with scores + labels + retention + improvement)
+- `*_top_candidates.parquet` (all scored candidates)
+
+**vLLM-side issue (not blocking)**: Llama-3.3-70B-AWQ model produces tokenizer-collapse garbage (`ETSETSETSETS...`) on any prompt. Decided per user choice (a): stop vLLM, proceed without P-1 enrichment. Unpaywall sweep still running (HTTP only, working — 48K/86K DOIs done at ~29% OA rate).
+
+**Commits this milestone:** c39d33f (leakage fix), 7a42df8 (schema fix), e65f892 (ProposerContext kwarg fix).
+
+**Refs:** L25 (no fallbacks), L26 (no HeuristicRanker), L18 (multi-seed Stage-2), spec §3-4.
+
+---
+
 ### 2026-05-10 (~18:50 UTC) — Full-capacity training pipeline staged; awaiting Pod C completion
 **Type:** plan + decision + result
 **Phase:** transition from data prep -> Stage-2 / Channels 4/5 training

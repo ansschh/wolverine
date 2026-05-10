@@ -1,0 +1,191 @@
+{
+  "case_id": "ADMET-001",
+  "mode": "A",
+  "parent_canonical_smiles": "CC(C)(C)c1ccc(C(O)CCCN2CCC(C(O)(c3ccccc3)c3ccccc3)CC2)cc1",
+  "n_pool": 92,
+  "top_k": 20,
+  "ranker_ckpt_step": 6000,
+  "ranker_seed": 42,
+  "locked_at_utc": "2026-05-10T23:36:02.177105+00:00",
+  "top_candidates": [
+    {
+      "candidate_smiles": "CCOc1ccc(OCC)nc1",
+      "channel": "novelty_smiles",
+      "raw_smiles": "CCOc1ccc(OCC)nc1",
+      "rescue_score": 0.9296875,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "moderate"
+    },
+    {
+      "candidate_smiles": "O=C(O)c1ccc(C(O)CCCN2CCC(C(O)(c3ccccc3)c3ccccc3)CC2)cc1",
+      "channel": "liability_rules",
+      "rescue_score": 0.88671875,
+      "rescue_label": "strong_success",
+      "retention_pred": "acceptable",
+      "improvement_pred": "moderate"
+    },
+    {
+      "candidate_smiles": "CC1CC(C)CN(C)C1",
+      "channel": "novelty_smiles",
+      "raw_smiles": "CC1CC(C)CN(C)C1",
+      "rescue_score": 0.87890625,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "minor"
+    },
+    {
+      "candidate_smiles": "Cc1nc(N)nc(O)c1CN1CCN(CCO)CC1",
+      "channel": "novelty_smiles",
+      "raw_smiles": "Cc1nc(N)nc(O)c1CN1CCN(CCO)CC1",
+      "rescue_score": 0.875,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "large"
+    },
+    {
+      "candidate_smiles": "O=C(NCCN1CCOCC1)c1ccccc1Cl",
+      "channel": "novelty_smiles",
+      "raw_smiles": "O=C(NCCN1CCOCC1)c1ccccc1Cl",
+      "rescue_score": 0.859375,
+      "rescue_label": "weak_success",
+      "retention_pred": "strong",
+      "improvement_pred": "minor"
+    },
+    {
+      "candidate_smiles": "Cc1cc(C)n(CCCNCCOCCOCCOCCNCc2ccc(OCCN3CC(O)C3)c(Cl)c2)n1",
+      "channel": "novelty_smiles",
+      "raw_smiles": "Cc1cc(C)n(CCCNCCOCCOCCOCCNCc2ccc(OCCN3C[C@@H](O)C3)c(Cl)c2)n1",
+      "rescue_score": 0.8515625,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "large"
+    },
+    {
+      "candidate_smiles": "Cc1cc(C)c(C(=O)N[C@H](COCc2ccccc2)[C@H](O)[C@@H](O)CNC(C)(C)C)c(C)c1",
+      "channel": "novelty_smiles",
+      "raw_smiles": "Cc1cc(C)c(C(=O)N[C@H](COCc2ccccc2)[C@H](O)[C@@H](O)CNC(C)(C)C)c(C)c1",
+      "rescue_score": 0.84375,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "moderate"
+    },
+    {
+      "candidate_smiles": "COCCOCCNC(=O)c1ccc(N(C)C)cn1",
+      "channel": "novelty_smiles",
+      "raw_smiles": "COCCOCCNC(=O)c1ccc(N(C)C)cn1",
+      "rescue_score": 0.83203125,
+      "rescue_label": "strong_success",
+      "retention_pred": "acceptable",
+      "improvement_pred": "large"
+    },
+    {
+      "candidate_smiles": "CC(C)Oc1cccc(-n2cnnc2)c1C#N",
+      "channel": "novelty_smiles",
+      "raw_smiles": "CC(C)Oc1cccc(-n2cnnc2)c1C#N",
+      "rescue_score": 0.82421875,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "large"
+    },
+    {
+      "candidate_smiles": "ClCCNc1ncc2nnn(-c3cccc(Cl)c3)c2n1",
+      "channel": "novelty_smiles",
+      "raw_smiles": "Clc1cccc(-n2nnc3cnc(NCCCl)nc32)c1",
+      "rescue_score": 0.8203125,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "moderate"
+    },
+    {
+      "candidate_smiles": "CC(C)(C)/C=C/C(=O)N1CCC(CN2CCN(C(=O)c3ccc(F)cc3)CC2)CC1",
+      "channel": "novelty_smiles",
+      "raw_smiles": "CC(C)(C)/C=C/C(=O)N1CCC(CN2CCN(C(=O)c3ccc(F)cc3)CC2)CC1",
+      "rescue_score": 0.8125,
+      "rescue_label": "weak_success",
+      "retention_pred": "strong",
+      "improvement_pred": "minor"
+    },
+    {
+      "candidate_smiles": "COc1cc(N(C)C)nnc1Sc1ncccn1",
+      "channel": "novelty_smiles",
+      "raw_smiles": "COc1cc(N(C)C)nnc1Sc1ncccn1",
+      "rescue_score": 0.796875,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "minor"
+    },
+    {
+      "candidate_smiles": "CS(=O)(=O)N[C@H]1CC[C@@H](N(Cc2ccc(-c3ccc(C(F)(F)F)cc3)cc2)c2ncccc2Cl)CC1",
+      "channel": "novelty_smiles",
+      "raw_smiles": "CS(=O)(=O)N[C@@H]1CC[C@H](N(Cc2ccc(-c3ccc(C(F)(F)F)cc3)cc2)c2ncccc2Cl)CC1",
+      "rescue_score": 0.7734375,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "moderate"
+    },
+    {
+      "candidate_smiles": "CCCn1c(=O)c2[nH]c(-c3nc(C)cc(C)n3)nc2n(CCC)c1=O",
+      "channel": "novelty_smiles",
+      "raw_smiles": "CCCn1c(=O)c2[nH]c(-c3nc(C)cc(C)n3)nc2n(CCC)c1=O",
+      "rescue_score": 0.7734375,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "moderate"
+    },
+    {
+      "candidate_smiles": "Nc1nc(N)c2ncn(C3COC3)c2n1",
+      "channel": "novelty_smiles",
+      "raw_smiles": "Nc1nc(N)c2ncn(C3COC3)c2n1",
+      "rescue_score": 0.76953125,
+      "rescue_label": "failed_wrong_liability",
+      "retention_pred": "unknown",
+      "improvement_pred": "large"
+    },
+    {
+      "candidate_smiles": "CN=C(S)NCc1ccc(C#N)cc1",
+      "channel": "novelty_smiles",
+      "raw_smiles": "CN=C(S)NCc1ccc(C#N)cc1",
+      "rescue_score": 0.76171875,
+      "rescue_label": "weak_success",
+      "retention_pred": "strong",
+      "improvement_pred": "moderate"
+    },
+    {
+      "candidate_smiles": "CCN(CC)CCOc1ccc(C(=O)N/N=C/c2ccccc2O)cc1",
+      "channel": "novelty_smiles",
+      "raw_smiles": "CCN(CC)CCOc1ccc(C(=O)N/N=C/c2ccccc2O)cc1",
+      "rescue_score": 0.75390625,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "large"
+    },
+    {
+      "candidate_smiles": "CC1(C)C[C@H]2CC[C@]3(C)[C@H](CC[C@@H]4[C@@]5(C)CC[C@H](O)C(C)(C)[C@@H]5CC[C@]43C)[C@@H]2C1=O",
+      "channel": "novelty_smiles",
+      "raw_smiles": "CC1(C)C[C@H]2CC[C@]3(C)[C@H](CC[C@@H]4[C@@]5(C)CC[C@H](O)C(C)(C)[C@@H]5CC[C@]43C)[C@@H]2C1=O",
+      "rescue_score": 0.75390625,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "large"
+    },
+    {
+      "candidate_smiles": "CC(C)(C)NCC(O)COc1ccc2ccccc2c1",
+      "channel": "novelty_smiles",
+      "raw_smiles": "CC(C)(C)NCC(O)COc1ccc2ccccc2c1",
+      "rescue_score": 0.74609375,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "large"
+    },
+    {
+      "candidate_smiles": "CC1(C)CC(=O)N(c2ccc(F)cc2)C1=O",
+      "channel": "novelty_smiles",
+      "raw_smiles": "CC1(C)CC(=O)N(c2ccc(F)cc2)C1=O",
+      "rescue_score": 0.74609375,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "large"
+    }
+  ]
+}
