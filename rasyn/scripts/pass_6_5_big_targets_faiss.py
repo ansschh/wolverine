@@ -86,7 +86,12 @@ def _tanimoto_from_hamming(fp_a: np.ndarray, fp_b: np.ndarray, n_bits: int = 102
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("--min-molecules", type=int, default=501,
-                   help="Only process targets with >= this many molecules (those excluded by Pass 6).")
+                   help="Only process targets with >= this many molecules (those excluded by Pass 6's [5,500] cap).")
+    p.add_argument("--max-molecules", type=int, default=30_000,
+                   help="Skip mega-targets above this size (generic cell-line / aggregated screens with no "
+                        "meaningful shared-target rescue semantics). Defaults to 30k which covers hERG (~15-20k), "
+                        "CYPs (5-15k), and most kinases (5-30k) — the legitimate L27 case — while excluding "
+                        "mega-aggregates like CHEMBL612545 (~470k mols).")
     p.add_argument("--top-k", type=int, default=20, help="Top-K nearest neighbors per molecule.")
     p.add_argument("--min-tanimoto", type=float, default=0.5)
     p.add_argument("--out-edges", type=Path, default=ANALOG_EDGES)
@@ -112,8 +117,16 @@ def main():
     for mid, tid in zip(facts["molecule_chembl_id"], facts["target_chembl_id"]):
         target_to_molecules[tid].add(mid)
 
-    big_targets = {t: ms for t, ms in target_to_molecules.items() if len(ms) >= args.min_molecules}
-    _log(f"Found {len(big_targets):,} big targets (>= {args.min_molecules} molecules each)")
+    big_targets = {
+        t: ms
+        for t, ms in target_to_molecules.items()
+        if args.min_molecules <= len(ms) <= args.max_molecules
+    }
+    n_skipped_mega = sum(1 for ms in target_to_molecules.values() if len(ms) > args.max_molecules)
+    _log(
+        f"Found {len(big_targets):,} big targets in [{args.min_molecules}, {args.max_molecules}] molecules; "
+        f"skipped {n_skipped_mega} mega-targets above {args.max_molecules}"
+    )
 
     # Sort by size for predictable progress
     big_targets_sorted = sorted(big_targets.items(), key=lambda kv: len(kv[1]), reverse=True)
