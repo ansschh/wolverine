@@ -31,13 +31,20 @@ except ImportError:  # pragma: no cover
 # Covers high-value classes: bioisostere swaps, polarity shifts, basicity tuning,
 # prodrug motifs, soft-spot blocking. Mined rules from ChEMBL extend this.
 SEED_RULES: list[tuple[str, str]] = [
-    ("[c:1]1[cH:2][cH:3][cH:4][cH:5][cH:6]1>>[c:1]1[cH:2][n:3][cH:4][cH:5][cH:6]1", "phenyl_to_pyridyl"),
+    # Phenyl -> pyridyl: any aromatic position (substituted or not). The earlier
+    # `[cH:N]` requirement excluded substituted phenyls (e.g. OXS007570's tolyl).
+    ("[c:1]1[c:2][c:3][c:4][c:5][c:6]1>>[c:1]1[c:2][n:3][c:4][c:5][c:6]1", "phenyl_to_pyridyl_meta"),
+    ("[c:1]1[c:2][c:3][c:4][c:5][c:6]1>>[c:1]1[n:2][c:3][c:4][c:5][c:6]1", "phenyl_to_pyridyl_ortho"),
+    ("[c:1]1[c:2][c:3][c:4][c:5][c:6]1>>[c:1]1[c:2][c:3][n:4][c:5][c:6]1", "phenyl_to_pyridyl_para"),
     ("[CH3:1][N:2]>>[H][N:2]", "n_demethylation"),
     ("[OH:1]>>[F:1]", "hydroxyl_to_fluoro_bioisostere"),
     ("[CH2:1][C:2](=O)[O:3]>>[CH2:1][C:2](=O)[NH:3]", "ester_to_amide"),
     ("[c:1][CH3:2]>>[c:1][F:2]", "methyl_to_fluoro"),
     ("[NX3;H0:1]([CH3])([CH3])[#6:2]>>[NX3;H0:1]([CH3])[#6:2]", "tertiary_to_secondary_amine"),
-    ("[c:1][C:2](=O)[OH]>>[c:1][C:2](=O)[O][CH2][CH](N)C(C)C", "valyl_ester_prodrug"),
+    # Aryl-COOH -> aryl-valyl-ester (works for fexofenadine-style cases).
+    ("[c:1][C:2](=O)[OH]>>[c:1][C:2](=O)[O][CH2][CH](N)C(C)C", "valyl_ester_prodrug_aryl"),
+    # Active-metabolite oxidation: aryl-tBu -> aryl-C(CH3)2COOH (terfenadine -> fexofenadine).
+    ("[c:1][C:2]([CH3])([CH3])[CH3]>>[c:1][C:2]([CH3])([CH3])[C](=O)[OH]", "tbutyl_to_dimethyl_carboxylic_acid"),
 ]
 
 

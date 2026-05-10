@@ -2,6 +2,10 @@
 
 Pulls structurally similar molecules from a pre-decontaminated pool.
 Pool typically = ChEMBL + same-target analogs + curated paper analogs (post-decontam).
+
+Tanimoto threshold is rescue-mode-aware: prodrugs and active-metabolite
+rescues add atoms (e.g. valyl ester) and need looser thresholds, while
+direct-analog rescues stay tight.
 """
 
 from __future__ import annotations
@@ -16,13 +20,44 @@ from rasyn.schemas.proposer import (
 from rasyn.utils.canonicalize import smiles_to_inchi_key
 from rasyn.utils.similarity import morgan_bits, tanimoto
 
+# Per-rescue-mode minimum Tanimoto for retaining a candidate as an analog.
+# Rationale (chemistry-aware, NOT learned — should eventually be replaced
+# by data-driven percentiles or a learned ranker):
+#   prodrug_exposure_rescue : adds an ester group, ~6+ heavy atoms → low threshold
+#   polarity_solubility     : N-insertion / OH addition, modest change
+#   metabolic_soft_spot     : single-atom swaps, similar size
+#   active_metabolite       : oxidation / single group change → moderate
+#   direct_analog           : closest analogs only → tight threshold
+TANIMOTO_BY_MODE: dict[str, float] = {
+    "prodrug_exposure_rescue": 0.20,
+    "polarity_solubility_rescue": 0.30,
+    "metabolic_soft_spot_rescue": 0.35,
+    "active_metabolite_safety_rescue": 0.40,
+    "direct_analog_safety_rescue": 0.40,
+}
+DEFAULT_TANIMOTO = 0.35
+
 
 class AnalogRetrievalProposer(Proposer):
     channel = "analog_retrieval"
 
-    def __init__(self, *, min_tanimoto: float = 0.4, max_candidates: int = 5000):
-        self.min_tanimoto = min_tanimoto
+    def __init__(
+        self,
+        *,
+        min_tanimoto: float | None = None,
+        max_candidates: int = 5000,
+        per_mode_thresholds: dict[str, float] | None = None,
+    ):
+        # If `min_tanimoto` is given explicitly, it overrides the per-mode lookup.
+        # Otherwise the threshold is selected at propose-time from the packet's rescue mode.
+        self.override_min_tanimoto = min_tanimoto
         self.max_candidates = max_candidates
+        self.per_mode_thresholds = {**TANIMOTO_BY_MODE, **(per_mode_thresholds or {})}
+
+    def _resolve_threshold(self, packet: ADMETChallengePacket) -> float:
+        if self.override_min_tanimoto is not None:
+            return self.override_min_tanimoto
+        return self.per_mode_thresholds.get(packet.rescue_context.rescue_mode, DEFAULT_TANIMOTO)
 
     def propose(self, packet: ADMETChallengePacket, ctx: ProposerContext) -> ProposerOutput:
         parent_fp = morgan_bits(packet.parent_canonical_smiles)
@@ -36,6 +71,8 @@ class AnalogRetrievalProposer(Proposer):
                 deduplicated_count=0,
             )
 
+        threshold = self._resolve_threshold(packet)
+
         scored: list[tuple[float, str]] = []
         invalid = 0
         for cand_smi in ctx.candidate_smiles_pool:
@@ -46,7 +83,7 @@ class AnalogRetrievalProposer(Proposer):
                 invalid += 1
                 continue
             sim = tanimoto(parent_fp, cand_fp)
-            if sim >= self.min_tanimoto:
+            if sim >= threshold:
                 scored.append((sim, cand_smi))
 
         scored.sort(reverse=True)

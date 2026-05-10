@@ -22,8 +22,11 @@ LIABILITY_RULE_PACKS: dict[str, list[tuple[str, str]]] = {
         ("[c:1][C:2](C)(C)C>>[c:1][C:2](=O)O", "herg_lipophilicity_reduction"),
     ],
     "solubility": [
-        ("[c:1]1[cH:2][cH:3][cH:4][cH:5][cH:6]1>>[c:1]1[n:2][cH:3][cH:4][cH:5][cH:6]1", "sol_phenyl_to_pyridyl"),
-        ("[c:1]1[cH:2][cH:3][cH:4][cH:5][cH:6]1>>[c:1]1[cH:2][n:3][cH:4][cH:5][cH:6]1", "sol_phenyl_to_meta_pyridyl"),
+        # Loosened from [cH:N] to [c:N] so substituted phenyls (e.g. OXS007570's
+        # 2-methyl-4-fluoro-phenyl) match. Was failing on first ADMET-003 inference.
+        ("[c:1]1[c:2][c:3][c:4][c:5][c:6]1>>[c:1]1[n:2][c:3][c:4][c:5][c:6]1", "sol_phenyl_to_pyridyl_ortho"),
+        ("[c:1]1[c:2][c:3][c:4][c:5][c:6]1>>[c:1]1[c:2][n:3][c:4][c:5][c:6]1", "sol_phenyl_to_pyridyl_meta"),
+        ("[c:1]1[c:2][c:3][c:4][c:5][c:6]1>>[c:1]1[c:2][c:3][n:4][c:5][c:6]1", "sol_phenyl_to_pyridyl_para"),
         ("[c:1][CH3:2]>>[c:1][CH2:2][OH]", "sol_methyl_to_hydroxymethyl"),
     ],
     "metabolic_stability": [
@@ -32,9 +35,16 @@ LIABILITY_RULE_PACKS: dict[str, list[tuple[str, str]]] = {
         ("[c:1][O:2][CH3:3]>>[c:1][O:2][CHF2:3]", "metstab_methoxy_to_difluoromethoxy"),
     ],
     "oral_exposure": [
-        ("[c:1][C:2](=O)[OH]>>[c:1][C:2](=O)[O][CH2][CH](N)C(C)C", "prodrug_l_valyl_ester"),
+        # Aryl carboxylic acid -> aryl-valyl-ester (e.g. fexofenadine -> valyl-fexofenadine).
+        ("[c:1][C:2](=O)[OH]>>[c:1][C:2](=O)[O][CH2][CH](N)C(C)C", "prodrug_l_valyl_ester_aryl"),
+        # CRITICAL: aliphatic primary alcohol -> valyl-ester. This is what
+        # acyclovir (-CH2OH) -> valacyclovir actually does. The previous rule
+        # only matched aryl-COOH and missed the valacyclovir case entirely.
+        ("[CH2;X4:1][OH]>>[CH2;X4:1][O]C(=O)[CH](N)C(C)C", "prodrug_l_valyl_ester_aliphatic"),
         ("[OH:1]>>[O:1]C(=O)CC", "prodrug_propionate_ester"),
         ("[OH:1]>>[O:1]P(=O)(O)O", "prodrug_phosphate"),
+        # Acetate ester (more permissive than valyl, common starter prodrug)
+        ("[OH:1]>>[O:1]C(=O)C", "prodrug_acetate_ester"),
     ],
     "permeability": [
         ("[OH:1]>>[OCH3:1]", "perm_o_methylation"),
