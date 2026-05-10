@@ -398,7 +398,7 @@ def main() -> int:
                 goal_description=f"Find rescue candidate for {case_id} {liability_type}",
             ),
         )
-        ctx = ProposerContext()
+        ctx = ProposerContext(candidate_smiles_pool=[])
 
         ch2_out = MMPTransformerProposer().propose(packet, ctx)
         ch3_out = LiabilityRulesProposer().propose(packet, ctx)
