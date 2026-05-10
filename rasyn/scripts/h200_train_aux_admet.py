@@ -290,13 +290,14 @@ def main():
         ids, mask, y = [b.to(device, non_blocking=True) for b in batch]
         with torch.amp.autocast("cuda", dtype=torch.bfloat16):
             logits = model(ids, mask)
-        # Per-task loss with NaN masking
+        # Cast back to fp32 for stable loss + backward (avoids dtype mismatch in DDP).
+        logits = logits.float()
+        # Per-task loss with NaN masking.
         valid = ~torch.isnan(y)
         if not valid.any():
-            return torch.tensor(0.0, device=device, requires_grad=True), 0
-        # Standardise regression targets per-task using running stats? Skip for v1; use raw.
-        # MSE for regression, BCE for binary
-        loss = 0.0
+            return torch.zeros((), device=device, dtype=torch.float32, requires_grad=True), 0
+        loss = torch.zeros((), device=device, dtype=torch.float32)
+        n_active_tasks = 0
         for t in range(n_tasks):
             v = valid[:, t]
             if not v.any():
@@ -306,7 +307,8 @@ def main():
             else:
                 tloss = F.mse_loss(logits[v, t], y[v, t])
             loss = loss + tloss
-        loss = loss / n_tasks
+            n_active_tasks += 1
+        loss = loss / max(1, n_active_tasks)
         return loss, int(valid.sum().item())
 
     @torch.no_grad()
