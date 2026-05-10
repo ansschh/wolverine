@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+build/
+dist/
+*.egg
+
+# Data: downloaded raw + intermediate clean (manifests are kept; data is not)
+rasyn/data/raw/**
+!rasyn/data/raw/.gitkeep
+rasyn/data/clean/**
+!rasyn/data/clean/*.json
+!rasyn/data/clean/.gitkeep
+
+# Test fixtures may include small parquet
+# (handled per-file, not blanket-ignored)
+
+# Models / checkpoints
+*.pt
+*.bin
+*.safetensors
+checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db

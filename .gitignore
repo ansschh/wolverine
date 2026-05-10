@@ -1,0 +1,39 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+build/
+dist/
+*.egg
+
+# Data: downloaded raw + intermediate clean tables (manifests are kept; data is not)
+rasyn/rasyn/data/raw/**
+!rasyn/rasyn/data/raw/.gitkeep
+rasyn/rasyn/data/clean/**
+!rasyn/rasyn/data/clean/*.json
+!rasyn/rasyn/data/clean/.gitkeep
+
+# Models / checkpoints
+*.pt
+*.bin
+*.safetensors
+checkpoints/
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# Local secrets
+.env
+.env.*
+!.env.example
+
+# Local Claude Code state
+.claude/

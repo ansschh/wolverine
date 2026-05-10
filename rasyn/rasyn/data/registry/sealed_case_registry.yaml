@@ -1,0 +1,141 @@
+# Sealed Case Registry — Phase A-0 stub
+#
+# This file is FROZEN before any data mining begins.
+# Database-specific identifiers (canonical_smiles, inchi_key, chembl_ids,
+# pubchem_cids) are intentionally left null/empty; the populator script
+# `rasyn.data.registry.populate` fills them via PubChem/ChEMBL lookup
+# + RDKit canonicalisation, then re-freezes this file with an incremented
+# patch version.
+#
+# Spec refs:
+#   - proposer_system_test_cases.md §1007-1049
+#   - rasyn_admet_conditioning_architecture_benchmark_spec.md §0.6, §8.5
+#   - rasyn_heldout_discovery_demo_context.md §65-76
+#
+# IMPORTANT: do NOT hand-edit canonical_smiles / inchi_key. Run the populator.
+
+version: "0.1.0"
+locked_at_utc: "2026-05-10T00:00:00Z"  # bumped on every populator re-freeze
+
+spec_refs:
+  - "proposer_system_test_cases.md §1007-1049"
+  - "rasyn_admet_conditioning_architecture_benchmark_spec.md §0.6, §8.5"
+  - "rasyn_heldout_discovery_demo_context.md §65-76"
+
+cases:
+
+  - case_id: "ADMET-001"
+    description: |
+      Terfenadine -> Fexofenadine. Active-metabolite safety rescue:
+      replace the cardiotoxic prodrug with the carboxylated active metabolite,
+      eliminating hERG-mediated QT-prolongation while preserving H1 antagonism.
+    parent:
+      name: "terfenadine"
+      # canonical_smiles + inchi_key + chembl_id + pubchem_cid populated by script
+    answer:
+      name: "fexofenadine"
+      # canonical_smiles + inchi_key + chembl_id + pubchem_cid populated by script
+    liability_type: "hERG"
+    rescue_mode: "active_metabolite_safety_rescue"
+    forbidden_identifiers:
+      synonyms:
+        - "terfenadine"
+        - "fexofenadine"
+        - "Seldane"
+        - "Seldane-D"
+        - "Allegra"
+        - "Telfast"
+        - "MDL-16455"
+        - "MDL-16455A"
+      # cas_numbers, chembl_ids, pubchem_cids, inchi_keys populated by script
+    forbidden_documents:
+      title_fragments:
+        - "fexofenadine"
+        - "terfenadine"
+        - "active metabolite of terfenadine"
+        - "carboxylated terfenadine"
+        - "MDL 16,455"
+      # dois, pmids, pmcids, chembl_doc_ids, patent_numbers populated by script
+    forbidden_assays: {}
+    quarantine:
+      tanimoto_to_answer: 0.85
+      tanimoto_with_context: 0.65
+      require_same_murcko_for_context: true
+      require_same_target_for_context: true
+
+  - case_id: "ADMET-002"
+    description: |
+      Acyclovir -> Valacyclovir. Prodrug exposure rescue: attach an L-valyl
+      ester to enable PEPT1-mediated intestinal absorption, raising oral
+      bioavailability ~3-5x while delivering acyclovir as the active species.
+    parent:
+      name: "acyclovir"
+    answer:
+      name: "valacyclovir"
+    liability_type: "oral_exposure"
+    rescue_mode: "prodrug_exposure_rescue"
+    forbidden_identifiers:
+      synonyms:
+        - "acyclovir"
+        - "aciclovir"
+        - "Zovirax"
+        - "valacyclovir"
+        - "valaciclovir"
+        - "Valtrex"
+        - "Zelitrex"
+        - "L-valyl acyclovir"
+        - "BW 256U87"
+    forbidden_documents:
+      title_fragments:
+        - "valacyclovir"
+        - "valaciclovir"
+        - "L-valyl ester of acyclovir"
+        - "acyclovir prodrug"
+    forbidden_assays: {}
+    quarantine:
+      tanimoto_to_answer: 0.85
+      tanimoto_with_context: 0.65
+      require_same_murcko_for_context: true
+      require_same_target_for_context: true
+
+  - case_id: "ADMET-003"
+    description: |
+      OXS007570 -> OXS008474. Direct analog rescue: nitrogen insertion into
+      an aromatic ring + reduced clogP improve aqueous solubility (>=5-10x)
+      and metabolic stability (ER toward <0.3) while preserving HL-60
+      anti-leukemic potency (EC50 within 10x of parent ~2-3 nM).
+      Source: RSC Med Chem 2024, DOI 10.1039/d4md00275j.
+    parent:
+      name: "OXS007570"
+    answer:
+      name: "OXS008474"
+    liability_type: "solubility"  # primary; secondary: metabolic_stability
+    rescue_mode: "polarity_solubility_rescue"
+    forbidden_identifiers:
+      synonyms:
+        - "OXS007570"
+        - "OXS-007570"
+        - "OXS 007570"
+        - "OXS008474"
+        - "OXS-008474"
+        - "OXS 008474"
+    forbidden_documents:
+      dois:
+        - "10.1039/d4md00275j"
+      title_fragments:
+        - "OXS007570"
+        - "OXS008474"
+        - "lead optimization of OXS"
+        - "OXS series"
+    forbidden_assays: {}
+    quarantine:
+      tanimoto_to_answer: 0.85
+      tanimoto_with_context: 0.65
+      require_same_murcko_for_context: true
+      require_same_target_for_context: true
+
+# Canaries: synthetic leakage tracers injected into raw data BEFORE
+# decontamination, verified absent AFTER. Populator generates 30+ per case
+# across all layers (smiles, inchi_key, synonym, doi, pmid, chembl_id,
+# patent, title_text). See rasyn/data/registry/canaries.yaml.
+canaries: []

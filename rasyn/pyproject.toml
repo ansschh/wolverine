@@ -1,0 +1,56 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rasyn"
+version = "0.1.0"
+description = "Rasyn ADMET rescue discovery system. See ../PLAN.md."
+requires-python = ">=3.10"
+authors = [{name = "Ansh"}]
+dependencies = [
+    "pydantic>=2.6",
+    "pyyaml>=6.0",
+    "rdkit>=2024.3.1",
+    "numpy>=1.26",
+    "pandas>=2.2",
+    "pyarrow>=15.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "ruff>=0.4",
+    "mypy>=1.10",
+]
+chem = [
+    "chembl_structure_pipeline>=1.2",
+    "datamol>=0.12",
+]
+ml = [
+    "torch>=2.3",
+    "torch-geometric>=2.5",
+    "transformers>=4.41",
+]
+data = [
+    "PyTDC>=0.4",
+    "deepchem>=2.8",
+    "faiss-cpu>=1.8",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["rasyn*"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "RUF"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --strict-markers"
