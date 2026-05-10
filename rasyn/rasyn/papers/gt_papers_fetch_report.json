@@ -1,0 +1,185 @@
+{
+  "total": 15,
+  "by_source": {
+    "missing": 11,
+    "no_doi": 4
+  },
+  "missing_pdfs": [
+    "rasyn\\papers\\gt_papers_pdfs\\10.1021_jm070641y.pdf",
+    "rasyn\\papers\\gt_papers_pdfs\\10.1021_jm060379l.pdf",
+    "rasyn\\papers\\gt_papers_pdfs\\10.1021_jm5006804.pdf",
+    "rasyn\\papers\\gt_papers_pdfs\\10.1021_acs.jmedchem.8b00045.pdf",
+    "rasyn\\papers\\gt_papers_pdfs\\10.1021_acs.jmedchem.6b01290.pdf",
+    "rasyn\\papers\\gt_papers_pdfs\\10.1021_jm200187y.pdf",
+    "rasyn\\papers\\gt_papers_pdfs\\10.1021_jm501853m.pdf",
+    "rasyn\\papers\\gt_papers_pdfs\\10.1021_acs.jmedchem.5b01734.pdf",
+    "rasyn\\papers\\gt_papers_pdfs\\10.1016_s0006-2952_98_00226-7.pdf",
+    "rasyn\\papers\\gt_papers_pdfs\\10.1128_AAC.42.3.612.pdf",
+    "rasyn\\papers\\gt_papers_pdfs\\10.1021_jm0102499.pdf"
+  ],
+  "records": [
+    {
+      "gt_id": "GT_HERG_001",
+      "doi": "10.1021/jm070641y",
+      "safe": "10.1021_jm070641y",
+      "text_path": "rasyn\\papers\\gt_papers_text\\10.1021_jm070641y.txt",
+      "source": "missing",
+      "n_chars": 0,
+      "needs_manual_pdf": true,
+      "pdf_paths_expected": [
+        "rasyn\\papers\\gt_papers_pdfs\\10.1021_jm070641y.pdf",
+        "rasyn\\papers\\gt_papers_pdfs\\10.1021_jm070641y.si.pdf"
+      ]
+    },
+    {
+      "gt_id": "GT_HERG_002",
+      "doi": "10.1021/jm060379l",
+      "safe": "10.1021_jm060379l",
+      "text_path": "rasyn\\papers\\gt_papers_text\\10.1021_jm060379l.txt",
+      "source": "missing",
+      "n_chars": 0,
+      "needs_manual_pdf": true,
+      "pdf_paths_expected": [
+        "rasyn\\papers\\gt_papers_pdfs\\10.1021_jm060379l.pdf",
+        "rasyn\\papers\\gt_papers_pdfs\\10.1021_jm060379l.si.pdf"
+      ]
+    },
+    {
+      "gt_id": "GT_HERG_003",
+      "doi": "10.1021/jm5006804",
+      "safe": "10.1021_jm5006804",
+      "text_path": "rasyn\\papers\\gt_papers_text\\10.1021_jm5006804.txt",
+      "source": "missing",
+      "n_chars": 0,
+      "needs_manual_pdf": true,
+      "pdf_paths_expected": [
+        "rasyn\\papers\\gt_papers_pdfs\\10.1021_jm5006804.pdf",
+        "rasyn\\papers\\gt_papers_pdfs\\10.1021_jm5006804.si.pdf"
+      ]
+    },
+    {
+      "gt_id": "GT_HERG_004",
+      "doi": null,
+      "source": "no_doi"
+    },
+    {
+      "gt_id": "GT_SOL_001",
+      "doi": "10.1021/acs.jmedchem.8b00045",
+      "safe": "10.1021_acs.jmedchem.8b00045",
+      "text_path": "rasyn\\papers\\gt_papers_text\\10.1021_acs.jmedchem.8b00045.txt",
+      "source": "missing",
+      "n_chars": 0,
+      "needs_manual_pdf": true,
+      "pdf_paths_expected": [
+        "rasyn\\papers\\gt_papers_pdfs\\10.1021_acs.jmedchem.8b00045.pdf",
+        "rasyn\\papers\\gt_papers_pdfs\\10.1021_acs.jmedchem.8b00045.si.pdf"
+      ]
+    },
+    {
+      "gt_id": "GT_SOL_002",
+      "doi": "10.1021/acs.jmedchem.6b01290",
+      "safe": "10.1021_acs.jmedchem.6b01290",
+      "text_path": "rasyn\\papers\\gt_papers_text\\10.1021_acs.jmedchem.6b01290.txt",
+      "source": "missing",
+      "n_chars": 0,
+      "needs_manual_pdf": true,
+      "pdf_paths_expected": [
+        "rasyn\\papers\\gt_papers_pdfs\\10.1021_acs.jmedchem.6b01290.pdf",
+        "rasyn\\papers\\gt_papers_pdfs\\10.1021_acs.jmedchem.6b01290.si.pdf"
+      ]
+    },
+    {
+      "gt_id": "GT_SOL_003",
+      "doi": "10.1021/jm200187y",
+      "safe": "10.1021_jm200187y",
+      "text_path": "rasyn\\papers\\gt_papers_text\\10.1021_jm200187y.txt",
+      "source": "missing",
+      "n_chars": 0,
+      "needs_manual_pdf": true,
+      "pdf_paths_expected": [
+        "rasyn\\papers\\gt_papers_pdfs\\10.1021_jm200187y.pdf",
+        "rasyn\\papers\\gt_papers_pdfs\\10.1021_jm200187y.si.pdf"
+      ]
+    },
+    {
+      "gt_id": "GT_SOL_004",
+      "doi": null,
+      "source": "no_doi"
+    },
+    {
+      "gt_id": "GT_METSTAB_001",
+      "doi": "10.1021/jm501853m",
+      "safe": "10.1021_jm501853m",
+      "text_path": "rasyn\\papers\\gt_papers_text\\10.1021_jm501853m.txt",
+      "source": "missing",
+      "n_chars": 0,
+      "needs_manual_pdf": true,
+      "pdf_paths_expected": [
+        "rasyn\\papers\\gt_papers_pdfs\\10.1021_jm501853m.pdf",
+        "rasyn\\papers\\gt_papers_pdfs\\10.1021_jm501853m.si.pdf"
+      ]
+    },
+    {
+      "gt_id": "GT_METSTAB_002",
+      "doi": null,
+      "source": "no_doi"
+    },
+    {
+      "gt_id": "GT_METSTAB_003",
+      "doi": "10.1021/acs.jmedchem.5b01734",
+      "safe": "10.1021_acs.jmedchem.5b01734",
+      "text_path": "rasyn\\papers\\gt_papers_text\\10.1021_acs.jmedchem.5b01734.txt",
+      "source": "missing",
+      "n_chars": 0,
+      "needs_manual_pdf": true,
+      "pdf_paths_expected": [
+        "rasyn\\papers\\gt_papers_pdfs\\10.1021_acs.jmedchem.5b01734.pdf",
+        "rasyn\\papers\\gt_papers_pdfs\\10.1021_acs.jmedchem.5b01734.si.pdf"
+      ]
+    },
+    {
+      "gt_id": "GT_PRODRUG_001",
+      "doi": "10.1016/s0006-2952(98)00226-7",
+      "safe": "10.1016_s0006-2952_98_00226-7",
+      "text_path": "rasyn\\papers\\gt_papers_text\\10.1016_s0006-2952_98_00226-7.txt",
+      "source": "missing",
+      "n_chars": 0,
+      "needs_manual_pdf": true,
+      "pdf_paths_expected": [
+        "rasyn\\papers\\gt_papers_pdfs\\10.1016_s0006-2952_98_00226-7.pdf",
+        "rasyn\\papers\\gt_papers_pdfs\\10.1016_s0006-2952_98_00226-7.si.pdf"
+      ]
+    },
+    {
+      "gt_id": "GT_PRODRUG_002",
+      "doi": "10.1128/AAC.42.3.612",
+      "safe": "10.1128_AAC.42.3.612",
+      "text_path": "rasyn\\papers\\gt_papers_text\\10.1128_AAC.42.3.612.txt",
+      "source": "missing",
+      "n_chars": 0,
+      "needs_manual_pdf": true,
+      "pdf_paths_expected": [
+        "rasyn\\papers\\gt_papers_pdfs\\10.1128_AAC.42.3.612.pdf",
+        "rasyn\\papers\\gt_papers_pdfs\\10.1128_AAC.42.3.612.si.pdf"
+      ]
+    },
+    {
+      "gt_id": "GT_PRODRUG_003",
+      "doi": null,
+      "source": "no_doi"
+    },
+    {
+      "gt_id": "GT_PRODRUG_004",
+      "doi": "10.1021/jm0102499",
+      "safe": "10.1021_jm0102499",
+      "text_path": "rasyn\\papers\\gt_papers_text\\10.1021_jm0102499.txt",
+      "source": "missing",
+      "n_chars": 0,
+      "needs_manual_pdf": true,
+      "pdf_paths_expected": [
+        "rasyn\\papers\\gt_papers_pdfs\\10.1021_jm0102499.pdf",
+        "rasyn\\papers\\gt_papers_pdfs\\10.1021_jm0102499.si.pdf"
+      ]
+    }
+  ]
+}
