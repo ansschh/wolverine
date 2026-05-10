@@ -55,6 +55,10 @@ Use headings, bullet lists, and tables freely. Do NOT prune old entries — appe
 | L18 | **Compute resolved: 32 GPUs total = 16× H100 + 16× A100.** No cap; gate per major run (Stage-1 pretrain, each Stage-2 sweep batch, Stage-3 finetune, Stage-5 sealed-case lock). Wall-clock from "go" → locked predictions: **~1.5–2.5 days, preprocessing-bound** (training compresses to hours). Strategy shifts: pre-commit transformer (~500M–1B params), train our own encoder (no public-encoder leakage risk), parallel sweep + parallel per-mode finetune + multi-seed evaluation all feasible. Track A (data) becomes the critical path. Detail: PLAN.md §17.A + §17.B. | 2026-05-10 | user |
 | L19 | **GitHub remote: https://github.com/ansschh/wolverine** (branch `main`). Full project mirrored (specs + plan + memory + rasyn/ code). `.claude/` excluded via .gitignore. | 2026-05-10 | user |
 | L20 | **Phase B-0 + A-0 shipped** (commit 1, 2026-05-10). 11 frozen Pydantic schemas + ~30 round-trip/invariant tests + sealed-case registry stub with 3 ADMET cases + OXS DOI quarantine. Identifiers (canonical_smiles, inchi_key, ChEMBL/PubChem IDs) intentionally null pending populator script — avoids hand-typed SMILES corruption. | 2026-05-10 | implementer |
+| L21 | **Aggressive shipping wave** (commits 3+4, 2026-05-10). Utils (canonicalize/similarity/descriptors/identifiers), data sources (ChEMBL/PubChem/TDC/MoleculeNet), Pass-0 decontam + canary audit, evidence builder + liability drivers, 6 proposer channels (3 complete, 3 ML-stub), 8 baselines, eval harness (Mode A + Mode B + functional-recovery), heuristic ranker (full Ranker contract; usable BEFORE training), torch ranker + featurize scaffold, aux ADMET predictor scaffold, training entry points (pretrain/train/finetune/calibrate, all NotImplementedError until gates open), audit pack (locked-prediction I/O with hash verify), reports (per-case card + 1-slide + 13-section appendix), 12-pass curation orchestrator skeleton, GitHub Actions CI. ~80 tests across the chemistry-free portion. | 2026-05-10 | implementer |
+| L22 | **Pre-commit defaults locked**: ranker architecture = ConcatMLP at L2, escalate to transformer (~500M-1B) at L3. Heuristic ranker covers L1 + early L2 with no training. | 2026-05-10 | implementer |
+| L23 | **Curation pass-4 (papers) and pass-5 (internal) hard-skipped at v1**, marked in `data/curate/passes.py` with `status="skipped"` + PLAN.md §16 reference. Only the 11 working passes execute when run. | 2026-05-10 | implementer |
+| L24 | **Cluster partition committed** in PLAN.md §17.B: 16xH100 → pretrain Stage-1; 4xA100 → aux predictor training in parallel; 4xA100 → preprocessing acceleration (cuML/FAISS-GPU); 8x 2-GPU jobs → Stage-2 sweep; 3x 4-8 GPU jobs → Stage-3 per-mode finetune; spare 1-4 A100s → Layer-1/Layer-2/debug. | 2026-05-10 | implementer |
 
 ---
 
@@ -87,7 +91,67 @@ Use headings, bullet lists, and tables freely. Do NOT prune old entries — appe
 
 ## Log entries (newest first)
 
-### 2026-05-10 (latest) — Phase B-0 + A-0 shipped; GitHub remote configured
+### 2026-05-10 (latest) — Aggressive parallel-track shipping wave (commits 3 + 4)
+**Type:** result + reference
+**Phase:** B-1 through B-8 (most), A-1 to A-3 (skeletons), training-stack scaffolds
+**Context:** User said "go ahead with next steps when you need the GPU let me know UNTIL extremely important do not stop the implement, EXTREMELY parallelize things to speed up." Implemented as much non-GPU work as possible in one session. Two commits totaling 60+ files, ~6000 LOC.
+
+**Commit 3 — utils + data layer + 6 proposers + 8 baselines + eval harness + synth fixture (48 files):**
+- `rasyn/utils/{canonicalize,similarity,descriptors,identifiers}.py` — RDKit-backed primitives with lru_cache + None-on-failure error model
+- `rasyn/data/sources/{chembl,pubchem,tdc,molnet}.py` — adapters w/ bulk SQLite + REST + Python-API paths
+- `rasyn/data/decontam/{quarantine,canary_audit}.py` — Pass-0 scrub with all 12 removal-reason counts; canary survival check across 8 layers
+- `rasyn/data/registry/{canary_generator,populator}.py` — generate ~32 canaries/case across 8 layers; populate registry SMILES/IDs from PubChem→ChEMBL fallback
+- `rasyn/evidence/{builder,liability_drivers}.py` — rule-based v1 evidence builder; SMARTS + descriptor-threshold drivers per liability
+- `rasyn/proposer/{base,analog,mmp,liability_rules,inverse_delta,forward_opt,novelty,ensemble}.py` — 6 channels (1-3 complete, 4-6 stub); ensemble does InChIKey dedup + source merging + pool capping
+- `rasyn/baselines/{base,all}.py` — 8 baselines, all <30 LOC each, baseline-shaped score interface
+- `rasyn/eval/{metrics,functional_recovery,harness}.py` — Mode A + Mode B + 7 metrics + pre-registered FunctionalCriteria
+- `rasyn/synth/fixture.py` — 3 toy cases (HERG/SOL/MET) covering hits + decoys + invalid SMILES paths
+- `tests/test_*.py` — 8 new test files covering canary, baselines, metrics, quarantine, proposer base, functional recovery, synth fixture, identifiers
+- `scripts/{layer1_smoke,populate_registry,generate_canaries}.py` — CLI entry points
+
+**Commit 4 — ranker + audit + curation orchestrator + reports + CI (25 files):**
+- `rasyn/ranker/{base,heuristic,torch_ranker,featurize}.py` — Heuristic ranker with full RankerOutput; ConcatMLP scaffold + featurizer matching architecture exactly (40-dim input)
+- `rasyn/aux_models/admet_predictor.py` — 8-head multi-task predictor (hERG IC50/risk, solubility, halflife, clearance, bioavailability, permeability, Tox21)
+- `rasyn/training/{pretrain,train_ranker,finetune,calibrate,datasets}.py` — entry points with argparse + dataclass configs; NotImplementedError until gates open
+- `rasyn/audit/{locked_prediction_io,audit_pack}.py` — immutable locked predictions with hash-verified read; refuse-to-overwrite; full audit pack assembly with per-artifact SHA256
+- `rasyn/reports/{per_case_card,investor_slide,technical_appendix}.py` — Markdown templates for the 3 deliverable formats
+- `rasyn/data/curate/passes.py` + `scripts/run_curation.py` — 12-pass orchestrator skeleton; pass_4 (papers) + pass_5 (internal) marked skipped
+- `tests/{test_heuristic_ranker,test_featurize,test_locked_prediction_io,test_audit_pack,test_curation_passes}.py` — round-trip + tamper-detection + skeleton-mode invariants
+- `tests/conftest.py` — shared chemistry-free `make_evidence` factory + `evidence_factory` fixture (canonical replacement for cross-test imports)
+- `.github/workflows/test.yml` — GitHub Actions CI on push/PR; chemistry-free dev-deps install only
+
+**Test count:** ~80 tests across 14 test files. Chemistry-touching tests gracefully skip if RDKit absent.
+
+**What's NOT done (intentional):**
+- Actual neural training (gates on Layer-2 GPU access + clean rescue-pair parquet existence). The training entry points raise NotImplementedError with clear references to which gate must open.
+- Real data ingestion runs (gates on disk space + network + ChEMBL bulk download wall-clock). The adapter code is complete; Track A scripts run when user has bandwidth.
+- A-4 4-table real build (pass functions are skeletons; each writes a status log entry). Activates as raw data lands.
+- Paper extraction methodology workstream — deferred per L16.
+
+**Key design choices (logged for future agents):**
+- All Pydantic models `frozen=True, extra="forbid"` for strict immutability + audit trail.
+- All artifacts hash-stable via `canonical_json + sha256` (sorted keys, no whitespace).
+- Heuristic ranker is baseline-shaped (`.score(parent, candidates, liability) → list[(id, score)]`) AND implements full Ranker contract (`.rank(...) → list[RankerOutput]`). Single class, two interfaces, eval harness can plug in either way.
+- ML-bearing proposer channels (4-6) ship as stubs returning empty `ProposerOutput`. The full 6-channel ensemble runs end-to-end TODAY using channels 1-3; channels 4-6 light up post-Layer-2.
+- Canaries are format-valid but unmistakably synthetic (e.g., `[CANARY_A001_001]CCCC` for SMILES, `10.9999/canary-a001-001` for DOIs). Inserted before clean → verified absent after; halt on any survivor.
+- Locked-prediction format refuses to overwrite (immutability invariant) and recomputes output_hash on read; raises `ValueError` if tampered.
+
+**Outcome / next:**
+- Everything that doesn't need GPU or full data is shipped. ~6000 LOC across 70+ files, all on `main` at https://github.com/ansschh/wolverine.
+- **Next REAL step needs user action:**
+  1. Spin up GPU pod (16x H100 + 16x A100 per L18) — gates Layer-2/Layer-3 verification + all training stages.
+  2. Provision ~200 GB disk for Track A bulk downloads (ChEMBL ~20 GB + PubChem subset 50-100 GB + TDC + MoleculeNet).
+  3. Run `pip install -e ".[dev,chem,ml,data]"` on the pod and `pytest` to confirm scaffold green end-to-end.
+  4. Run `python scripts/populate_registry.py` to fill SMILES/IDs from PubChem+ChEMBL.
+  5. Run `python scripts/generate_canaries.py` to write canaries.yaml from the populated registry.
+  6. Start the Layer-1 smoke test: `python scripts/layer1_smoke.py` (CPU-only; expects RDKit installed).
+- Until user gives "GO" on GPU pod, no more implementation work blocks anything. All remaining progress is data-ingestion-bound or training-bound.
+
+**Refs:** PLAN.md §1, §3, §5, §6, §7, §8, §13, §17.A, §17.B; commits 53e6a7e, 9fbfef2, 15e8b2f, 48f3e32 on main.
+
+---
+
+### 2026-05-10 — Phase B-0 + A-0 shipped; GitHub remote configured
 **Type:** result + reference
 **Phase:** B-0, A-0
 **Context:** User said "go ahead, just let me know when you want the compute and I can spin up the pod" plus "keep the code pushed here: https://github.com/ansschh/wolverine."

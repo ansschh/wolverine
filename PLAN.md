@@ -1,7 +1,28 @@
 # Rasyn ADMET Rescue — Master Plan
 
-> **Status:** Draft v0.3 (2026-05-10). Owner: Ansh. Implementer: Claude (Opus 4.7, 1M ctx).
+> **Status:** Draft v0.4 (2026-05-10). Owner: Ansh. Implementer: Claude (Opus 4.7, 1M ctx).
 > **Remote:** https://github.com/ansschh/wolverine — branch `main`. The full repo (specs + plan + memory + rasyn/ code) is mirrored there.
+> **v0.4 changes:** Aggressive parallel-track shipping in one session. Now complete:
+>   - Phase B-0 schemas (11 modules, ~30 tests)
+>   - Phase A-0 sealed-case registry stub + populator + canary generator
+>   - Utils (canonicalize/similarity/descriptors/identifiers)
+>   - Data sources (ChEMBL/PubChem/TDC/MoleculeNet adapters)
+>   - Decontamination (Pass-0 quarantine + canary audit)
+>   - Evidence builder (rule-based v1 with liability driver detection)
+>   - 6 proposer channels (3 deterministic complete, 3 ML-bearing scaffolded)
+>   - 8 baselines
+>   - Eval harness (Mode A + Mode B + functional-recovery scorer + metrics)
+>   - Heuristic ranker (full Ranker contract; usable BEFORE training)
+>   - Torch ranker scaffold (ConcatMLP architecture + featurizer; ready for training)
+>   - Auxiliary ADMET predictor scaffold
+>   - Training entry points (pretrain/train_ranker/finetune/calibrate)
+>   - RescuePairDataset + parquet loader scaffold
+>   - Audit pack (locked-prediction I/O with hash verify; full pack assembler)
+>   - Reports (per-case card + investor 1-slide + 13-section technical appendix)
+>   - 12-pass curation orchestrator skeleton
+>   - Layer-1 smoke script + populate/canary scripts
+>   - GitHub Actions CI (chemistry-free test suite)
+>   - ~80 tests passing (chemistry-touching tests skip if RDKit absent)
 > **v0.3 changes:** (a) Phase B-0 (scaffold + frozen schemas + tests) shipped; (b) Phase A-0 (sealed-case registry stub) shipped; (c) GitHub remote configured.
 > **v0.2 changes:** (a) papers deferred to a methodology-first workstream (§16); (b) compute estimate added (§17).
 > **Read order on resume:** this file → `MEMORY.md` → the 5 spec `.md`s at repo root.
