@@ -31,6 +31,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import multiprocessing as mp
 import time
 from collections import defaultdict
 from pathlib import Path
@@ -39,6 +40,31 @@ import numpy as np
 import pandas as pd
 
 from rasyn.utils.similarity import morgan_bits, murcko_match
+
+
+def _compute_mol_features(args: tuple[str, str]) -> tuple[str, int | None, str | None]:
+    """mp.Pool worker. Returns (mol_id, heavy_atoms, murcko_canonical_smiles).
+
+    Caches one SMILES parse + one Murcko computation per UNIQUE molecule, so
+    16.3M edges with ~500K unique mols only do ~500K Murcko computations
+    instead of 16.3M (was 4hr; now ~5min with mp.Pool).
+    """
+    from rdkit import Chem
+    from rdkit.Chem.Scaffolds.MurckoScaffold import GetScaffoldForMol
+
+    mol_id, smi = args
+    try:
+        mol = Chem.MolFromSmiles(smi)
+        if mol is None:
+            return (mol_id, None, None)
+        ha = mol.GetNumHeavyAtoms()
+        scaffold = GetScaffoldForMol(mol)
+        if scaffold is None:
+            return (mol_id, ha, None)
+        murcko = Chem.MolToSmiles(scaffold)
+        return (mol_id, ha, murcko)
+    except Exception:
+        return (mol_id, None, None)
 
 DATA_DIR = Path("rasyn/data/clean")
 ASSAY_FACTS = DATA_DIR / "assay_facts.parquet"
@@ -191,27 +217,41 @@ def main():
     new_df = pd.DataFrame(new_edges)
     new_df = new_df.drop_duplicates(["parent_chembl_id", "candidate_chembl_id", "shared_target_chembl_id"])
 
-    # Murcko match + heavy_atom_diff
-    _log(f"Computing Murcko + heavy_atom_diff for {len(new_df):,} new edges...")
-    from rdkit import Chem
-    murcko_results = []
-    heavy_diffs = []
-    for _, r in new_df.iterrows():
-        a = smiles_by_id.get(r["parent_chembl_id"])
-        b = smiles_by_id.get(r["candidate_chembl_id"])
-        if a is None or b is None:
-            murcko_results.append(False)
-            heavy_diffs.append(None)
-            continue
-        try:
-            ma, mb = Chem.MolFromSmiles(a), Chem.MolFromSmiles(b)
-            heavy_diffs.append(abs(ma.GetNumHeavyAtoms() - mb.GetNumHeavyAtoms()))
-            murcko_results.append(murcko_match(a, b))
-        except Exception:
-            murcko_results.append(False)
-            heavy_diffs.append(None)
-    new_df["murcko_match"] = murcko_results
-    new_df["heavy_atom_diff"] = heavy_diffs
+    # Per-molecule Murcko + heavy_atoms cache, mp.Pool-parallelized.
+    # Was: O(2 * N_edges) SMILES parses + N_edges Murcko computations (~4hr on 16.3M edges).
+    # Now: O(N_unique_mols) total work + vectorized pandas dict-map (~5min with all CPUs).
+    unique_mol_ids = set(new_df["parent_chembl_id"]) | set(new_df["candidate_chembl_id"])
+    unique_mol_inputs = [(mid, smiles_by_id[mid]) for mid in unique_mol_ids if mid in smiles_by_id]
+    n_workers = max(2, mp.cpu_count())
+    _log(
+        f"Computing Murcko + heavy_atoms for {len(unique_mol_inputs):,} unique molecules "
+        f"in {len(new_df):,} edges (mp.Pool, {n_workers} workers)..."
+    )
+    with mp.Pool(processes=n_workers) as pool:
+        feature_results = pool.map(_compute_mol_features, unique_mol_inputs, chunksize=2000)
+
+    ha_by_id: dict[str, int] = {}
+    murcko_by_id: dict[str, str] = {}
+    for mid, ha, murcko in feature_results:
+        if ha is not None:
+            ha_by_id[mid] = ha
+        if murcko is not None:
+            murcko_by_id[mid] = murcko
+    _log(
+        f"  cached: heavy_atoms for {len(ha_by_id):,} mols, "
+        f"murcko_smiles for {len(murcko_by_id):,} mols"
+    )
+
+    # Vectorized lookups for the per-edge columns.
+    p_ha = new_df["parent_chembl_id"].map(ha_by_id)
+    c_ha = new_df["candidate_chembl_id"].map(ha_by_id)
+    new_df["heavy_atom_diff"] = (p_ha - c_ha).abs()
+
+    p_murcko = new_df["parent_chembl_id"].map(murcko_by_id)
+    c_murcko = new_df["candidate_chembl_id"].map(murcko_by_id)
+    new_df["murcko_match"] = (
+        (p_murcko == c_murcko) & p_murcko.notna() & c_murcko.notna()
+    ).astype(bool)
 
     # Append to existing analog_edges.parquet (or create if absent)
     if args.out_edges.exists():
