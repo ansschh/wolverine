@@ -25,10 +25,12 @@ Outputs (rasyn/data/clean/channel6_novelty_selfies/):
 from __future__ import annotations
 
 import argparse
+import datetime as dt
 import json
 import math
 import os
 import time
+from multiprocessing import Pool
 from pathlib import Path
 
 import numpy as np
@@ -119,7 +121,10 @@ class CausalSELFIESLM(nn.Module):
 
 def setup_distributed():
     if "RANK" in os.environ:
-        dist.init_process_group(backend="nccl")
+        # 2-hr collective timeout absorbs the upfront SMILES->SELFIES conversion
+        # (~22-30 min on 2.47M molecules per rank) without tripping the
+        # default 10-min NCCL barrier timeout.
+        dist.init_process_group(backend="nccl", timeout=dt.timedelta(hours=2))
         rank = dist.get_rank()
         world_size = dist.get_world_size()
         local_rank = int(os.environ.get("LOCAL_RANK", 0))
@@ -171,15 +176,18 @@ def main():
     if is_main:
         log(f"Loaded {len(smiles_list):,} SMILES; converting to SELFIES...")
 
-    # Convert SMILES -> SELFIES (drop conversions that fail)
-    selfies_list: list[str] = []
-    n_failed = 0
-    for smi in smiles_list:
-        sfstr = smiles_to_selfies(smi)
-        if sfstr is None:
-            n_failed += 1
-            continue
-        selfies_list.append(sfstr)
+    # Convert SMILES -> SELFIES in parallel within rank using mp.Pool.
+    # Sequential conversion of 2.47M SMILES took ~22-30 min/rank and the
+    # uneven finishing times tripped the NCCL barrier timeout. Pool uses
+    # cpu_count/world_size workers so 8 ranks × N workers <= total cores.
+    n_smiles = len(smiles_list)
+    n_cpu = max(2, (os.cpu_count() or 8) // max(1, world_size))
+    if is_main:
+        log(f"  Converting with mp.Pool: {n_cpu} workers/rank, {world_size} ranks...")
+    with Pool(processes=n_cpu) as pool:
+        converted = pool.map(smiles_to_selfies, smiles_list, chunksize=2000)
+    selfies_list = [s for s in converted if s is not None]
+    n_failed = n_smiles - len(selfies_list)
     if is_main:
         log(f"  Converted: {len(selfies_list):,} ({n_failed:,} failed)")
 
