@@ -1,0 +1,445 @@
+version: 0
+n_pairs: 15
+pairs:
+- id: GT_HERG_001
+  liability_type: hERG
+  title: cisapride -> prucalopride (5-HT4 hERG mitigation)
+  parent:
+    name: cisapride
+    pubchem_cid: 2769
+    drugbank_id: DB00604
+    smiles_populate_from: pubchem
+    canonical_smiles: COc1cc(N)c(Cl)cc1C(=O)NC1CCN(CCCOc2ccc(F)cc2)CC1OC
+    inchi_key: DCSUBABJRXZOMT-UHFFFAOYSA-N
+    iupac_name_pubchem: 4-amino-5-chloro-N-[1-[3-(4-fluorophenoxy)propyl]-3-methoxypiperidin-4-yl]-2-methoxybenzamide
+    population_status: ok(warn:no_csp)
+  candidate:
+    name: prucalopride
+    pubchem_cid: 3052762
+    drugbank_id: DB06480
+    smiles_populate_from: pubchem
+    canonical_smiles: COCCCN1CCC(NC(=O)c2cc(Cl)c(N)c3c2OCC3)CC1
+    inchi_key: ZPMNHBXQOOVQJL-UHFFFAOYSA-N
+    iupac_name_pubchem: 4-amino-5-chloro-N-[1-(3-methoxypropyl)piperidin-4-yl]-2,3-dihydro-1-benzofuran-7-carboxamide
+    population_status: ok(warn:no_csp)
+  target: 5-HT4 receptor agonist
+  target_chembl_id: CHEMBL1875
+  liability_endpoint: hERG IC50
+  expected_direction:
+    hERG_IC50: increase >= 30x
+    target_potency: preserved within 10x
+  transformation_class: basicity_reduction + scaffold_modification
+  confidence: high
+  paper_doi_TODO: 10.1021/jm070641y
+  notes: Cisapride was FDA-withdrawn 2000 for QT prolongation. Prucalopride is the
+    safer 5-HT4 agonist marketed for chronic constipation.
+- id: GT_HERG_002
+  liability_type: hERG
+  title: Jamieson 2006 hERG-IC50 SAR series (compound 6 -> compound 12)
+  parent:
+    name: compound 6 (Jamieson 2006)
+    smiles_populate_from: paper_si
+    canonical_smiles: null
+    needs_manual_population: true
+    population_status: needs_manual_paper_si_extraction
+  candidate:
+    name: compound 12 (Jamieson 2006)
+    smiles_populate_from: paper_si
+    canonical_smiles: null
+    needs_manual_population: true
+    population_status: needs_manual_paper_si_extraction
+  target: various pharma targets (paper is a review of hERG-mitigation cases)
+  target_chembl_id: null
+  liability_endpoint: hERG IC50 (patch clamp)
+  expected_direction:
+    hERG_IC50: increase >= 10x
+    target_potency: preserved or improved
+  transformation_class: polarity_addition (carboxylate group)
+  confidence: high
+  paper_doi_TODO: 10.1021/jm060379l
+  notes: Canonical hERG-mitigation review with numbered SAR series. Multiple parent->child
+    pairs in the paper; pick compound 6/12 as a clear example.
+- id: GT_HERG_003
+  liability_type: hERG
+  title: GSK945237 / antimalarial series hERG mitigation
+  parent:
+    name: compound 11 (Wallace 2014)
+    smiles_populate_from: paper_si
+    canonical_smiles: null
+    needs_manual_population: true
+    population_status: needs_manual_paper_si_extraction
+  candidate:
+    name: compound 23 (GSK945237)
+    smiles_populate_from: paper_si
+    canonical_smiles: null
+    needs_manual_population: true
+    population_status: needs_manual_paper_si_extraction
+  target: Plasmodium falciparum (antimalarial)
+  target_chembl_id: null
+  liability_endpoint: hERG IC50
+  expected_direction:
+    hERG_IC50: increase >= 10x
+    target_potency: preserved within 3x
+  transformation_class: lipophilicity_reduction
+  confidence: high
+  paper_doi_TODO: 10.1021/jm5006804
+  notes: Antimalarial lead-opt with explicit hERG IC50 mitigation while preserving
+    antiparasitic potency.
+- id: GT_HERG_004
+  liability_type: hERG
+  title: ranolazine / antiarrhythmic SAR series
+  parent:
+    name: early-lead (ranolazine series)
+    smiles_populate_from: paper_si
+    canonical_smiles: null
+    needs_manual_population: true
+    population_status: needs_manual_paper_si_extraction
+  candidate:
+    name: ranolazine
+    pubchem_cid: 56959
+    drugbank_id: DB00243
+    smiles_populate_from: pubchem
+    canonical_smiles: COc1ccccc1OCC(O)CN1CCN(CC(=O)Nc2c(C)cccc2C)CC1
+    inchi_key: XKLMZUWKNUAPSZ-UHFFFAOYSA-N
+    iupac_name_pubchem: N-(2,6-dimethylphenyl)-2-[4-[2-hydroxy-3-(2-methoxyphenoxy)propyl]piperazin-1-yl]acetamide
+    population_status: ok(warn:no_csp)
+  target: late sodium channel
+  target_chembl_id: null
+  liability_endpoint: hERG IC50
+  expected_direction:
+    hERG_IC50: modest increase
+    target_potency: preserved
+  transformation_class: polar_group_addition
+  confidence: medium
+  paper_doi_TODO: null
+  notes: Original CV Therapeutics ranolazine SAR. May need to find a closer-fit paper;
+    use as fallback hERG case if Jamieson doesn't yield.
+- id: GT_SOL_001
+  liability_type: solubility
+  title: vemurafenib -> encorafenib (BRAF V600E solubility profile)
+  parent:
+    name: vemurafenib
+    pubchem_cid: 42611257
+    drugbank_id: DB08881
+    smiles_populate_from: pubchem
+    canonical_smiles: CCCS(=O)(=O)Nc1ccc(F)c(C(=O)c2c[nH]c3ncc(-c4ccc(Cl)cc4)cc23)c1F
+    inchi_key: GPXBXXGIAQBQNI-UHFFFAOYSA-N
+    iupac_name_pubchem: N-[3-[5-(4-chlorophenyl)-1H-pyrrolo[2,3-b]pyridine-3-carbonyl]-2,4-difluorophenyl]propane-1-sulfonamide
+    population_status: ok(warn:no_csp)
+  candidate:
+    name: encorafenib
+    pubchem_cid: 50922675
+    drugbank_id: DB11718
+    smiles_populate_from: pubchem
+    canonical_smiles: COC(=O)N[C@@H](C)CNc1nccc(-c2cn(C(C)C)nc2-c2cc(Cl)cc(NS(C)(=O)=O)c2F)n1
+    inchi_key: CMJCXYNUCSMDBY-ZDUSSCGKSA-N
+    iupac_name_pubchem: methyl N-[(2S)-1-[[4-[3-[5-chloro-2-fluoro-3-(methanesulfonamido)phenyl]-1-propan-2-ylpyrazol-4-yl]pyrimidin-2-yl]amino]propan-2-yl]carbamate
+    population_status: ok(warn:no_csp)
+  target: BRAF V600E kinase
+  target_chembl_id: CHEMBL5145
+  liability_endpoint: aqueous solubility (pH 7.4)
+  expected_direction:
+    solubility: increase >= 5x
+    target_potency: preserved (both nM-range BRAF V600E inhibitors)
+  transformation_class: amorphous_to_crystalline + scaffold_polarity
+  confidence: medium
+  paper_doi_TODO: 10.1021/acs.jmedchem.8b00045
+  notes: Both clinically-used BRAF V600E inhibitors; encorafenib has improved PK profile
+    largely from solubility.
+- id: GT_SOL_002
+  liability_type: solubility
+  title: crizotinib -> lorlatinib (ALK 3rd-gen, BBB + solubility)
+  parent:
+    name: crizotinib
+    pubchem_cid: 11626560
+    drugbank_id: DB08865
+    smiles_populate_from: pubchem
+    canonical_smiles: C[C@@H](Oc1cc(-c2cnn(C3CCNCC3)c2)cnc1N)c1c(Cl)ccc(F)c1Cl
+    inchi_key: KTEIFNKAUNYNJU-GFCCVEGCSA-N
+    iupac_name_pubchem: 3-[(1R)-1-(2,6-dichloro-3-fluorophenyl)ethoxy]-5-(1-piperidin-4-ylpyrazol-4-yl)pyridin-2-amine
+    population_status: ok(warn:no_csp)
+  candidate:
+    name: lorlatinib
+    pubchem_cid: 71731823
+    drugbank_id: DB12130
+    smiles_populate_from: pubchem
+    canonical_smiles: C[C@H]1Oc2cc(cnc2N)-c2c(nn(C)c2C#N)CN(C)C(=O)c2ccc(F)cc21
+    inchi_key: IIXWYSCJSQVBQM-LLVKDONJSA-N
+    iupac_name_pubchem: (16R)-19-amino-13-fluoro-4,8,16-trimethyl-9-oxo-17-oxa-4,5,8,20-tetrazatetracyclo[16.3.1.02,6.010,15]docosa-1(22),2,5,10(15),11,13,18,20-octaene-3-carbonitrile
+    population_status: ok(warn:no_csp)
+  target: ALK kinase
+  target_chembl_id: CHEMBL4247
+  liability_endpoint: kinetic aqueous solubility
+  expected_direction:
+    solubility: increase
+    target_potency: improved (lorlatinib is more potent on ALK)
+  transformation_class: macrocyclization
+  confidence: medium
+  paper_doi_TODO: 10.1021/acs.jmedchem.6b01290
+  notes: Lorlatinib is macrocyclic; rescues both solubility AND CNS penetration. Pick
+    this case to test multi-property rescue extraction.
+- id: GT_SOL_003
+  liability_type: solubility
+  title: phenyl -> pyridyl bioisostere series
+  parent:
+    name: compound A (phenyl)
+    smiles_populate_from: paper_si
+    canonical_smiles: null
+    needs_manual_population: true
+    population_status: needs_manual_paper_si_extraction
+  candidate:
+    name: compound B (pyridyl)
+    smiles_populate_from: paper_si
+    canonical_smiles: null
+    needs_manual_population: true
+    population_status: needs_manual_paper_si_extraction
+  target: any (bioisostere demo)
+  target_chembl_id: null
+  liability_endpoint: logS or kinetic solubility
+  expected_direction:
+    solubility: increase >= 5x
+    logP: decrease ~0.5-1 unit
+    target_potency: preserved
+  transformation_class: phenyl_to_pyridyl_bioisostere
+  confidence: high
+  paper_doi_TODO: 10.1021/jm200187y
+  notes: Canonical bioisostere demo. Choose any explicit pair from Meanwell's review
+    tables.
+- id: GT_SOL_004
+  liability_type: solubility
+  title: morphine -> morphine-6-glucuronide (sol via glucuronidation)
+  parent:
+    name: morphine
+    pubchem_cid: 5288826
+    smiles_populate_from: pubchem
+    canonical_smiles: CN1CC[C@]23c4c5ccc(O)c4O[C@H]2[C@@H](O)C=C[C@H]3[C@H]1C5
+    inchi_key: BQJCRHHNABKAKU-KBQPJGBKSA-N
+    iupac_name_pubchem: (4R,4aR,7S,7aR,12bS)-3-methyl-2,4,4a,7,7a,13-hexahydro-1H-4,12-methanobenzofuro[3,2-e]isoquinoline-7,9-diol
+    population_status: ok(warn:no_csp)
+  candidate:
+    name: morphine-6-glucuronide
+    pubchem_cid: 5360621
+    smiles_populate_from: pubchem
+    canonical_smiles: CN1CC[C@]23c4c5ccc(O)c4O[C@H]2[C@@H](O[C@@H]2O[C@H](C(=O)O)[C@@H](O)[C@H](O)[C@H]2O)C=C[C@H]3[C@H]1C5
+    inchi_key: GNJCUHZOSOYIEC-GAROZEBRSA-N
+    iupac_name_pubchem: (2S,3S,4S,5R,6R)-6-[[(4R,4aR,7S,7aR,12bS)-9-hydroxy-3-methyl-2,4,4a,7,7a,13-hexahydro-1H-4,12-methanobenzofuro[3,2-e]isoquinolin-7-yl]oxy]-3,4,5-trihydroxyoxane-2-carboxylic
+      acid
+    population_status: ok(warn:no_csp)
+  target: mu-opioid receptor
+  target_chembl_id: CHEMBL233
+  liability_endpoint: aqueous solubility
+  expected_direction:
+    solubility: increase >= 100x
+    target_potency: preserved (M6G is active analgesic)
+  transformation_class: glucuronidation_polar_addition
+  confidence: medium
+  paper_doi_TODO: null
+  notes: Active-metabolite-as-rescue case. M6G has dramatically better water solubility
+    than parent morphine, retains MOR activity.
+- id: GT_METSTAB_001
+  liability_type: metabolic_stability
+  title: fluoro shielding (methyl -> trifluoromethyl SAR)
+  parent:
+    name: compound A (-CH3 at metabolic soft spot)
+    smiles_populate_from: paper_si
+    canonical_smiles: null
+    needs_manual_population: true
+    population_status: needs_manual_paper_si_extraction
+  candidate:
+    name: compound B (-CF3 same position)
+    smiles_populate_from: paper_si
+    canonical_smiles: null
+    needs_manual_population: true
+    population_status: needs_manual_paper_si_extraction
+  target: any pharma target
+  target_chembl_id: null
+  liability_endpoint: human liver microsome half-life or intrinsic clearance
+  expected_direction:
+    half_life: increase >= 3x
+    intrinsic_clearance: decrease >= 3x
+    target_potency: preserved within 3x
+  transformation_class: fluoro_shielding_methyl_to_trifluoromethyl
+  confidence: high
+  paper_doi_TODO: 10.1021/jm501853m
+  notes: Choose any explicit pair from the canonical fluoro-shielding literature.
+- id: GT_METSTAB_002
+  liability_type: metabolic_stability
+  title: benzylic CH2 -> CF2 soft-spot block
+  parent:
+    name: compound A (-CH2- benzylic linker)
+    smiles_populate_from: paper_si
+    canonical_smiles: null
+    needs_manual_population: true
+    population_status: needs_manual_paper_si_extraction
+  candidate:
+    name: compound B (-CF2- benzylic linker)
+    smiles_populate_from: paper_si
+    canonical_smiles: null
+    needs_manual_population: true
+    population_status: needs_manual_paper_si_extraction
+  target: any
+  target_chembl_id: null
+  liability_endpoint: rat liver microsome half-life
+  expected_direction:
+    half_life: increase >= 5x
+    target_potency: preserved
+  transformation_class: benzylic_CF2_soft_spot_block
+  confidence: high
+  paper_doi_TODO: null
+  notes: Pure CH2 -> CF2 swap is a well-documented metstab fix.
+- id: GT_METSTAB_003
+  liability_type: metabolic_stability
+  title: morpholine -> oxetane (rotational restriction + metstab)
+  parent:
+    name: compound A (morpholine ring)
+    smiles_populate_from: paper_si
+    canonical_smiles: null
+    needs_manual_population: true
+    population_status: needs_manual_paper_si_extraction
+  candidate:
+    name: compound B (oxetane)
+    smiles_populate_from: paper_si
+    canonical_smiles: null
+    needs_manual_population: true
+    population_status: needs_manual_paper_si_extraction
+  target: any
+  target_chembl_id: null
+  liability_endpoint: human hepatocyte clearance
+  expected_direction:
+    clearance: decrease >= 2x
+    target_potency: preserved
+  transformation_class: ring_replacement_metstab
+  confidence: medium
+  paper_doi_TODO: 10.1021/acs.jmedchem.5b01734
+  notes: Wuitschik et al. canonical oxetane bioisostere series.
+- id: GT_PRODRUG_001
+  liability_type: oral_exposure
+  title: 5-FU -> capecitabine (oral prodrug for fluoropyrimidine)
+  parent:
+    name: 5-fluorouracil
+    pubchem_cid: 3385
+    drugbank_id: DB00544
+    smiles_populate_from: pubchem
+    canonical_smiles: O=c1[nH]cc(F)c(=O)[nH]1
+    inchi_key: GHASVSINZRGABV-UHFFFAOYSA-N
+    iupac_name_pubchem: 5-fluoro-1H-pyrimidine-2,4-dione
+    population_status: ok(warn:no_csp)
+  candidate:
+    name: capecitabine
+    pubchem_cid: 60953
+    drugbank_id: DB01101
+    smiles_populate_from: pubchem
+    canonical_smiles: CCCCCOC(=O)Nc1nc(=O)n([C@@H]2O[C@H](C)[C@@H](O)[C@H]2O)cc1F
+    inchi_key: GAGWJHPBXLXJQN-UORFTKCHSA-N
+    iupac_name_pubchem: pentyl N-[1-[(2R,3R,4S,5R)-3,4-dihydroxy-5-methyloxolan-2-yl]-5-fluoro-2-oxopyrimidin-4-yl]carbamate
+    population_status: ok(warn:no_csp)
+  target: thymidylate synthase (5-FU active form)
+  target_chembl_id: CHEMBL1539
+  liability_endpoint: oral bioavailability F%
+  expected_direction:
+    F_percent: increase from <10% (5-FU IV-only) to >70% (capecitabine oral)
+    active_species_delivery: tumor-targeted via thymidine phosphorylase
+  transformation_class: carbamate_oral_prodrug + tumor_activated
+  confidence: high
+  paper_doi_TODO: 10.1016/s0006-2952(98)00226-7
+  notes: 'Classic prodrug rescue: 5-FU has terrible oral PK; capecitabine''s three-enzyme
+    tumor-selective activation gives oral dosing + tumor selectivity.'
+- id: GT_PRODRUG_002
+  liability_type: oral_exposure
+  title: tenofovir -> tenofovir disoproxil fumarate (TDF)
+  parent:
+    name: tenofovir
+    pubchem_cid: 464205
+    drugbank_id: DB14126
+    smiles_populate_from: pubchem
+    canonical_smiles: C[C@H](Cn1cnc2c(N)ncnc21)OCP(=O)(O)O
+    inchi_key: SGOIRFVFHAKUTI-ZCFIWIBFSA-N
+    iupac_name_pubchem: '[(2R)-1-(6-aminopurin-9-yl)propan-2-yl]oxymethylphosphonic
+      acid'
+    population_status: ok(warn:no_csp)
+  candidate:
+    name: tenofovir disoproxil fumarate
+    pubchem_cid: 6398764
+    drugbank_id: DB00300
+    smiles_populate_from: pubchem
+    canonical_smiles: CC(C)OC(=O)OCOP(=O)(CO[C@H](C)Cn1cnc2c(N)ncnc21)OCOC(=O)OC(C)C.O=C(O)/C=C/C(=O)O
+    inchi_key: VCMJCVGFSROFHV-WZGZYPNHSA-N
+    iupac_name_pubchem: '[[(2R)-1-(6-aminopurin-9-yl)propan-2-yl]oxymethyl-(propan-2-yloxycarbonyloxymethoxy)phosphoryl]oxymethyl
+      propan-2-yl carbonate;(E)-but-2-enedioic acid'
+    population_status: ok(warn:no_csp)
+  target: HIV reverse transcriptase / HBV polymerase
+  target_chembl_id: CHEMBL247
+  liability_endpoint: oral bioavailability F%
+  expected_direction:
+    F_percent: increase >= 10x (tenofovir <5% -> TDF ~25-40%)
+    active_species_delivery: intracellular hydrolysis to tenofovir-diphosphate
+  transformation_class: bis_isopropoxycarbonyloxymethyl_phosphonate_prodrug
+  confidence: high
+  paper_doi_TODO: 10.1128/AAC.42.3.612
+  notes: Phosphonate -> POC ester prodrug for oral PMPA. Industry-standard prodrug
+    rescue.
+- id: GT_PRODRUG_003
+  liability_type: oral_exposure
+  title: adefovir -> adefovir dipivoxil
+  parent:
+    name: adefovir
+    pubchem_cid: 60172
+    drugbank_id: DB14160
+    smiles_populate_from: pubchem
+    canonical_smiles: Nc1ncnc2c1ncn2CCOCP(=O)(O)O
+    inchi_key: SUPKOOSCJHTBAH-UHFFFAOYSA-N
+    iupac_name_pubchem: 2-(6-aminopurin-9-yl)ethoxymethylphosphonic acid
+    population_status: ok(warn:no_csp)
+  candidate:
+    name: adefovir dipivoxil
+    pubchem_cid: 60871
+    drugbank_id: DB00718
+    smiles_populate_from: pubchem
+    canonical_smiles: CC(C)(C)C(=O)OCOP(=O)(COCCn1cnc2c(N)ncnc21)OCOC(=O)C(C)(C)C
+    inchi_key: WOZSCQDILHKSGG-UHFFFAOYSA-N
+    iupac_name_pubchem: '[2-(6-aminopurin-9-yl)ethoxymethyl-(2,2-dimethylpropanoyloxymethoxy)phosphoryl]oxymethyl
+      2,2-dimethylpropanoate'
+    population_status: ok(warn:no_csp)
+  target: HBV polymerase
+  target_chembl_id: null
+  liability_endpoint: oral bioavailability F%
+  expected_direction:
+    F_percent: increase from <12% to ~30-45%
+    active_species_delivery: intracellular hydrolysis
+  transformation_class: bis_pivaloyloxymethyl_phosphonate_prodrug
+  confidence: high
+  paper_doi_TODO: null
+  notes: Same prodrug strategy as TDF; provides redundant test case for the same transformation_class.
+- id: GT_PRODRUG_004
+  liability_type: oral_exposure
+  title: amprenavir -> fosamprenavir (water-soluble phosphate prodrug)
+  parent:
+    name: amprenavir
+    pubchem_cid: 65016
+    drugbank_id: DB00701
+    smiles_populate_from: pubchem
+    canonical_smiles: CC(C)CN(C[C@@H](O)[C@H](Cc1ccccc1)NC(=O)O[C@H]1CCOC1)S(=O)(=O)c1ccc(N)cc1
+    inchi_key: YMARZQAQMVYCKC-OEMFJLHTSA-N
+    iupac_name_pubchem: '[(3S)-oxolan-3-yl] N-[(2S,3R)-4-[(4-aminophenyl)sulfonyl-(2-methylpropyl)amino]-3-hydroxy-1-phenylbutan-2-yl]carbamate'
+    population_status: ok(warn:no_csp)
+  candidate:
+    name: fosamprenavir
+    pubchem_cid: 131536
+    drugbank_id: DB01319
+    smiles_populate_from: pubchem
+    canonical_smiles: CC(C)CN(C[C@@H](OP(=O)(O)O)[C@H](Cc1ccccc1)NC(=O)O[C@H]1CCOC1)S(=O)(=O)c1ccc(N)cc1
+    inchi_key: MLBVMOWEQCZNCC-OEMFJLHTSA-N
+    iupac_name_pubchem: '[(3S)-oxolan-3-yl] N-[(2S,3R)-4-[(4-aminophenyl)sulfonyl-(2-methylpropyl)amino]-1-phenyl-3-phosphonooxybutan-2-yl]carbamate'
+    population_status: ok(warn:no_csp)
+  target: HIV-1 protease
+  target_chembl_id: CHEMBL243
+  liability_endpoint: aqueous solubility + oral pill burden
+  expected_direction:
+    solubility: increase >= 10x (phosphate vs free hydroxyl)
+    pill_burden: decrease (Lexiva 1400mg BID vs Agenerase 1200mg BID 8 capsules)
+    active_species_delivery: intestinal alkaline phosphatase hydrolysis -> amprenavir
+  transformation_class: phosphate_ester_solubility_prodrug
+  confidence: high
+  paper_doi_TODO: 10.1021/jm0102499
+  notes: Phosphate prodrug for solubility. Different mechanism than POC esters; tests
+    breadth of prodrug transformation_class.
