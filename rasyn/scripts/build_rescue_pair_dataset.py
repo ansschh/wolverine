@@ -125,6 +125,12 @@ CHEMBL_STDTYPE_TO_LIABILITY = {
 # Targets known to be hERG (ChEMBL2407 = human hERG / KCNH2)
 HERG_TARGET_IDS = {"CHEMBL240"}  # ChEMBL hERG (KCNH2)
 
+# Standard types treated as target-binding potency (vs. ADMET liability).
+# Per spec §5: pChEMBL is computed for IC50/EC50/Ki/Kd/Potency under specific
+# validity conditions. Restrict activity index to these so we don't conflate
+# binding potency with ADMET measurements that share the IC50 standard_type.
+BINDING_STDTYPES = {"IC50", "Ki", "EC50", "Kd", "AC50", "Potency"}
+
 
 def _liability_for_row(target_chembl_id: str | None, standard_type: str | None) -> str | None:
     """Map a ChEMBL activity row to one of the canonical liability_type values."""
@@ -503,73 +509,162 @@ def pass_6_analog_graph(*, min_tanimoto: float = 0.5, max_pairs_per_target: int 
     return ANALOG_EDGES_PARQUET
 
 
-# ---------- Pass 7: Pair generation ----------
+# ---------- Pass 7: Pair generation (dual-lookup per spec §5-7 + Table 3) ----------
 
 
 def pass_7_pair_generation() -> Path:
-    """Generate parent-candidate rescue-pair candidates with activity + liability context."""
-    _log("Pass 7: pair generation")
+    """Generate parent-candidate rescue-pair candidates via dual-lookup.
+
+    Per spec §5-7 + Table 3, each pair carries TWO independent fact references:
+      - activity_evidence: median pchembl at shared binding target. Restricted
+        to BINDING_STDTYPES with no liability_type tag.
+      - liability_evidence: per-molecule median ADMET value keyed by
+        (liability_type, standard_type) so direction is comparable. Pair rows
+        are emitted for each (liability_type, standard_type) common between
+        parent + candidate.
+
+    Earlier single-row implementation conflated activity and liability into one
+    assay_facts row, causing 99.84% of Pass 9 improvement labels to be unknown
+    and 100% of Pass 10 hard-negs to be None.
+
+    Pair row schema:
+        pair_id, parent_chembl_id, candidate_chembl_id, parent_smiles,
+        candidate_smiles, target_chembl_id, liability_type, liability_endpoint,
+        parent_activity_pchembl, candidate_activity_pchembl,
+        parent_liability_value, candidate_liability_value,
+        parent_liability_n_measurements, candidate_liability_n_measurements,
+        ecfp_tanimoto, murcko_match, heavy_atom_diff
+    """
+    _log("Pass 7: pair generation (dual-lookup)")
     if not ANALOG_EDGES_PARQUET.exists():
-        raise SystemExit("Pass 7 requires analog_edges.parquet (run Pass 6)")
+        raise SystemExit("Pass 7 requires analog_edges.parquet (run Pass 6 / 6.5)")
     edges = pd.read_parquet(ANALOG_EDGES_PARQUET)
     facts = pd.read_parquet(ASSAY_FACTS_PARQUET)
-
-    # For each edge, look up activity context for both molecules at the shared target
-    facts_indexed = facts.set_index(["molecule_chembl_id", "target_chembl_id"], drop=False)
-    facts_indexed = facts_indexed[~facts_indexed.index.duplicated(keep="first")]
-
     mols_df = pd.read_parquet(MOLECULES_PARQUET)
     smiles_by_id = dict(zip(mols_df["chembl_id"], mols_df["canonical_smiles"]))
+    _log(f"  Loaded {len(edges):,} edges, {len(facts):,} facts, {len(smiles_by_id):,} canonical mols")
 
+    # ----- Index 1: activity (binding potency) per (mol, target) -----
+    act_facts = facts[
+        facts["pchembl_value"].notna()
+        & facts["standard_type"].isin(BINDING_STDTYPES)
+        & facts["liability_type"].isna()  # exclude ADMET-tagged rows
+        & facts["molecule_chembl_id"].notna()
+        & facts["target_chembl_id"].notna()
+    ]
+    act_idx = (
+        act_facts.groupby(["molecule_chembl_id", "target_chembl_id"], as_index=False)
+        .agg(activity_pchembl=("pchembl_value", "median"))
+    )
+    activity_lookup: dict[tuple[str, str], float] = {}
+    for r in act_idx.itertuples(index=False):
+        activity_lookup[(r.molecule_chembl_id, r.target_chembl_id)] = float(r.activity_pchembl)
+    _log(f"  Activity index: {len(activity_lookup):,} (mol, target) potency entries")
+
+    # ----- Index 2: liability per molecule, keyed by (liability_type, standard_type) -----
+    liab_facts = facts[
+        facts["liability_type"].notna()
+        & facts["standard_value"].notna()
+        & facts["molecule_chembl_id"].notna()
+    ]
+    liab_idx = (
+        liab_facts.groupby(
+            ["molecule_chembl_id", "liability_type", "standard_type"], as_index=False
+        ).agg(
+            liability_value=("standard_value", "median"),
+            n_measurements=("standard_value", "count"),
+        )
+    )
+    liability_lookup: dict[str, dict[tuple[str, str], tuple[float, int]]] = {}
+    for r in liab_idx.itertuples(index=False):
+        liability_lookup.setdefault(r.molecule_chembl_id, {})[
+            (r.liability_type, r.standard_type)
+        ] = (float(r.liability_value), int(r.n_measurements))
+    _log(f"  Liability index: {len(liability_lookup):,} mols with at least one ADMET fact")
+
+    # ----- Generate pair rows -----
     pair_rows: list[dict] = []
-    pid_seen = set()
-    for _, e in edges.iterrows():
-        a, b, tid = e["parent_chembl_id"], e["candidate_chembl_id"], e["shared_target_chembl_id"]
-        try:
-            a_row = facts_indexed.loc[(a, tid)] if (a, tid) in facts_indexed.index else None
-            b_row = facts_indexed.loc[(b, tid)] if (b, tid) in facts_indexed.index else None
-        except KeyError:
-            continue
-        if a_row is None or b_row is None:
-            continue
-        # Pick liability_type if any non-null
-        liability = None
-        if isinstance(a_row, pd.Series) and a_row.get("liability_type"):
-            liability = a_row.get("liability_type")
-        if not liability and isinstance(b_row, pd.Series) and b_row.get("liability_type"):
-            liability = b_row.get("liability_type")
+    pid_seen: set[str] = set()
+    n_with_common = 0
+    n_no_common = 0
+    n_skipped_no_signal = 0
 
-        # Generate two oriented pair candidates: a->b and b->a (Stage 2 will learn orientation).
-        for parent_id, cand_id, parent_row, cand_row in (
-            (a, b, a_row, b_row),
-            (b, a, b_row, a_row),
-        ):
-            pair_id = f"{parent_id}_{cand_id}_{tid}_{liability or 'NA'}"
-            if pair_id in pid_seen:
+    for e in edges.itertuples(index=False):
+        a, b, tid = e.parent_chembl_id, e.candidate_chembl_id, e.shared_target_chembl_id
+        a_pchembl = activity_lookup.get((a, tid))
+        b_pchembl = activity_lookup.get((b, tid))
+        a_liabs = liability_lookup.get(a, {})
+        b_liabs = liability_lookup.get(b, {})
+        common_liabs = set(a_liabs.keys()) & set(b_liabs.keys())
+
+        has_potency_pair = a_pchembl is not None and b_pchembl is not None
+
+        if common_liabs:
+            n_with_common += 1
+        else:
+            n_no_common += 1
+            if not has_potency_pair:
+                # Neither activity-retention nor liability-improvement signal
+                # is computable for this edge — skip per L33 (don't pad).
+                n_skipped_no_signal += 1
                 continue
-            pid_seen.add(pair_id)
-            pair_rows.append({
-                "pair_id": pair_id,
-                "parent_chembl_id": parent_id,
-                "candidate_chembl_id": cand_id,
-                "parent_smiles": smiles_by_id.get(parent_id),
-                "candidate_smiles": smiles_by_id.get(cand_id),
-                "target_chembl_id": tid,
-                "liability_type": liability,
-                "parent_activity_value": parent_row.get("standard_value") if hasattr(parent_row, "get") else None,
-                "parent_activity_unit": parent_row.get("standard_units") if hasattr(parent_row, "get") else None,
-                "parent_pchembl": parent_row.get("pchembl_value") if hasattr(parent_row, "get") else None,
-                "candidate_activity_value": cand_row.get("standard_value") if hasattr(cand_row, "get") else None,
-                "candidate_activity_unit": cand_row.get("standard_units") if hasattr(cand_row, "get") else None,
-                "candidate_pchembl": cand_row.get("pchembl_value") if hasattr(cand_row, "get") else None,
-                "ecfp_tanimoto": float(e["ecfp_tanimoto"]),
-                "murcko_match": bool(e["murcko_match"]),
-                "heavy_atom_diff": int(e["heavy_atom_diff"]) if pd.notna(e["heavy_atom_diff"]) else None,
-            })
+
+        smi_a = smiles_by_id.get(a)
+        smi_b = smiles_by_id.get(b)
+        ecfp = float(e.ecfp_tanimoto)
+        murcko = bool(e.murcko_match)
+        heavy_diff = int(e.heavy_atom_diff) if pd.notna(e.heavy_atom_diff) else None
+
+        emit_keys: list[tuple[str, str] | None] = (
+            list(common_liabs) if common_liabs else [None]
+        )
+
+        for liab_key in emit_keys:
+            liab_type = liab_key[0] if liab_key else None
+            liab_endpoint = liab_key[1] if liab_key else None
+            for parent_id, cand_id, p_smi, c_smi in (
+                (a, b, smi_a, smi_b),
+                (b, a, smi_b, smi_a),
+            ):
+                pid = f"{parent_id}_{cand_id}_{tid}_{liab_type or 'NA'}_{liab_endpoint or 'NA'}"
+                if pid in pid_seen:
+                    continue
+                pid_seen.add(pid)
+
+                if liab_key:
+                    p_liab = liability_lookup.get(parent_id, {}).get(liab_key, (None, 0))
+                    c_liab = liability_lookup.get(cand_id, {}).get(liab_key, (None, 0))
+                else:
+                    p_liab = (None, 0)
+                    c_liab = (None, 0)
+
+                pair_rows.append({
+                    "pair_id": pid,
+                    "parent_chembl_id": parent_id,
+                    "candidate_chembl_id": cand_id,
+                    "parent_smiles": p_smi,
+                    "candidate_smiles": c_smi,
+                    "target_chembl_id": tid,
+                    "liability_type": liab_type,
+                    "liability_endpoint": liab_endpoint,
+                    "parent_activity_pchembl": activity_lookup.get((parent_id, tid)),
+                    "candidate_activity_pchembl": activity_lookup.get((cand_id, tid)),
+                    "parent_liability_value": p_liab[0],
+                    "candidate_liability_value": c_liab[0],
+                    "parent_liability_n_measurements": p_liab[1],
+                    "candidate_liability_n_measurements": c_liab[1],
+                    "ecfp_tanimoto": ecfp,
+                    "murcko_match": murcko,
+                    "heavy_atom_diff": heavy_diff,
+                })
 
     df = pd.DataFrame(pair_rows)
     df.to_parquet(RESCUE_PAIRS_PARQUET, compression="zstd", index=False)
-    _log(f"Pass 7 DONE: {len(df):,} rescue-pair candidates -> {RESCUE_PAIRS_PARQUET}")
+    _log(
+        f"Pass 7 DONE: {len(df):,} pair rows -> {RESCUE_PAIRS_PARQUET} | "
+        f"edges_w_common_liab={n_with_common:,} edges_no_common={n_no_common:,} "
+        f"edges_skipped_no_signal={n_skipped_no_signal:,}"
+    )
     return RESCUE_PAIRS_PARQUET
 
 
@@ -596,7 +691,8 @@ def pass_8_retention_buckets() -> None:
     _log("Pass 8: activity-retention bucketing")
     df = pd.read_parquet(RESCUE_PAIRS_PARQUET)
     df["activity_retention_bucket"] = [
-        _retention_bucket(p, c) for p, c in zip(df["parent_pchembl"], df["candidate_pchembl"])
+        _retention_bucket(p, c)
+        for p, c in zip(df["parent_activity_pchembl"], df["candidate_activity_pchembl"])
     ]
     df.to_parquet(RESCUE_PAIRS_PARQUET, compression="zstd", index=False)
     _log(f"Pass 8 DONE: bucket counts: {df['activity_retention_bucket'].value_counts().to_dict()}")
@@ -643,9 +739,16 @@ def _improvement_category(parent_v: float | None, cand_v: float | None, liabilit
 def pass_9_liability_labels() -> None:
     _log("Pass 9: liability-improvement category labeling")
     df = pd.read_parquet(RESCUE_PAIRS_PARQUET)
+    # Use *_liability_value (per-mol median at common (liability_type, standard_type)),
+    # NOT *_activity_value. Earlier code used activity_value which was the SAME row as
+    # the potency lookup — conflated activity and liability.
     df["liability_improvement_category"] = [
         _improvement_category(p, c, lib)
-        for p, c, lib in zip(df["parent_activity_value"], df["candidate_activity_value"], df["liability_type"])
+        for p, c, lib in zip(
+            df["parent_liability_value"],
+            df["candidate_liability_value"],
+            df["liability_type"],
+        )
     ]
     df.to_parquet(RESCUE_PAIRS_PARQUET, compression="zstd", index=False)
     _log(f"Pass 9 DONE: improvement counts: {df['liability_improvement_category'].value_counts().to_dict()}")
@@ -711,20 +814,42 @@ def pass_11_ranking_tasks() -> Path:
 
 
 def pass_12_quality_tiers() -> None:
-    """Mark gold/silver/bronze per spec quality tiers."""
+    """Mark gold/silver/bronze/auxiliary per spec §10.
+
+    Silver requires (per spec §10): measured activity AND measured liability,
+    plausible analog relationship, reliable endpoint direction.
+    Translated to columns:
+      - has_act: parent + candidate activity_pchembl present
+      - has_liab: parent + candidate liability_value present
+      - retention bucket non-unknown
+      - improvement category non-unknown
+      - Murcko match True
+      - heavy_atom_diff <= 5 (medicinal-chemistry analog plausibility)
+
+    Bronze: pair has both activity and liability values but fails one or more
+    of the silver structural / signal criteria.
+    Auxiliary: pair lacks one or both of activity / liability (used only for
+    auxiliary predictor training, not the core rescue objective).
+    Gold: paper-curated (deferred per L16 — populated by P-1 to P-5 workstream).
+    """
     _log("Pass 12: quality-tier assignment")
     df = pd.read_parquet(RESCUE_PAIRS_PARQUET)
 
-    def _tier(r) -> str:
-        if r["source"] == "chembl" if "source" in r.index else False:
-            return "silver"
-        # All ChEMBL-derived pairs (have measured activities both sides) → silver.
-        if pd.notna(r["parent_pchembl"]) and pd.notna(r["candidate_pchembl"]):
-            return "silver"
-        # TDC/PubChem-derived (no joint activity context per pair) → bronze.
-        return "bronze"
+    has_act = df["parent_activity_pchembl"].notna() & df["candidate_activity_pchembl"].notna()
+    has_liab = df["parent_liability_value"].notna() & df["candidate_liability_value"].notna()
+    ret_ok = df["activity_retention_bucket"].notna() & (df["activity_retention_bucket"] != "unknown")
+    imp_ok = df["liability_improvement_category"].notna() & (df["liability_improvement_category"] != "unknown")
+    murcko_ok = df["murcko_match"].fillna(False).astype(bool)
+    heavy_ok = df["heavy_atom_diff"].notna() & (df["heavy_atom_diff"] <= 5)
 
-    df["quality_tier"] = df.apply(_tier, axis=1)
+    silver_mask = has_act & has_liab & ret_ok & imp_ok & murcko_ok & heavy_ok
+    bronze_mask = has_act & has_liab & ~silver_mask
+
+    tiers = pd.Series("auxiliary", index=df.index)
+    tiers[bronze_mask] = "bronze"
+    tiers[silver_mask] = "silver"
+    df["quality_tier"] = tiers
+
     df.to_parquet(RESCUE_PAIRS_PARQUET, compression="zstd", index=False)
     _log(f"Pass 12 DONE: tier counts: {df['quality_tier'].value_counts().to_dict()}")
 
