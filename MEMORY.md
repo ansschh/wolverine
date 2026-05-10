@@ -53,6 +53,8 @@ Use headings, bullet lists, and tables freely. Do NOT prune old entries — appe
 | L16 | **Paper SAR extraction deferred** to a separate methodology-first workstream (PLAN.md §16). v1 ships silver-only without papers. Promote to gold tier post-Layer-3 once safe extraction pipeline (structured-LLM extract → dual-reviewer → provenance hashing → canonicalization round-trip → leakage cross-check) is locked + dry-run-validated. | 2026-05-10 | user |
 | L17 | ~~Compute estimate~~ — superseded by L18. | 2026-05-10 | superseded |
 | L18 | **Compute resolved: 32 GPUs total = 16× H100 + 16× A100.** No cap; gate per major run (Stage-1 pretrain, each Stage-2 sweep batch, Stage-3 finetune, Stage-5 sealed-case lock). Wall-clock from "go" → locked predictions: **~1.5–2.5 days, preprocessing-bound** (training compresses to hours). Strategy shifts: pre-commit transformer (~500M–1B params), train our own encoder (no public-encoder leakage risk), parallel sweep + parallel per-mode finetune + multi-seed evaluation all feasible. Track A (data) becomes the critical path. Detail: PLAN.md §17.A + §17.B. | 2026-05-10 | user |
+| L19 | **GitHub remote: https://github.com/ansschh/wolverine** (branch `main`). Full project mirrored (specs + plan + memory + rasyn/ code). `.claude/` excluded via .gitignore. | 2026-05-10 | user |
+| L20 | **Phase B-0 + A-0 shipped** (commit 1, 2026-05-10). 11 frozen Pydantic schemas + ~30 round-trip/invariant tests + sealed-case registry stub with 3 ADMET cases + OXS DOI quarantine. Identifiers (canonical_smiles, inchi_key, ChEMBL/PubChem IDs) intentionally null pending populator script — avoids hand-typed SMILES corruption. | 2026-05-10 | implementer |
 
 ---
 
@@ -85,7 +87,68 @@ Use headings, bullet lists, and tables freely. Do NOT prune old entries — appe
 
 ## Log entries (newest first)
 
-### 2026-05-10 (latest) — Compute resolved: 32 GPUs (16× H100 + 16× A100); strategy escalated
+### 2026-05-10 (latest) — Phase B-0 + A-0 shipped; GitHub remote configured
+**Type:** result + reference
+**Phase:** B-0, A-0
+**Context:** User said "go ahead, just let me know when you want the compute and I can spin up the pod" plus "keep the code pushed here: https://github.com/ansschh/wolverine."
+
+**B-0 deliverables (scaffold + frozen schemas + tests):**
+- Repo tree at `rasyn/` matching PLAN.md §13.
+- `pyproject.toml` with pinned dep groups: base (pydantic, pyyaml, rdkit, numpy, pandas, pyarrow), `dev` (pytest, ruff, mypy), `chem` (chembl_structure_pipeline, datamol), `ml` (torch, torch-geometric, transformers), `data` (PyTDC, deepchem, faiss-cpu).
+- 11 schema modules under `rasyn/schemas/`:
+  - `hashing.py` — canonical_json + sha256_hex + hash_model
+  - `molecule.py` — MoleculeRef (canonical_smiles + inchi_key now Optional with `is_populated` property)
+  - `registry.py` — SealedCaseRegistry, SealedCase, ForbiddenIdentifiers/Documents/Assays, QuarantineConfig, Canary
+  - `challenge.py` — ADMETChallengePacket, ActivityContext, LiabilityContext, RescueContextPacket
+  - `proposer.py` — ProposerRequest, ProposerOutput, CandidateAnnotation, TransformationDescriptor
+  - `evidence.py` — CandidateEvidencePacket + 7 sub-blocks (structural, descriptors, deltas, retention, liability, risk, structured rationale)
+  - `ranker.py` — RankerInput, RankerOutput, ConfidenceBlock; 7 RescueLabel literals + 6 FailureMode literals
+  - `locked.py` — LockedPrediction (frozen, hash-stable)
+  - `config.py` — DecontaminationConfig, BaselineConfig (8 baselines), ProposerConfig (6 channels), RankerConfig
+  - `manifest.py` — DatasetManifest, TrainingManifest, FileEntry
+- All schemas use `frozen=True, extra="forbid"` for strict validation + immutability.
+- Tests in `tests/`:
+  - `test_hashing.py` — canonical JSON determinism, ordering invariance, unicode passthrough, length checks
+  - `test_schemas_roundtrip.py` — round-trip + hash-stability for every schema (MoleculeRef incl. populated/unpopulated, ADMETChallengePacket, ProposerRequest/Output, CandidateEvidencePacket, RankerInput/Output, all 4 configs)
+  - `test_sealed_case_registry.py` — loads YAML, validates 3 case IDs present, per-case liability/mode lockdown, OXS DOI quarantine, default decontam thresholds, known synonyms, hash stability across reloads, no duplicate IDs
+- `rasyn/data/registry/loader.py` — `load_sealed_case_registry()` returns validated `SealedCaseRegistry`.
+
+**A-0 deliverables (sealed-case registry stub):**
+- `rasyn/rasyn/data/registry/sealed_case_registry.yaml` — 3 ADMET cases:
+  - ADMET-001: terfenadine → fexofenadine, hERG, active_metabolite_safety_rescue
+  - ADMET-002: acyclovir → valacyclovir, oral_exposure, prodrug_exposure_rescue
+  - ADMET-003: OXS007570 → OXS008474, solubility, polarity_solubility_rescue
+- Per-case forbidden synonyms locked (e.g., Allegra/Telfast/Seldane for ADMET-001; Zovirax/Valtrex/Zelitrex for ADMET-002; OXS variants for ADMET-003).
+- Per-case forbidden title fragments locked (catches paper titles via fuzzy match).
+- ADMET-003 forbidden_documents.dois includes `10.1039/d4md00275j` (the RSC Med Chem 2024 lead-optimization paper that contains the answer).
+- Default decontamination thresholds (Tanimoto ≥0.85 to answer; ≥0.65 with same Murcko + same target).
+- **Identifiers intentionally null:** canonical_smiles, inchi_key, ChEMBL IDs, PubChem CIDs, CAS numbers all left empty in the YAML stub. The populator script (Phase A-0 task to be written next) will hit PubChem PUG REST + ChEMBL API + RDKit canonicalisation to fill them, then re-freeze the YAML with bumped version. Rationale: hand-typed SMILES are the most common silent corruption source in chemistry projects; rather than guess, leave null and let the canonicalisation pipeline populate.
+- `rasyn/rasyn/data/registry/canaries.yaml` — empty stub; canary generator script (next Phase A-0 task) will populate with ~30 canaries per case across 8 layers (smiles/inchi_key/synonym/doi/pmid/chembl_id/patent/title_text).
+
+**Known schema decisions worth flagging in MEMORY:**
+- MoleculeRef.canonical_smiles + inchi_key are Optional (not required) so the registry stub can hold not-yet-populated molecules. `is_populated` property checks both are non-None for runtime code that needs them.
+- All schemas freeze + forbid extra fields. Adding a field requires a schema-version bump.
+- Hash function: `hash_model(model)` = sha256(canonical_json(model.model_dump(mode="json"))). All artifacts (configs, manifests, locked predictions) hash the same way.
+- 7-label RescueLabel matches spec §4 exactly: strong_success, weak_success, failed_activity_loss, failed_no_liability_improvement, failed_wrong_liability, failed_new_liability, uncertain.
+
+**Git / GitHub:**
+- `git init -b main` at `A:/rasyn-case-studies/`.
+- Top-level .gitignore covers Python build artifacts, raw/clean data dirs (manifests kept), checkpoints, editor cruft, `.env`, and `.claude/`.
+- Initial commit (35 files) covering all 5 specs + PLAN.md + MEMORY.md + full B-0 + A-0 scaffold.
+- Pushed to `https://github.com/ansschh/wolverine` (branch `main`); remote was empty → fresh push, no merge.
+- User git config already set: anshtiwari9899@gmail.com / ansschh.
+
+**Outcome / next:**
+- B-0 ✅ done. A-0 ✅ scaffolded (YAML + loader + tests; populator script + canary generator are the next A-0 tasks).
+- Next phases (no human gates): **A-0 populator script** (PubChem/ChEMBL ID lookup + RDKit canonicalisation), **A-0 canary generator**, **B-1 synthetic fixture**, **B-2 deterministic proposers (analog retrieval + MMP + liability rules)**, **B-4 8 baselines**, **B-5 eval harness skeleton**.
+- Tests have NOT been run yet (no Python env in this session) — first task next session is `pip install -e ".[dev,chem]"` then `pytest`. Any failures get logged here.
+- When user is ready to spin up the pod: that gates Layer-2 onward. Until then, all the above is CPU-only work.
+
+**Refs:** PLAN.md §5 (Track A), §6 (Track B), §13 (layout); commit hash visible in `git log` once pulled.
+
+---
+
+### 2026-05-10 (later) — Compute resolved: 32 GPUs (16× H100 + 16× A100); strategy escalated
 **Type:** decision
 **Phase:** planning
 **Context:** User confirmed full compute access in two messages: first "I can do 16 H100s", then "in addition to those 16H100s, I can also give you 16 A100s in total 32 GPUs to finish everything." Budget gating: "no cap, ask before each major run."

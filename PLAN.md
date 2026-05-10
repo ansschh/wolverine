@@ -1,6 +1,8 @@
 # Rasyn ADMET Rescue — Master Plan
 
-> **Status:** Draft v0.2 (2026-05-10). Owner: Ansh. Implementer: Claude (Opus 4.7, 1M ctx).
+> **Status:** Draft v0.3 (2026-05-10). Owner: Ansh. Implementer: Claude (Opus 4.7, 1M ctx).
+> **Remote:** https://github.com/ansschh/wolverine — branch `main`. The full repo (specs + plan + memory + rasyn/ code) is mirrored there.
+> **v0.3 changes:** (a) Phase B-0 (scaffold + frozen schemas + tests) shipped; (b) Phase A-0 (sealed-case registry stub) shipped; (c) GitHub remote configured.
 > **v0.2 changes:** (a) papers deferred to a methodology-first workstream (§16); (b) compute estimate added (§17).
 > **Read order on resume:** this file → `MEMORY.md` → the 5 spec `.md`s at repo root.
 > **Code lives in** `A:/rasyn-case-studies/rasyn/`. Specs stay at repo root, untouched.
