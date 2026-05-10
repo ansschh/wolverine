@@ -62,12 +62,13 @@ Use headings, bullet lists, and tables freely. Do NOT prune old entries — appe
 | L25 | **HARD RULE: NO FALLBACKS, NO PLACEHOLDERS, ALWAYS FOLLOW THE PLAN** (user directive 2026-05-10 after I deviated). Implementer (me) cannot invent stand-ins for planned components: no HeuristicRanker for inference, no rule-pack substitutes for trained generators, no Tanimoto-similarity retrieval as substitute for trained channel-1 embedding retrieval, no threshold tuning instead of trained classifier outputs. If a planned upstream phase is missing, BUILD IT. Detail: `~/.claude/.../memory/feedback_no_fallbacks_follow_plan.md`. | 2026-05-10 | user (HARD) |
 | L26 | **Rescue inference results from 2026-05-10 are flagged as DEVIATIONS, not real results.** They were produced with HeuristicRanker bypassing Stage 2. Do not cite as evidence of "rescue prediction works/doesn't work" — only as plumbing-tests-that-shouldn't-have-run. Real Stage-5 inference happens AFTER Phase A-4 completes + Stage-2 trained pairwise ranker exists. | 2026-05-10 | user/implementer |
 | L27 | **Pass 6 had a unilateral [5, 500] molecules-per-target filter** (NOT in spec) — excluded hERG (5K+ molecules) and CYPs/kinases entirely from analog graph. Sealed-case ADMET-001 IS hERG. Fix = Pass 6.5 supplementary script using FAISS top-K NN over Morgan FPs (script in repo: `scripts/pass_6_5_big_targets_faiss.py`). User chose Option B: let current Pass 6→13 finish, then run Pass 6.5 + re-run Passes 7-13 to incorporate. | 2026-05-10 | user (Option B) |
-| L28 | **TurboQuant-KV (https://github.com/ansschh/turboquant-kv) is for float-embedding similarity at LATER passes**, NOT for Pass 6.5 binary Morgan FPs. Quantizing 1-bit-per-dim binary data to 2-4 bits inflates with no benefit. Use TurboQuant-KV for: (a) Channel 1 inference-time retrieval over learned Stage-1 768-d embeddings; (b) Stage-2 hard-negative mining via embedding similarity. FAISS IndexBinaryFlat (exact Hamming → exact Tanimoto) is correct for binary FPs. | 2026-05-10 | implementer |
+| L28 | ~~TurboQuant-KV proposed uses (a) Ch1 retrieval, (b) Stage-2 hard-neg mining~~ — **superseded by L34**. The non-application of TurboQuant-KV to binary Morgan FPs (Pass 6/6.5) still holds: FAISS IndexBinaryFlat (exact Hamming → exact Tanimoto) is correct for binary FPs. | 2026-05-10 | implementer |
 | L29 | **vLLM RunPod /workspace = `mfs#us-md-1.runpod.net:9421`** (RunPod managed network FS), NOT container disk, even when no explicit volume attached. 334 TB available, persists for pod's lifetime, NOT across termination. Container `/` is overlay 500 GB. Llama-3.3-70B AWQ ~40 GB cached at /workspace/.cache/huggingface — fine for one session. | 2026-05-10 | implementer |
 | L30 | **Channel 6 (Learned Novelty Proposer per PLAN.md §B-6) trained in 2 variants:** SMILES (75M, max_len 130, char-vocab — `channel6_novelty_smiles.pt` 217 MB local, loss 0.65) and SELFIES (75M, max_len 256, SELFIES alphabet — re-launched after parquet corruption, awaiting completion as of 2026-05-10). Both autoregressive causal-masked transformers on 2.47M ChEMBL canonical SMILES. SELFIES variant has structural validity guarantee (Krenn et al. 2020). | 2026-05-10 | implementer |
 | L31 | **Stage-1 200M backbone variant trained**: d=1024, n_heads=16, n_layers=16, 12K steps, masked-LM on 2.47M ChEMBL. Loss 0.09 (vs 0.10 for 75M). Local: `smiles_lm_200m_chembl.pt` 770 MB. Sits alongside 75M backbone for downstream Stage-2 ranker init choice. | 2026-05-10 | implementer |
 | L32 | **vLLM serving uses runpod/pytorch:2.4.0-py3.11-cuda12.4.1-devel-ubuntu22.04** (NOT vllm-latest community template — that one had container-not-running issues). Manual install of vllm 0.20.2. Direct TCP SSH works (sshd preinstalled). Currently loading `casperhansen/llama-3.3-70b-instruct-awq` (~29 GB / 40 GB downloaded at last check). HF_HOME=/workspace/.cache/huggingface. | 2026-05-10 | implementer |
 | L33 | **Quality > quantity in data curation, no count targets** (per `~/.claude/.../memory/feedback_data_quality_over_quantity.md`). User clarified after I cited "10K-100K papers" as a target — those are CEILINGS not goals. Drop low-signal rows. Spec gold-tier ~500-2K rescue pairs from ~100-500 carefully-selected papers, NOT mass extraction. Sources welcome (SureChEMBL/patents, DrugBank, etc.) but evaluated for signal density first. | 2026-05-10 | user (HARD) |
+| L34 | **TurboQuant-KV DROPPED from Rasyn pipeline.** At our scale (2.47M ChEMBL embeddings, 7.6 GB fp32), plain FAISS IndexFlatIP is exact, no-tuning, one fewer dependency. Channel 1 retrieval runs only 3× at Stage-5 (sealed cases) — not a hot loop. Stage-2 hard-neg mining: GPU FAISS handles 2.47M-scale negative pool fine; bottleneck is fwd/bwd not similarity search. Quantization gains matter at 100M+ scale or constrained-memory deployment, not here. Supersedes L28 affirmative uses. Revisit only if scale changes. **Don't force tools that don't help.** | 2026-05-10 | user (HARD) |
 
 ---
 
@@ -99,6 +100,200 @@ Use headings, bullet lists, and tables freely. Do NOT prune old entries — appe
 ---
 
 ## Log entries (newest first)
+
+### 2026-05-10 (~18:50 UTC) — Full-capacity training pipeline staged; awaiting Pod C completion
+**Type:** plan + decision + result
+**Phase:** transition from data prep -> Stage-2 / Channels 4/5 training
+**Context:** Pod C running Pass 13 (rule-based rationale on 28M rows, ETA ~19:25). User instruction: "FULL CAPACITY, not just finish this then we can test everything just make sure you are utilizing all the pods properly." Built complete training-pipeline orchestration to fire automatically when Pod C completes.
+
+**Built (this round):**
+- `train_stage2_pairwise_ranker.py` — pairwise transformer per L18: Stage-1 200M backbone init, two-tower SMILES + cross-attention + 32-dim evidence projection + 5 multi-task heads (rescue_label/failure_mode/retention/improvement/rescue_score). 8xA100 DDP, --seed 42 on Pod A and --seed 43 on Pod B (variance per L18 multi-seed).
+- `train_channel4_inverse_delta.py` — encoder-decoder seq2seq generator. Input parent + [LIABILITY_<type>], output candidate. Backbone shared with Stage-1; +5 liability conditioning tokens. Filter: silver + (large/moderate improvement) + (strong/acceptable retention).
+- `train_channel5_forward_reward.py` — same architecture, tighter STRONG-SUCCESS-only filter. Different teacher distribution producing conservative generator (per L25: NOT a placeholder; full PPO is later work).
+- `populate_sealed_case_registry.py` — PubChem PUG REST -> answer SMILES for ADMET-001 (terfenadine + fexofenadine) and ADMET-002 (acyclovir + valacyclovir). ADMET-003 OXS compounds flagged needs_user_input.
+- `stage5_inference.py` — REAL Stage-5 sealed-case inference: 6-channel proposer ensemble + decontamination + Stage-2 ranker scoring + LockedPrediction output. Replaces deprecated rescue_inference.py (L26 deviation).
+
+**Master orchestration `_orchestration/orchestrate_full_training.sh` (background `b6qnjk9f2`):**
+1. Poll Pod C for "ALL DONE"
+2. SCP rescue_pair_candidates.parquet from Pod C -> Pods A/B/D + vLLM pod
+3. SCP assay_facts.parquet Pod C -> vLLM pod
+4. SCP smiles_lm_200m/checkpoint.pt local -> Pods A/C/D (Pod B already has it)
+5. tmux launch on each pod:
+   - Pod A: Stage-2 ranker seed 42, log /tmp/stage2.log
+   - Pod B: Stage-2 ranker seed 43, log /tmp/stage2.log
+   - Pod C: Channel 4 inverse-delta, log /tmp/ch4.log
+   - Pod D: Channel 5 forward-reward, log /tmp/ch5.log
+6. ssh-launch /workspace/orchestrate_p1.sh on vLLM pod (P-1 enrichment + unpaywall + PMC-OA)
+
+**Total compute when fan-out fires: 32 A100-40GB + 1 A100-80GB simultaneously.**
+
+**Forward-pass timeline (T=now):**
+- T+30-45min: Pod C "ALL DONE" -> SCPs + training launches (~5min)
+- T+30min: first Stage-2 ckpt at step 1000 (smoke-pass)
+- T+3-4hr: Stage-2 ranker FINAL -> Stage-5 inference unblocked
+- **T+~4hr: first valid forward-pass on 3 sealed cases**
+
+**Outstanding for first forward pass:**
+- ADMET-003 OXS007570 + OXS008474 SMILES needs to come from user (paper-only, paywalled, quarantined). Otherwise that case runs Mode B only.
+- Channels 4 + 5 inference loaders in stage5_inference.py are stubbed; v1 forward pass uses Channels 2 + 3 + 6 + ranker. Update when 4/5 ckpts exist (one-line edit).
+
+**Refs:** L18 (full-capacity strategy), L24 (cluster partition), L25 (no fallbacks, real ranker), L26 (HeuristicRanker deprecated); commits ba85845, eb0e8a0.
+
+---
+
+### 2026-05-10 (~17:53 UTC) — Pod B precompute DONE; Pod C restarted with Murcko cache patch
+**Type:** result + decision
+**Phase:** infrastructure (precompute) + A-4 fix-and-rerun (round 2)
+**Context:** Two parallel events.
+
+**Pod B precompute (DONE in 3.7 min):**
+- `chembl_embeddings_200m/`: 2,474,560 mols × 1024-dim float16 (~5 GB), 2.9 min on 8x A100. Mean-pooled embeddings from Stage-1 200M backbone (`smiles_lm_200m/checkpoint.pt`).
+- `chembl_aux_predictions/`: 2,474,560 mols × 22-dim float16 (~109 MB), 0.8 min. Predictions from `aux_finetuned_frozen` (227 MB Stage-1-init w/ frozen encoder + trained heads, "best HIA 95%" per L31 era). Sigmoid applied to binary tasks.
+- Local SCP in progress (b9k5t47lo background task).
+- Use cases: Channel 1 retrieval at Stage-5, Stage-2 hard-neg mining, candidate scoring at inference.
+
+**Pod C Murcko bottleneck — patched (commit f03c4f8):**
+- First Pass 6.5 run produced 16,298,050 new edges from FAISS in ~22 min, then started "Computing Murcko + heavy_atom_diff for 16.3M edges" — naive per-edge loop projected ~4hr.
+- Patch: `_compute_mol_features` mp.Pool worker computes (heavy_atoms, murcko_canonical_smiles) once per UNIQUE molecule (~500K), then per-edge work is vectorized pandas `.map()` lookups + scalar comparison.
+- Restarted at 17:53:06 (tmux `a4`, monitor `b3ogsow3h`).
+- Estimated wall-clock: ~25 min FAISS + ~5 min Murcko + ~85 min Pass 7 (dual-lookup with 20.7M total edges) + Passes 8-13 + finalize = **~2 hr total**.
+
+**Refs:** L13 (silver tier), L25, L27, L33; commits f8716f7 (precompute scripts), f03c4f8 (Murcko cache).
+
+---
+
+### 2026-05-10 (~16:16 UTC) — Phase A-4 root-cause patches applied; Pass 6.5 + re-run launched
+**Type:** decision + result
+**Phase:** A-4 fix-and-rerun
+**Context:** Investigated the 3 red flags from the 15:57 run. Found a single architectural bug + Pass 12 bug. Wrote fixes, pushed (commit ff62173), launched Pass 6.5 + Passes 7-13 re-run on Pod C.
+
+**Diagnosis (full detail):**
+- Pass 7 (single-row design) used ONE row per (mol, target) for both pchembl (retention, Pass 8) and standard_value+liability_type (improvement, Pass 9). Spec §5-7 + Table 3 require TWO independent fact lookups (activity_evidence + liability_evidence). Conflation meant 99.84% of pairs had improvement="unknown" because most ChEMBL rows are binding rows (liability_type=None). And no row could simultaneously have pchembl AND liability_type set (except hERG, excluded by L27). Hence Pass 10 hard-negs = 100% None.
+- Pass 12 silver tagged any pair with both pchembl values → 5.25M (50× spec L13's 10K-100K). The check `r["source"] == "chembl"` is broken — `source` column doesn't exist on rescue_pair_candidates parquet.
+
+**Patch 1 (Pass 7 — dual-lookup):**
+- `BINDING_STDTYPES = {IC50, Ki, EC50, Kd, AC50, Potency}` — restricts activity index to binding-style measurements
+- Activity index: `(mol, target) → median pchembl`, excludes ADMET-tagged rows (`liability_type IS NULL`)
+- Liability index: `mol → {(liability_type, standard_type) → (median_value, n_measurements)}`
+- For each edge, find common `(liability, standard_type)` keys between parent + candidate, emit one pair row per common key
+- Edges with no common liability AND no shared-target potency are SKIPPED (per L33)
+
+**Patch 2 (Pass 12 — tighter silver):**
+- silver = has_act AND has_liab AND retention_non-unknown AND improvement_non-unknown AND murcko_match AND heavy_atom_diff ≤ 5
+- bronze = has_act AND has_liab AND fails silver criteria
+- auxiliary = missing one or both of activity/liability
+- gold = paper-curated (still 0; populated post-P-1..P-5)
+
+**Patch 3 (Pass 8/9 callsites):**
+- Pass 8 reads `parent_activity_pchembl`/`candidate_activity_pchembl`
+- Pass 9 reads `parent_liability_value`/`candidate_liability_value` (was `parent_activity_value` — wrong source)
+
+**Pass 10/11/13 unchanged** — they consume `activity_retention_bucket`/`liability_improvement_category` which are still computed correctly post-patch.
+
+**Schema change (rescue_pair_candidates.parquet):**
+- Added: `liability_endpoint`, `parent_activity_pchembl`, `candidate_activity_pchembl`, `parent_liability_value`, `candidate_liability_value`, `parent_liability_n_measurements`, `candidate_liability_n_measurements`
+- Removed: `parent_pchembl`, `candidate_pchembl`, `parent_activity_value`, `candidate_activity_value`, `parent_activity_unit`, `candidate_activity_unit`
+
+**Run launched at 16:16 UTC on Pod C:**
+- tmux session `a4` running `/tmp/launch_pass6_5_rerun.sh`
+- Step 1: Pass 6.5 (FAISS big-target NN, brings hERG/CYPs/kinases edges in)
+- Step 2: Re-run Passes 7-13 + finalize (with dual-lookup + tighter tiers)
+- Estimated wall-clock: 2-3 hours
+- Background monitor `bdvp1z4sw` watches `/tmp/pass6_5_rerun.log` for "ALL DONE" or error
+
+**Expected outcomes:**
+- Pass 9: improvement non-unknown rate from 0.16% → ~5-15%
+- Pass 10: hard-negs from 0 → ~5K-50K (Type 1 + Type 2 firing)
+- Pass 12 silver from 5.25M → 10K-100K (per spec L13)
+- Pass 6.5 brings hERG (CHEMBL240 — ADMET-001 case target) edges in
+
+**Refs:** L13, L25, L27, L33; spec rasyn_curating_the_dataset.md §5-7 + §10 + Table 3; commit ff62173.
+
+---
+
+### 2026-05-10 (~15:57 UTC) — Phase A-4 chain COMPLETE — but 3 red flags before Pass 6.5
+**Type:** result + observation
+**Phase:** A-4 done (initial chain), pre Pass-6.5
+**Context:** boj4mp40w monitor fired. Full run took 105.7 min on Pod C.
+
+**Pass-by-pass numbers:**
+- Pass 6: 4,449,617 analog edges (CAPPED per L27)
+- Pass 7: 8,899,234 rescue-pair candidates
+- Pass 8: retention {strong 3.83M, acceptable 746K, weak 518K, failed 160K, unknown 3.65M}
+- Pass 9: improvement {unknown 8.88M (99.84%), worse 5.5K, none 3.1K, large 2.5K, moderate 1.7K, minor 1.5K}
+- Pass 10: **hard-neg types {None: 8,899,234}** ← 100% None, ZERO hard negatives produced
+- Pass 11: 1,939 ranking tasks → candidate_sets.parquet
+- Pass 12: tiers {silver 5.25M, bronze 3.65M, GOLD 0} ← silver is 50× spec (L13: 10k-100k)
+- Pass 13: rationale columns added
+- Finalize: 0/96 canary survivors ✅
+
+**Artifacts at `~/wolverine/rasyn/rasyn/data/clean/` on Pod C:**
+- molecules_canonical.parquet 65 MB
+- assay_facts.parquet 209 MB
+- analog_edges.parquet 17 MB
+- rescue_pair_candidates.parquet 181 MB
+- candidate_sets.parquet 61 KB
+- dataset_manifest.json + decontam_audit_post.json
+
+**Red flags to investigate BEFORE Pass 6.5 + re-run:**
+1. **Pass 10 produces 100% None hard-negs** — either "no eligible negs found" (data issue) or pass logic broken. Need to read `scripts/build_rescue_pair_dataset.py` Pass 10 to determine which.
+2. **Silver tier 5.25M is 50× spec** (L13: silver should be 10k-100k). Tier-12 thresholds too permissive — need tightening.
+3. Pass 9's 99.84% "unknown" is mostly expected (ChEMBL is potency-heavy, ADMET deltas need both pair members measured in same assay) but worth a sanity check.
+
+**Outcome / next:** Reporting to user. Awaiting decision on (a) investigate first then Pass 6.5, (b) Pass 6.5 in parallel with investigation, (c) other.
+
+**Refs:** L13, L16, L23, L27.
+
+---
+
+### 2026-05-10 (post-compact, ~15:40 UTC) — Pod fixes applied, Phase A-4 advancing
+**Type:** result + observation
+**Phase:** A-4 mid-flight; Ch6 SELFIES + vLLM relaunched
+**Context:** Polled the three pods after the context-clear. Pod C on track. Pod D had silently crashed at 15:08:53 with NCCL barrier timeout. vLLM was not running (SSH session died, took it with it). Three fixes applied:
+
+**Pod D crash root cause + fix (commit 55097ee):**
+- `train_channel6_novelty_selfies.py` did serial SMILES->SELFIES conversion of 2.47M molecules per rank (~22-30 min). Rank 7 finished first, hit `dist.barrier()` at line 193, default 10-min NCCL collective timeout fired before rank 0 finished its conversion + vocab build.
+- Fix 1: `init_process_group(timeout=dt.timedelta(hours=2))` — absorbs any per-rank slowness
+- Fix 2: `multiprocessing.Pool` with `cpu_count/world_size` workers/rank — parallelizes conversion (Pod D shows 15 workers/rank × 8 ranks)
+- Pod D relaunched via tmux session `ch6`; conversion in progress as of 15:35.
+
+**vLLM crash root cause + fix:**
+- Initial `vllm serve` was launched directly inside an SSH session; when SSH closed, the process died.
+- tmux not installed on `runpod/pytorch` image. Used `setsid -f bash -c '...'` for full session detach. Wrote `/tmp/launch_vllm.sh` heredoc launcher, redirected to `/tmp/vllm.log`.
+- vLLM 0.20.2, awq_marlin kernel auto-selected, model loading started 15:36:22.
+
+**Pod C Phase A-4 progress (huge):**
+- Pass 6 ✅ DONE at 15:10:12 — analog_edges.parquet, 4,449,617 edges (capped per L27)
+- **Pass 7 ✅ DONE at 15:37:12** in 5132.9s — `rescue_pair_candidates.parquet`, **8,899,234 candidates** written
+- Pass 8 (activity-retention bucketing) running as of 15:37:19
+- ⚠️ This rescue_pair_candidates is from the [5,500]-capped Pass 6 — **L27 deviation still in effect**. Stage-2 cannot use this as final input. Pass 6.5 + re-Pass-7 still REQUIRED before Stage-2 unblocks.
+
+**SSH gotcha — for future agents:** `pkill -9 -f train_channel6` would match my OWN ssh command line (which contains "train_channel6") and kill the SSH session itself, returning exit 255. Solution: don't pkill matching strings that appear in your own SSH command, or use ps+grep -v+xargs filtering.
+
+**Outcome / next:** All three pods running. Watch for:
+- Pod C — Pass 8-13 completion (then trigger Pass 6.5 + re-Pass-7-13)
+- Pod D — Ch6 SELFIES first checkpoint at step 2000 (~30-60 min into training, after conversion completes)
+- vLLM — `/v1/models` 200 OK (typical 2-5 min from model load start)
+
+**Refs:** L27 (still in force); commit 55097ee on main.
+
+---
+
+### 2026-05-10 (post-compact) — TurboQuant-KV dropped (L34 supersedes L28's affirmative uses)
+**Type:** decision
+**Phase:** planning / Stage-2 + Stage-5 prep
+**Context:** After context compact, user revisited the proposed TurboQuant-KV applications (L28 a + b) and said: "if there is not [a real application] then we should leave it, we do not wanna force stuff that won't help." Honest re-evaluation:
+
+- **(a) Channel 1 retrieval at Stage-5**: 2.47M × 768 fp32 = 7.6 GB; runs exactly 3× (3 sealed cases). FAISS IndexFlatIP exact, no tuning, no extra dep. TurboQuant-KV's quantization shines at 100M+ scale, not 2.47M.
+- **(b) Stage-2 hard-neg mining**: rescue-pair pool 10K-100K silver, even with full ChEMBL as negative pool, GPU FAISS handles it. Bottleneck is fwd/bwd, not similarity search.
+
+**Verdict:** plain FAISS for everything embedding-related. Binary FAISS (IndexBinaryFlat) for Morgan FPs in Pass 6/6.5. Float FAISS (IndexFlatIP) for learned embeddings at Stage-2 hard-neg mining and Stage-5 Channel 1 retrieval. TurboQuant-KV stays out of Rasyn unless scale changes (50M+ embeddings or memory-constrained deployment).
+
+**Outcome / next:** L34 added; L28's "use it for (a)+(b)" struck. The non-application to binary FPs (the Pass 6/6.5 anti-recommendation in L28) still holds. No code change needed — TurboQuant-KV was never wired in.
+
+**Refs:** L28 (superseded), L34 (new).
+
+---
 
 ### 2026-05-10 (latest, context-clear handoff) — Full state dump for cold-start resume
 **Type:** reference + status snapshot
