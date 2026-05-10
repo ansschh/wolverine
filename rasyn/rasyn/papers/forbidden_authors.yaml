@@ -1,0 +1,43 @@
+# Forbidden authors quarantine — extends L10 forbidden_documents.dois.
+#
+# Per user decision (2026-05-10): TIGHT scope. Only the d4md00275j (ADMET-003
+# OXS007570 -> OXS008474) paper authors are quarantined. Same-lab authors
+# from other papers are NOT auto-quarantined; we trust the structure-level
+# decontamination layers (Tanimoto > 0.85, Murcko match, canary audit) to
+# catch any related-compound leakage.
+#
+# Author entries: lower-case, last-name-first, plus any common variant.
+# Match logic in extraction_validator.py is case-insensitive substring
+# match on each entry against the paper's author list.
+#
+# NOTE: The exact author list of 10.1039/d4md00275j must be filled in
+# from CrossRef / RSC metadata before P-1. This file is the placeholder
+# skeleton; the populator script will replace these with real values.
+
+version: 0
+locked_at_utc: null  # populator sets ISO 8601
+
+# Per-case author quarantine
+cases:
+
+  # ADMET-003: OXS007570 -> OXS008474 (RSC Med Chem 2024 lead-optimization paper)
+  ADMET-003:
+    forbidden_doi: 10.1039/d4md00275j
+    # TODO: populator fills via CrossRef API (CrossRef has author lists for DOIs)
+    forbidden_authors: []  # e.g. ["Smith, J", "Jones, A.B."]
+    notes: |
+      Tight scope: only the d4md00275j author list. Same-lab authors of OTHER
+      papers are NOT pre-quarantined. Structure-level decontamination must
+      catch any near-OXS-compound leakage.
+
+  # ADMET-001 / ADMET-002 do not have a single author quarantine (terfenadine
+  # and acyclovir are 30+-year-old drugs with thousands of papers).
+  ADMET-001:
+    forbidden_doi: null
+    forbidden_authors: []
+  ADMET-002:
+    forbidden_doi: null
+    forbidden_authors: []
+
+# Global all-cases author quarantine (intentionally empty — tight scope).
+global_forbidden_authors: []
