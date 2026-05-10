@@ -1,0 +1,137 @@
+{
+  "case_id": "ADMET-002",
+  "parent_smiles": "Nc1nc(O)c2ncn(COCCO)c2n1",
+  "parent_inchi_key": "MKUXAQIIEYXACX-UHFFFAOYSA-N",
+  "answer_smiles": "CC(C)[C@H](N)C(=O)OCCOCn1cnc2c(=O)nc(N)[nH]c21",
+  "answer_inchi_key": "HDOVUKNUBWVHOX-QMMMGPOBSA-N",
+  "candidate_universe_size": 2474556,
+  "answer_in_decontam_universe": false,
+  "answer_in_prefiltered_pool": true,
+  "ensemble_pool_size": 2000,
+  "evidence_packets_built": 2000,
+  "answer_rank": 522,
+  "answer_score": 0.25887096774193546,
+  "exact_recall_at_5": false,
+  "exact_recall_at_10": false,
+  "exact_recall_at_20": false,
+  "top_20": [
+    {
+      "rank": 1,
+      "rescue_score": 0.5496794871794871,
+      "candidate_id": "analog-ADMET-002-YZPZJYIBJTVVKO"
+    },
+    {
+      "rank": 2,
+      "rescue_score": 0.5363821138211382,
+      "candidate_id": "analog-ADMET-002-PJEHCXHQVMNJLT"
+    },
+    {
+      "rank": 3,
+      "rescue_score": 0.5356060606060606,
+      "candidate_id": "analog-ADMET-002-KSGFQOOXAMYZAS"
+    },
+    {
+      "rank": 4,
+      "rescue_score": 0.5316666666666666,
+      "candidate_id": "analog-ADMET-002-ZCDHQHFNBNJSBJ"
+    },
+    {
+      "rank": 5,
+      "rescue_score": 0.5294444444444444,
+      "candidate_id": "analog-ADMET-002-MSHDORHYJZBNLS"
+    },
+    {
+      "rank": 6,
+      "rescue_score": 0.5194727891156462,
+      "candidate_id": "analog-ADMET-002-STXXGSWOWSSPRV"
+    },
+    {
+      "rank": 7,
+      "rescue_score": 0.5186111111111111,
+      "candidate_id": "analog-ADMET-002-PBKHJXXVQOACNO"
+    },
+    {
+      "rank": 8,
+      "rescue_score": 0.5106884057971014,
+      "candidate_id": "analog-ADMET-002-IWURQOALOLTQBH"
+    },
+    {
+      "rank": 9,
+      "rescue_score": 0.5099358974358974,
+      "candidate_id": "analog-ADMET-002-PWSIYUZFDVZTKK"
+    },
+    {
+      "rank": 10,
+      "rescue_score": 0.5092687074829931,
+      "candidate_id": "analog-ADMET-002-QZQHUEDTDKPOPC"
+    },
+    {
+      "rank": 11,
+      "rescue_score": 0.49915254237288137,
+      "candidate_id": "analog-ADMET-002-OBABDJMYPMAQEP"
+    },
+    {
+      "rank": 12,
+      "rescue_score": 0.4878787878787879,
+      "candidate_id": "analog-ADMET-002-RGSKVYPZXKRSTN"
+    },
+    {
+      "rank": 13,
+      "rescue_score": 0.4859375,
+      "candidate_id": "analog-ADMET-002-BSYNCFHKPHNSEV"
+    },
+    {
+      "rank": 14,
+      "rescue_score": 0.4853846153846154,
+      "candidate_id": "analog-ADMET-002-SSJHDOWLBRJETR"
+    },
+    {
+      "rank": 15,
+      "rescue_score": 0.4853846153846154,
+      "candidate_id": "analog-ADMET-002-ZUCSGCBYQQMPPV"
+    },
+    {
+      "rank": 16,
+      "rescue_score": 0.48484848484848486,
+      "candidate_id": "analog-ADMET-002-XKMLYUALXHKNFT"
+    },
+    {
+      "rank": 17,
+      "rescue_score": 0.4847222222222222,
+      "candidate_id": "analog-ADMET-002-UYLZCJJDYVHKOV"
+    },
+    {
+      "rank": 18,
+      "rescue_score": 0.48432835820895526,
+      "candidate_id": "analog-ADMET-002-QGYIFQKZZSSUCR"
+    },
+    {
+      "rank": 19,
+      "rescue_score": 0.48333333333333334,
+      "candidate_id": "analog-ADMET-002-PAAWXBZBAIXWGB"
+    },
+    {
+      "rank": 20,
+      "rescue_score": 0.48333333333333334,
+      "candidate_id": "analog-ADMET-002-YRUWXBKVSXSSGS"
+    }
+  ],
+  "per_channel_attribution": {
+    "analog_retrieval": {
+      "raw": 5000,
+      "invalid": 0,
+      "kept": 4714
+    },
+    "mmp_transformer": {
+      "raw": 2,
+      "invalid": 0,
+      "kept": 2
+    },
+    "liability_rules": {
+      "raw": 7,
+      "invalid": 0,
+      "kept": 7
+    }
+  },
+  "elapsed_seconds": 711.9087915420532
+}

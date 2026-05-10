@@ -1,0 +1,137 @@
+{
+  "case_id": "ADMET-001",
+  "parent_smiles": "CC(C)(C)c1ccc(C(O)CCCN2CCC(C(O)(c3ccccc3)c3ccccc3)CC2)cc1",
+  "parent_inchi_key": "GUGOEEXESWIERI-UHFFFAOYSA-N",
+  "answer_smiles": "CC(C)(C(=O)O)c1ccc(C(O)CCCN2CCC(C(O)(c3ccccc3)c3ccccc3)CC2)cc1",
+  "answer_inchi_key": "RWTNPBWLLIMQHL-UHFFFAOYSA-N",
+  "candidate_universe_size": 2474556,
+  "answer_in_decontam_universe": false,
+  "answer_in_prefiltered_pool": true,
+  "ensemble_pool_size": 266,
+  "evidence_packets_built": 266,
+  "answer_rank": 2,
+  "answer_score": 0.6528333333333333,
+  "exact_recall_at_5": true,
+  "exact_recall_at_10": true,
+  "exact_recall_at_20": true,
+  "top_20": [
+    {
+      "rank": 1,
+      "rescue_score": 0.6627551020408162,
+      "candidate_id": "mmp-ADMET-001-phenyl_to_pyridyl_meta-ZURKPTUG"
+    },
+    {
+      "rank": 2,
+      "rescue_score": 0.6528333333333333,
+      "candidate_id": "analog-ADMET-001-RWTNPBWLLIMQHL"
+    },
+    {
+      "rank": 3,
+      "rescue_score": 0.6499999999999999,
+      "candidate_id": "mmp-ADMET-001-herg_lipophilicity_reduction-OBVXBVYP"
+    },
+    {
+      "rank": 4,
+      "rescue_score": 0.541025641025641,
+      "candidate_id": "mmp-ADMET-001-phenyl_to_pyridyl_meta-JPAXJBPW"
+    },
+    {
+      "rank": 5,
+      "rescue_score": 0.5375786163522013,
+      "candidate_id": "mmp-ADMET-001-phenyl_to_pyridyl_meta-SMNQNRQR"
+    },
+    {
+      "rank": 6,
+      "rescue_score": 0.5349290780141844,
+      "candidate_id": "analog-ADMET-001-KUEAWPYWGRMQBZ"
+    },
+    {
+      "rank": 7,
+      "rescue_score": 0.5338050314465409,
+      "candidate_id": "mmp-ADMET-001-phenyl_to_pyridyl_meta-KCZYBGAZ"
+    },
+    {
+      "rank": 8,
+      "rescue_score": 0.5314102564102564,
+      "candidate_id": "mmp-ADMET-001-phenyl_to_pyridyl_meta-HKKZLNKH"
+    },
+    {
+      "rank": 9,
+      "rescue_score": 0.5297619047619048,
+      "candidate_id": "analog-ADMET-001-PQLMYXOULGEULL"
+    },
+    {
+      "rank": 10,
+      "rescue_score": 0.4954545454545455,
+      "candidate_id": "analog-ADMET-001-PKRFRRKXACIAGA"
+    },
+    {
+      "rank": 11,
+      "rescue_score": 0.49444444444444446,
+      "candidate_id": "analog-ADMET-001-GPGPCLOVOHFUHN"
+    },
+    {
+      "rank": 12,
+      "rescue_score": 0.49423076923076925,
+      "candidate_id": "analog-ADMET-001-SOOFGLUMOPIONT"
+    },
+    {
+      "rank": 13,
+      "rescue_score": 0.49406779661016953,
+      "candidate_id": "analog-ADMET-001-AYFPFURGBQEABT"
+    },
+    {
+      "rank": 14,
+      "rescue_score": 0.4931372549019608,
+      "candidate_id": "analog-ADMET-001-DHICSGDXKJEROZ"
+    },
+    {
+      "rank": 15,
+      "rescue_score": 0.4928571428571429,
+      "candidate_id": "analog-ADMET-001-FUXZYKBZWQNXAX"
+    },
+    {
+      "rank": 16,
+      "rescue_score": 0.49242424242424243,
+      "candidate_id": "analog-ADMET-001-OXKOYPNCWLULNV"
+    },
+    {
+      "rank": 17,
+      "rescue_score": 0.4920289855072464,
+      "candidate_id": "analog-ADMET-001-QBCZMKJBVLPNFM"
+    },
+    {
+      "rank": 18,
+      "rescue_score": 0.4920289855072464,
+      "candidate_id": "analog-ADMET-001-CEJXOSQEXRQYNZ"
+    },
+    {
+      "rank": 19,
+      "rescue_score": 0.4918181818181818,
+      "candidate_id": "analog-ADMET-001-DFQAIPOBKROXLN"
+    },
+    {
+      "rank": 20,
+      "rescue_score": 0.4913793103448276,
+      "candidate_id": "analog-ADMET-001-UOYVMVBDVYRKKF"
+    }
+  ],
+  "per_channel_attribution": {
+    "analog_retrieval": {
+      "raw": 295,
+      "invalid": 0,
+      "kept": 258
+    },
+    "mmp_transformer": {
+      "raw": 44,
+      "invalid": 0,
+      "kept": 8
+    },
+    "liability_rules": {
+      "raw": 6,
+      "invalid": 0,
+      "kept": 1
+    }
+  },
+  "elapsed_seconds": 709.6778347492218
+}
