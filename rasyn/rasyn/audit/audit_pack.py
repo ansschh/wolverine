@@ -41,7 +41,7 @@ def assemble_audit_pack(
 ) -> dict:
     """Assemble + write audit_pack.json. Returns the dict that was written."""
     pack: dict = {
-        "assembled_at_utc": dt.datetime.now(dt.UTC).isoformat(timespec="seconds").replace("+00:00", "Z"),
+        "assembled_at_utc": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),
         "artifact_hashes": {},
         "cases": {},
     }

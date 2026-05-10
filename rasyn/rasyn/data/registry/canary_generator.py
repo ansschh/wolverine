@@ -113,7 +113,7 @@ def write_canaries_yaml(canaries: list[Canary], path: Path | str, *, version: st
     """Persist a canary list to YAML in the format expected by the loader."""
     data = {
         "version": version,
-        "generated_at_utc": dt.datetime.now(dt.UTC).isoformat(timespec="seconds").replace("+00:00", "Z"),
+        "generated_at_utc": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),
         "canaries": [c.model_dump(mode="json") for c in canaries],
     }
     Path(path).write_text(yaml.safe_dump(data, sort_keys=False), encoding="utf-8")

@@ -1,0 +1,146 @@
+version: 0.1.1
+locked_at_utc: '2026-05-10T10:50:16Z'
+spec_refs:
+- "proposer_system_test_cases.md \xA71007-1049"
+- "rasyn_admet_conditioning_architecture_benchmark_spec.md \xA70.6, \xA78.5"
+- "rasyn_heldout_discovery_demo_context.md \xA765-76"
+cases:
+- case_id: ADMET-001
+  description: 'Terfenadine -> Fexofenadine. Active-metabolite safety rescue:
+
+    replace the cardiotoxic prodrug with the carboxylated active metabolite,
+
+    eliminating hERG-mediated QT-prolongation while preserving H1 antagonism.
+
+    '
+  parent:
+    name: terfenadine
+    canonical_smiles: CC(C)(C)c1ccc(C(O)CCCN2CCC(C(O)(c3ccccc3)c3ccccc3)CC2)cc1
+    inchi_key: GUGOEEXESWIERI-UHFFFAOYSA-N
+    chembl_id: CHEMBL17157
+    pubchem_cid: '5405'
+    iupac_name: 1-(4-tert-butylphenyl)-4-[4-[hydroxy(diphenyl)methyl]piperidin-1-yl]butan-1-ol
+  answer:
+    name: fexofenadine
+    canonical_smiles: CC(C)(C(=O)O)c1ccc(C(O)CCCN2CCC(C(O)(c3ccccc3)c3ccccc3)CC2)cc1
+    inchi_key: RWTNPBWLLIMQHL-UHFFFAOYSA-N
+    chembl_id: CHEMBL1200618
+    pubchem_cid: '3348'
+    iupac_name: 2-[4-[1-hydroxy-4-[4-[hydroxy(diphenyl)methyl]piperidin-1-yl]butyl]phenyl]-2-methylpropanoic
+      acid
+  liability_type: hERG
+  rescue_mode: active_metabolite_safety_rescue
+  forbidden_identifiers:
+    synonyms:
+    - terfenadine
+    - fexofenadine
+    - Seldane
+    - Seldane-D
+    - Allegra
+    - Telfast
+    - MDL-16455
+    - MDL-16455A
+  forbidden_documents:
+    title_fragments:
+    - fexofenadine
+    - terfenadine
+    - active metabolite of terfenadine
+    - carboxylated terfenadine
+    - MDL 16,455
+  forbidden_assays: {}
+  quarantine:
+    tanimoto_to_answer: 0.85
+    tanimoto_with_context: 0.65
+    require_same_murcko_for_context: true
+    require_same_target_for_context: true
+- case_id: ADMET-002
+  description: 'Acyclovir -> Valacyclovir. Prodrug exposure rescue: attach an L-valyl
+
+    ester to enable PEPT1-mediated intestinal absorption, raising oral
+
+    bioavailability ~3-5x while delivering acyclovir as the active species.
+
+    '
+  parent:
+    name: acyclovir
+    canonical_smiles: Nc1nc(O)c2ncn(COCCO)c2n1
+    inchi_key: MKUXAQIIEYXACX-UHFFFAOYSA-N
+    chembl_id: CHEMBL1200380
+    pubchem_cid: '135398513'
+    iupac_name: 2-amino-9-(2-hydroxyethoxymethyl)-1H-purin-6-one
+  answer:
+    name: valacyclovir
+    canonical_smiles: CC(C)[C@H](N)C(=O)OCCOCn1cnc2c(=O)nc(N)[nH]c21
+    inchi_key: HDOVUKNUBWVHOX-QMMMGPOBSA-N
+    chembl_id: CHEMBL1349
+    pubchem_cid: '135398742'
+    iupac_name: 2-[(2-amino-6-oxo-1H-purin-9-yl)methoxy]ethyl (2S)-2-amino-3-methylbutanoate
+  liability_type: oral_exposure
+  rescue_mode: prodrug_exposure_rescue
+  forbidden_identifiers:
+    synonyms:
+    - acyclovir
+    - aciclovir
+    - Zovirax
+    - valacyclovir
+    - valaciclovir
+    - Valtrex
+    - Zelitrex
+    - L-valyl acyclovir
+    - BW 256U87
+  forbidden_documents:
+    title_fragments:
+    - valacyclovir
+    - valaciclovir
+    - L-valyl ester of acyclovir
+    - acyclovir prodrug
+  forbidden_assays: {}
+  quarantine:
+    tanimoto_to_answer: 0.85
+    tanimoto_with_context: 0.65
+    require_same_murcko_for_context: true
+    require_same_target_for_context: true
+- case_id: ADMET-003
+  description: 'OXS007570 -> OXS008474. Direct analog rescue: nitrogen insertion into
+
+    an aromatic ring + reduced clogP improve aqueous solubility (>=5-10x)
+
+    and metabolic stability (ER toward <0.3) while preserving HL-60
+
+    anti-leukemic potency (EC50 within 10x of parent ~2-3 nM).
+
+    Source: RSC Med Chem 2024, DOI 10.1039/d4md00275j.
+
+    '
+  parent:
+    name: OXS007570
+    canonical_smiles: Cc1cc(F)ccc1-c1cc2c(cn1)ncn2-c1ccc2c(cnn2C)c1
+    inchi_key: GCFZEXGDZMEPIW-UHFFFAOYSA-N
+    chembl_id: CHEMBL4853189
+  answer:
+    name: OXS008474
+  liability_type: solubility
+  rescue_mode: polarity_solubility_rescue
+  forbidden_identifiers:
+    synonyms:
+    - OXS007570
+    - OXS-007570
+    - OXS 007570
+    - OXS008474
+    - OXS-008474
+    - OXS 008474
+  forbidden_documents:
+    dois:
+    - 10.1039/d4md00275j
+    title_fragments:
+    - OXS007570
+    - OXS008474
+    - lead optimization of OXS
+    - OXS series
+  forbidden_assays: {}
+  quarantine:
+    tanimoto_to_answer: 0.85
+    tanimoto_with_context: 0.65
+    require_same_murcko_for_context: true
+    require_same_target_for_context: true
+canaries: []

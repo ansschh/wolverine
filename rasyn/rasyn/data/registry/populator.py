@@ -82,7 +82,7 @@ def populate_registry(input_path: Path, output_path: Path) -> dict:
     reg = load_sealed_case_registry(input_path)
     raw = yaml.safe_load(input_path.read_text(encoding="utf-8"))
 
-    diagnostics: dict = {"per_case": {}, "started_at_utc": dt.datetime.now(dt.UTC).isoformat()}
+    diagnostics: dict = {"per_case": {}, "started_at_utc": dt.datetime.now(dt.timezone.utc).isoformat()}
 
     for case_yaml in raw.get("cases", []):
         case_id = case_yaml["case_id"]
@@ -98,12 +98,12 @@ def populate_registry(input_path: Path, output_path: Path) -> dict:
 
         diagnostics["per_case"][case_id] = case_info
 
-    raw["locked_at_utc"] = dt.datetime.now(dt.UTC).isoformat(timespec="seconds").replace("+00:00", "Z")
+    raw["locked_at_utc"] = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
     major, minor, patch = map(int, raw["version"].split("."))
     raw["version"] = f"{major}.{minor}.{patch + 1}"
 
     output_path.write_text(yaml.safe_dump(raw, sort_keys=False), encoding="utf-8")
-    diagnostics["finished_at_utc"] = dt.datetime.now(dt.UTC).isoformat()
+    diagnostics["finished_at_utc"] = dt.datetime.now(dt.timezone.utc).isoformat()
     diagnostics["new_version"] = raw["version"]
     return diagnostics
 

@@ -31,7 +31,7 @@ def build_locked_prediction(
     warnings: list[str] | None = None,
 ) -> LockedPrediction:
     """Compose + finalise a LockedPrediction from a ranking. Stamps timestamp + output_hash."""
-    timestamp = dt.datetime.now(dt.UTC).isoformat(timespec="seconds").replace("+00:00", "Z")
+    timestamp = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
     payload = canonical_json([p.model_dump(mode="json") for p in predictions])
     output_hash = sha256_hex(payload)
 
