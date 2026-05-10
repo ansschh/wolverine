@@ -42,6 +42,41 @@ def _ensure_chem():
         raise RuntimeError("RDKit not installed. `pip install -e '.[chem]'`")
 
 
+def _csp_standardize(mol):
+    """Run chembl_structure_pipeline standardisation. Returns mol or None.
+
+    chembl_structure_pipeline returns vary across versions:
+      - 1.x: standardize_molblock(block) -> str
+      - some versions: -> tuple(str, exclude_flag) or (str, list_warnings)
+    We handle both, and fall back to None silently so the caller can keep
+    going with plain RDKit canonicalisation.
+    """
+    if not _HAVE_CSP:
+        return None
+    try:
+        block = Chem.MolToMolBlock(mol)
+        std = _csp.standardize_molblock(block)
+        std_block = std[0] if isinstance(std, tuple) else std
+        std_mol = Chem.MolFromMolBlock(std_block)
+        return std_mol if std_mol is not None else None
+    except Exception:
+        return None
+
+
+def _csp_parent(mol):
+    """Run chembl_structure_pipeline desalt/parent. Returns mol or None on failure."""
+    if not _HAVE_CSP:
+        return None
+    try:
+        block = Chem.MolToMolBlock(mol)
+        parent = _csp.get_parent_molblock(block)
+        parent_block = parent[0] if isinstance(parent, tuple) else parent
+        parent_mol = Chem.MolFromMolBlock(parent_block)
+        return parent_mol if parent_mol is not None else None
+    except Exception:
+        return None
+
+
 @lru_cache(maxsize=100_000)
 def canonicalize_smiles(
     smiles: str,
@@ -52,8 +87,14 @@ def canonicalize_smiles(
 ) -> str | None:
     """RDKit canonical SMILES with chembl_structure_pipeline standardisation.
 
-    Returns None on parse failure. LRU-cached because the same SMILES
-    appears thousands of times across source merges.
+    If `chembl_structure_pipeline` is installed and works, runs full
+    standardise + desalt. If CSP fails (API mismatch / unsupported molecule),
+    falls back to plain RDKit canonical SMILES — never returns None for a
+    valid molecule just because CSP errored.
+
+    Returns None ONLY on RDKit parse failure (truly invalid SMILES).
+    LRU-cached because the same SMILES appears thousands of times across
+    source merges.
     """
     _ensure_chem()
     if not isinstance(smiles, str) or not smiles.strip():
@@ -62,21 +103,14 @@ def canonicalize_smiles(
         mol = Chem.MolFromSmiles(smiles)
         if mol is None:
             return None
-        if _HAVE_CSP:
-            block = Chem.MolToMolBlock(mol)
-            std_block, _ = _csp.standardize_molblock(block)
-            mol = Chem.MolFromMolBlock(std_block)
-            if mol is None:
-                return None
+        # Best-effort CSP standardise (fall back to plain RDKit if it errors).
+        std_mol = _csp_standardize(mol) if _HAVE_CSP else None
+        if std_mol is not None:
+            mol = std_mol
             if desalt:
-                parent_block, _ = _csp.get_parent_molblock(std_block)
-                mol = Chem.MolFromMolBlock(parent_block)
-                if mol is None:
-                    return None
-        if neutralize:
-            for atom in mol.GetAtoms():
-                if atom.GetFormalCharge() != 0 and atom.GetNumExplicitHs() == 0:
-                    pass  # CSP already neutralises; no-op fallback
+                parent_mol = _csp_parent(mol)
+                if parent_mol is not None:
+                    mol = parent_mol
         return Chem.MolToSmiles(mol, isomericSmiles=keep_stereo, canonical=True)
     except Exception:  # pragma: no cover - defensive
         return None

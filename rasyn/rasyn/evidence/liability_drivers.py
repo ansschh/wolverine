@@ -9,7 +9,7 @@ from __future__ import annotations
 
 try:
     from rdkit import Chem
-    from rdkit.Chem import Crippen, Descriptors
+    from rdkit.Chem import Crippen, Descriptors, rdMolDescriptors
 
     _HAVE_RDKIT = True
 except ImportError:  # pragma: no cover
@@ -90,8 +90,8 @@ def detect_liability_drivers(smiles: str, liability_type: str, descriptors: dict
         descriptors = {
             "log_p": float(Crippen.MolLogP(mol)),
             "tpsa": float(Descriptors.TPSA(mol)),
-            "aromatic_rings": int(mol.GetRingInfo().NumAromaticRings()),
-            "fsp3": float(sum(1 for a in mol.GetAtoms() if a.GetHybridization() == Chem.HybridizationType.SP3) / max(mol.GetNumHeavyAtoms(), 1)),
+            "aromatic_rings": int(rdMolDescriptors.CalcNumAromaticRings(mol)),
+            "fsp3": float(rdMolDescriptors.CalcFractionCSP3(mol)),
         }
     out.extend(_descriptor_hits(descriptors, desc_table))
     return out
