@@ -253,10 +253,18 @@ def build_per_pair_rows(tasks_df: pd.DataFrame, facts_df: pd.DataFrame) -> list[
             "Gram-positive" if org in ("S.aureus", "MRSA", "M.tuberculosis", "C.difficile") else "unknown"
         )
         spectrum = "broad_spectrum_or_general_antibacterial" if org == "broad_spectrum" else "pathogen_specific"
-        cand_iks = task.get("candidate_inchi_keys") or []
-        ab_labels = task.get("antibacterial_labels") or []
-        disc_labels = task.get("discovery_labels") or []
+        def _as_list(v):
+            if v is None: return []
+            try:
+                return list(v)
+            except TypeError:
+                return []
+        cand_iks = _as_list(task.get("candidate_inchi_keys"))
+        ab_labels = _as_list(task.get("antibacterial_labels"))
+        disc_labels = _as_list(task.get("discovery_labels"))
         for i, ik in enumerate(cand_iks):
+            if ik is None or (isinstance(ik, float) and ik != ik):  # NaN
+                continue
             smi = smi_by_ik.get(ik)
             if not smi:
                 continue
