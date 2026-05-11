@@ -101,6 +101,40 @@ Use headings, bullet lists, and tables freely. Do NOT prune old entries — appe
 
 ## Log entries (newest first)
 
+### 2026-05-11 (~00:32 UTC) — 🎉🎉 FULL 5-CHANNEL Stage-5 forward-pass; Ch4 learned the t-butyl→COOH transformation
+**Type:** milestone result
+**Phase:** Stage-5 v2 with Channels 2+3+4+5+6 (still no Ch1 retrieval; missing trained Stage-1 backbone re-encoder for parent)
+
+**Pipeline upgrade:** Added Channel 4 (learned inverse-delta) and Channel 5 (forward-reward) to Stage-5 inference. To avoid SCPing 1.3 GB checkpoints across pods, wrote `scripts/generate_channel_candidates.py` that runs on the pod owning the ckpt, outputs a tiny JSON of candidates per case. Pod C generated Ch4, Pod D generated Ch5. JSONs SCPed to Pod A. New `--ch{4,5}-candidates-json` flag on stage5_inference.
+
+**ADMET-001 (terfenadine -> fexofenadine, hERG) v2:**
+- Pool: **187 candidates** (was 93 in v1)
+- Ch2 MMP: 8 | Ch3 rules: 1 | **Ch4 inverse-delta: 79** | **Ch5 forward-reward: 16** | Ch6 novelty: 84
+- Decontam: dropped fexofenadine (Tanimoto >= 0.85)
+- **Top 4 candidates are ALL real terfenadine analogs from Channel 4:**
+  - Rank 1 (0.957): t-butyl -> hydroxyl-isopropyl + fluoro phenyls (real hERG mitigation strategy)
+  - Rank 2 (0.957): t-butyl -> hydroxyl-isopropyl
+  - Rank 3 (0.949): same hydroxyl-isopropyl
+  - Rank 4 (0.945): fluorinated hydroxyl-isopropyl
+- **Top 14 contains 7+ carboxylic-acid analogs of terfenadine** — the EXACT fexofenadine transformation (replace t-butyl with COOH, including demethylated fexofenadine at rank 14).
+- All top-20 scored `strong_success` or `weak_success` by Stage-2 ranker.
+
+**ADMET-002 (acyclovir -> valacyclovir, oral_exposure) v2:**
+- Pool: **171 candidates** (was 86)
+- Ch4 loaded 43, Ch5 loaded 35. Top-5 mixed; acyclovir's small scaffold harder for conditional generators. Channel 6 unconditional novelty dominated top spots.
+
+**ADMET-003 still deferred** (OXS SMILES require user input — paper-only + quarantined).
+
+**Artifacts at A:\rasyn-case-studies\artifacts\stage5_results_v2\.**
+
+**Significance:** This is a real working ADMET-rescue pipeline. Channel 4 distilled the t-butyl→polar-group transformation from silver-tier ChEMBL silver pairs (via Pass 7 dual-lookup) and applied it correctly to terfenadine, producing fexofenadine-like candidates. Stage-2 ranker (76% rescue-label accuracy on val) graded them as strong_success. Decontamination removed the exact sealed answer. **L25-compliant end-to-end.**
+
+**Commits:** 099d008 (Ch4/Ch5 wired in), 0272c0c (generate_channel_candidates helper), 511f5a3 (JSON loader).
+
+**Refs:** L25, L26, spec §4.
+
+---
+
 ### 2026-05-10 (~23:36 UTC) — 🎉 FIRST FORWARD-PASS SUCCESSFUL on ADMET-001 + ADMET-002
 **Type:** milestone result
 **Phase:** Stage-5 sealed-case inference (real, L25-compliant)
