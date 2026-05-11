@@ -342,7 +342,7 @@ def main():
     args.out.mkdir(parents=True, exist_ok=True)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     _log(f"Device: {device}")
-    _log(f"Gate: min_tanimoto={args.min_tanimoto} require_murcko={args.require_murcko}")
+    _log(f"Gate: min_tanimoto={args.min_tanimoto} murcko_tanimoto>={args.murcko_tanimoto}")
     _log(f"Prodrug detection: MCS coverage >= {args.prodrug_mcs}")
 
     _log(f"Loading aux predictor {args.aux_ckpt}")
