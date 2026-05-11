@@ -284,6 +284,7 @@ def score_candidates(
     target_chembl_id: str | None = None,
     bs: int = 32,
     max_len: int = 128,
+    ensemble_ranker: torch.nn.Module | None = None,
 ) -> list[dict]:
     """Score every candidate with the trained Stage-2 ranker.
 
@@ -337,7 +338,14 @@ def score_candidates(
         rescue_label = out["rescue_label_logits"].float().argmax(-1).cpu().tolist()
         retention = out["retention_logits"].float().argmax(-1).cpu().tolist()
         improvement = out["improvement_logits"].float().argmax(-1).cpu().tolist()
-        rescue_score = out["rescue_score"].float().cpu().tolist()
+        rescue_score_t = out["rescue_score"].float()
+
+        # Ensemble: average rescue_score with second ranker if provided.
+        if ensemble_ranker is not None:
+            with torch.no_grad(), torch.amp.autocast("cuda", dtype=torch.bfloat16):
+                out2 = ensemble_ranker(p_ids_b, p_mask_b, c_ids_b, c_mask_b, ev_b)
+            rescue_score_t = (rescue_score_t + out2["rescue_score"].float()) / 2.0
+        rescue_score = rescue_score_t.cpu().tolist()
 
         for k, c in enumerate(chunk):
             out_rows.append({
@@ -406,6 +414,8 @@ def decontaminate(candidates: list[dict], answer_smiles: str | None) -> list[dic
 def main() -> int:
     p = argparse.ArgumentParser()
     p.add_argument("--ranker", type=Path, required=True)
+    p.add_argument("--ch1-candidates-json", type=Path, default=None,
+                   help="Pre-generated Ch1 analog-retrieval candidates from generate_channel1_candidates.py")
     p.add_argument("--ch6-smiles", type=Path, default=None)
     p.add_argument("--ch4", type=Path, default=None, help="Channel 4 ckpt for on-pod generation")
     p.add_argument("--ch5", type=Path, default=None, help="Channel 5 ckpt for on-pod generation")
@@ -413,6 +423,8 @@ def main() -> int:
                    help="Pre-generated Ch4 candidates JSON from scripts/generate_channel_candidates.py")
     p.add_argument("--ch5-candidates-json", type=Path, default=None,
                    help="Pre-generated Ch5 candidates JSON from scripts/generate_channel_candidates.py")
+    p.add_argument("--ensemble-ranker", type=Path, default=None,
+                   help="Second Stage-2 ranker ckpt (different seed) for ensemble averaging.")
     p.add_argument("--embeddings", type=Path, default=None)
     p.add_argument("--cases", type=str, default="ADMET-001,ADMET-002,ADMET-003")
     p.add_argument("--top-k", type=int, default=20)
@@ -428,10 +440,17 @@ def main() -> int:
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     _log(f"Device: {device}")
 
-    # Load Stage-2 ranker
+    # Load Stage-2 ranker (primary)
     _log(f"Loading Stage-2 ranker {args.ranker}")
     ranker, ranker_ckpt = load_ranker(args.ranker, device)
-    _log(f"  step={ranker_ckpt.get('step')} | args={ranker_ckpt.get('args', {}).get('seed', '?')}")
+    _log(f"  step={ranker_ckpt.get('step')} | seed={ranker_ckpt.get('args', {}).get('seed', '?')}")
+
+    # Load ensemble ranker (optional, for multi-seed averaging)
+    ensemble_ranker = None
+    if args.ensemble_ranker:
+        _log(f"Loading ensemble Stage-2 ranker {args.ensemble_ranker}")
+        ensemble_ranker, ens_ckpt = load_ranker(args.ensemble_ranker, device)
+        _log(f"  ensemble step={ens_ckpt.get('step')} | seed={ens_ckpt.get('args', {}).get('seed', '?')}")
 
     # Load registry
     import yaml
@@ -523,6 +542,13 @@ def main() -> int:
         _log(f"  Channel 2 (MMP): {len(ch2_out.candidates)} candidates")
         _log(f"  Channel 3 (liability rules): {len(ch3_out.candidates)} candidates")
 
+        # ----- Channel 1 (analog retrieval over Stage-1 embeddings) -----
+        ch1 = []
+        if args.ch1_candidates_json and args.ch1_candidates_json.exists():
+            ch1 = _load_precomputed_candidates(
+                args.ch1_candidates_json, case_id, channel_name="analog_retrieval"
+            )
+
         # ----- Channel 4 (learned inverse-delta, conditional) -----
         ch4 = []
         if args.ch4_candidates_json and args.ch4_candidates_json.exists():
@@ -559,6 +585,7 @@ def main() -> int:
         pool: list[dict] = []
         seen: set[str] = set()
         for src, items in [
+            ("ch1_analog_retrieval", ch1),
             ("ch2_mmp", [{"candidate_smiles": a.canonical_smiles, "channel": "mmp_transformer"} for a in ch2_out.candidates]),
             ("ch3_rules", [{"candidate_smiles": a.canonical_smiles, "channel": "liability_rules"} for a in ch3_out.candidates]),
             ("ch4_inverse_delta", ch4),
@@ -581,7 +608,7 @@ def main() -> int:
         _log(f"  Scoring {len(pool)} candidates with Stage-2 ranker...")
         scored = score_candidates(
             parent_smiles, pool, ranker=ranker, device=device,
-            liability_type=liability_type,
+            liability_type=liability_type, ensemble_ranker=ensemble_ranker,
         )
         scored.sort(key=lambda r: -r["rescue_score"])
 
