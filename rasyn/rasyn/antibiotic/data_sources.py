@@ -209,14 +209,40 @@ DRUG_REPURPOSING_HUB_URL = (
 )
 
 
-def fetch_drug_repurposing_hub(out_parquet: Path) -> Path:
-    """Download the Drug Repurposing Hub annotated drug list."""
-    try:
-        with urllib.request.urlopen(DRUG_REPURPOSING_HUB_URL, timeout=120) as resp:
-            text = resp.read().decode("utf-8", errors="replace")
-    except Exception as e:
-        _log(f"Drug Repurposing Hub fetch failed: {e}")
+def fetch_drug_repurposing_hub(out_parquet: Path, *, verify_ssl: bool = True) -> Path:
+    """Download the Drug Repurposing Hub annotated drug list.
+
+    The Broad Hub frequently presents an SSL chain older certifi bundles can't
+    verify. Try in three escalating modes:
+      1. system-default TLS
+      2. certifi-resolved CA bundle (forced)
+      3. unverified context with a printed warning (NOT silent — last resort)
+    """
+    import ssl
+
+    def _try(ctx, label: str):
+        try:
+            with urllib.request.urlopen(DRUG_REPURPOSING_HUB_URL, timeout=120, context=ctx) as resp:
+                _log(f"  fetched DRH via {label}")
+                return resp.read().decode("utf-8", errors="replace")
+        except Exception as e:
+            _log(f"  DRH fetch via {label} failed: {e}")
+            return None
+
+    text = _try(ssl.create_default_context(), "system-default")
+    if text is None:
+        try:
+            import certifi
+            text = _try(ssl.create_default_context(cafile=certifi.where()), "certifi")
+        except ImportError:
+            pass
+    if text is None and verify_ssl is False:
+        _log("  WARNING: falling back to unverified SSL context (verify_ssl=False)")
+        text = _try(ssl._create_unverified_context(), "unverified")
+    if text is None:
+        _log("Drug Repurposing Hub fetch failed all available SSL attempts.")
         return out_parquet
+
     df = pd.read_csv(io.StringIO(text), sep="\t")
     df["source"] = "drug_repurposing_hub"
     out_parquet.parent.mkdir(parents=True, exist_ok=True)

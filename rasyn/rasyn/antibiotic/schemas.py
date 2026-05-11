@@ -244,6 +244,10 @@ class ABXRankerOutput(BaseModel):
 
     final_discovery_score: float    # composite per spec §12 formula
 
+    # Per spec §7.2 + §7.3 — structured rationale fields, deterministic, no LLM,
+    # no free-form mechanism claims. All values are facts-from-numbers.
+    structured_rationale: dict[str, list[str]] = Field(default_factory=dict)
+
 
 # ===== Sealed case registry (per spec §14, §19) =====
 

@@ -405,14 +405,27 @@ def main():
             ab_loss = F.binary_cross_entropy(out["antibacterial"].float(), ab)
             cyto_loss = F.binary_cross_entropy(out["cytotox"].float(), cyto)
             fm_loss = F.cross_entropy(out["failure_modes"].float(), fm)
-            loss = ab_loss + 0.5 * cyto_loss + 0.3 * fm_loss
+            # §16.6 pairwise ranking loss: for every (pos, neg) pair in the batch,
+            #   require ab_score(pos) > ab_score(neg) by margin (default 0.5).
+            ab_scores = out["antibacterial"].float()
+            pos_idx = (ab >= 0.5).nonzero(as_tuple=True)[0]
+            neg_idx = (ab < 0.5).nonzero(as_tuple=True)[0]
+            if pos_idx.numel() > 0 and neg_idx.numel() > 0:
+                # Limit pair count to control memory: up to 64 pairs per batch.
+                n_pairs = min(64, pos_idx.numel() * neg_idx.numel())
+                p_sel = pos_idx[torch.randint(0, pos_idx.numel(), (n_pairs,), device=ab_scores.device)]
+                n_sel = neg_idx[torch.randint(0, neg_idx.numel(), (n_pairs,), device=ab_scores.device)]
+                rank_loss = F.relu(0.5 - (ab_scores[p_sel] - ab_scores[n_sel])).mean()
+            else:
+                rank_loss = ab_scores.new_zeros(())
+            loss = ab_loss + 0.5 * cyto_loss + 0.3 * fm_loss + 0.4 * rank_loss
             loss.backward()
             torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
             optim.step()
             step += 1
             if step % 50 == 0 and is_main:
-                log(f"step {step}/{args.steps} loss={loss.item():.4f} ab={ab_loss.item():.3f} cyto={cyto_loss.item():.3f} fm={fm_loss.item():.3f}",
-                    step=step, loss=float(loss.item()))
+                log(f"step {step}/{args.steps} loss={loss.item():.4f} ab={ab_loss.item():.3f} cyto={cyto_loss.item():.3f} fm={fm_loss.item():.3f} rank={float(rank_loss.item()):.3f}",
+                    step=step, loss=float(loss.item()), rank_loss=float(rank_loss.item()))
             if step % args.val_every == 0 and is_main:
                 metrics = evaluate()
                 log(f"step {step} val: {metrics}", val=metrics)

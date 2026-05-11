@@ -45,6 +45,8 @@ from rasyn.antibiotic.schemas import (
 )
 from rasyn.antibiotic.channels import ABXProposerContext, run_abx_ensemble
 from rasyn.antibiotic.eval import closed_hard_ranking, open_proposer, save_metrics
+from rasyn.antibiotic.rationale import build_rationale
+from rasyn.antibiotic.evidence import build_evidence_packet
 
 from h200_smiles_lm_pretrain import VOCAB, VOCAB_SIZE, PAD
 from train_abx_ranker import (
@@ -106,10 +108,16 @@ def load_ranker(ckpt_path: Path, device):
 
 
 def score_candidates(
-    model, candidates: list[dict],
+    model_or_models, candidates: list[dict],
     *, organism: str, gram: str, spectrum: str,
     device, max_len: int = 128, bs: int = 32,
 ) -> list[dict]:
+    """Score candidates with one or many ranker ckpts; ensemble averages outputs.
+
+    Returns per-candidate dicts including the standard scores plus
+    `antibacterial_score_std` and `uncertainty_ensemble` when >1 ckpt was provided.
+    """
+    models = model_or_models if isinstance(model_or_models, list) else [model_or_models]
     out_rows: list[dict] = []
     cond = condition_vector(organism, gram, spectrum)
     cond_t = torch.from_numpy(cond).to(device)
@@ -122,29 +130,62 @@ def score_candidates(
         ids_t = torch.from_numpy(np.stack(ids_list)).to(device)
         mask_t = torch.from_numpy(np.stack(mask_list)).to(device)
         cond_b = cond_t.unsqueeze(0).expand(len(chunk), -1)
-        with torch.no_grad(), torch.amp.autocast("cuda", dtype=torch.bfloat16):
-            out = model(ids_t, mask_t, cond_b)
-        ab = out["antibacterial"].float().cpu().tolist()
-        cyto = out["cytotox"].float().cpu().tolist()
-        artifact = out["artifact"].float().cpu().tolist()
-        fm = out["failure_modes"].float().softmax(-1).cpu().tolist()
+        per_model_out = []
+        for m in models:
+            with torch.no_grad(), torch.amp.autocast("cuda", dtype=torch.bfloat16):
+                per_model_out.append(m(ids_t, mask_t, cond_b))
+        # Stack along new ensemble axis: shape (E, B)
+        def _stack(key):
+            return torch.stack([o[key].float().cpu() for o in per_model_out])
+        ab_stack = _stack("antibacterial")
+        cyto_stack = _stack("cytotox")
+        art_stack = _stack("artifact")
+        fm_stack = torch.stack([o["failure_modes"].float().softmax(-1).cpu() for o in per_model_out])
+        ab_mean = ab_stack.mean(0); ab_std = ab_stack.std(0) if ab_stack.size(0) > 1 else torch.zeros_like(ab_mean)
+        cy_mean = cyto_stack.mean(0); art_mean = art_stack.mean(0); fm_mean = fm_stack.mean(0)
         for k, c in enumerate(chunk):
-            # Composite final discovery score (spec §12 — high antibacterial - cytotox - artifact)
-            final = ab[k] - 0.5 * cyto[k] - 0.3 * artifact[k]
+            final = float(ab_mean[k]) - 0.5 * float(cy_mean[k]) - 0.3 * float(art_mean[k])
+            fm_dict = dict(zip(FAILURE_MODES, fm_mean[k].tolist()))
+            rationale = build_rationale(
+                organism=organism,
+                antibacterial_score=float(ab_mean[k]),
+                cytotox_risk=float(cy_mean[k]),
+                artifact_risk=float(art_mean[k]),
+                failure_mode_probs=fm_dict,
+                nearest_known_antibiotic_similarity=c.get("max_tanimoto_to_known_antibiotic"),
+                nearest_training_active_similarity=c.get("max_tanimoto_to_organism_active"),
+                uncertainty_score=float(ab_std[k]) if len(models) > 1 else None,
+            )
+            evidence = build_evidence_packet(
+                candidate_smiles=c.get("candidate_smiles") or "",
+                organism=organism,
+                antibacterial_scores_by_organism={organism: float(ab_mean[k])},
+                cytotox_risk=float(cy_mean[k]),
+                artifact_risk=float(art_mean[k]),
+                uncertainty_score=float(ab_std[k]) if len(models) > 1 else None,
+                nearest_known_antibiotic_similarity=c.get("max_tanimoto_to_known_antibiotic"),
+                nearest_training_active_similarity=c.get("max_tanimoto_to_organism_active"),
+                proposer_sources=[c.get("channel")] if c.get("channel") else None,
+            )
             out_rows.append({
                 **c,
-                "antibacterial_score": float(ab[k]),
-                "cytotox_risk": float(cyto[k]),
-                "artifact_risk": float(artifact[k]),
-                "failure_mode_probs": dict(zip(FAILURE_MODES, fm[k])),
+                "antibacterial_score": float(ab_mean[k]),
+                "antibacterial_score_std": float(ab_std[k]),
+                "cytotox_risk": float(cy_mean[k]),
+                "artifact_risk": float(art_mean[k]),
+                "failure_mode_probs": fm_dict,
+                "uncertainty_ensemble": float(ab_std[k]) if len(models) > 1 else None,
                 "final_discovery_score": float(final),
+                "structured_rationale": rationale.to_dict(),
+                "evidence_packet": evidence,
             })
     return out_rows
 
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--ranker", type=Path, required=True)
+    p.add_argument("--ranker", type=Path, required=True,
+                   help="Ranker checkpoint path OR comma-separated list of paths for ensemble averaging.")
     p.add_argument("--library", type=Path, required=True,
                    help="ABX molecule pool (abx_molecules.parquet)")
     p.add_argument("--facts", type=Path, required=True,
@@ -162,8 +203,11 @@ def main():
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     _log(f"Device: {device}")
 
-    _log(f"Loading ranker {args.ranker}")
-    ranker, _ = load_ranker(args.ranker, device)
+    # Support comma-separated ranker checkpoints for ensemble averaging (spec §12).
+    ranker_paths = [Path(p.strip()) for p in str(args.ranker).split(",") if p.strip()]
+    _log(f"Loading {len(ranker_paths)} ranker ckpt(s): {[str(p) for p in ranker_paths]}")
+    rankers = [load_ranker(p, device)[0] for p in ranker_paths]
+    ranker = rankers[0] if len(rankers) == 1 else rankers  # downstream score_candidates handles both
 
     library_df = pd.read_parquet(args.library)
     library_smiles = library_df["canonical_smiles"].dropna().astype(str).tolist()
