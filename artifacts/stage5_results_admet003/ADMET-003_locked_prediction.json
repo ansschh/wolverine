@@ -1,0 +1,185 @@
+{
+  "case_id": "ADMET-003",
+  "mode": "A",
+  "parent_canonical_smiles": "Cc1cc(F)ccc1-c1cc2c(cn1)ncn2-c1ccc2c(cnn2C)c1",
+  "n_pool": 318,
+  "top_k": 20,
+  "ranker_ckpt_step": 6000,
+  "ranker_seed": 42,
+  "locked_at_utc": "2026-05-11T02:08:06.767986+00:00",
+  "top_candidates": [
+    {
+      "candidate_smiles": "COCCN1CCN(Cc2ccccc2)CC1",
+      "channel": "novelty_smiles",
+      "raw_smiles": "COCCN1CCN(Cc2ccccc2)CC1",
+      "rescue_score": 0.8515625,
+      "rescue_label": "strong_success",
+      "retention_pred": "acceptable",
+      "improvement_pred": "minor"
+    },
+    {
+      "candidate_smiles": "COc1cc(-c2cncn2C)ccc1Nc1ncc2ccnc(NCC(C)(C)C)c2n1",
+      "channel": "analog_retrieval",
+      "rescue_score": 0.814453125,
+      "rescue_label": "weak_success",
+      "retention_pred": "strong",
+      "improvement_pred": "minor"
+    },
+    {
+      "candidate_smiles": "COc1ccc(N2CCN(Cc3ccccc3OC)CC2)cc1",
+      "channel": "novelty_smiles",
+      "raw_smiles": "COc1ccc(N2CCN(Cc3ccccc3OC)CC2)cc1",
+      "rescue_score": 0.658203125,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "large"
+    },
+    {
+      "candidate_smiles": "CC1(C)C[C@H](O)CC1Cc1cc(Cl)c(OC[C@H]2OCC[C@@H](O)[C@H]2O)cc1F",
+      "channel": "novelty_smiles",
+      "raw_smiles": "CC1(C)C[C@H](O)CC1Cc1cc(Cl)c(OC[C@H]2OCC[C@@H](O)[C@H]2O)cc1F",
+      "rescue_score": 0.6572265625,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "large"
+    },
+    {
+      "candidate_smiles": "CNc1ccc(-c2ccc(N3CCN(c4nccnc4C)CC3)nc2)cn1",
+      "channel": "novelty_smiles",
+      "raw_smiles": "CNc1ccc(-c2ccc(N3CCN(c4nccnc4C)CC3)nc2)cn1",
+      "rescue_score": 0.650390625,
+      "rescue_label": "failed_no_liability_improvement",
+      "retention_pred": "strong",
+      "improvement_pred": "large"
+    },
+    {
+      "candidate_smiles": "Cn1ncc2cc(-n3cnc4cnc(-c5ccc(F)cc5CO)cc43)ccc21",
+      "channel": "liability_rules",
+      "rescue_score": 0.6416015625,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "large"
+    },
+    {
+      "candidate_smiles": "CC(C)n1nc(CC(=O)N(C)C[C@@H]2OCCN2S(=O)(=O)c2ccccc2)nc1C(F)(F)F",
+      "channel": "novelty_smiles",
+      "raw_smiles": "CC(C)n1nc(CC(=O)N(C)C[C@@H]2OCCN2S(=O)(=O)c2ccccc2)nc1C(F)(F)F",
+      "rescue_score": 0.6328125,
+      "rescue_label": "weak_success",
+      "retention_pred": "acceptable",
+      "improvement_pred": "none"
+    },
+    {
+      "candidate_smiles": "CN(C)CCN1CCN(c2ccc(Cl)cc2)CC1",
+      "channel": "novelty_smiles",
+      "raw_smiles": "CN(C)CCN1CCN(c2ccc(Cl)cc2)CC1",
+      "rescue_score": 0.625,
+      "rescue_label": "failed_no_liability_improvement",
+      "retention_pred": "strong",
+      "improvement_pred": "worse"
+    },
+    {
+      "candidate_smiles": "COc1cc(-c2cnc(C)n2C)ccc1Nc1cc2cc(-c3cnnn3C)ccc2cn1",
+      "channel": "analog_retrieval",
+      "rescue_score": 0.6162109375,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "large"
+    },
+    {
+      "candidate_smiles": "COc1cccc(-c2cnnc3cc(-c4cccnc4C)nc(C)c23)c1",
+      "channel": "forward_reward_generator",
+      "rescue_score": 0.61328125,
+      "rescue_label": "failed_no_liability_improvement",
+      "retention_pred": "strong",
+      "improvement_pred": "none"
+    },
+    {
+      "candidate_smiles": "CCOc1ccccc1NC(=O)CCn1ccnc1",
+      "channel": "novelty_smiles",
+      "raw_smiles": "CCOc1ccccc1NC(=O)CCn1ccnc1",
+      "rescue_score": 0.609375,
+      "rescue_label": "uncertain",
+      "retention_pred": "acceptable",
+      "improvement_pred": "large"
+    },
+    {
+      "candidate_smiles": "CCn1cc(CN2CCC(N3CCS(=O)(=O)CC3)CC2)cn1",
+      "channel": "novelty_smiles",
+      "raw_smiles": "CCn1cc(CN2CCC(N3CCS(=O)(=O)CC3)CC2)cn1",
+      "rescue_score": 0.5771484375,
+      "rescue_label": "failed_no_liability_improvement",
+      "retention_pred": "strong",
+      "improvement_pred": "worse"
+    },
+    {
+      "candidate_smiles": "CC(=O)c1cccc(NS(=O)(=O)c2ccc(N(CCC(=O)O)S(=O)(=O)c3ccc(N)cc3)cc2)c1",
+      "channel": "novelty_smiles",
+      "raw_smiles": "CC(=O)c1cccc(NS(=O)(=O)c2ccc(N(CCC(=O)O)S(=O)(=O)c3ccc(N)cc3)cc2)c1",
+      "rescue_score": 0.55859375,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "large"
+    },
+    {
+      "candidate_smiles": "CCCN(c1ccc(C(=O)Nc2ccc(F)cc2)cc1)S(C)(=O)=O",
+      "channel": "novelty_smiles",
+      "raw_smiles": "CCCN(c1ccc(C(=O)Nc2ccc(F)cc2)cc1)S(C)(=O)=O",
+      "rescue_score": 0.556640625,
+      "rescue_label": "uncertain",
+      "retention_pred": "weak",
+      "improvement_pred": "worse"
+    },
+    {
+      "candidate_smiles": "CC1(C)CN(CCN2CCN(CC(=O)Nc3ccc(F)cc3)CC2)CC(C)(C)N1",
+      "channel": "novelty_smiles",
+      "raw_smiles": "CC1(C)CN(CCN2CCN(CC(=O)Nc3ccc(F)cc3)CC2)CC(C)(C)N1",
+      "rescue_score": 0.529296875,
+      "rescue_label": "failed_no_liability_improvement",
+      "retention_pred": "strong",
+      "improvement_pred": "worse"
+    },
+    {
+      "candidate_smiles": "Cn1ncc2cc(-n3cnc4cnc(-c5ccc(F)cc5F)cc43)ccc21",
+      "channel": "mmp_transformer",
+      "rescue_score": 0.5224609375,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "moderate"
+    },
+    {
+      "candidate_smiles": "COc1ccc(N2CCN(C(=O)C3CC3)CC2)cc1",
+      "channel": "novelty_smiles",
+      "raw_smiles": "COc1ccc(N2CCN(C(=O)C3CC3)CC2)cc1",
+      "rescue_score": 0.517578125,
+      "rescue_label": "uncertain",
+      "retention_pred": "unknown",
+      "improvement_pred": "none"
+    },
+    {
+      "candidate_smiles": "Cn1cc(-c2ccccc2)nc1CCc1cc2ncccc2c2cc(C(F)(F)F)nn12",
+      "channel": "analog_retrieval",
+      "rescue_score": 0.4990234375,
+      "rescue_label": "failed_no_liability_improvement",
+      "retention_pred": "strong",
+      "improvement_pred": "none"
+    },
+    {
+      "candidate_smiles": "CCOc1ccc(NC(=O)Cn2cccn2)cc1",
+      "channel": "novelty_smiles",
+      "raw_smiles": "CCOc1ccc(NC(=O)Cn2cccn2)cc1",
+      "rescue_score": 0.49609375,
+      "rescue_label": "uncertain",
+      "retention_pred": "weak",
+      "improvement_pred": "worse"
+    },
+    {
+      "candidate_smiles": "Cc1cc(F)ccc1-c1cc2c(cn1)nc(C)n2-c1ccc(OC(F)F)cc1",
+      "channel": "analog_retrieval",
+      "rescue_score": 0.490234375,
+      "rescue_label": "failed_no_liability_improvement",
+      "retention_pred": "strong",
+      "improvement_pred": "none"
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "ADMET-001": {
+    "liability": "hERG",
+    "parent_name": "terfenadine",
+    "literature_answer_name": "fexofenadine",
+    "n_evaluated": 21,
+    "literature_answer_rank_by_fitness": 10,
+    "literature_answer_fitness": -2.3550645166565416,
+    "best_candidate_fitness": -1.1229225638799551,
+    "best_candidate_smiles": "CC1=NC(C)=C1CN1CCC2(CCN(C(=O)c3cccnc3)CC2)C1",
+    "best_candidate_source": "top_ranker",
+    "best_candidate_rank_by_ranker": 2,
+    "answer_better_than_topk_pool": true
+  },
+  "ADMET-002": {
+    "liability": "oral_exposure",
+    "parent_name": "acyclovir",
+    "literature_answer_name": "valacyclovir",
+    "n_evaluated": 21,
+    "literature_answer_rank_by_fitness": 21,
+    "literature_answer_fitness": 2.9004845613297427,
+    "best_candidate_fitness": 3.7394218718311913,
+    "best_candidate_smiles": "Nc1ncc2ncn(CC(CO)CO)c2n1",
+    "best_candidate_source": "top_ranker",
+    "best_candidate_rank_by_ranker": 15,
+    "answer_better_than_topk_pool": false
+  },
+  "ADMET-003": {
+    "liability": "solubility",
+    "parent_name": "OXS007570",
+    "literature_answer_name": "OXS008474",
+    "n_evaluated": 21,
+    "literature_answer_rank_by_fitness": 15,
+    "literature_answer_fitness": -0.349975181818183,
+    "best_candidate_fitness": 1.1103658536585366,
+    "best_candidate_smiles": "CCn1cc(CN2CCC(N3CCS(=O)(=O)CC3)CC2)cn1",
+    "best_candidate_source": "top_ranker",
+    "best_candidate_rank_by_ranker": 12,
+    "answer_better_than_topk_pool": true
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "cases": {
+    "ADMET-003": {
+      "n_pool": 318,
+      "top_k": 20,
+      "top_candidate": {
+        "candidate_smiles": "COCCN1CCN(Cc2ccccc2)CC1",
+        "channel": "novelty_smiles",
+        "raw_smiles": "COCCN1CCN(Cc2ccccc2)CC1",
+        "rescue_score": 0.8515625,
+        "rescue_label": "strong_success",
+        "retention_pred": "acceptable",
+        "improvement_pred": "minor"
+      }
+    }
+  }
+}
