@@ -1,0 +1,193 @@
+version: 0.1.0
+locked_at_utc: null   # populated by registry-populator script
+spec_refs:
+  - rasyn_antibiotic_discovery_architecture_benchmark_spec.md §14
+  - rasyn_antibiotic_discovery_architecture_benchmark_spec.md §19 (decontamination)
+
+cases:
+
+  # ----------------------------------------------------------------
+  # ABX-001: halicin-style broad-spectrum repurposing
+  # ----------------------------------------------------------------
+  - case_id: ABX-001
+    description: >
+      Halicin-style broad-spectrum repurposing. Hidden hit is halicin
+      (Stokes et al., Cell 2020) — a non-antibiotic drug repurposed as a
+      broad-spectrum antibacterial via deep-learning-guided screening.
+      Spec §14.1.
+    organism_context:
+      organism: "E.coli"
+      gram_type: "Gram-negative"
+      spectrum_goal: "broad_spectrum_or_general_antibacterial"
+    selectivity_context:
+      avoid_mammalian_cytotoxicity: true
+      avoid_hemolysis: true
+      avoid_known_antibiotic_near_duplicates: true
+      avoid_broad_nonspecific_membrane_disruption: false
+    candidate_context:
+      library: "anonymized repurposing-like library"
+      library_size_hint: 6000
+      pool_size_target: 5000
+
+    hidden_solution:
+      name: "halicin"
+      pubchem_cid: 47795864
+      drugbank_id: "DB12345"  # placeholder; populator fills
+      canonical_smiles: null  # populator fills via PubChem
+      inchi_key: null
+      paper_doi: "10.1016/j.cell.2020.01.021"
+      paper_pmid: "32084340"
+
+    forbidden_identifiers:
+      synonyms:
+        - "halicin"
+        - "SU3327"
+        - "SU-3327"
+        - "broad-spectrum antibacterial halicin"
+      pubchem_cids: [47795864]
+      drugbank_ids: ["DB12345"]
+      chembl_ids: []  # populator fills
+
+    forbidden_documents:
+      dois:
+        - "10.1016/j.cell.2020.01.021"  # Stokes Cell 2020 halicin paper
+      pmids:
+        - "32084340"
+      title_fragments:
+        - "halicin"
+        - "deep learning approach to antibiotic discovery"
+        - "broad-spectrum antibacterial activity"
+
+    forbidden_assays: {}
+
+    forbidden_neighborhoods:
+      tanimoto_to_answer: 0.85
+      tanimoto_with_context: 0.65
+      require_same_murcko_for_context: true
+
+    success_criteria:
+      closed_ranking_top_pct: 1.0
+      closed_ranking_top_k: 100
+      open_mode_target: "halicin or functional broad-spectrum alternative in top-k"
+
+  # ----------------------------------------------------------------
+  # ABX-002: abaucin-style A. baumannii-specific discovery
+  # ----------------------------------------------------------------
+  - case_id: ABX-002
+    description: >
+      Abaucin-style pathogen-specific discovery. Hidden hit is abaucin
+      (Liu et al., Nature Chem Biol 2023) — a deep-learning-discovered
+      narrow-spectrum antibacterial selectively active against
+      Acinetobacter baumannii via the LolE lipoprotein-transport pathway.
+      Spec §14.2.
+    organism_context:
+      organism: "A.baumannii"
+      gram_type: "Gram-negative"
+      spectrum_goal: "pathogen_specific"
+    selectivity_context:
+      avoid_mammalian_cytotoxicity: true
+      avoid_hemolysis: true
+      avoid_known_antibiotic_near_duplicates: true
+      avoid_broad_nonspecific_membrane_disruption: true
+    candidate_context:
+      library: "anonymized organism-specific discovery library"
+      library_size_hint: 7500
+      pool_size_target: 5000
+
+    hidden_solution:
+      name: "abaucin"
+      pubchem_cid: null  # populator fills
+      canonical_smiles: null
+      inchi_key: null
+      paper_doi: "10.1038/s41589-023-01349-8"
+      paper_pmid: "37169993"
+
+    forbidden_identifiers:
+      synonyms:
+        - "abaucin"
+        - "RS102895"  # original repurposing screen compound
+        - "narrow-spectrum A. baumannii"
+      pubchem_cids: []
+      chembl_ids: []
+      drugbank_ids: []
+
+    forbidden_documents:
+      dois:
+        - "10.1038/s41589-023-01349-8"  # Liu Nature Chem Bio 2023 abaucin paper
+      pmids:
+        - "37169993"
+      title_fragments:
+        - "abaucin"
+        - "deep learning identifies a structurally distinct antibiotic"
+        - "Acinetobacter baumannii"
+
+    forbidden_assays:
+      organism_pattern: "Acinetobacter baumannii"
+      mechanism_keywords:
+        - "LolE"
+        - "lipoprotein-transport"
+
+    forbidden_neighborhoods:
+      tanimoto_to_answer: 0.85
+      tanimoto_with_context: 0.65
+      require_same_murcko_for_context: true
+
+    success_criteria:
+      closed_ranking_top_k: 100
+      organism_specificity_check_required: true
+      open_mode_target: "abaucin, active-family analog, or functional A. baumannii-selective candidate in top-k"
+
+  # ----------------------------------------------------------------
+  # ABX-003: de novo / scaffold-hopping active-family recovery
+  # ----------------------------------------------------------------
+  - case_id: ABX-003
+    description: >
+      De novo / scaffold-hopping active-family recovery. The hidden set is
+      a validated set of leads from a recent (2024-2025) de novo antibiotic
+      design paper or private/prospective active-family screen. Goal:
+      recover the active-family chemotype above inactive synthesized
+      compounds and decoys. Spec §14.3.
+    organism_context:
+      organism: "S.aureus"   # default; can switch to N.gonorrhoeae per spec
+      gram_type: "Gram-positive"
+      spectrum_goal: "target_pathogen_specific_or_selective"
+    selectivity_context:
+      avoid_mammalian_cytotoxicity: true
+      avoid_hemolysis: true
+      avoid_known_antibiotic_near_duplicates: true
+      avoid_broad_nonspecific_membrane_disruption: false
+    candidate_context:
+      library: "de novo / scaffold-hopping seed library"
+      library_size_hint: 10000
+      pool_size_target: 5000
+
+    hidden_solution:
+      name: "TBD_2025_active_family"
+      paper_doi: null   # user supplies when locked
+      canonical_smiles: null
+      inchi_key: null
+      notes: "active-family rather than single compound — multiple validated leads"
+
+    forbidden_identifiers:
+      synonyms: []
+      pubchem_cids: []
+      chembl_ids: []
+
+    forbidden_documents:
+      dois: []
+      pmids: []
+      title_fragments:
+        - "de novo antibiotic design"
+        - "scaffold-hopping antibacterial"
+
+    forbidden_assays: {}
+
+    forbidden_neighborhoods:
+      family_level_quarantine: true
+      tanimoto_to_active_family: 0.75
+      require_same_murcko_for_family: true
+
+    success_criteria:
+      active_family_recovery: true
+      ranking_target: "validated actives ranked above inactives + decoys"
+      open_mode_target: "active, family analog, or functional scaffold-hop in top-k"
