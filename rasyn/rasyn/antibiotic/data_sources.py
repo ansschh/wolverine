@@ -255,37 +255,204 @@ def fetch_drug_repurposing_hub(out_parquet: Path, *, verify_ssl: bool = True) ->
 # CO-ADD
 # ----------------------------------------------------------------
 
-def load_coadd_csv(coadd_csv_path: str | Path, out_parquet: Path) -> Path:
-    """Convert a CO-ADD CSV (downloaded by user) to standardized parquet.
+# Map CO-ADD scientific names → the closed Organism literal in schemas.py
+COADD_ORGANISM_MAP: dict[str, str] = {
+    "Escherichia coli":             "E.coli",
+    "Staphylococcus aureus":        "S.aureus",      # MRSA strains get re-labelled below
+    "Klebsiella pneumoniae":        "K.pneumoniae",
+    "Acinetobacter baumannii":      "A.baumannii",
+    "Pseudomonas aeruginosa":       "P.aeruginosa",
+    "Mycobacterium tuberculosis":   "MTB",
+    "Mycobacterium tuberculosis H37Rv": "MTB",
+    "Clostridium difficile":        "C.difficile",
+    "Clostridioides difficile":     "C.difficile",
+    "Helicobacter pylori":          "H.pylori",
+    "Neisseria gonorrhoeae":        "N.gonorrhoeae",
+    # Mammalian / fungal — these become counter-screens, not antibacterial facts.
+    "Homo sapiens":                 "human_cell",
+    "Candida albicans":             "fungal",
+    "Cryptococcus neoformans":      "fungal",
+}
 
-    CO-ADD downloads are gated behind email registration at co-add.org.
-    Expects a CSV with cols including: 'Cmpd ID', 'SMILES', 'Organism', 'Inhibition %', etc.
+
+def _coadd_organism_to_schema(organism: str | None, strain: str | None) -> str:
+    """Map CO-ADD ORGANISM + STRAIN into our schema's Organism literal.
+    Re-routes 'S.aureus' to 'MRSA' when STRAIN contains MRSA/ATCC 43300/etc.
     """
-    p = Path(coadd_csv_path)
+    if organism is None:
+        return "unknown"
+    base = COADD_ORGANISM_MAP.get(str(organism).strip(), "unknown")
+    if base == "S.aureus" and strain and ("MRSA" in str(strain) or "43300" in str(strain)):
+        return "MRSA"
+    return base
+
+
+def load_coadd_inhibition(inhibition_csv_path: str | Path, out_parquet: Path) -> Path:
+    """Load CO-ADD InhibitionData (single-concentration primary screen, ~803K rows).
+
+    Columns: COADD_ID, COMPOUND_CODE, PROJECT_ID, LIBRARY_NAME, ASSAY_ID, ORGANISM,
+             STRAIN, NASSAYS, INHIB_AVE, INHIB_STD, CONC, SMILES.
+    Activity-label rule: INHIB_AVE >= 80 → active; >= 50 → weak; else inactive.
+    """
+    p = Path(inhibition_csv_path)
     if not p.exists():
-        _log(f"CO-ADD CSV {coadd_csv_path} not found; skipping.")
+        _log(f"CO-ADD InhibitionData not found at {p}; skipping.")
         return out_parquet
     df = pd.read_csv(p, low_memory=False)
-    cols = {c.lower(): c for c in df.columns}
-    rename = {}
-    for k_lower, k_real in cols.items():
-        if "smiles" in k_lower:
-            rename[k_real] = "canonical_smiles"
-        elif "organism" in k_lower:
-            rename[k_real] = "organism"
-        elif "inhibition" in k_lower or "growth inhibition" in k_lower:
-            rename[k_real] = "growth_inhibition_pct"
-        elif "compound" in k_lower and "id" in k_lower:
-            rename[k_real] = "coadd_id"
-    df = df.rename(columns=rename)
-    if "growth_inhibition_pct" in df.columns:
-        df["activity_label"] = df["growth_inhibition_pct"].fillna(0).apply(
-            lambda v: "active" if v >= 80 else ("weak" if v >= 50 else "inactive")
-        )
-    else:
-        df["activity_label"] = "unknown"
-    df["source"] = "co_add"
+    _log(f"  CO-ADD InhibitionData raw rows: {len(df):,}")
+
+    # Required columns
+    need = ["SMILES", "ORGANISM", "INHIB_AVE", "ASSAY_ID", "COADD_ID"]
+    if not all(c in df.columns for c in need):
+        _log(f"  unexpected columns: {list(df.columns)[:15]}")
+        return out_parquet
+    df = df.dropna(subset=["SMILES", "ORGANISM"])
+
+    # Activity label
+    def _label(v):
+        try:
+            v = float(v)
+        except (TypeError, ValueError):
+            return "unknown"
+        if v >= 80:  return "active"
+        if v >= 50:  return "weak"
+        return "inactive"
+    df["activity_label"] = df["INHIB_AVE"].apply(_label)
+
+    # Organism normalization → schema literal
+    df["organism_tag"] = df.apply(
+        lambda r: _coadd_organism_to_schema(r.get("ORGANISM"), r.get("STRAIN")), axis=1,
+    )
+
+    out = pd.DataFrame({
+        "canonical_smiles":      df["SMILES"].astype(str),
+        "coadd_id":              df["COADD_ID"],
+        "compound_code":         df.get("COMPOUND_CODE"),
+        "assay_chembl_id":       df["ASSAY_ID"],     # reuse column name for schema compat
+        "assay_type":            "B",                # binding-style single-conc
+        "organism_tag":          df["organism_tag"],
+        "strain":                df.get("STRAIN"),
+        "standard_type":         "Inhibition",
+        "standard_value":        df["INHIB_AVE"],
+        "standard_units":        "%",
+        "standard_relation":     "=",
+        "activity_label":        df["activity_label"],
+        "source":                "co_add_inhibition",
+    })
+    out_parquet.parent.mkdir(parents=True, exist_ok=True)
+    out.to_parquet(out_parquet, compression="zstd", index=False)
+    _log(f"CO-ADD InhibitionData: {len(out):,} normalized rows -> {out_parquet}")
+    return out_parquet
+
+
+def load_coadd_dose_response(dr_csv_path: str | Path, out_parquet: Path) -> Path:
+    """Load CO-ADD DoseResponseData (confirmed actives, ~42K rows).
+
+    Columns: COADD_ID, COMPOUND_CODE, SMILES, PROJECT_ID, LIBRARY_NAME, ASSAY_ID,
+             ORGANISM, STRAIN, NASSAYS, DRVAL_TYPE, DRVAL_MEDIAN, DRVAL_UNIT, DMAX_AVE.
+    DRVAL_TYPE is one of MIC / IC50 / CC50 (CC50 = HEK293 cytotoxicity counter-screen).
+    Label rule:
+      MIC + numeric value <= 4 ug/mL OR <= 8 uM → active
+      MIC + value with '>' prefix → inactive
+      CC50 → counter-screen row (NOT antibacterial fact)
+    """
+    p = Path(dr_csv_path)
+    if not p.exists():
+        _log(f"CO-ADD DoseResponseData not found at {p}; skipping.")
+        return out_parquet
+    df = pd.read_csv(p, low_memory=False)
+    _log(f"  CO-ADD DoseResponseData raw rows: {len(df):,}")
+
+    need = ["SMILES", "ORGANISM", "DRVAL_MEDIAN", "DRVAL_UNIT", "DRVAL_TYPE", "ASSAY_ID", "COADD_ID"]
+    if not all(c in df.columns for c in need):
+        _log(f"  unexpected columns: {list(df.columns)[:15]}")
+        return out_parquet
+    df = df.dropna(subset=["SMILES", "ORGANISM"])
+
+    def _parse_value(v):
+        if v is None or (isinstance(v, float) and pd.isna(v)):
+            return None, None
+        s = str(v).strip()
+        rel = "="
+        if s.startswith(">"):
+            rel = ">"; s = s[1:].strip()
+        elif s.startswith("<"):
+            rel = "<"; s = s[1:].strip()
+        try:
+            return float(s), rel
+        except ValueError:
+            return None, None
+
+    parsed = df["DRVAL_MEDIAN"].apply(_parse_value)
+    df["dr_value"] = [p[0] for p in parsed]
+    df["dr_rel"]   = [p[1] for p in parsed]
+
+    def _label(r):
+        kind = str(r.get("DRVAL_TYPE") or "").upper()
+        v    = r.get("dr_value")
+        rel  = r.get("dr_rel")
+        unit = str(r.get("DRVAL_UNIT") or "").lower()
+        if v is None:
+            return "unknown"
+        if kind == "CC50":
+            # Mammalian cell cytotox (HEK293) — counter-screen, not antibacterial fact.
+            return "cytotox_counter_screen"
+        if kind == "HC10":
+            # Hemolysis 10% concentration — counter-screen for RBC lysis.
+            return "hemolysis_counter_screen"
+        if kind == "IC50":
+            return "active" if (rel == "=" and v <= 8.0) else "weak"
+        if kind == "MIC":
+            if rel == ">":
+                return "inactive"
+            if unit in ("ug/ml", "ug.ml-1") and v <= 4.0:
+                return "active"
+            if unit in ("um", "umol/l") and v <= 8.0:
+                return "active"
+            return "weak"
+        return "unknown"
+
+    df["activity_label"] = df.apply(_label, axis=1)
+    df["organism_tag"]   = df.apply(
+        lambda r: _coadd_organism_to_schema(r.get("ORGANISM"), r.get("STRAIN")), axis=1,
+    )
+
+    out = pd.DataFrame({
+        "canonical_smiles":  df["SMILES"].astype(str),
+        "coadd_id":          df["COADD_ID"],
+        "compound_code":     df.get("COMPOUND_CODE"),
+        "assay_chembl_id":   df["ASSAY_ID"],
+        "assay_type":        "B",
+        "organism_tag":      df["organism_tag"],
+        "strain":            df.get("STRAIN"),
+        "standard_type":     df["DRVAL_TYPE"],
+        "standard_value":    df["dr_value"],
+        "standard_units":    df["DRVAL_UNIT"],
+        "standard_relation": df["dr_rel"],
+        "activity_label":    df["activity_label"],
+        "source":            "co_add_dose_response",
+    })
+    out_parquet.parent.mkdir(parents=True, exist_ok=True)
+    out.to_parquet(out_parquet, compression="zstd", index=False)
+    _log(f"CO-ADD DoseResponseData: {len(out):,} normalized rows -> {out_parquet}")
+    return out_parquet
+
+
+def load_coadd_csv(coadd_csv_path: str | Path, out_parquet: Path) -> Path:
+    """Back-compat wrapper. Routes to inhibition / dose-response loader by filename."""
+    p = Path(coadd_csv_path)
+    if not p.exists():
+        _log(f"CO-ADD CSV {p} not found; skipping.")
+        return out_parquet
+    name = p.name.lower()
+    if "inhibition" in name:
+        return load_coadd_inhibition(p, out_parquet)
+    if "doseresponse" in name or "dose_response" in name:
+        return load_coadd_dose_response(p, out_parquet)
+    # Generic / unknown file — fall back to permissive parse
+    df = pd.read_csv(p, low_memory=False)
+    df["source"] = "co_add_generic"
     out_parquet.parent.mkdir(parents=True, exist_ok=True)
     df.to_parquet(out_parquet, compression="zstd", index=False)
-    _log(f"CO-ADD: {len(df):,} rows -> {out_parquet}")
+    _log(f"CO-ADD (generic): {len(df):,} rows -> {out_parquet}")
     return out_parquet

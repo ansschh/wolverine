@@ -40,6 +40,8 @@ from rasyn.antibiotic.data_sources import (
     extract_pubchem_antibacterial,
     fetch_drug_repurposing_hub,
     load_coadd_csv,
+    load_coadd_inhibition,
+    load_coadd_dose_response,
     ORGANISM_TO_CHEMBL_TARGETS,
 )
 from rasyn.antibiotic.decontam import scrub_rows, audit_canaries, build_forbidden_index
@@ -98,12 +100,19 @@ def pass_a_ingest_sources() -> dict:
     # 3. Drug Repurposing Hub
     raw_outs["repurposing_hub"] = fetch_drug_repurposing_hub(RAW_DIR / "drug_repurposing_hub.parquet")
 
-    # 4. CO-ADD (optional; if user dropped a CSV)
-    coadd_csv = RAW_DIR / "coadd.csv"
-    if coadd_csv.exists():
-        raw_outs["coadd"] = load_coadd_csv(coadd_csv, RAW_DIR / "coadd.parquet")
-    else:
-        _log("  CO-ADD CSV not found at rasyn/data/raw/antibiotic/coadd.csv (skipped)")
+    # 4. CO-ADD: both InhibitionData (~803K rows) and DoseResponseData (~42K rows)
+    coadd_dir = RAW_DIR / "coadd_extracted"
+    coadd_inh = next(coadd_dir.glob("*Inhibition*.csv"), None) if coadd_dir.exists() else None
+    coadd_dr  = next(coadd_dir.glob("*DoseResponse*.csv"), None) if coadd_dir.exists() else None
+    legacy_coadd = RAW_DIR / "coadd.csv"
+    if coadd_inh:
+        raw_outs["coadd_inhibition"] = load_coadd_inhibition(coadd_inh, RAW_DIR / "coadd_inhibition.parquet")
+    if coadd_dr:
+        raw_outs["coadd_dose_response"] = load_coadd_dose_response(coadd_dr, RAW_DIR / "coadd_dose_response.parquet")
+    if legacy_coadd.exists():
+        raw_outs["coadd_legacy"] = load_coadd_csv(legacy_coadd, RAW_DIR / "coadd_legacy.parquet")
+    if not (coadd_inh or coadd_dr or legacy_coadd.exists()):
+        _log("  CO-ADD files not found in rasyn/data/raw/antibiotic/coadd_extracted/ (skipped)")
 
     _log(f"Pass A DONE: {list(raw_outs.keys())}")
     return raw_outs
@@ -159,8 +168,14 @@ def pass_b_decontaminate_and_normalize() -> dict:
         _log(f"  molecule table: {len(mol):,} unique -> {MOL_OUT}")
 
     # ----- antibacterial assay facts table -----
-    # Rows that have organism + activity_label
-    abx_mask = kept["activity_label"].notna() if "activity_label" in kept.columns else None
+    # Rows that have organism + activity_label, BUT exclude CO-ADD cytotox_counter_screen
+    # rows (those go to the counter-screen table below per spec §8.3).
+    if "activity_label" in kept.columns:
+        abx_mask = kept["activity_label"].notna() & (
+            ~kept["activity_label"].isin(["cytotox_counter_screen", "hemolysis_counter_screen"])
+        )
+    else:
+        abx_mask = None
     if abx_mask is not None:
         abx_df = kept[abx_mask].copy()
         # Normalize organism
@@ -186,8 +201,13 @@ def pass_b_decontaminate_and_normalize() -> dict:
         _log(f"  antibacterial assay facts: {len(abx_df):,} -> {ABX_FACTS}")
 
     # ----- counter-screen facts -----
-    # Filter rows where target appears to be cytotoxicity/hemolysis (heuristic)
+    # Pull rows from CO-ADD that came in as CC50 / human-cell, plus heuristic-flagged
+    # ChEMBL rows (target_pref_name mentions cytotox/hemolysis/HepG2/HEK293/aggregation).
     cs_mask = pd.Series([False] * len(kept))
+    if "activity_label" in kept.columns:
+        cs_mask |= kept["activity_label"].isin(["cytotox_counter_screen", "hemolysis_counter_screen"])
+    if "organism_tag" in kept.columns:
+        cs_mask |= (kept["organism_tag"] == "human_cell")
     if "target_pref_name" in kept.columns:
         cs_mask |= kept["target_pref_name"].fillna("").str.contains(
             "cytotox|hemolysis|hepg2|HEK293|aggreg", case=False, regex=True
@@ -196,7 +216,10 @@ def pass_b_decontaminate_and_normalize() -> dict:
         cs_mask |= kept["assay_type"].fillna("").str.contains("T|F", case=False)  # ChEMBL T=tox F=PK
     cs_df = kept[cs_mask].copy() if cs_mask.any() else pd.DataFrame()
     if not cs_df.empty:
-        cs_df["counter_screen_type"] = "cytotoxicity"  # default; refine via target_pref_name later
+        # Default to cytotoxicity, then refine based on activity_label.
+        cs_df["counter_screen_type"] = "cytotoxicity"
+        if "activity_label" in cs_df.columns:
+            cs_df.loc[cs_df["activity_label"] == "hemolysis_counter_screen", "counter_screen_type"] = "hemolysis"
         cs_df["fact_id"] = cs_df.apply(
             lambda r: hashlib.md5(
                 f"cs|{r.get('canonical_smiles', '')}|{r.get('assay_chembl_id', '')}".encode()
