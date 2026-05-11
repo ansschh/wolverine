@@ -1,0 +1,17 @@
+{
+  "case_id": "ABX-003",
+  "organism": "S.aureus",
+  "library_size": 769,
+  "hidden_hit_rank": null,
+  "hidden_hit_percentile": null,
+  "top_1": false,
+  "top_10": false,
+  "top_50": false,
+  "top_100": false,
+  "top_1_pct": false,
+  "enrichment_at_top_100": null,
+  "n_cytotoxic_in_top_100": 0,
+  "n_organism_mismatched_in_top_100": 0,
+  "n_known_controls_in_top_100": 0,
+  "verdict": "missed"
+}

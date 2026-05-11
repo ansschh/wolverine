@@ -1,0 +1,26 @@
+{
+  "ABX-001": {
+    "closed_verdict": "missed",
+    "closed_hit_rank": 532,
+    "closed_top_1_pct": false,
+    "open_exact_hit_generated": false,
+    "open_family_count": 0,
+    "n_pool": 730
+  },
+  "ABX-002": {
+    "closed_verdict": "missed",
+    "closed_hit_rank": 654,
+    "closed_top_1_pct": false,
+    "open_exact_hit_generated": false,
+    "open_family_count": 0,
+    "n_pool": 775
+  },
+  "ABX-003": {
+    "closed_verdict": "missed",
+    "closed_hit_rank": null,
+    "closed_top_1_pct": false,
+    "open_exact_hit_generated": false,
+    "open_family_count": 0,
+    "n_pool": 769
+  }
+}

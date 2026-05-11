@@ -292,7 +292,7 @@ def main():
         card_lines = [f"# {case_id} — ABX sealed-case inference card", ""]
         card_lines.append(f"**Organism:** {organism} ({gram}, spectrum={spectrum})")
         if ans_smi:
-            card_lines.append(f"**Hidden answer SMILES (decontam'd out of pool):** `{ans_smi}`")
+            card_lines.append(f"**Hidden answer SMILES (injected for closed-mode rank, decontam'd for open-mode):** `{ans_smi}`")
         card_lines.append("")
         card_lines.append(f"## Closed ranking verdict: **{cr.verdict}**")
         card_lines.append(f"Library size: {cr.library_size}  |  Hit rank: {cr.hidden_hit_rank}  |  Top-1pct: {cr.top_1_pct}")

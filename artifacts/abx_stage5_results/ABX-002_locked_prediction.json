@@ -1,0 +1,331 @@
+{
+  "case_id": "ABX-002",
+  "organism": "A.baumannii",
+  "n_pool": 775,
+  "top_k": 20,
+  "top_candidates": [
+    {
+      "candidate_smiles": "COC(=O)C1CCCC(NCc2cc(/C=C\\c3cn(C)c4ccc(Cl)cc34)[nH]n2)C1",
+      "candidate_inchi_key": "RFOLYWFGLXRHPC-UHFFFAOYSA-N",
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.9453125,
+      "cytotox_risk": 0.87109375,
+      "artifact_risk": 0.64453125,
+      "failure_mode_probs": {
+        "inactive": 0.1200256273150444,
+        "cytotoxic": 0.879974365234375,
+        "artifact": 2.2701895918686432e-10,
+        "organism_mismatch": 2.2701895918686432e-10,
+        "known_control_only": 1.7680255870455852e-10
+      },
+      "final_discovery_score": 0.31640625
+    },
+    {
+      "candidate_smiles": "CC(=O)O.CN(C(=O)C[C@@H](N)CCCCN)C1CN=C(Nc2ccccn2)NC1=O",
+      "candidate_inchi_key": "MAVIDMIMQVTJOW-UHFFFAOYSA-N",
+      "channel": "B_screened_library",
+      "antibacterial_score": 1.0,
+      "cytotox_risk": 1.0,
+      "artifact_risk": 0.62890625,
+      "failure_mode_probs": {
+        "inactive": 0.00020988291362300515,
+        "cytotoxic": 0.999789297580719,
+        "artifact": 3.1554620250062726e-07,
+        "organism_mismatch": 2.9642819754371885e-07,
+        "known_control_only": 3.1554620250062726e-07
+      },
+      "final_discovery_score": 0.311328125
+    },
+    {
+      "candidate_smiles": "COC1/C=C/OC2(C)Oc3c(C)c(O)c4c(O)c(c(N5CCN(Cc6c(C)cc(C)cc6C)CC5)c(O)c4c3C2=O)NC(=O)/C(C)=C\\C=C\\C(C)C(OC(C)=O)C(C)C(OC(C)=O)C(C)C(OC(C)=O)C1C",
+      "candidate_inchi_key": "DRNXYRHPKQFJPH-ULYJASGMSA-N",
+      "channel": "A_repurposing",
+      "antibacterial_score": 1.0,
+      "cytotox_risk": 1.0,
+      "artifact_risk": 0.64453125,
+      "failure_mode_probs": {
+        "inactive": 0.0006986756925471127,
+        "cytotoxic": 0.9993013143539429,
+        "artifact": 1.0254709581491994e-10,
+        "organism_mismatch": 1.4920514823657527e-10,
+        "known_control_only": 1.0254709581491994e-10
+      },
+      "final_discovery_score": 0.306640625
+    },
+    {
+      "candidate_smiles": "Cc1c(N2CC3CCC2CC3)c(N)cc2c(=O)c(C(=O)O)cn(C3CC3)c12",
+      "candidate_inchi_key": "IUTQSRLKUKONGX-UHFFFAOYSA-N",
+      "channel": "A_repurposing",
+      "antibacterial_score": 1.0,
+      "cytotox_risk": 1.0,
+      "artifact_risk": 0.6484375,
+      "failure_mode_probs": {
+        "inactive": 0.00013539577776100487,
+        "cytotoxic": 0.9989421963691711,
+        "artifact": 0.0002778141060844064,
+        "organism_mismatch": 0.0002821890520863235,
+        "known_control_only": 0.00036233788705430925
+      },
+      "final_discovery_score": 0.30546875
+    },
+    {
+      "candidate_smiles": "CN(C(=O)C[C@@H](N)CCCCN)C1CN=C(Nc2ncccn2)NC1=O.Cl.Cl",
+      "candidate_inchi_key": "RIEVEPATIOSOBL-UHFFFAOYSA-N",
+      "channel": "B_screened_library",
+      "antibacterial_score": 1.0,
+      "cytotox_risk": 1.0,
+      "artifact_risk": 0.6484375,
+      "failure_mode_probs": {
+        "inactive": 0.00016093021258711815,
+        "cytotoxic": 0.9998352527618408,
+        "artifact": 1.1724503110599471e-06,
+        "organism_mismatch": 1.3285601880852482e-06,
+        "known_control_only": 1.3285601880852482e-06
+      },
+      "final_discovery_score": 0.30546875
+    },
+    {
+      "candidate_smiles": "CC[C@H]1OC(=O)[C@H](C)C(=O)[C@H](C)[C@@H](O[C@@H]2O[C@H](C)C[C@H](N(C)C)[C@H]2O)[C@](C)(OC/C=C/c2cnc3ccccc3c2)C[C@@H](C)C2=NCCN3C(=O)O[C@@]1(C)[C@H]3[C@H]2C",
+      "candidate_inchi_key": "SBIKTJABDSWYPC-JRGRACCQSA-N",
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.9921875,
+      "cytotox_risk": 0.9921875,
+      "artifact_risk": 0.63671875,
+      "failure_mode_probs": {
+        "inactive": 0.006615392863750458,
+        "cytotoxic": 0.9933846592903137,
+        "artifact": 6.790663864553181e-11,
+        "organism_mismatch": 1.2686630912472907e-10,
+        "known_control_only": 7.694830189697299e-11
+      },
+      "final_discovery_score": 0.305078125
+    },
+    {
+      "candidate_smiles": "NCC1OC(OC2C(N)CC(N)C(OC3CC(N)C(O)C(CO)O3)C2O)C(N)C(O)C1O",
+      "candidate_inchi_key": "HKKALIHVOBTUJH-UHFFFAOYSA-N",
+      "channel": "A_repurposing",
+      "antibacterial_score": 1.0,
+      "cytotox_risk": 1.0,
+      "artifact_risk": 0.65234375,
+      "failure_mode_probs": {
+        "inactive": 0.000626334163825959,
+        "cytotoxic": 0.999373733997345,
+        "artifact": 1.817822448124673e-09,
+        "organism_mismatch": 1.5070277248341313e-09,
+        "known_control_only": 1.5070277248341313e-09
+      },
+      "final_discovery_score": 0.304296875
+    },
+    {
+      "candidate_smiles": "CC(C)(O/N=C(/C(=O)N[C@H]1CN2CC(C#N)=C(C(=O)O)N2C1=O)c1csc(N)n1)C(=O)O",
+      "candidate_inchi_key": "LSWQSGGGZBUJOV-QRFXEOMOSA-N",
+      "channel": "B_screened_library",
+      "antibacterial_score": 1.0,
+      "cytotox_risk": 1.0,
+      "artifact_risk": 0.65234375,
+      "failure_mode_probs": {
+        "inactive": 8.749654080020264e-05,
+        "cytotoxic": 0.9998387098312378,
+        "artifact": 2.5068178729270585e-05,
+        "organism_mismatch": 2.35493771469919e-05,
+        "known_control_only": 2.5068178729270585e-05
+      },
+      "final_discovery_score": 0.304296875
+    },
+    {
+      "candidate_smiles": "C[C@@H](O)[C@H]1C(=O)N2C(C(=O)O)=C(COc3c(I)cc(Cl)c4cccnc34)S[C@H]12",
+      "candidate_inchi_key": "NSJJLSZVDLRPMW-UHFFFAOYSA-N",
+      "channel": "B_screened_library",
+      "antibacterial_score": 1.0,
+      "cytotox_risk": 1.0,
+      "artifact_risk": 0.65234375,
+      "failure_mode_probs": {
+        "inactive": 8.473880006931722e-05,
+        "cytotoxic": 0.9990635514259338,
+        "artifact": 0.00026929937303066254,
+        "organism_mismatch": 0.00029118204838596284,
+        "known_control_only": 0.00029118204838596284
+      },
+      "final_discovery_score": 0.304296875
+    },
+    {
+      "candidate_smiles": "CCCC[C@H](CC(=O)NO)S(=O)(=O)c1ccccc1",
+      "candidate_inchi_key": "MPFNSDAEDQRENN-UHFFFAOYSA-N",
+      "channel": "B_screened_library",
+      "antibacterial_score": 1.0,
+      "cytotox_risk": 1.0,
+      "artifact_risk": 0.65234375,
+      "failure_mode_probs": {
+        "inactive": 8.220111340051517e-05,
+        "cytotoxic": 0.9999083280563354,
+        "artifact": 3.1872832551016472e-06,
+        "organism_mismatch": 2.9020545753155602e-06,
+        "known_control_only": 3.392845428606961e-06
+      },
+      "final_discovery_score": 0.304296875
+    },
+    {
+      "candidate_smiles": "C[C@@H](O)[C@H]1C(=O)N2C(C(=O)O)=C(COC(N)=O)S[C@H]12",
+      "candidate_inchi_key": "HLJOMDAPUFKNDF-QOZWTWKZSA-N",
+      "channel": "B_screened_library",
+      "antibacterial_score": 1.0,
+      "cytotox_risk": 1.0,
+      "artifact_risk": 0.65234375,
+      "failure_mode_probs": {
+        "inactive": 9.915270493365824e-05,
+        "cytotoxic": 0.9999005794525146,
+        "artifact": 6.214165182427678e-08,
+        "organism_mismatch": 6.614943970362219e-08,
+        "known_control_only": 4.546380338865674e-08
+      },
+      "final_discovery_score": 0.304296875
+    },
+    {
+      "candidate_smiles": "N#Cc1ccc(NC(=O)c2cc3n(n2)C(C(F)(F)F)CC(c2cccs2)N3)cc1",
+      "candidate_inchi_key": "FITXCLRWDSMQLY-UHFFFAOYSA-N",
+      "channel": "C_organism_analog",
+      "max_tanimoto_to_organism_active": 1.0,
+      "antibacterial_score": 1.0,
+      "cytotox_risk": 1.0,
+      "artifact_risk": 0.65234375,
+      "failure_mode_probs": {
+        "inactive": 0.00010887824464589357,
+        "cytotoxic": 0.9997196793556213,
+        "artifact": 5.827832137583755e-05,
+        "organism_mismatch": 5.306301682139747e-05,
+        "known_control_only": 6.012827725498937e-05
+      },
+      "final_discovery_score": 0.304296875
+    },
+    {
+      "candidate_smiles": "CN(Cc1cn(C)c2ccccc12)C(=O)/C=C/c1cnc2c(c1)CCC(=O)N2",
+      "candidate_inchi_key": "VAZMNDXVXVUKFY-JXMROGBWSA-N",
+      "channel": "A_repurposing",
+      "antibacterial_score": 1.0,
+      "cytotox_risk": 1.0,
+      "artifact_risk": 0.65625,
+      "failure_mode_probs": {
+        "inactive": 0.00013765438052359968,
+        "cytotoxic": 0.999860405921936,
+        "artifact": 5.895598746974429e-07,
+        "organism_mismatch": 7.111449349395116e-07,
+        "known_control_only": 6.275832333813014e-07
+      },
+      "final_discovery_score": 0.303125
+    },
+    {
+      "candidate_smiles": "COC1/C=C/OC2(C)Oc3c(C)c(O)c4c(O)c(c(C=O)c(O)c4c3C2=O)NC(=O)/C(C)=C\\C=C\\C(C)C(O)C(C)C(O)C(C)C(OC(C)=O)C1C",
+      "candidate_inchi_key": "BBNQHOMJRFAQBN-AEZIOYLSSA-N",
+      "channel": "A_repurposing",
+      "antibacterial_score": 1.0,
+      "cytotox_risk": 1.0,
+      "artifact_risk": 0.65625,
+      "failure_mode_probs": {
+        "inactive": 7.72195853642188e-05,
+        "cytotoxic": 0.9998925924301147,
+        "artifact": 9.222564585797954e-06,
+        "organism_mismatch": 9.515320016362239e-06,
+        "known_control_only": 1.1477667612780351e-05
+      },
+      "final_discovery_score": 0.303125
+    },
+    {
+      "candidate_smiles": "COC1CCOC2(C)Oc3c(C)c(O)c4c(O)c(c(N5CCN(Cc6c(C)cc(C)cc6C)CC5)c(O)c4c3C2=O)NC(=O)C(C)CCCC(C)C(O)C(C)C(O)C(C)C(OC(C)=O)C1C",
+      "candidate_inchi_key": "XXFOAPPKFXENRF-UHFFFAOYSA-N",
+      "channel": "A_repurposing",
+      "antibacterial_score": 1.0,
+      "cytotox_risk": 1.0,
+      "artifact_risk": 0.65625,
+      "failure_mode_probs": {
+        "inactive": 8.480781980324537e-05,
+        "cytotoxic": 0.9998772144317627,
+        "artifact": 1.045037333824439e-05,
+        "organism_mismatch": 1.2217725270602386e-05,
+        "known_control_only": 1.5205203453660943e-05
+      },
+      "final_discovery_score": 0.303125
+    },
+    {
+      "candidate_smiles": "Br.CN(C(=O)C[C@@H](N)CCCN=C(N)N)C1CN=C(Nc2ncccn2)NC1=O",
+      "candidate_inchi_key": "OCWHBDMTSZBIIF-UHFFFAOYSA-N",
+      "channel": "B_screened_library",
+      "antibacterial_score": 1.0,
+      "cytotox_risk": 1.0,
+      "artifact_risk": 0.65625,
+      "failure_mode_probs": {
+        "inactive": 7.967037527123466e-05,
+        "cytotoxic": 0.9998873472213745,
+        "artifact": 1.112447807827266e-05,
+        "organism_mismatch": 1.112447807827266e-05,
+        "known_control_only": 1.0782213394122664e-05
+      },
+      "final_discovery_score": 0.303125
+    },
+    {
+      "candidate_smiles": "Cc1ccc(C(=O)CCCC#Cc2ccc(C3=NCCO3)cc2)s1",
+      "candidate_inchi_key": "XDWJMVBWHZPDLS-UHFFFAOYSA-N",
+      "channel": "C_organism_analog",
+      "max_tanimoto_to_organism_active": 1.0,
+      "antibacterial_score": 1.0,
+      "cytotox_risk": 1.0,
+      "artifact_risk": 0.65625,
+      "failure_mode_probs": {
+        "inactive": 0.00015703405370004475,
+        "cytotoxic": 0.9909929633140564,
+        "artifact": 0.0022019261959940195,
+        "organism_mismatch": 0.002783495467156172,
+        "known_control_only": 0.0038645004387944937
+      },
+      "final_discovery_score": 0.303125
+    },
+    {
+      "candidate_smiles": "CCn1cc(C(=O)O)c(=O)c2cc(F)c(N3CCN(C)CC3)cc21",
+      "candidate_inchi_key": "FHFYDNQZQSQIAI-UHFFFAOYSA-N",
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.9765625,
+      "cytotox_risk": 0.97265625,
+      "artifact_risk": 0.625,
+      "failure_mode_probs": {
+        "inactive": 0.023241925984621048,
+        "cytotoxic": 0.9767580628395081,
+        "artifact": 3.2541126043783564e-11,
+        "organism_mismatch": 2.8717445088588534e-11,
+        "known_control_only": 1.973719278292041e-11
+      },
+      "final_discovery_score": 0.302734375
+    },
+    {
+      "candidate_smiles": "O=C(N[C@H](CO)[C@H](O)c1ccc([N+](=O)[O-])cc1)C(Cl)Cl",
+      "candidate_inchi_key": "ZBESXLZWXUKHBG-PRQUHKFRSA-N",
+      "channel": "B_screened_library",
+      "antibacterial_score": 1.0,
+      "cytotox_risk": 1.0,
+      "artifact_risk": 0.66015625,
+      "failure_mode_probs": {
+        "inactive": 6.603369547519833e-05,
+        "cytotoxic": 0.9996546506881714,
+        "artifact": 9.31224349187687e-05,
+        "organism_mismatch": 9.31224349187687e-05,
+        "known_control_only": 9.31224349187687e-05
+      },
+      "final_discovery_score": 0.30195312500000004
+    },
+    {
+      "candidate_smiles": "CC(=O)O.CN(C(=O)C[C@@H](N)CCCN=C(N)N)C1CN=C(Nc2ccccn2)NC1=O",
+      "candidate_inchi_key": "DUTJAPNHSQZTCR-UHFFFAOYSA-N",
+      "channel": "B_screened_library",
+      "antibacterial_score": 1.0,
+      "cytotox_risk": 1.0,
+      "artifact_risk": 0.66015625,
+      "failure_mode_probs": {
+        "inactive": 7.721974543528631e-05,
+        "cytotoxic": 0.9998946189880371,
+        "artifact": 9.515339115750976e-06,
+        "organism_mismatch": 9.22258277569199e-06,
+        "known_control_only": 9.515339115750976e-06
+      },
+      "final_discovery_score": 0.30195312500000004
+    }
+  ],
+  "locked_at_utc": "2026-05-11T04:22:17.694103+00:00"
+}
