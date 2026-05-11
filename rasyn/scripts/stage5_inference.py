@@ -353,6 +353,22 @@ def score_candidates(
 
 # ---------------------- decontamination ----------------------
 
+def _load_precomputed_candidates(json_path: Path, case_id: str, channel_name: str) -> list[dict]:
+    """Load pre-generated candidates from generate_channel_candidates.py output."""
+    try:
+        data = json.loads(json_path.read_text())
+    except Exception as e:
+        _log(f"  Failed to load {json_path}: {e}")
+        return []
+    case_block = data.get("cases", {}).get(case_id)
+    if not case_block:
+        _log(f"  {json_path.name}: no candidates for {case_id}")
+        return []
+    cands = case_block.get("candidates", [])
+    _log(f"  Channel {channel_name}: loaded {len(cands)} precomputed from {json_path.name}")
+    return [{"candidate_smiles": c, "channel": channel_name} for c in cands]
+
+
 def decontaminate(candidates: list[dict], answer_smiles: str | None) -> list[dict]:
     """Drop candidates with Tanimoto >= 0.85 to the sealed answer."""
     if not answer_smiles or not candidates:
@@ -391,8 +407,12 @@ def main() -> int:
     p = argparse.ArgumentParser()
     p.add_argument("--ranker", type=Path, required=True)
     p.add_argument("--ch6-smiles", type=Path, default=None)
-    p.add_argument("--ch4", type=Path, default=None)
-    p.add_argument("--ch5", type=Path, default=None)
+    p.add_argument("--ch4", type=Path, default=None, help="Channel 4 ckpt for on-pod generation")
+    p.add_argument("--ch5", type=Path, default=None, help="Channel 5 ckpt for on-pod generation")
+    p.add_argument("--ch4-candidates-json", type=Path, default=None,
+                   help="Pre-generated Ch4 candidates JSON from scripts/generate_channel_candidates.py")
+    p.add_argument("--ch5-candidates-json", type=Path, default=None,
+                   help="Pre-generated Ch5 candidates JSON from scripts/generate_channel_candidates.py")
     p.add_argument("--embeddings", type=Path, default=None)
     p.add_argument("--cases", type=str, default="ADMET-001,ADMET-002,ADMET-003")
     p.add_argument("--top-k", type=int, default=20)
@@ -505,7 +525,11 @@ def main() -> int:
 
         # ----- Channel 4 (learned inverse-delta, conditional) -----
         ch4 = []
-        if args.ch4:
+        if args.ch4_candidates_json and args.ch4_candidates_json.exists():
+            ch4 = _load_precomputed_candidates(
+                args.ch4_candidates_json, case_id, channel_name="learned_inverse_delta"
+            )
+        elif args.ch4:
             ch4 = channel4_5_sample(
                 parent_smiles, liability_type, ckpt_path=args.ch4, device=device,
                 n_samples=args.n_novelty_samples, channel_name="learned_inverse_delta",
@@ -513,7 +537,11 @@ def main() -> int:
 
         # ----- Channel 5 (forward-reward generator, conditional) -----
         ch5 = []
-        if args.ch5:
+        if args.ch5_candidates_json and args.ch5_candidates_json.exists():
+            ch5 = _load_precomputed_candidates(
+                args.ch5_candidates_json, case_id, channel_name="forward_reward_generator"
+            )
+        elif args.ch5:
             ch5 = channel4_5_sample(
                 parent_smiles, liability_type, ckpt_path=args.ch5, device=device,
                 n_samples=args.n_novelty_samples, channel_name="forward_reward_generator",
