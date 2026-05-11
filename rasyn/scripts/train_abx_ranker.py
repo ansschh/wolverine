@@ -282,7 +282,10 @@ def build_per_pair_rows(tasks_df: pd.DataFrame, facts_df: pd.DataFrame) -> list[
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("--pretrain", type=Path, required=True)
+    p.add_argument("--pretrain", type=Path, default=None,
+                   help="Optional Stage-1 SMILES LM checkpoint to init backbone. "
+                        "If None or 'none', the ranker trains from scratch (slower convergence "
+                        "but no upstream-pretrain dependency).")
     p.add_argument("--tasks", type=Path, required=True)
     p.add_argument("--facts", type=Path, required=True)
     p.add_argument("--out", type=Path, required=True)
@@ -335,8 +338,14 @@ def main():
     val_dl = DataLoader(val_ds, batch_size=args.bs * 2, num_workers=2, pin_memory=True)
     log(f"World={world_size} | tr={len(tr_ds):,} val={len(val_ds):,}")
 
-    ckpt = torch.load(args.pretrain, map_location="cpu", weights_only=False)
-    cargs = ckpt.get("args", {})
+    use_pretrain = args.pretrain is not None and str(args.pretrain).lower() != "none" and Path(args.pretrain).exists()
+    if use_pretrain:
+        ckpt = torch.load(args.pretrain, map_location="cpu", weights_only=False)
+        cargs = ckpt.get("args", {})
+    else:
+        if is_main:
+            log(f"No pretrain ckpt provided/found at {args.pretrain} — initializing backbone from scratch.")
+        cargs = {}
     model = ABXMultiHeadRanker(
         VOCAB_SIZE,
         d_model=cargs.get("d_model", 1024),
@@ -344,12 +353,13 @@ def main():
         n_layers=cargs.get("n_layers", 16),
         max_len=cargs.get("max_len", args.max_len),
     ).to(device)
-    if is_main:
-        load_pretrain(model, args.pretrain, log)
-    if dist.is_initialized():
-        dist.barrier()
-    if not is_main:
-        load_pretrain(model, args.pretrain, None)
+    if use_pretrain:
+        if is_main:
+            load_pretrain(model, args.pretrain, log)
+        if dist.is_initialized():
+            dist.barrier()
+        if not is_main:
+            load_pretrain(model, args.pretrain, None)
     if world_size > 1:
         # find_unused_parameters=True because 12 heads but only 3 contribute to loss
         # in this v1 (antibacterial, cytotox, failure_modes). Other heads (selectivity,
