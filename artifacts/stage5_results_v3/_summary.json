@@ -1,0 +1,28 @@
+{
+  "cases": {
+    "ADMET-001": {
+      "n_pool": 355,
+      "top_k": 20,
+      "top_candidate": {
+        "candidate_smiles": "COc1cccc(CC(=O)N(C)C2CCN(CCC(c3ccccc3)c3ccccc3)CC2)c1",
+        "channel": "analog_retrieval",
+        "rescue_score": 0.9296875,
+        "rescue_label": "strong_success",
+        "retention_pred": "strong",
+        "improvement_pred": "moderate"
+      }
+    },
+    "ADMET-002": {
+      "n_pool": 356,
+      "top_k": 20,
+      "top_candidate": {
+        "candidate_smiles": "COc1nc(N)c2ccn(COCCO)c2n1",
+        "channel": "analog_retrieval",
+        "rescue_score": 0.95703125,
+        "rescue_label": "strong_success",
+        "retention_pred": "strong",
+        "improvement_pred": "large"
+      }
+    }
+  }
+}

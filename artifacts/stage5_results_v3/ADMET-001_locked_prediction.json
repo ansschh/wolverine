@@ -1,0 +1,175 @@
+{
+  "case_id": "ADMET-001",
+  "mode": "A",
+  "parent_canonical_smiles": "CC(C)(C)c1ccc(C(O)CCCN2CCC(C(O)(c3ccccc3)c3ccccc3)CC2)cc1",
+  "n_pool": 355,
+  "top_k": 20,
+  "ranker_ckpt_step": 6000,
+  "ranker_seed": 42,
+  "locked_at_utc": "2026-05-11T01:21:50.812811+00:00",
+  "top_candidates": [
+    {
+      "candidate_smiles": "COc1cccc(CC(=O)N(C)C2CCN(CCC(c3ccccc3)c3ccccc3)CC2)c1",
+      "channel": "analog_retrieval",
+      "rescue_score": 0.9296875,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "moderate"
+    },
+    {
+      "candidate_smiles": "CC1=NC(C)=C1CN1CCC2(CCN(C(=O)c3cccnc3)CC2)C1",
+      "channel": "novelty_smiles",
+      "raw_smiles": "Cc1nc(C)c1CN1CCC2(CCN(C(=O)c3cccnc3)CC2)C1",
+      "rescue_score": 0.9296875,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "moderate"
+    },
+    {
+      "candidate_smiles": "CC(C)OC(=O)N1CC[C@@H](Nc2ccc(N3CCN(C4CC4)CC3)nc2)C1",
+      "channel": "novelty_smiles",
+      "raw_smiles": "CC(C)OC(=O)N1CC[C@@H](Nc2ccc(N3CCN(C4CC4)CC3)nc2)C1",
+      "rescue_score": 0.927734375,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "moderate"
+    },
+    {
+      "candidate_smiles": "O=C(O)c1ccc(CCCN2CCC(C(O)(c3ccccc3)c3ccc(F)cc3F)CC2)cc1",
+      "channel": "learned_inverse_delta",
+      "rescue_score": 0.923828125,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "moderate"
+    },
+    {
+      "candidate_smiles": "C#CCNC(=O)c1ccc(OC2CCN(CC(c3ccccc3)c3ccccc3)CC2)c(OC)c1",
+      "channel": "analog_retrieval",
+      "rescue_score": 0.919921875,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "large"
+    },
+    {
+      "candidate_smiles": "N#Cc1cccc(C2CCN(CCCCN(c3ccccc3)c3ccccc3)CC2)c1",
+      "channel": "learned_inverse_delta",
+      "rescue_score": 0.9140625,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "moderate"
+    },
+    {
+      "candidate_smiles": "CC(C)(O)c1ccc(C(O)CCCN2CCC(C(O)(c3ccc(F)cc3)c3ccc(F)cc3)CC2)cc1",
+      "channel": "learned_inverse_delta",
+      "rescue_score": 0.908203125,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "moderate"
+    },
+    {
+      "candidate_smiles": "CCCNC(=O)c1ccc(OC2CCN(CC(c3ccccc3)c3ccccc3)CC2)c(OC)c1",
+      "channel": "analog_retrieval",
+      "rescue_score": 0.8984375,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "moderate"
+    },
+    {
+      "candidate_smiles": "CCN(CC)C(=O)c1ccc(C2(c3cccc(O)c3)CCN(CCc3ccccc3)CC2)cc1",
+      "channel": "analog_retrieval",
+      "rescue_score": 0.8984375,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "large"
+    },
+    {
+      "candidate_smiles": "CC(C)(O)c1ccc(CCCN2CCC(C(O)(c3ccccc3)c3ccccc3)CC2)cc1",
+      "channel": "learned_inverse_delta",
+      "rescue_score": 0.896484375,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "moderate"
+    },
+    {
+      "candidate_smiles": "Cc1ccc(C2(O)CCN(CCCC(C#N)(c3ccccc3)c3ccccc3)CC2)cc1",
+      "channel": "analog_retrieval",
+      "rescue_score": 0.89453125,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "large"
+    },
+    {
+      "candidate_smiles": "O=C(O)c1ccc(C2CCN(CCCCN(Cc3ccc(F)cc3)c3ccc(F)cc3)CC2)cc1",
+      "channel": "learned_inverse_delta",
+      "rescue_score": 0.892578125,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "moderate"
+    },
+    {
+      "candidate_smiles": "COc1ccc(CCN2CCN(c3ccccc3)CC2)cc1OC",
+      "channel": "novelty_smiles",
+      "raw_smiles": "COc1ccc(CCN2CCN(c3ccccc3)CC2)cc1OC",
+      "rescue_score": 0.888671875,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "moderate"
+    },
+    {
+      "candidate_smiles": "CC(C)(O)c1cccc(CCCN2CCC(C(O)(c3ccccc3)c3cccc(Cl)c3)CC2)c1",
+      "channel": "learned_inverse_delta",
+      "rescue_score": 0.88671875,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "minor"
+    },
+    {
+      "candidate_smiles": "CC(C)(C)c1ccc(OCCCN2CCC(C(O)(c3ccccc3)c3ccccc3)CC2)cc1",
+      "channel": "analog_retrieval",
+      "rescue_score": 0.884765625,
+      "rescue_label": "weak_success",
+      "retention_pred": "strong",
+      "improvement_pred": "minor"
+    },
+    {
+      "candidate_smiles": "Cc1ccc(CCN2CCC(C(O)(c3ccccc3)c3ccccc3)CC2)cc1",
+      "channel": "analog_retrieval",
+      "rescue_score": 0.884765625,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "moderate"
+    },
+    {
+      "candidate_smiles": "CC(C)(C)c1ccc(NCCCN2CCC(C(O)(c3ccccc3)c3ccccc3)CC2)cc1",
+      "channel": "analog_retrieval",
+      "rescue_score": 0.8828125,
+      "rescue_label": "weak_success",
+      "retention_pred": "strong",
+      "improvement_pred": "minor"
+    },
+    {
+      "candidate_smiles": "O=C(O)CCc1ccc(C(O)CCCN2CCC(C(O)(c3ccccc3)c3ccc(F)cc3)CC2)cc1",
+      "channel": "learned_inverse_delta",
+      "rescue_score": 0.880859375,
+      "rescue_label": "weak_success",
+      "retention_pred": "strong",
+      "improvement_pred": "minor"
+    },
+    {
+      "candidate_smiles": "O=C(O)c1ccc(CCCN2CCC(C(O)(c3ccccc3)c3ccc(F)cc3)CC2)cc1",
+      "channel": "learned_inverse_delta",
+      "rescue_score": 0.87890625,
+      "rescue_label": "weak_success",
+      "retention_pred": "acceptable",
+      "improvement_pred": "moderate"
+    },
+    {
+      "candidate_smiles": "CCN(CC)C1CCc2cc(OCc3ccc(OCCN(C)C)cc3)c3cc(F)ccc3c2C1",
+      "channel": "forward_reward_generator",
+      "rescue_score": 0.87890625,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "large"
+    }
+  ]
+}

@@ -1,0 +1,173 @@
+{
+  "case_id": "ADMET-002",
+  "mode": "A",
+  "parent_canonical_smiles": "Nc1nc(=O)c2ncn(COCCO)c2[nH]1",
+  "n_pool": 356,
+  "top_k": 20,
+  "ranker_ckpt_step": 6000,
+  "ranker_seed": 42,
+  "locked_at_utc": "2026-05-11T01:22:26.160942+00:00",
+  "top_candidates": [
+    {
+      "candidate_smiles": "COc1nc(N)c2ccn(COCCO)c2n1",
+      "channel": "analog_retrieval",
+      "rescue_score": 0.95703125,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "large"
+    },
+    {
+      "candidate_smiles": "Cn1ncc2c(NCCO)nc(Cl)nc21",
+      "channel": "analog_retrieval",
+      "rescue_score": 0.947265625,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "large"
+    },
+    {
+      "candidate_smiles": "CSc1nc(N)c2ccn(COCCO)c2n1",
+      "channel": "analog_retrieval",
+      "rescue_score": 0.9453125,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "moderate"
+    },
+    {
+      "candidate_smiles": "Cn1c(N)nc2c(ncn2COCCO)c1=O",
+      "channel": "analog_retrieval",
+      "rescue_score": 0.935546875,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "moderate"
+    },
+    {
+      "candidate_smiles": "Cc1nn(C)c2nc(NCCOCCO)sc12",
+      "channel": "analog_retrieval",
+      "rescue_score": 0.931640625,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "large"
+    },
+    {
+      "candidate_smiles": "CNc1nc(O)c2ncn(COCCO)c2n1",
+      "channel": "analog_retrieval",
+      "rescue_score": 0.9296875,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "large"
+    },
+    {
+      "candidate_smiles": "CSc1nc(Cl)c2ccn(COCCO)c2n1",
+      "channel": "analog_retrieval",
+      "rescue_score": 0.9296875,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "large"
+    },
+    {
+      "candidate_smiles": "Cn1ncc2c(NCCO)nc(NCCCO)nc21",
+      "channel": "analog_retrieval",
+      "rescue_score": 0.92578125,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "large"
+    },
+    {
+      "candidate_smiles": "Cc1cn(COC(CO)CO)c2ncnc(N)c12",
+      "channel": "analog_retrieval",
+      "rescue_score": 0.92578125,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "large"
+    },
+    {
+      "candidate_smiles": "Nc1nc(O)c2ncn(C3CC3(CO)CO)c2n1",
+      "channel": "analog_retrieval",
+      "rescue_score": 0.923828125,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "large"
+    },
+    {
+      "candidate_smiles": "Nc1nc(O)c2[nH]cc(CC3CCCO3)c2n1",
+      "channel": "analog_retrieval",
+      "rescue_score": 0.923828125,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "large"
+    },
+    {
+      "candidate_smiles": "CCCCCn1[nH]c2c(ncn2CN)c1=O",
+      "channel": "learned_inverse_delta",
+      "rescue_score": 0.923828125,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "moderate"
+    },
+    {
+      "candidate_smiles": "Nc1ncc(-c2cn(COCCO)cn2)c(O)n1",
+      "channel": "analog_retrieval",
+      "rescue_score": 0.919921875,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "large"
+    },
+    {
+      "candidate_smiles": "Cn1ncc2c(NCCO)nc(NCCO)nc21",
+      "channel": "analog_retrieval",
+      "rescue_score": 0.912109375,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "large"
+    },
+    {
+      "candidate_smiles": "Nc1ncc2ncn(CC(CO)CO)c2n1",
+      "channel": "analog_retrieval",
+      "rescue_score": 0.91015625,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "large"
+    },
+    {
+      "candidate_smiles": "Nc1nc(O)c2ncn(CO[C@H](CO)CCO)c2n1",
+      "channel": "analog_retrieval",
+      "rescue_score": 0.90625,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "large"
+    },
+    {
+      "candidate_smiles": "Nc1ncc2ncn(CCC(CO)CO)c2n1",
+      "channel": "analog_retrieval",
+      "rescue_score": 0.904296875,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "large"
+    },
+    {
+      "candidate_smiles": "Nc1nc(O)c2ccn(COCCO)c2n1",
+      "channel": "analog_retrieval",
+      "rescue_score": 0.8984375,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "large"
+    },
+    {
+      "candidate_smiles": "CC(C)C(=O)Nc1nc(C(F)(F)F)cs1",
+      "channel": "novelty_smiles",
+      "raw_smiles": "CC(C)C(=O)Nc1nc(C(F)(F)F)cs1",
+      "rescue_score": 0.8984375,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "large"
+    },
+    {
+      "candidate_smiles": "Nc1nc(O)c2ncn(CO[C@H](CO)CF)c2n1",
+      "channel": "analog_retrieval",
+      "rescue_score": 0.896484375,
+      "rescue_label": "strong_success",
+      "retention_pred": "strong",
+      "improvement_pred": "large"
+    }
+  ]
+}
