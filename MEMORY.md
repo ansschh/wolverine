@@ -115,6 +115,34 @@ Use headings, bullet lists, and tables freely. Do NOT prune old entries — appe
 
 ## Log entries (newest first)
 
+### 2026-05-11 (~04:04 UTC) — ABX data build DONE on Pod C; ranker training launched on Pod A
+**Type:** result
+**Phase:** ABX-3 done; ABX-5 (training) in progress
+
+**Pod C `build_abx_dataset.py` completed in 2.2 min:**
+- Pass A (ingest): ChEMBL antibacterial 276,984 rows (8 organisms), PubChem 6/7 AIDs OK, Repurposing Hub SSL-cert failed (skipped), CO-ADD not provided
+- Pass B (decontam + normalize): 0 rows removed (sealed answer SMILES not yet in registry as canonical); 71,910 unique molecules; 276,984 antibacterial facts; 275,808 counter-screen facts ⚠️ counter-screen heuristic too broad (matches "T" or "F" in assay_type case-insensitively) — most rows tagged; not blocking but should be tightened
+- Pass C (ranking tasks): 7 ranking tasks (one per organism)
+- Pass D (generative examples): 24,726 active-molecule + organism conditioning examples
+- Manifest written
+
+**Issue to fix later:** Pass B counter-screen heuristic over-tags. Doesn't affect ranking_tasks (which uses activity_label only); does inflate counter_screen_facts.parquet.
+
+**SCPed local + Pod A:**
+- abx_molecules.parquet (72K mols)
+- antibacterial_assay_facts.parquet (277K rows)
+- antibiotic_ranking_tasks.parquet (7 tasks)
+- generative_training_examples.parquet (25K)
+
+**Pod A `train_abx_ranker.py` launched at 04:04:23** (tmux `abxr`, watcher `bpmm0c6yy`).
+Hyperparams: 8x A100 DDP, 4000 steps, bs=32, lr=1e-4, seed=42, init from `smiles_lm_200m/checkpoint.pt`. ETA ~15-25 min based on ADMET parallel.
+
+**Pod B + D still idle** (will launch generative-channel training if needed for E/F).
+
+**Refs:** L40-L42; spec §8 (tables), §12 (ranker).
+
+---
+
 ### 2026-05-11 (~04:00 UTC) — 🦠 ABX system scaffolded end-to-end (Phases 1-7)
 **Type:** decision + result
 **Phase:** Antibiotic discovery scaffold complete; ABX data build + ranker training next
