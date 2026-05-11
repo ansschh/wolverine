@@ -101,6 +101,104 @@ def channel1_analog_retrieval(parent_smiles: str, *, embeddings_dir: Path,
     return []
 
 
+def channel4_5_sample(parent_smiles: str, liability_type: str, *,
+                       ckpt_path: Path, device: torch.device,
+                       n_samples: int = 100, max_len: int = 130,
+                       temperature: float = 0.8,
+                       channel_name: str = "learned_inverse_delta") -> list[dict]:
+    """Channel 4 or 5: conditional generation via seq2seq.
+
+    Input encoding: [BOS][LIABILITY_<type>][SEP] + parent_tokens + [EOS]
+    Output: autoregressive SMILES generation from decoder.
+    Same architecture used by both Ch4 (broad filter) and Ch5 (strong-success).
+    """
+    try:
+        from train_channel4_inverse_delta import (  # type: ignore
+            InverseDeltaSeq2Seq, encode_input, EXTENDED_VOCAB_SIZE,
+            BOS, EOS, SEP, LIAB_TOKEN_ID, LIABILITY_TYPE2STR,
+        )
+        from h200_smiles_lm_pretrain import VOCAB as BASE_VOCAB
+    except ImportError as e:
+        _log(f"  Channel {channel_name} import failed ({e}); skipping")
+        return []
+    try:
+        from rdkit import Chem
+    except ImportError:
+        _log("  RDKit not available; Channel {} skipped".format(channel_name))
+        return []
+
+    if not Path(ckpt_path).exists():
+        _log(f"  Channel {channel_name} ckpt not found at {ckpt_path}; skipping")
+        return []
+
+    ckpt = torch.load(ckpt_path, map_location=device, weights_only=False)
+    args = ckpt.get("args", {})
+    model = InverseDeltaSeq2Seq(
+        EXTENDED_VOCAB_SIZE,
+        d_model=args.get("d_model", 1024),
+        n_heads=args.get("n_heads", 16),
+        n_layers=args.get("n_layers", 16),
+        max_len=args.get("max_len", max_len),
+    ).to(device)
+    sd = {k.removeprefix("module."): v for k, v in ckpt["model"].items()}
+    model.load_state_dict(sd, strict=True)
+    model.eval()
+
+    INV_BASE = {v: k for k, v in BASE_VOCAB.items()}
+
+    # Build encoder input (one-shot, reused across samples)
+    enc_ids_list, enc_mask_list = encode_input(parent_smiles, liability_type, max_len)
+    enc_ids = torch.tensor(enc_ids_list, dtype=torch.long, device=device).unsqueeze(0)
+    enc_mask = torch.tensor(enc_mask_list, dtype=torch.bool, device=device).unsqueeze(0)
+
+    # Encode once
+    with torch.no_grad(), torch.amp.autocast("cuda", dtype=torch.bfloat16):
+        T = enc_ids.size(1)
+        pos = torch.arange(T, device=device).unsqueeze(0).expand_as(enc_ids)
+        x = model.tok_emb(enc_ids) + model.pos_emb(pos)
+        x = model.encoder(x, src_key_padding_mask=~enc_mask)
+        memory = model.norm(x)
+
+    samples: list[dict] = []
+    seen: set[str] = set()
+    with torch.no_grad():
+        for _ in range(n_samples):
+            dec_ids = torch.tensor([[BOS]], dtype=torch.long, device=device)
+            for step in range(max_len - 1):
+                Td = dec_ids.size(1)
+                with torch.amp.autocast("cuda", dtype=torch.bfloat16):
+                    dpos = torch.arange(Td, device=device).unsqueeze(0).expand_as(dec_ids)
+                    y = model.tok_emb(dec_ids) + model.pos_emb(dpos)
+                    causal = torch.triu(torch.full((Td, Td), float("-inf"), device=device), diagonal=1)
+                    y = model.decoder(y, memory, tgt_mask=causal,
+                                       memory_key_padding_mask=~enc_mask)
+                    y = model.dec_norm(y)
+                    logits = model.lm_head(y)[0, -1, :].float() / max(temperature, 1e-6)
+                probs = torch.softmax(logits, dim=-1)
+                next_tok = torch.multinomial(probs, num_samples=1).item()
+                if next_tok == EOS:
+                    break
+                dec_ids = torch.cat([dec_ids, torch.tensor([[next_tok]], device=device)], dim=1)
+
+            tokens = dec_ids[0, 1:].cpu().tolist()
+            chars = []
+            for t in tokens:
+                # Only base-vocab tokens decode to SMILES chars; special tokens skip.
+                if t in INV_BASE:
+                    chars.append(INV_BASE[t])
+            smi = "".join(chars)
+            mol = Chem.MolFromSmiles(smi)
+            if mol is None:
+                continue
+            canonical = Chem.MolToSmiles(mol, isomericSmiles=True, canonical=True)
+            if canonical in seen or canonical == parent_smiles:
+                continue
+            seen.add(canonical)
+            samples.append({"candidate_smiles": canonical, "channel": channel_name})
+    _log(f"  Channel {channel_name}: {len(samples)}/{n_samples} valid unique")
+    return samples
+
+
 def channel6_smiles_sample(parent_smiles: str, *, ckpt_path: Path, device: torch.device,
                             n_samples: int = 100, max_len: int = 130,
                             temperature: float = 0.8) -> list[dict]:
@@ -405,7 +503,23 @@ def main() -> int:
         _log(f"  Channel 2 (MMP): {len(ch2_out.candidates)} candidates")
         _log(f"  Channel 3 (liability rules): {len(ch3_out.candidates)} candidates")
 
-        # ----- Channel 6 (SMILES novelty) -----
+        # ----- Channel 4 (learned inverse-delta, conditional) -----
+        ch4 = []
+        if args.ch4:
+            ch4 = channel4_5_sample(
+                parent_smiles, liability_type, ckpt_path=args.ch4, device=device,
+                n_samples=args.n_novelty_samples, channel_name="learned_inverse_delta",
+            )
+
+        # ----- Channel 5 (forward-reward generator, conditional) -----
+        ch5 = []
+        if args.ch5:
+            ch5 = channel4_5_sample(
+                parent_smiles, liability_type, ckpt_path=args.ch5, device=device,
+                n_samples=args.n_novelty_samples, channel_name="forward_reward_generator",
+            )
+
+        # ----- Channel 6 (SMILES novelty, unconditional) -----
         ch6 = []
         if args.ch6_smiles:
             ch6 = channel6_smiles_sample(
@@ -413,15 +527,14 @@ def main() -> int:
                 n_samples=args.n_novelty_samples,
             )
 
-        # Channels 4, 5 require trained checkpoints; load + sample similarly to ch6
-        # (omitted for brevity in v1; re-add when --ch4/--ch5 ckpts exist)
-
         # ----- Combine + dedup -----
         pool: list[dict] = []
         seen: set[str] = set()
         for src, items in [
             ("ch2_mmp", [{"candidate_smiles": a.canonical_smiles, "channel": "mmp_transformer"} for a in ch2_out.candidates]),
             ("ch3_rules", [{"candidate_smiles": a.canonical_smiles, "channel": "liability_rules"} for a in ch3_out.candidates]),
+            ("ch4_inverse_delta", ch4),
+            ("ch5_forward_reward", ch5),
             ("ch6_novelty", ch6),
         ]:
             for item in items:
