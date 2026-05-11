@@ -351,7 +351,12 @@ def main():
     if not is_main:
         load_pretrain(model, args.pretrain, None)
     if world_size > 1:
-        model = nn.parallel.DistributedDataParallel(model, device_ids=[local_rank])
+        # find_unused_parameters=True because 12 heads but only 3 contribute to loss
+        # in this v1 (antibacterial, cytotox, failure_modes). Other heads (selectivity,
+        # hemolysis, artifact, novelty, etc.) have no labels yet.
+        model = nn.parallel.DistributedDataParallel(
+            model, device_ids=[local_rank], find_unused_parameters=True,
+        )
 
     optim = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=1e-2, betas=(0.9, 0.95))
 
