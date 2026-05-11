@@ -201,6 +201,24 @@ def main():
             organism_active_pool_path=args.facts,
         )
 
+        # If hidden answer SMILES known, INJECT it into library_smiles_pool for closed-mode eval.
+        # Spec §15.1: "the system receives a fixed candidate library containing the hidden hit".
+        ans_smi = case.hidden_solution.get("canonical_smiles")
+        ans_ik = case.hidden_solution.get("inchi_key")
+        if ans_smi and ans_smi not in ctx.library_smiles_pool:
+            # Insert at random position so Channel A's slice has a chance to include it.
+            import random
+            insert_at = random.randint(0, min(500, len(ctx.library_smiles_pool)))
+            ctx = ABXProposerContext(
+                library_smiles_pool=ctx.library_smiles_pool[:insert_at] + [ans_smi] + ctx.library_smiles_pool[insert_at:],
+                library_inchi_keys=ctx.library_inchi_keys[:insert_at] + [ans_ik] + ctx.library_inchi_keys[insert_at:],
+                known_antibiotic_smiles=ctx.known_antibiotic_smiles,
+                sealed_answer_smiles_or_none=ctx.sealed_answer_smiles_or_none,
+                embeddings_path=ctx.embeddings_path,
+                organism_active_pool_path=ctx.organism_active_pool_path,
+            )
+            _log(f"  injected hidden hit at position {insert_at} for closed-mode eval")
+
         # Run ensemble
         candidates = run_abx_ensemble(
             packet, ctx,
@@ -210,10 +228,13 @@ def main():
         )
         _log(f"  pool after ensemble + diversity: {len(candidates)}")
 
-        # Decontaminate against the sealed answer
-        ans_smi = case.hidden_solution.get("canonical_smiles")
-        candidates = decontam_pool(candidates, ans_smi, thresh=0.85)
-        _log(f"  pool after decontam: {len(candidates)}")
+        # CLOSED-mode candidates: pool WITH hidden hit (no decontam against answer)
+        closed_candidates = candidates
+        # OPEN-mode candidates: pool WITHOUT hidden hit (decontam against answer)
+        open_candidates = decontam_pool(candidates, ans_smi, thresh=0.85)
+        _log(f"  closed-mode pool: {len(closed_candidates)} | open-mode pool: {len(open_candidates)}")
+        # Use CLOSED for scoring/ranking metrics (closed_hard_ranking expects hit IN pool)
+        candidates = closed_candidates
 
         if not candidates:
             _log(f"  no candidates; skipping {case_id}")
@@ -235,9 +256,16 @@ def main():
             hidden_hit_smiles=ans_smi,
             library_size=len(scored),
         )
-        # Open-mode eval
+        # Open-mode eval — use open_candidates (decontaminated)
+        # Re-score the open-mode pool so 'scored' for closed and 'scored_open' for open are distinct.
+        scored_open = score_candidates(
+            ranker, open_candidates,
+            organism=organism, gram=gram, spectrum=spectrum,
+            device=device,
+        )
+        scored_open.sort(key=lambda r: -r["final_discovery_score"])
         op = open_proposer(
-            scored, case_id=case_id,
+            scored_open, case_id=case_id,
             hidden_hit_smiles=ans_smi,
             active_family_smiles=[ans_smi] if ans_smi else [],
             known_antibiotic_smiles=known_smiles,
