@@ -173,17 +173,24 @@ def murcko_smiles(smi):
     return Chem.MolToSmiles(s)
 
 
-def preservation_gate(candidate, parent, *, min_tanimoto=0.5, require_murcko=True):
-    """Returns (passes: bool, reason: str)."""
+def preservation_gate(candidate, parent, *, min_tanimoto=0.5, murcko_tanimoto_min=0.7):
+    """Returns (passes: bool, reason: str, murcko_tan: float).
+
+    Uses Murcko-fingerprint Tanimoto (not strict equality) so bioisosteres
+    like phenyl->pyridyl (one ring-atom-class swap) still pass. Lower
+    threshold passes more bioisosteres; higher rejects unrelated scaffolds.
+    """
     tan = tanimoto_pairs(parent, [candidate])[0]
     if tan < min_tanimoto:
-        return False, f"tanimoto_below_threshold ({tan:.3f} < {min_tanimoto})"
-    if require_murcko:
-        cm = murcko_smiles(candidate)
-        pm = murcko_smiles(parent)
-        if not cm or not pm or cm != pm:
-            return False, "murcko_scaffold_mismatch"
-    return True, "ok"
+        return False, f"tanimoto_below_threshold ({tan:.3f} < {min_tanimoto})", 0.0
+    cm = murcko_smiles(candidate)
+    pm = murcko_smiles(parent)
+    if not cm or not pm:
+        return False, "murcko_compute_failed", 0.0
+    murcko_tan = tanimoto_pairs(pm, [cm])[0]
+    if murcko_tan < murcko_tanimoto_min:
+        return False, f"murcko_tanimoto_below_threshold ({murcko_tan:.3f} < {murcko_tanimoto_min})", murcko_tan
+    return True, "ok", murcko_tan
 
 
 def detect_prodrug(candidate_smi, parent_smi, *, min_mcs_coverage=0.85):
@@ -325,7 +332,9 @@ def main():
     p.add_argument("--top-k", type=int, default=20)
     p.add_argument("--results-base", type=Path, default=Path("rasyn/data/clean"))
     p.add_argument("--min-tanimoto", type=float, default=0.5)
-    p.add_argument("--require-murcko", action="store_true", default=True)
+    p.add_argument("--murcko-tanimoto", type=float, default=0.7,
+                   help="Minimum Murcko-FP Tanimoto to parent. 0.7 default allows "
+                        "one-ring-atom-class bioisosteres (phenyl->pyridyl).")
     p.add_argument("--prodrug-mcs", type=float, default=0.85)
     p.add_argument("--out", type=Path, required=True)
     args = p.parse_args()
@@ -412,6 +421,7 @@ def main():
         is_prodrug_list = []
         prodrug_classes = []
         mcs_coverages = []
+        murcko_tans = []
         for smi in smiles:
             # Prodrug detection
             is_pd, pd_class, cov = detect_prodrug(smi, parent_smi, min_mcs_coverage=args.prodrug_mcs)
@@ -423,16 +433,19 @@ def main():
             if is_pd and liability == "oral_exposure":
                 passes.append(True)
                 reasons.append(f"prodrug_pass ({pd_class}, mcs={cov:.2f})")
+                murcko_tans.append(None)
             else:
-                p, r = preservation_gate(smi, parent_smi,
-                                          min_tanimoto=args.min_tanimoto,
-                                          require_murcko=args.require_murcko)
+                p, r, mtan = preservation_gate(smi, parent_smi,
+                                                min_tanimoto=args.min_tanimoto,
+                                                murcko_tanimoto_min=args.murcko_tanimoto)
                 passes.append(p)
                 reasons.append(r)
+                murcko_tans.append(mtan)
 
         eval_df["is_prodrug"] = is_prodrug_list
         eval_df["prodrug_class"] = prodrug_classes
         eval_df["mcs_coverage"] = mcs_coverages
+        eval_df["murcko_tanimoto"] = murcko_tans
         eval_df["passes_gate"] = passes
         eval_df["gate_reason"] = reasons
 
