@@ -172,20 +172,21 @@ def preference_loss(
 ) -> tuple[torch.Tensor, dict]:
     """L = max(0, margin − [logp(pos) − logp(neg)]) where logp is the diffusion
     pseudo-loglikelihood (negative reconstruction CE at uniformly sampled t)."""
+    _d_un = denoiser.module if hasattr(denoiser, "module") else denoiser
     def _pseudo_logp(node, edge, mask, cond):
         B = node.size(0)
         t = torch.randint(1, diffusion.T + 1, (B,), device=node.device)
         node_t, edge_t = diffusion.q_sample(node, edge, t - 1, mask)
         nl, el = denoiser(node_t, edge_t, t, cond, mask)
         absorbed_n = (node_t == ATOM_ABSORBED) & mask
-        valid_n = node[absorbed_n] < denoiser.N_ATOM_OUT
+        valid_n = node[absorbed_n] < _d_un.N_ATOM_OUT
         n_ce = (
             F.cross_entropy(nl[absorbed_n][valid_n], node[absorbed_n][valid_n].long())
             if valid_n.any() else node.new_zeros((), dtype=torch.float)
         )
         edge_mask_2d = mask.unsqueeze(2) & mask.unsqueeze(1)
         absorbed_e = (edge_t == BOND_ABSORBED) & edge_mask_2d
-        valid_e = edge[absorbed_e] < denoiser.N_BOND_OUT
+        valid_e = edge[absorbed_e] < _d_un.N_BOND_OUT
         e_ce = (
             F.cross_entropy(el[absorbed_e][valid_e], edge[absorbed_e][valid_e].long())
             if valid_e.any() else edge.new_zeros((), dtype=torch.float)

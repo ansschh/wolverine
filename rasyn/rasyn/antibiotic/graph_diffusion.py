@@ -312,7 +312,9 @@ def diffusion_loss(
 
     # Restrict node CE to nodes that were absorbed AND on-mask AND clean is a predictable type.
     node_absorbed = (node_t == ATOM_ABSORBED) & node_mask
-    valid_clean = node_clean < denoiser.N_ATOM_OUT  # predictable clean tokens
+    # Unwrap DDP if present (DDP doesn't expose class attrs).
+    _d = denoiser.module if hasattr(denoiser, "module") else denoiser
+    valid_clean = node_clean < _d.N_ATOM_OUT  # predictable clean tokens
     node_target_mask = node_absorbed & valid_clean
     if node_target_mask.any():
         n_logits = node_logits[node_target_mask]
@@ -325,7 +327,7 @@ def diffusion_loss(
     edge_mask_2d = node_mask.unsqueeze(2) & node_mask.unsqueeze(1)
     upper = torch.triu(torch.ones(N, N, dtype=torch.bool, device=device), diagonal=1).unsqueeze(0).expand(B, -1, -1)
     edge_absorbed = (edge_t == BOND_ABSORBED) & edge_mask_2d & upper
-    edge_valid = edge_clean < denoiser.N_BOND_OUT
+    edge_valid = edge_clean < _d.N_BOND_OUT
     edge_target_mask = edge_absorbed & edge_valid
     if edge_target_mask.any():
         e_logits = edge_logits[edge_target_mask]
