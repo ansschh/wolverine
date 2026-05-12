@@ -1,0 +1,17 @@
+{
+  "case_id": "ABX-002",
+  "organism": "A.baumannii",
+  "library_size": 1148,
+  "hidden_hit_rank": 1127,
+  "hidden_hit_percentile": 98.17073170731707,
+  "top_1": false,
+  "top_10": false,
+  "top_50": false,
+  "top_100": false,
+  "top_1_pct": false,
+  "enrichment_at_top_100": 0.0,
+  "n_cytotoxic_in_top_100": 0,
+  "n_organism_mismatched_in_top_100": 0,
+  "n_known_controls_in_top_100": 0,
+  "verdict": "missed"
+}
