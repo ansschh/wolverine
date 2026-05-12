@@ -1,0 +1,12 @@
+{
+  "case_id": "ABX-002",
+  "n_generated": 1152,
+  "n_valid": 1152,
+  "n_unique": 1152,
+  "exact_hit_generated": false,
+  "active_family_analog_count": 0,
+  "median_novelty_vs_known": null,
+  "pct_cytotoxic": null,
+  "pct_synthesizable": null,
+  "top_k_distinct_chemotypes": 617
+}

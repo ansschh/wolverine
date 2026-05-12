@@ -1,0 +1,1747 @@
+{
+  "case_id": "ABX-003",
+  "organism": "S.aureus",
+  "n_pool": 1071,
+  "top_k": 20,
+  "top_candidates": [
+    {
+      "candidate_smiles": "O=C1NC(C(F)(F)F)=CC(/C=C/C(C(Cl)=C2)=CC=C2Cl)=N1",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.380859375,
+      "antibacterial_score_std": 0.278202086687088,
+      "cytotox_risk": 0.5872395634651184,
+      "artifact_risk": 0.4739583432674408,
+      "failure_mode_probs": {
+        "inactive": 0.4382711946964264,
+        "cytotoxic": 0.5617122650146484,
+        "artifact": 2.9995173917996e-06,
+        "organism_mismatch": 5.940267783444142e-06,
+        "known_control_only": 7.613885372848017e-06
+      },
+      "uncertainty_ensemble": 0.278202086687088,
+      "final_discovery_score": -0.054947909712791426,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for S.aureus: 0.38"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.59"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.44",
+          "cytotoxic: probability 0.56"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_43a5c00b8b",
+        "structure": {
+          "canonical_smiles": "O=c1nc(/C=C/c2ccc(Cl)cc2Cl)cc(C(F)(F)F)[nH]1",
+          "inchi_key": "MMOUYBCDJMEUFG-DUXPYHPUSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 335.112,
+          "clogp": 4.265900000000002,
+          "tpsa": 45.75,
+          "hbd": 1,
+          "hba": 2,
+          "formal_charge": 0,
+          "rotatable_bonds": 2,
+          "aromatic_ring_count": 2,
+          "fsp3": 0.07692307692307693
+        },
+        "chemical_alerts": {
+          "pains_alerts": [],
+          "brenk_alerts": [],
+          "reactive_alerts": [],
+          "aggregation_risk": "low"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "S.aureus": 0.380859375
+          },
+          "cytotoxicity_risk": 0.5872395634651184,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.4739583432674408,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.278202086687088
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "A_repurposing"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "N#CC1=C2[N+](C(C(Br)C3=CC=CC=C3)CS2)=C(C)C=C1C.[Br-]",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.4039713442325592,
+      "antibacterial_score_std": 0.21235314011573792,
+      "cytotox_risk": 0.7005208134651184,
+      "artifact_risk": 0.455078125,
+      "failure_mode_probs": {
+        "inactive": 0.36237311363220215,
+        "cytotoxic": 0.6376121044158936,
+        "artifact": 3.7499885365832597e-06,
+        "organism_mismatch": 4.476740286918357e-06,
+        "known_control_only": 6.628926257690182e-06
+      },
+      "uncertainty_ensemble": 0.21235314011573792,
+      "final_discovery_score": -0.08281249999999998,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for S.aureus: 0.40"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.70"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.36",
+          "cytotoxic: probability 0.64"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_f6a8e8369b",
+        "structure": {
+          "canonical_smiles": "Cc1cc(C)[n+]2c(c1C#N)SCC2C(Br)c1ccccc1.[Br-]",
+          "inchi_key": "AOYUMYRFQYPRLM-UHFFFAOYSA-M",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 440.2040000000001,
+          "clogp": 1.2496200000000002,
+          "tpsa": 27.669999999999998,
+          "hbd": 0,
+          "hba": 2,
+          "formal_charge": 0,
+          "rotatable_bonds": 2,
+          "aromatic_ring_count": 2,
+          "fsp3": 0.29411764705882354
+        },
+        "chemical_alerts": {
+          "pains_alerts": [],
+          "brenk_alerts": [
+            "alkyl_halide",
+            "quaternary_nitrogen_1"
+          ],
+          "reactive_alerts": [
+            "alkyl_halide"
+          ],
+          "aggregation_risk": "low"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "S.aureus": 0.4039713442325592
+          },
+          "cytotoxicity_risk": 0.7005208134651184,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.455078125,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.21235314011573792
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "A_repurposing"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "N#CC1=C(N)NC(C(C(N)=O)C1C2=CC=CC=C2)=S",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.392578125,
+      "antibacterial_score_std": 0.21730655431747437,
+      "cytotox_risk": 0.6842448115348816,
+      "artifact_risk": 0.4537760317325592,
+      "failure_mode_probs": {
+        "inactive": 0.376224160194397,
+        "cytotoxic": 0.6237640380859375,
+        "artifact": 3.0017615699762246e-06,
+        "organism_mismatch": 3.4965953545906814e-06,
+        "known_control_only": 5.341984888218576e-06
+      },
+      "uncertainty_ensemble": 0.21730655431747437,
+      "final_discovery_score": -0.08567709028720855,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for S.aureus: 0.39"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.68"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.38",
+          "cytotoxic: probability 0.62"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_bad5691153",
+        "structure": {
+          "canonical_smiles": "N#CC1=C(N)NC(=S)C(C(N)=O)C1c1ccccc1",
+          "inchi_key": "OYQDXAAMRAEMKX-UHFFFAOYSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 272.33299999999997,
+          "clogp": 0.4961800000000006,
+          "tpsa": 104.93,
+          "hbd": 3,
+          "hba": 4,
+          "formal_charge": 0,
+          "rotatable_bonds": 2,
+          "aromatic_ring_count": 1,
+          "fsp3": 0.15384615384615385
+        },
+        "chemical_alerts": {
+          "pains_alerts": [],
+          "brenk_alerts": [
+            "Thiocarbonyl_group"
+          ],
+          "reactive_alerts": [],
+          "aggregation_risk": "low"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "S.aureus": 0.392578125
+          },
+          "cytotoxicity_risk": 0.6842448115348816,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.4537760317325592,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.21730655431747437
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "A_repurposing"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "N#CC1=CC=CC=C1OCC(N/N=C/C2=CC([N+]([O-])=O)=CC=C2O)=O",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.36474609375,
+      "antibacterial_score_std": 0.21318775415420532,
+      "cytotox_risk": 0.6295573115348816,
+      "artifact_risk": 0.45703125,
+      "failure_mode_probs": {
+        "inactive": 0.42842957377433777,
+        "cytotoxic": 0.5715621113777161,
+        "artifact": 1.8502061038816464e-06,
+        "organism_mismatch": 2.801586333589512e-06,
+        "known_control_only": 3.680590452859178e-06
+      },
+      "uncertainty_ensemble": 0.21318775415420532,
+      "final_discovery_score": -0.0871419370174408,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for S.aureus: 0.36"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.63"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.43",
+          "cytotoxic: probability 0.57"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_656fb02b79",
+        "structure": {
+          "canonical_smiles": "N#Cc1ccccc1OCC(=O)N/N=C/c1cc([N+](=O)[O-])ccc1O",
+          "inchi_key": "YCMKPNFXHHOKST-GIJQJNRQSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 340.2950000000001,
+          "clogp": 1.7011799999999997,
+          "tpsa": 137.85,
+          "hbd": 2,
+          "hba": 7,
+          "formal_charge": 0,
+          "rotatable_bonds": 6,
+          "aromatic_ring_count": 2,
+          "fsp3": 0.0625
+        },
+        "chemical_alerts": {
+          "pains_alerts": [
+            "hzone_phenol_A(479)"
+          ],
+          "brenk_alerts": [
+            "imine_1",
+            "nitro_group",
+            "Oxygen-nitrogen_single_bond"
+          ],
+          "reactive_alerts": [
+            "nitro_aromatic"
+          ],
+          "aggregation_risk": "low"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "S.aureus": 0.36474609375
+          },
+          "cytotoxicity_risk": 0.6295573115348816,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.45703125,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.21318775415420532
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "A_repurposing"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "N#CC1=C(N)SC(N)=C(C#N)C1C2=CC=CS2",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.388671875,
+      "antibacterial_score_std": 0.20561684668064117,
+      "cytotox_risk": 0.6790364384651184,
+      "artifact_risk": 0.4557291567325592,
+      "failure_mode_probs": {
+        "inactive": 0.38297998905181885,
+        "cytotoxic": 0.6169987320899963,
+        "artifact": 4.750440893985797e-06,
+        "organism_mismatch": 6.849359579064185e-06,
+        "known_control_only": 9.66994139162125e-06
+      },
+      "uncertainty_ensemble": 0.20561684668064117,
+      "final_discovery_score": -0.08756509125232695,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for S.aureus: 0.39"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.68"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.38",
+          "cytotoxic: probability 0.62"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_60862582d9",
+        "structure": {
+          "canonical_smiles": "N#CC1=C(N)SC(N)=C(C#N)C1c1cccs1",
+          "inchi_key": "YCDJPLGSMCQRMT-UHFFFAOYSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 260.34700000000004,
+          "clogp": 1.96626,
+          "tpsa": 99.62,
+          "hbd": 2,
+          "hba": 6,
+          "formal_charge": 0,
+          "rotatable_bonds": 1,
+          "aromatic_ring_count": 1,
+          "fsp3": 0.09090909090909091
+        },
+        "chemical_alerts": {
+          "pains_alerts": [
+            "dhp_bis_amino_CN(19)"
+          ],
+          "brenk_alerts": [],
+          "reactive_alerts": [],
+          "aggregation_risk": "low"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "S.aureus": 0.388671875
+          },
+          "cytotoxicity_risk": 0.6790364384651184,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.4557291567325592,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.20561684668064117
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "A_repurposing"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "N#CC1=C(N)SC(N)=C(C#N)C1C2=CC=C(C=C2)[N+]([O-])=O",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.3649088442325592,
+      "antibacterial_score_std": 0.22491557896137238,
+      "cytotox_risk": 0.6341145634651184,
+      "artifact_risk": 0.4524739682674408,
+      "failure_mode_probs": {
+        "inactive": 0.42270374298095703,
+        "cytotoxic": 0.5772903561592102,
+        "artifact": 1.4872267684040708e-06,
+        "organism_mismatch": 1.848257056735747e-06,
+        "known_control_only": 2.516616177672404e-06
+      },
+      "uncertainty_ensemble": 0.22491557896137238,
+      "final_discovery_score": -0.08789062798023223,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for S.aureus: 0.36"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.63"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.42",
+          "cytotoxic: probability 0.58"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_bc3f98e793",
+        "structure": {
+          "canonical_smiles": "N#CC1=C(N)SC(N)=C(C#N)C1c1ccc([N+](=O)[O-])cc1",
+          "inchi_key": "BFNUGJIXTMHBIE-UHFFFAOYSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 299.31500000000005,
+          "clogp": 1.81296,
+          "tpsa": 142.76000000000002,
+          "hbd": 2,
+          "hba": 7,
+          "formal_charge": 0,
+          "rotatable_bonds": 2,
+          "aromatic_ring_count": 1,
+          "fsp3": 0.07692307692307693
+        },
+        "chemical_alerts": {
+          "pains_alerts": [
+            "dhp_bis_amino_CN(19)"
+          ],
+          "brenk_alerts": [
+            "nitro_group",
+            "Oxygen-nitrogen_single_bond"
+          ],
+          "reactive_alerts": [
+            "nitro_aromatic"
+          ],
+          "aggregation_risk": "low"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "S.aureus": 0.3649088442325592
+          },
+          "cytotoxicity_risk": 0.6341145634651184,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.4524739682674408,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.22491557896137238
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "A_repurposing"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "N#CC1=C(C(F)(F)F)C=C(C2=CC=CS2)NC1=O",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.3766275942325592,
+      "antibacterial_score_std": 0.21535435318946838,
+      "cytotox_risk": 0.6614583134651184,
+      "artifact_risk": 0.4505208432674408,
+      "failure_mode_probs": {
+        "inactive": 0.3975009024143219,
+        "cytotoxic": 0.6024910807609558,
+        "artifact": 2.2573528895009076e-06,
+        "organism_mismatch": 2.2205842924449826e-06,
+        "known_control_only": 3.4971151308127446e-06
+      },
+      "uncertainty_ensemble": 0.21535435318946838,
+      "final_discovery_score": -0.08925781548023223,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for S.aureus: 0.38"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.66"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.40",
+          "cytotoxic: probability 0.60"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_56b0a14e7e",
+        "structure": {
+          "canonical_smiles": "N#Cc1c(C(F)(F)F)cc(-c2cccs2)[nH]c1=O",
+          "inchi_key": "UBBGOCKMIMCHLZ-UHFFFAOYSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 270.23500000000007,
+          "clogp": 2.9938800000000008,
+          "tpsa": 56.65,
+          "hbd": 1,
+          "hba": 3,
+          "formal_charge": 0,
+          "rotatable_bonds": 1,
+          "aromatic_ring_count": 2,
+          "fsp3": 0.09090909090909091
+        },
+        "chemical_alerts": {
+          "pains_alerts": [],
+          "brenk_alerts": [],
+          "reactive_alerts": [],
+          "aggregation_risk": "low"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "S.aureus": 0.3766275942325592
+          },
+          "cytotoxicity_risk": 0.6614583134651184,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.4505208432674408,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.21535435318946838
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "A_repurposing"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "FC(C(F)(F)F)(C(NCCCCCCCCCCCCCCCCCC)=O)OC(F)(F)C(F)(F)C(F)(F)F",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.3522135317325592,
+      "antibacterial_score_std": 0.13997699320316315,
+      "cytotox_risk": 0.6256510615348816,
+      "artifact_risk": 0.4466145932674408,
+      "failure_mode_probs": {
+        "inactive": 0.43006500601768494,
+        "cytotoxic": 0.5699290633201599,
+        "artifact": 1.6134040379256476e-06,
+        "organism_mismatch": 1.427563347533578e-06,
+        "known_control_only": 2.8109943741583265e-06
+      },
+      "uncertainty_ensemble": 0.13997699320316315,
+      "final_discovery_score": -0.09459637701511384,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for S.aureus: 0.35"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.63"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.43",
+          "cytotoxic: probability 0.57"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_4bf7819208",
+        "structure": {
+          "canonical_smiles": "CCCCCCCCCCCCCCCCCCNC(=O)C(F)(OC(F)(F)C(F)(F)C(F)(F)F)C(F)(F)F",
+          "inchi_key": "XXUGORHIFXJEKB-UHFFFAOYSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 581.5510000000005,
+          "clogp": 9.399199999999997,
+          "tpsa": 38.33,
+          "hbd": 1,
+          "hba": 2,
+          "formal_charge": 0,
+          "rotatable_bonds": 21,
+          "aromatic_ring_count": 0,
+          "fsp3": 0.9583333333333334
+        },
+        "chemical_alerts": {
+          "pains_alerts": [],
+          "brenk_alerts": [
+            "Aliphatic_long_chain",
+            "Perfluorinated_chain"
+          ],
+          "reactive_alerts": [],
+          "aggregation_risk": "high"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "S.aureus": 0.3522135317325592
+          },
+          "cytotoxicity_risk": 0.6256510615348816,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.4466145932674408,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.13997699320316315
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "A_repurposing"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "N#CC1=C(SCC(C=CC=C2)=C2F)N=C(C3=CC=CS3)C=C1C(C=C4)=CC=C4Cl",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.3977864682674408,
+      "antibacterial_score_std": 0.19061072170734406,
+      "cytotox_risk": 0.7109375,
+      "artifact_risk": 0.4576822817325592,
+      "failure_mode_probs": {
+        "inactive": 0.3548087179660797,
+        "cytotoxic": 0.6451525688171387,
+        "artifact": 8.150319445121568e-06,
+        "organism_mismatch": 1.2503525795182213e-05,
+        "known_control_only": 1.8071667000185698e-05
+      },
+      "uncertainty_ensemble": 0.19061072170734406,
+      "final_discovery_score": -0.09498696625232697,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for S.aureus: 0.40"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.71"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.35",
+          "cytotoxic: probability 0.65"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_61e4bae140",
+        "structure": {
+          "canonical_smiles": "N#Cc1c(-c2ccc(Cl)cc2)cc(-c2cccs2)nc1SCc1ccccc1F",
+          "inchi_key": "SGZUSRAQVXJDLU-UHFFFAOYSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 436.96400000000006,
+          "clogp": 7.433580000000004,
+          "tpsa": 36.68,
+          "hbd": 0,
+          "hba": 4,
+          "formal_charge": 0,
+          "rotatable_bonds": 5,
+          "aromatic_ring_count": 4,
+          "fsp3": 0.043478260869565216
+        },
+        "chemical_alerts": {
+          "pains_alerts": [],
+          "brenk_alerts": [],
+          "reactive_alerts": [],
+          "aggregation_risk": "moderate"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "S.aureus": 0.3977864682674408
+          },
+          "cytotoxicity_risk": 0.7109375,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.4576822817325592,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.19061072170734406
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "A_repurposing"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "N#CC1=C([C-](C#N)C#N)NC(C2CC2)(O)C(C1C3=CC=CC=C3)[N+](C=CC=C4)=C4C",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.3824869692325592,
+      "antibacterial_score_std": 0.1882115751504898,
+      "cytotox_risk": 0.6861979365348816,
+      "artifact_risk": 0.4537760317325592,
+      "failure_mode_probs": {
+        "inactive": 0.38217368721961975,
+        "cytotoxic": 0.6178120970726013,
+        "artifact": 3.5994114568893565e-06,
+        "organism_mismatch": 4.276724212104455e-06,
+        "known_control_only": 6.424807452276582e-06
+      },
+      "uncertainty_ensemble": 0.1882115751504898,
+      "final_discovery_score": -0.09674480855464934,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for S.aureus: 0.38"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.69"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.38",
+          "cytotoxic: probability 0.62"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_309b300ad0",
+        "structure": {
+          "canonical_smiles": "Cc1cccc[n+]1C1C(c2ccccc2)C(C#N)=C([C-](C#N)C#N)NC1(O)C1CC1",
+          "inchi_key": "BHQKVVGNCAIGEQ-UHFFFAOYSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 395.46600000000007,
+          "clogp": 2.7085500000000007,
+          "tpsa": 107.51,
+          "hbd": 2,
+          "hba": 5,
+          "formal_charge": 0,
+          "rotatable_bonds": 4,
+          "aromatic_ring_count": 2,
+          "fsp3": 0.2916666666666667
+        },
+        "chemical_alerts": {
+          "pains_alerts": [],
+          "brenk_alerts": [
+            "Carbo_cation/anion",
+            "quaternary_nitrogen_1"
+          ],
+          "reactive_alerts": [],
+          "aggregation_risk": "low"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "S.aureus": 0.3824869692325592
+          },
+          "cytotoxicity_risk": 0.6861979365348816,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.4537760317325592,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.1882115751504898
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "A_repurposing"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "c1(Br)c(Br)c(\\C=N\\NC(COc2ccccc2OC)=O)cc(O)c1O",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.1892496794462204,
+      "antibacterial_score_std": 0.24610526859760284,
+      "cytotox_risk": 0.3273111879825592,
+      "artifact_risk": 0.4134114682674408,
+      "failure_mode_probs": {
+        "inactive": 0.6959688067436218,
+        "cytotoxic": 0.30401432514190674,
+        "artifact": 3.2911709695326863e-06,
+        "organism_mismatch": 5.729667918785708e-06,
+        "known_control_only": 7.833690688130446e-06
+      },
+      "uncertainty_ensemble": 0.24610526859760284,
+      "final_discovery_score": -0.09842935502529143,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for S.aureus: 0.19"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.70",
+          "cytotoxic: probability 0.30"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_e1f74930ee",
+        "structure": {
+          "canonical_smiles": "COc1ccccc1OCC(=O)N/N=C/c1cc(O)c(O)c(Br)c1Br",
+          "inchi_key": "QSRHOJZLUXMKPC-FBCYGCLPSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 474.10500000000025,
+          "clogp": 3.1605000000000016,
+          "tpsa": 100.38000000000001,
+          "hbd": 3,
+          "hba": 6,
+          "formal_charge": 0,
+          "rotatable_bonds": 6,
+          "aromatic_ring_count": 2,
+          "fsp3": 0.125
+        },
+        "chemical_alerts": {
+          "pains_alerts": [
+            "hzone_phenol_B(215)",
+            "catechol_A(92)"
+          ],
+          "brenk_alerts": [
+            "catechol",
+            "imine_1",
+            "Oxygen-nitrogen_single_bond"
+          ],
+          "reactive_alerts": [],
+          "aggregation_risk": "low"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "S.aureus": 0.1892496794462204
+          },
+          "cytotoxicity_risk": 0.3273111879825592,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.4134114682674408,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.24610526859760284
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "B_screened_library"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "N#CC1=C(SC(N)=C(C#N)C1C2=CC=C(C3=CC=CC=C3)C=C2)N",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.4020182192325592,
+      "antibacterial_score_std": 0.17995356023311615,
+      "cytotox_risk": 0.7265625,
+      "artifact_risk": 0.4602864682674408,
+      "failure_mode_probs": {
+        "inactive": 0.3385537564754486,
+        "cytotoxic": 0.6613827347755432,
+        "artifact": 1.3459693036566023e-05,
+        "organism_mismatch": 1.9697321476996876e-05,
+        "known_control_only": 3.0330740628414787e-05
+      },
+      "uncertainty_ensemble": 0.17995356023311615,
+      "final_discovery_score": -0.09934897124767303,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for S.aureus: 0.40"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.73"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.34",
+          "cytotoxic: probability 0.66"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_5b73dd220e",
+        "structure": {
+          "canonical_smiles": "N#CC1=C(N)SC(N)=C(C#N)C1c1ccc(-c2ccccc2)cc1",
+          "inchi_key": "XTHHCSKHBYDJED-UHFFFAOYSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 330.41600000000005,
+          "clogp": 3.571760000000002,
+          "tpsa": 99.61999999999999,
+          "hbd": 2,
+          "hba": 5,
+          "formal_charge": 0,
+          "rotatable_bonds": 2,
+          "aromatic_ring_count": 2,
+          "fsp3": 0.05263157894736842
+        },
+        "chemical_alerts": {
+          "pains_alerts": [
+            "dhp_bis_amino_CN(19)"
+          ],
+          "brenk_alerts": [],
+          "reactive_alerts": [],
+          "aggregation_risk": "low"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "S.aureus": 0.4020182192325592
+          },
+          "cytotoxicity_risk": 0.7265625,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.4602864682674408,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.17995356023311615
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "A_repurposing"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "N#CC1=C(N)OC(CCl)=C(C(OCC)=O)C1C2=CC=CC=C2F",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.3512369692325592,
+      "antibacterial_score_std": 0.21000030636787415,
+      "cytotox_risk": 0.6328125,
+      "artifact_risk": 0.4479166567325592,
+      "failure_mode_probs": {
+        "inactive": 0.42931127548217773,
+        "cytotoxic": 0.5706831812858582,
+        "artifact": 1.6972484218058526e-06,
+        "organism_mismatch": 1.5271912161551882e-06,
+        "known_control_only": 2.406114617770072e-06
+      },
+      "uncertainty_ensemble": 0.21000030636787415,
+      "final_discovery_score": -0.09954427778720856,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for S.aureus: 0.35"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.63"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.43",
+          "cytotoxic: probability 0.57"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_d485f8704e",
+        "structure": {
+          "canonical_smiles": "CCOC(=O)C1=C(CCl)OC(N)=C(C#N)C1c1ccccc1F",
+          "inchi_key": "JKDLUVYQBOMYLJ-UHFFFAOYSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 336.75,
+          "clogp": 2.6893800000000008,
+          "tpsa": 85.34,
+          "hbd": 1,
+          "hba": 5,
+          "formal_charge": 0,
+          "rotatable_bonds": 4,
+          "aromatic_ring_count": 1,
+          "fsp3": 0.25
+        },
+        "chemical_alerts": {
+          "pains_alerts": [],
+          "brenk_alerts": [
+            "alkyl_halide"
+          ],
+          "reactive_alerts": [
+            "alkyl_halide",
+            "michael_acceptor"
+          ],
+          "aggregation_risk": "low"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "S.aureus": 0.3512369692325592
+          },
+          "cytotoxicity_risk": 0.6328125,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.4479166567325592,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.21000030636787415
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "A_repurposing"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "N#CC1=C(NC(COC2=CC=CC=C2Br)=O)SC3=C1CCC3",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.3974609375,
+      "antibacterial_score_std": 0.19718584418296814,
+      "cytotox_risk": 0.7213541865348816,
+      "artifact_risk": 0.455078125,
+      "failure_mode_probs": {
+        "inactive": 0.34827277064323425,
+        "cytotoxic": 0.6516724228858948,
+        "artifact": 1.5086764506122563e-05,
+        "organism_mismatch": 1.3074216440145392e-05,
+        "known_control_only": 2.666486398084089e-05
+      },
+      "uncertainty_ensemble": 0.19718584418296814,
+      "final_discovery_score": -0.09973959326744078,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for S.aureus: 0.40"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.72"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.35",
+          "cytotoxic: probability 0.65"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_46df416bcb",
+        "structure": {
+          "canonical_smiles": "N#Cc1c(NC(=O)COc2ccccc2Br)sc2c1CCC2",
+          "inchi_key": "TZBZXMOOGYQXJR-UHFFFAOYSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 377.2630000000002,
+          "clogp": 3.888480000000002,
+          "tpsa": 62.12,
+          "hbd": 1,
+          "hba": 4,
+          "formal_charge": 0,
+          "rotatable_bonds": 4,
+          "aromatic_ring_count": 2,
+          "fsp3": 0.25
+        },
+        "chemical_alerts": {
+          "pains_alerts": [],
+          "brenk_alerts": [],
+          "reactive_alerts": [],
+          "aggregation_risk": "low"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "S.aureus": 0.3974609375
+          },
+          "cytotoxicity_risk": 0.7213541865348816,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.455078125,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.19718584418296814
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "A_repurposing"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "N#CC1=C(SCC(C=CC=C2)=C2F)N=C(C3=CC=CS3)C=C1C4=CC=CS4",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.4065755307674408,
+      "antibacterial_score_std": 0.17882652580738068,
+      "cytotox_risk": 0.7395833134651184,
+      "artifact_risk": 0.4576822817325592,
+      "failure_mode_probs": {
+        "inactive": 0.3294009864330292,
+        "cytotoxic": 0.6705417037010193,
+        "artifact": 1.3683466931979638e-05,
+        "organism_mismatch": 1.627894198463764e-05,
+        "known_control_only": 2.738425428105984e-05
+      },
+      "uncertainty_ensemble": 0.17882652580738068,
+      "final_discovery_score": -0.10052081048488617,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for S.aureus: 0.41"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.74"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.33",
+          "cytotoxic: probability 0.67"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_78544ec37e",
+        "structure": {
+          "canonical_smiles": "N#Cc1c(-c2cccs2)cc(-c2cccs2)nc1SCc1ccccc1F",
+          "inchi_key": "YCAHKKLVLBNAGW-UHFFFAOYSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 408.54800000000006,
+          "clogp": 6.841680000000004,
+          "tpsa": 36.68,
+          "hbd": 0,
+          "hba": 5,
+          "formal_charge": 0,
+          "rotatable_bonds": 5,
+          "aromatic_ring_count": 4,
+          "fsp3": 0.047619047619047616
+        },
+        "chemical_alerts": {
+          "pains_alerts": [],
+          "brenk_alerts": [],
+          "reactive_alerts": [],
+          "aggregation_risk": "moderate"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "S.aureus": 0.4065755307674408
+          },
+          "cytotoxicity_risk": 0.7395833134651184,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.4576822817325592,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.17882652580738068
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "A_repurposing"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "N#CC1=C(SCC(NC2=C(I)C=C(C)C=C2)=O)N=C(C3=CC=CS3)C=C1C4=CC=C(Cl)C=C4",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.4065755307674408,
+      "antibacterial_score_std": 0.17662107944488525,
+      "cytotox_risk": 0.7434895634651184,
+      "artifact_risk": 0.45703125,
+      "failure_mode_probs": {
+        "inactive": 0.3244689404964447,
+        "cytotoxic": 0.6754726767539978,
+        "artifact": 1.5797473679413088e-05,
+        "organism_mismatch": 1.5087182873685379e-05,
+        "known_control_only": 2.7523636163095944e-05
+      },
+      "uncertainty_ensemble": 0.17662107944488525,
+      "final_discovery_score": -0.10227862596511841,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for S.aureus: 0.41"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.74"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.32",
+          "cytotoxic: probability 0.68"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_4cfdfe3ce6",
+        "structure": {
+          "canonical_smiles": "Cc1ccc(NC(=O)CSc2nc(-c3cccs3)cc(-c3ccc(Cl)cc3)c2C#N)c(I)c1",
+          "inchi_key": "BZJFOANMULJHSE-UHFFFAOYSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 601.9220000000003,
+          "clogp": 7.646000000000004,
+          "tpsa": 65.78,
+          "hbd": 1,
+          "hba": 5,
+          "formal_charge": 0,
+          "rotatable_bonds": 6,
+          "aromatic_ring_count": 4,
+          "fsp3": 0.08
+        },
+        "chemical_alerts": {
+          "pains_alerts": [],
+          "brenk_alerts": [
+            "iodine"
+          ],
+          "reactive_alerts": [],
+          "aggregation_risk": "high"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "S.aureus": 0.4065755307674408
+          },
+          "cytotoxicity_risk": 0.7434895634651184,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.45703125,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.17662107944488525
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "A_repurposing"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "CCc1oc2ccccc2c1C(=O)c1cc(Br)c(O)c(Br)c1",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.2958984375,
+      "antibacterial_score_std": 0.16960448026657104,
+      "cytotox_risk": 0.5338541865348816,
+      "artifact_risk": 0.4388020932674408,
+      "failure_mode_probs": {
+        "inactive": 0.5208146572113037,
+        "cytotoxic": 0.4791836738586426,
+        "artifact": 5.300666430230194e-07,
+        "organism_mismatch": 4.0883358565224626e-07,
+        "known_control_only": 7.495952445424336e-07
+      },
+      "uncertainty_ensemble": 0.16960448026657104,
+      "final_discovery_score": -0.10266928374767303,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for S.aureus: 0.30"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.53"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.52",
+          "cytotoxic: probability 0.48"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_b99e89511a",
+        "structure": {
+          "canonical_smiles": "CCc1oc2ccccc2c1C(=O)c1cc(Br)c(O)c(Br)c1",
+          "inchi_key": "WHQCHUCQKNIQEC-UHFFFAOYSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 424.088,
+          "clogp": 5.456800000000003,
+          "tpsa": 50.44,
+          "hbd": 1,
+          "hba": 3,
+          "formal_charge": 0,
+          "rotatable_bonds": 3,
+          "aromatic_ring_count": 3,
+          "fsp3": 0.11764705882352941
+        },
+        "chemical_alerts": {
+          "pains_alerts": [],
+          "brenk_alerts": [],
+          "reactive_alerts": [],
+          "aggregation_risk": "moderate"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "S.aureus": 0.2958984375
+          },
+          "cytotoxicity_risk": 0.5338541865348816,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.4388020932674408,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.16960448026657104
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "A_repurposing"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "N(=Nc1ccccn1)c(ccc(N(C)C)c2)c2",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.2518717348575592,
+      "antibacterial_score_std": 0.23114126920700073,
+      "cytotox_risk": 0.4365234375,
+      "artifact_risk": 0.4557291567325592,
+      "failure_mode_probs": {
+        "inactive": 0.5999466776847839,
+        "cytotoxic": 0.400052934885025,
+        "artifact": 1.0542166251070739e-07,
+        "organism_mismatch": 1.2469514842905483e-07,
+        "known_control_only": 1.610887210290457e-07
+      },
+      "uncertainty_ensemble": 0.23114126920700073,
+      "final_discovery_score": -0.10310873091220854,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for S.aureus: 0.25"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.60",
+          "cytotoxic: probability 0.40"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_de8048c016",
+        "structure": {
+          "canonical_smiles": "CN(C)c1ccc(N=Nc2ccccn2)cc1",
+          "inchi_key": "IOJNPSPGHUEJAQ-UHFFFAOYSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 226.28300000000002,
+          "clogp": 3.5630000000000015,
+          "tpsa": 40.85,
+          "hbd": 0,
+          "hba": 4,
+          "formal_charge": 0,
+          "rotatable_bonds": 3,
+          "aromatic_ring_count": 2,
+          "fsp3": 0.15384615384615385
+        },
+        "chemical_alerts": {
+          "pains_alerts": [
+            "anil_di_alk_A(478)",
+            "azo_A(324)"
+          ],
+          "brenk_alerts": [
+            "diazo_group"
+          ],
+          "reactive_alerts": [],
+          "aggregation_risk": "low"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "S.aureus": 0.2518717348575592
+          },
+          "cytotoxicity_risk": 0.4365234375,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.4557291567325592,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.23114126920700073
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "A_repurposing"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "C(=N\\NC(N)=S)(/c1c2cccc1)\\c3c2cccc3",
+      "candidate_inchi_key": NaN,
+      "channel": "C_organism_analog",
+      "max_tanimoto_to_organism_active": 0.5641025641025641,
+      "antibacterial_score": 0.2354329377412796,
+      "antibacterial_score_std": 0.21618790924549103,
+      "cytotox_risk": 0.3888346254825592,
+      "artifact_risk": 0.48046875,
+      "failure_mode_probs": {
+        "inactive": 0.6338041424751282,
+        "cytotoxic": 0.36619576811790466,
+        "artifact": 1.9666252626393543e-08,
+        "organism_mismatch": 3.065439102556411e-08,
+        "known_control_only": 4.505747597249865e-08
+      },
+      "uncertainty_ensemble": 0.21618790924549103,
+      "final_discovery_score": -0.103125,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for S.aureus: 0.24"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.63",
+          "cytotoxic: probability 0.37"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_700862a7f8",
+        "structure": {
+          "canonical_smiles": "NC(=S)NN=C1c2ccccc2-c2ccccc21",
+          "inchi_key": "IFLBOZZHJPAFBK-UHFFFAOYSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 253.33000000000004,
+          "clogp": 2.252600000000001,
+          "tpsa": 50.41,
+          "hbd": 2,
+          "hba": 2,
+          "formal_charge": 0,
+          "rotatable_bonds": 1,
+          "aromatic_ring_count": 2,
+          "fsp3": 0.0
+        },
+        "chemical_alerts": {
+          "pains_alerts": [],
+          "brenk_alerts": [
+            "imine_1",
+            "Oxygen-nitrogen_single_bond",
+            "Thiocarbonyl_group"
+          ],
+          "reactive_alerts": [],
+          "aggregation_risk": "low"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": 0.5641025641025641,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "S.aureus": 0.2354329377412796
+          },
+          "cytotoxicity_risk": 0.3888346254825592,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.48046875,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.21618790924549103
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "C_organism_analog"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "C(=N/Nc1ccccc1[N+](=O)[O-])(/C(=O)NC(N2)=O)\\C2=O",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.3489583432674408,
+      "antibacterial_score_std": 0.2195470929145813,
+      "cytotox_risk": 0.6373698115348816,
+      "artifact_risk": 0.4466145932674408,
+      "failure_mode_probs": {
+        "inactive": 0.42230820655822754,
+        "cytotoxic": 0.5776514410972595,
+        "artifact": 1.07319074231782e-05,
+        "organism_mismatch": 9.584468898538034e-06,
+        "known_control_only": 2.0052557374583557e-05
+      },
+      "uncertainty_ensemble": 0.2195470929145813,
+      "final_discovery_score": -0.10371094048023224,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for S.aureus: 0.35"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.64"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.42",
+          "cytotoxic: probability 0.58"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_9bb858e826",
+        "structure": {
+          "canonical_smiles": "O=C1NC(=O)C(=NNc2ccccc2[N+](=O)[O-])C(=O)N1",
+          "inchi_key": "FIXGXGBHRCVWST-UHFFFAOYSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 277.19599999999997,
+          "clogp": -0.2713000000000002,
+          "tpsa": 142.79999999999998,
+          "hbd": 3,
+          "hba": 7,
+          "formal_charge": 0,
+          "rotatable_bonds": 3,
+          "aromatic_ring_count": 1,
+          "fsp3": 0.0
+        },
+        "chemical_alerts": {
+          "pains_alerts": [
+            "imine_one_sixes(27)"
+          ],
+          "brenk_alerts": [
+            "imine_1",
+            "nitro_group",
+            "Oxygen-nitrogen_single_bond"
+          ],
+          "reactive_alerts": [
+            "nitro_aromatic"
+          ],
+          "aggregation_risk": "low"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "S.aureus": 0.3489583432674408
+          },
+          "cytotoxicity_risk": 0.6373698115348816,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.4466145932674408,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.2195470929145813
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "A_repurposing"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    }
+  ],
+  "locked_at_utc": "2026-05-12T03:59:02.141233+00:00"
+}

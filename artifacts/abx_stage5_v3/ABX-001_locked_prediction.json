@@ -1,0 +1,1716 @@
+{
+  "case_id": "ABX-001",
+  "organism": "E.coli",
+  "n_pool": 1130,
+  "top_k": 20,
+  "top_candidates": [
+    {
+      "candidate_smiles": "NNC1=NC2=NON=C2N=C1NN",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.9375,
+      "antibacterial_score_std": 0.006765823345631361,
+      "cytotox_risk": 0.9283854365348816,
+      "artifact_risk": 0.4622395932674408,
+      "failure_mode_probs": {
+        "inactive": 0.07127951830625534,
+        "cytotoxic": 0.9287202954292297,
+        "artifact": 3.225757083669123e-08,
+        "organism_mismatch": 4.6263071595831207e-08,
+        "known_control_only": 4.218520999188513e-08
+      },
+      "uncertainty_ensemble": 0.006765823345631361,
+      "final_discovery_score": 0.334635403752327,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "high organism-conditioned antibacterial score for E.coli: 0.94"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.93"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "cytotoxic: probability 0.93"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_f7fb430a9c",
+        "structure": {
+          "canonical_smiles": "NNc1nc2nonc2nc1NN",
+          "inchi_key": "MBFGKQUIQMEAOX-UHFFFAOYSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 182.147,
+          "clogp": -1.4160000000000004,
+          "tpsa": 140.8,
+          "hbd": 4,
+          "hba": 9,
+          "formal_charge": 0,
+          "rotatable_bonds": 2,
+          "aromatic_ring_count": 2,
+          "fsp3": 0.0
+        },
+        "chemical_alerts": {
+          "pains_alerts": [],
+          "brenk_alerts": [
+            "hydrazine",
+            "Oxygen-nitrogen_single_bond"
+          ],
+          "reactive_alerts": [],
+          "aggregation_risk": "low"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "E.coli": 0.9375
+          },
+          "cytotoxicity_risk": 0.9283854365348816,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.4622395932674408,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.006765823345631361
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "A_repurposing"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "N#CC1=C(SCC(C=CC=C2)=C2F)N=C(C3=CC=CS3)C=C1C4=CC=CS4",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.9348958134651184,
+      "antibacterial_score_std": 0.019661027938127518,
+      "cytotox_risk": 0.9231770634651184,
+      "artifact_risk": 0.46484375,
+      "failure_mode_probs": {
+        "inactive": 0.0770612433552742,
+        "cytotoxic": 0.9229386448860168,
+        "artifact": 2.5837161743424986e-08,
+        "organism_mismatch": 3.623625133286623e-08,
+        "known_control_only": 4.000193598585611e-08
+      },
+      "uncertainty_ensemble": 0.019661027938127518,
+      "final_discovery_score": 0.33385415673255925,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "high organism-conditioned antibacterial score for E.coli: 0.93"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.92"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "cytotoxic: probability 0.92"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_78544ec37e",
+        "structure": {
+          "canonical_smiles": "N#Cc1c(-c2cccs2)cc(-c2cccs2)nc1SCc1ccccc1F",
+          "inchi_key": "YCAHKKLVLBNAGW-UHFFFAOYSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 408.54800000000006,
+          "clogp": 6.841680000000004,
+          "tpsa": 36.68,
+          "hbd": 0,
+          "hba": 5,
+          "formal_charge": 0,
+          "rotatable_bonds": 5,
+          "aromatic_ring_count": 4,
+          "fsp3": 0.047619047619047616
+        },
+        "chemical_alerts": {
+          "pains_alerts": [],
+          "brenk_alerts": [],
+          "reactive_alerts": [],
+          "aggregation_risk": "moderate"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "E.coli": 0.9348958134651184
+          },
+          "cytotoxicity_risk": 0.9231770634651184,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.46484375,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.019661027938127518
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "A_repurposing"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "NC[C@H]1O[C@H](O[C@H]2[C@H](O)[C@@H](O[C@H]3O[C@H](CO)[C@@H](O)[C@H](N)[C@H]3O)[C@H](N)C[C@@H]2N)[C@H](O)[C@@H](O)[C@@H]1O.O=S(=O)(O)O",
+      "candidate_inchi_key": "OOYGSFOGFJDDHP-KMCOLRRFSA-N",
+      "channel": "C_organism_analog",
+      "max_tanimoto_to_organism_active": 0.7,
+      "antibacterial_score": 0.93359375,
+      "antibacterial_score_std": 0.013531646691262722,
+      "cytotox_risk": 0.9231770634651184,
+      "artifact_risk": 0.4615885317325592,
+      "failure_mode_probs": {
+        "inactive": 0.07616055756807327,
+        "cytotoxic": 0.9238393902778625,
+        "artifact": 2.3116422553925986e-08,
+        "organism_mismatch": 3.0821951213511056e-08,
+        "known_control_only": 3.353281741169667e-08
+      },
+      "uncertainty_ensemble": 0.013531646691262722,
+      "final_discovery_score": 0.333528658747673,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "high organism-conditioned antibacterial score for E.coli: 0.93"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.92"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "cytotoxic: probability 0.92"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_ea71856848",
+        "structure": {
+          "canonical_smiles": "NC[C@H]1O[C@H](O[C@H]2[C@H](O)[C@@H](O[C@H]3O[C@H](CO)[C@@H](O)[C@H](N)[C@H]3O)[C@H](N)C[C@@H]2N)[C@H](O)[C@@H](O)[C@@H]1O.O=S(=O)(O)O",
+          "inchi_key": "OOYGSFOGFJDDHP-KMCOLRRFSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 582.5820000000003,
+          "clogp": -7.944200000000013,
+          "tpsa": 357.2100000000001,
+          "hbd": 13,
+          "hba": 17,
+          "formal_charge": 0,
+          "rotatable_bonds": 6,
+          "aromatic_ring_count": 0,
+          "fsp3": 1.0
+        },
+        "chemical_alerts": {
+          "pains_alerts": [],
+          "brenk_alerts": [
+            "Sulfonic_acid_2"
+          ],
+          "reactive_alerts": [],
+          "aggregation_risk": "low"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": 0.7,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "E.coli": 0.93359375
+          },
+          "cytotoxicity_risk": 0.9231770634651184,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.4615885317325592,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.013531646691262722
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "C_organism_analog"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "N#CC1=C(NC(COC2=CC=CC=C2Br)=O)SC3=C1CCC3",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.9309895634651184,
+      "antibacterial_score_std": 0.011933790519833565,
+      "cytotox_risk": 0.9205729365348816,
+      "artifact_risk": 0.4583333432674408,
+      "failure_mode_probs": {
+        "inactive": 0.07997024804353714,
+        "cytotoxic": 0.9200296998023987,
+        "artifact": 2.4760739236739937e-08,
+        "organism_mismatch": 3.372447210381324e-08,
+        "known_control_only": 2.8807646046402624e-08
+      },
+      "uncertainty_ensemble": 0.011933790519833565,
+      "final_discovery_score": 0.3332030922174454,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "high organism-conditioned antibacterial score for E.coli: 0.93"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.92"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "cytotoxic: probability 0.92"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_46df416bcb",
+        "structure": {
+          "canonical_smiles": "N#Cc1c(NC(=O)COc2ccccc2Br)sc2c1CCC2",
+          "inchi_key": "TZBZXMOOGYQXJR-UHFFFAOYSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 377.2630000000002,
+          "clogp": 3.888480000000002,
+          "tpsa": 62.12,
+          "hbd": 1,
+          "hba": 4,
+          "formal_charge": 0,
+          "rotatable_bonds": 4,
+          "aromatic_ring_count": 2,
+          "fsp3": 0.25
+        },
+        "chemical_alerts": {
+          "pains_alerts": [],
+          "brenk_alerts": [],
+          "reactive_alerts": [],
+          "aggregation_risk": "low"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "E.coli": 0.9309895634651184
+          },
+          "cytotoxicity_risk": 0.9205729365348816,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.4583333432674408,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.011933790519833565
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "A_repurposing"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "n(c1F)c(N)c(c(F)n1)Br",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.9296875,
+      "antibacterial_score_std": 0.02376079186797142,
+      "cytotox_risk": 0.9192708134651184,
+      "artifact_risk": 0.458984375,
+      "failure_mode_probs": {
+        "inactive": 0.07960879057645798,
+        "cytotoxic": 0.9203910827636719,
+        "artifact": 2.2688317002916847e-08,
+        "organism_mismatch": 3.164564787994095e-08,
+        "known_control_only": 3.6311320172899286e-08
+      },
+      "uncertainty_ensemble": 0.02376079186797142,
+      "final_discovery_score": 0.3323567807674408,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "high organism-conditioned antibacterial score for E.coli: 0.93"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.92"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "cytotoxic: probability 0.92"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_50212cb323",
+        "structure": {
+          "canonical_smiles": "Nc1nc(F)nc(F)c1Br",
+          "inchi_key": "VBWSJFIYWMRDNR-UHFFFAOYSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 209.981,
+          "clogp": 1.0995000000000001,
+          "tpsa": 51.8,
+          "hbd": 1,
+          "hba": 3,
+          "formal_charge": 0,
+          "rotatable_bonds": 0,
+          "aromatic_ring_count": 1,
+          "fsp3": 0.0
+        },
+        "chemical_alerts": {
+          "pains_alerts": [],
+          "brenk_alerts": [],
+          "reactive_alerts": [],
+          "aggregation_risk": "low"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "E.coli": 0.9296875
+          },
+          "cytotoxicity_risk": 0.9192708134651184,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.458984375,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.02376079186797142
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "B_screened_library"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "N#CC1=C(SCC(NC2=C(I)C=C(C)C=C2)=O)N=C(C3=CC=CS3)C=C1C4=CC=C(Cl)C=C4",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.9322916865348816,
+      "antibacterial_score_std": 0.012556836940348148,
+      "cytotox_risk": 0.9231770634651184,
+      "artifact_risk": 0.4635416567325592,
+      "failure_mode_probs": {
+        "inactive": 0.07696758955717087,
+        "cytotoxic": 0.9230323433876038,
+        "artifact": 2.2894193207889657e-08,
+        "organism_mismatch": 3.063460951580055e-08,
+        "known_control_only": 3.1376472975352954e-08
+      },
+      "uncertainty_ensemble": 0.012556836940348148,
+      "final_discovery_score": 0.33164065778255464,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "high organism-conditioned antibacterial score for E.coli: 0.93"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.92"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "cytotoxic: probability 0.92"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_4cfdfe3ce6",
+        "structure": {
+          "canonical_smiles": "Cc1ccc(NC(=O)CSc2nc(-c3cccs3)cc(-c3ccc(Cl)cc3)c2C#N)c(I)c1",
+          "inchi_key": "BZJFOANMULJHSE-UHFFFAOYSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 601.9220000000003,
+          "clogp": 7.646000000000004,
+          "tpsa": 65.78,
+          "hbd": 1,
+          "hba": 5,
+          "formal_charge": 0,
+          "rotatable_bonds": 6,
+          "aromatic_ring_count": 4,
+          "fsp3": 0.08
+        },
+        "chemical_alerts": {
+          "pains_alerts": [],
+          "brenk_alerts": [
+            "iodine"
+          ],
+          "reactive_alerts": [],
+          "aggregation_risk": "high"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "E.coli": 0.9322916865348816
+          },
+          "cytotoxicity_risk": 0.9231770634651184,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.4635416567325592,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.012556836940348148
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "A_repurposing"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "N#CC1=C(SC(N)=C(C#N)C1C2=CC=C(C3=CC=CC=C3)C=C2)N",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.9309895634651184,
+      "antibacterial_score_std": 0.020045317709445953,
+      "cytotox_risk": 0.9192708134651184,
+      "artifact_risk": 0.4680989682674408,
+      "failure_mode_probs": {
+        "inactive": 0.07916180044412613,
+        "cytotoxic": 0.9208381175994873,
+        "artifact": 3.004932480621392e-08,
+        "organism_mismatch": 4.4397534537665706e-08,
+        "known_control_only": 5.009176007320093e-08
+      },
+      "uncertainty_ensemble": 0.020045317709445953,
+      "final_discovery_score": 0.33092446625232697,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "high organism-conditioned antibacterial score for E.coli: 0.93"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.92"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "cytotoxic: probability 0.92"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_5b73dd220e",
+        "structure": {
+          "canonical_smiles": "N#CC1=C(N)SC(N)=C(C#N)C1c1ccc(-c2ccccc2)cc1",
+          "inchi_key": "XTHHCSKHBYDJED-UHFFFAOYSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 330.41600000000005,
+          "clogp": 3.571760000000002,
+          "tpsa": 99.61999999999999,
+          "hbd": 2,
+          "hba": 5,
+          "formal_charge": 0,
+          "rotatable_bonds": 2,
+          "aromatic_ring_count": 2,
+          "fsp3": 0.05263157894736842
+        },
+        "chemical_alerts": {
+          "pains_alerts": [
+            "dhp_bis_amino_CN(19)"
+          ],
+          "brenk_alerts": [],
+          "reactive_alerts": [],
+          "aggregation_risk": "low"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "E.coli": 0.9309895634651184
+          },
+          "cytotoxicity_risk": 0.9192708134651184,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.4680989682674408,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.020045317709445953
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "A_repurposing"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "N#CC1=C(SC(N)=C(C#N)C1C2=CC=C3OCOC3=C2)N",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.9244791865348816,
+      "antibacterial_score_std": 0.019269073382019997,
+      "cytotox_risk": 0.9127604365348816,
+      "artifact_risk": 0.4576822817325592,
+      "failure_mode_probs": {
+        "inactive": 0.0875159427523613,
+        "cytotoxic": 0.9124839901924133,
+        "artifact": 1.797386950386226e-08,
+        "organism_mismatch": 2.375225527373459e-08,
+        "known_control_only": 2.545827548772195e-08
+      },
+      "uncertainty_ensemble": 0.019269073382019997,
+      "final_discovery_score": 0.33079428374767306,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "high organism-conditioned antibacterial score for E.coli: 0.92"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.91"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "cytotoxic: probability 0.91"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_b7bbf19ddb",
+        "structure": {
+          "canonical_smiles": "N#CC1=C(N)SC(N)=C(C#N)C1c1ccc2c(c1)OCO2",
+          "inchi_key": "ODUCLVRKXPWZOR-UHFFFAOYSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 298.32700000000006,
+          "clogp": 1.6334600000000001,
+          "tpsa": 118.08,
+          "hbd": 2,
+          "hba": 7,
+          "formal_charge": 0,
+          "rotatable_bonds": 1,
+          "aromatic_ring_count": 1,
+          "fsp3": 0.14285714285714285
+        },
+        "chemical_alerts": {
+          "pains_alerts": [
+            "dhp_bis_amino_CN(19)"
+          ],
+          "brenk_alerts": [],
+          "reactive_alerts": [],
+          "aggregation_risk": "low"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "E.coli": 0.9244791865348816
+          },
+          "cytotoxicity_risk": 0.9127604365348816,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.4576822817325592,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.019269073382019997
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "A_repurposing"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "FC(C(F)(F)F)(C(NCCCCCCCCCCCCCCCCCC)=O)OC(F)(F)C(F)(F)C(F)(F)F",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.91796875,
+      "antibacterial_score_std": 0.01171875,
+      "cytotox_risk": 0.9036458134651184,
+      "artifact_risk": 0.4524739682674408,
+      "failure_mode_probs": {
+        "inactive": 0.09751144796609879,
+        "cytotoxic": 0.9024885296821594,
+        "artifact": 1.245305014663245e-08,
+        "organism_mismatch": 1.642349900521367e-08,
+        "known_control_only": 1.6485387277498376e-08
+      },
+      "uncertainty_ensemble": 0.01171875,
+      "final_discovery_score": 0.33040365278720857,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "high organism-conditioned antibacterial score for E.coli: 0.92"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.90"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "cytotoxic: probability 0.90"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_4bf7819208",
+        "structure": {
+          "canonical_smiles": "CCCCCCCCCCCCCCCCCCNC(=O)C(F)(OC(F)(F)C(F)(F)C(F)(F)F)C(F)(F)F",
+          "inchi_key": "XXUGORHIFXJEKB-UHFFFAOYSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 581.5510000000005,
+          "clogp": 9.399199999999997,
+          "tpsa": 38.33,
+          "hbd": 1,
+          "hba": 2,
+          "formal_charge": 0,
+          "rotatable_bonds": 21,
+          "aromatic_ring_count": 0,
+          "fsp3": 0.9583333333333334
+        },
+        "chemical_alerts": {
+          "pains_alerts": [],
+          "brenk_alerts": [
+            "Aliphatic_long_chain",
+            "Perfluorinated_chain"
+          ],
+          "reactive_alerts": [],
+          "aggregation_risk": "high"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "E.coli": 0.91796875
+          },
+          "cytotoxicity_risk": 0.9036458134651184,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.4524739682674408,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.01171875
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "A_repurposing"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "N#CC1=C(SCC(C=CC=C2)=C2F)N=C(C3=CC=CS3)C=C1C(C=C4)=CC=C4Cl",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.9270833134651184,
+      "antibacterial_score_std": 0.022888535633683205,
+      "cytotox_risk": 0.9153645634651184,
+      "artifact_risk": 0.4661458432674408,
+      "failure_mode_probs": {
+        "inactive": 0.08468326181173325,
+        "cytotoxic": 0.915316641330719,
+        "artifact": 2.521418274170628e-08,
+        "organism_mismatch": 3.54628362231324e-08,
+        "known_control_only": 3.7452039691743266e-08
+      },
+      "uncertainty_ensemble": 0.022888535633683205,
+      "final_discovery_score": 0.329557278752327,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "high organism-conditioned antibacterial score for E.coli: 0.93"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.92"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "cytotoxic: probability 0.92"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_61e4bae140",
+        "structure": {
+          "canonical_smiles": "N#Cc1c(-c2ccc(Cl)cc2)cc(-c2cccs2)nc1SCc1ccccc1F",
+          "inchi_key": "SGZUSRAQVXJDLU-UHFFFAOYSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 436.96400000000006,
+          "clogp": 7.433580000000004,
+          "tpsa": 36.68,
+          "hbd": 0,
+          "hba": 4,
+          "formal_charge": 0,
+          "rotatable_bonds": 5,
+          "aromatic_ring_count": 4,
+          "fsp3": 0.043478260869565216
+        },
+        "chemical_alerts": {
+          "pains_alerts": [],
+          "brenk_alerts": [],
+          "reactive_alerts": [],
+          "aggregation_risk": "moderate"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "E.coli": 0.9270833134651184
+          },
+          "cytotoxicity_risk": 0.9153645634651184,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.4661458432674408,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.022888535633683205
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "A_repurposing"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "CCCCCCCCCCCCN1CCN(c2c3c(O)c4c(O)c(C)c5c(c4c2O)C(=O)C(C)(O/C=C/C(OC)C(C)C(OC(C)=O)C(C)C(O)C(C)C(O)C(C)/C=C/C=C(/C)C(=O)N3)O5)CC1",
+      "candidate_inchi_key": "STOQMNFRUWIKFA-SGJSDHECSA-N",
+      "channel": "C_organism_analog",
+      "max_tanimoto_to_organism_active": 0.6578947368421053,
+      "antibacterial_score": 0.9166666865348816,
+      "antibacterial_score_std": 0.020045317709445953,
+      "cytotox_risk": 0.90625,
+      "artifact_risk": 0.4485677182674408,
+      "failure_mode_probs": {
+        "inactive": 0.09611311554908752,
+        "cytotoxic": 0.9038868546485901,
+        "artifact": 1.0964570584803823e-08,
+        "organism_mismatch": 1.3877340165890928e-08,
+        "known_control_only": 1.2572454188841675e-08
+      },
+      "uncertainty_ensemble": 0.020045317709445953,
+      "final_discovery_score": 0.32897137105464935,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "high organism-conditioned antibacterial score for E.coli: 0.92"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.91"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "cytotoxic: probability 0.90"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_afa4a1905d",
+        "structure": {
+          "canonical_smiles": "CCCCCCCCCCCCN1CCN(c2c3c(O)c4c(O)c(C)c5c(c4c2O)C(=O)C(C)(O/C=C/C(OC)C(C)C(OC(C)=O)C(C)C(O)C(C)C(O)C(C)/C=C/C=C(/C)C(=O)N3)O5)CC1",
+          "inchi_key": "STOQMNFRUWIKFA-SGJSDHECSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 950.2240000000002,
+          "clogp": 8.79702000000001,
+          "tpsa": 207.79,
+          "hbd": 6,
+          "hba": 14,
+          "formal_charge": 0,
+          "rotatable_bonds": 14,
+          "aromatic_ring_count": 2,
+          "fsp3": 0.6415094339622641
+        },
+        "chemical_alerts": {
+          "pains_alerts": [
+            "keto_naphthol_A(2)"
+          ],
+          "brenk_alerts": [
+            "Aliphatic_long_chain",
+            "catechol",
+            "hydroquinone"
+          ],
+          "reactive_alerts": [
+            "michael_acceptor"
+          ],
+          "aggregation_risk": "high"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": 0.6578947368421053,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "E.coli": 0.9166666865348816
+          },
+          "cytotoxicity_risk": 0.90625,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.4485677182674408,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.020045317709445953
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "C_organism_analog"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "N#CC1=C([C-](C#N)C#N)NC(C2CC2)(O)C(C1C3=CC=CC=C3)[N+](C=CC=C4)=C4C",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.921875,
+      "antibacterial_score_std": 0.014084184542298317,
+      "cytotox_risk": 0.9088541865348816,
+      "artifact_risk": 0.4622395932674408,
+      "failure_mode_probs": {
+        "inactive": 0.09251824766397476,
+        "cytotoxic": 0.9074816703796387,
+        "artifact": 1.806817628846602e-08,
+        "organism_mismatch": 2.4195450976094435e-08,
+        "known_control_only": 2.4132681630817387e-08
+      },
+      "uncertainty_ensemble": 0.014084184542298317,
+      "final_discovery_score": 0.328776028752327,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "high organism-conditioned antibacterial score for E.coli: 0.92"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.91"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "cytotoxic: probability 0.91"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_309b300ad0",
+        "structure": {
+          "canonical_smiles": "Cc1cccc[n+]1C1C(c2ccccc2)C(C#N)=C([C-](C#N)C#N)NC1(O)C1CC1",
+          "inchi_key": "BHQKVVGNCAIGEQ-UHFFFAOYSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 395.46600000000007,
+          "clogp": 2.7085500000000007,
+          "tpsa": 107.51,
+          "hbd": 2,
+          "hba": 5,
+          "formal_charge": 0,
+          "rotatable_bonds": 4,
+          "aromatic_ring_count": 2,
+          "fsp3": 0.2916666666666667
+        },
+        "chemical_alerts": {
+          "pains_alerts": [],
+          "brenk_alerts": [
+            "Carbo_cation/anion",
+            "quaternary_nitrogen_1"
+          ],
+          "reactive_alerts": [],
+          "aggregation_risk": "low"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "E.coli": 0.921875
+          },
+          "cytotoxicity_risk": 0.9088541865348816,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.4622395932674408,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.014084184542298317
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "A_repurposing"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "N#CC1=C(N)NC(C(C(N)=O)C1C2=CC=CC=C2)=S",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.9231770634651184,
+      "antibacterial_score_std": 0.014788824133574963,
+      "cytotox_risk": 0.9114583134651184,
+      "artifact_risk": 0.462890625,
+      "failure_mode_probs": {
+        "inactive": 0.08897963166236877,
+        "cytotoxic": 0.9110202789306641,
+        "artifact": 2.4624688066410272e-08,
+        "organism_mismatch": 3.346400490045198e-08,
+        "known_control_only": 2.981983371341812e-08
+      },
+      "uncertainty_ensemble": 0.014788824133574963,
+      "final_discovery_score": 0.3285807192325592,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "high organism-conditioned antibacterial score for E.coli: 0.92"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.91"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "cytotoxic: probability 0.91"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_bad5691153",
+        "structure": {
+          "canonical_smiles": "N#CC1=C(N)NC(=S)C(C(N)=O)C1c1ccccc1",
+          "inchi_key": "OYQDXAAMRAEMKX-UHFFFAOYSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 272.33299999999997,
+          "clogp": 0.4961800000000006,
+          "tpsa": 104.93,
+          "hbd": 3,
+          "hba": 4,
+          "formal_charge": 0,
+          "rotatable_bonds": 2,
+          "aromatic_ring_count": 1,
+          "fsp3": 0.15384615384615385
+        },
+        "chemical_alerts": {
+          "pains_alerts": [],
+          "brenk_alerts": [
+            "Thiocarbonyl_group"
+          ],
+          "reactive_alerts": [],
+          "aggregation_risk": "low"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "E.coli": 0.9231770634651184
+          },
+          "cytotoxicity_risk": 0.9114583134651184,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.462890625,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.014788824133574963
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "A_repurposing"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "N#CC(C(C1=CC=CS1)=C2)=C(SCCCC(C(C=C3)=CC=C3F)=O)N=C2C4=CC=CS4",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.9140625,
+      "antibacterial_score_std": 0.029491540044546127,
+      "cytotox_risk": 0.90234375,
+      "artifact_risk": 0.4498697817325592,
+      "failure_mode_probs": {
+        "inactive": 0.09867355227470398,
+        "cytotoxic": 0.9013264179229736,
+        "artifact": 1.427851525903634e-08,
+        "organism_mismatch": 1.8140463353688574e-08,
+        "known_control_only": 2.0063135153236544e-08
+      },
+      "uncertainty_ensemble": 0.029491540044546127,
+      "final_discovery_score": 0.32792969048023224,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "high organism-conditioned antibacterial score for E.coli: 0.91"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.90"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "cytotoxic: probability 0.90"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_bb74cf7507",
+        "structure": {
+          "canonical_smiles": "N#Cc1c(-c2cccs2)cc(-c2cccs2)nc1SCCCC(=O)c1ccc(F)cc1",
+          "inchi_key": "HRCTVDMWRUUKGX-UHFFFAOYSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 464.6120000000001,
+          "clogp": 7.304580000000005,
+          "tpsa": 53.75,
+          "hbd": 0,
+          "hba": 6,
+          "formal_charge": 0,
+          "rotatable_bonds": 8,
+          "aromatic_ring_count": 4,
+          "fsp3": 0.125
+        },
+        "chemical_alerts": {
+          "pains_alerts": [],
+          "brenk_alerts": [
+            "Aliphatic_long_chain"
+          ],
+          "reactive_alerts": [],
+          "aggregation_risk": "moderate"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "E.coli": 0.9140625
+          },
+          "cytotoxicity_risk": 0.90234375,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.4498697817325592,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.029491540044546127
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "A_repurposing"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "N#CC1=C2[N+](C(C(Br)C3=CC=CC=C3)CS2)=C(C)C=C1C.[Br-]",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.9244791865348816,
+      "antibacterial_score_std": 0.017614256590604782,
+      "cytotox_risk": 0.9140625,
+      "artifact_risk": 0.4654947817325592,
+      "failure_mode_probs": {
+        "inactive": 0.08670219033956528,
+        "cytotoxic": 0.9132978320121765,
+        "artifact": 2.29733867485038e-08,
+        "organism_mismatch": 3.176927876324953e-08,
+        "known_control_only": 2.9008845103817293e-08
+      },
+      "uncertainty_ensemble": 0.017614256590604782,
+      "final_discovery_score": 0.3277995020151139,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "high organism-conditioned antibacterial score for E.coli: 0.92"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.91"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "cytotoxic: probability 0.91"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_f6a8e8369b",
+        "structure": {
+          "canonical_smiles": "Cc1cc(C)[n+]2c(c1C#N)SCC2C(Br)c1ccccc1.[Br-]",
+          "inchi_key": "AOYUMYRFQYPRLM-UHFFFAOYSA-M",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 440.2040000000001,
+          "clogp": 1.2496200000000002,
+          "tpsa": 27.669999999999998,
+          "hbd": 0,
+          "hba": 2,
+          "formal_charge": 0,
+          "rotatable_bonds": 2,
+          "aromatic_ring_count": 2,
+          "fsp3": 0.29411764705882354
+        },
+        "chemical_alerts": {
+          "pains_alerts": [],
+          "brenk_alerts": [
+            "alkyl_halide",
+            "quaternary_nitrogen_1"
+          ],
+          "reactive_alerts": [
+            "alkyl_halide"
+          ],
+          "aggregation_risk": "low"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "E.coli": 0.9244791865348816
+          },
+          "cytotoxicity_risk": 0.9140625,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.4654947817325592,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.017614256590604782
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "A_repurposing"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "N#CC1=C(N)SC(N)=C(C#N)C1C2=CC=CS2",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.921875,
+      "antibacterial_score_std": 0.0234375,
+      "cytotox_risk": 0.9088541865348816,
+      "artifact_risk": 0.4654947817325592,
+      "failure_mode_probs": {
+        "inactive": 0.09099521487951279,
+        "cytotoxic": 0.9090046882629395,
+        "artifact": 2.3658536463244673e-08,
+        "organism_mismatch": 3.341348886465312e-08,
+        "known_control_only": 3.466583109457133e-08
+      },
+      "uncertainty_ensemble": 0.0234375,
+      "final_discovery_score": 0.3277994722127915,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "high organism-conditioned antibacterial score for E.coli: 0.92"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.91"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "cytotoxic: probability 0.91"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_60862582d9",
+        "structure": {
+          "canonical_smiles": "N#CC1=C(N)SC(N)=C(C#N)C1c1cccs1",
+          "inchi_key": "YCDJPLGSMCQRMT-UHFFFAOYSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 260.34700000000004,
+          "clogp": 1.96626,
+          "tpsa": 99.62,
+          "hbd": 2,
+          "hba": 6,
+          "formal_charge": 0,
+          "rotatable_bonds": 1,
+          "aromatic_ring_count": 1,
+          "fsp3": 0.09090909090909091
+        },
+        "chemical_alerts": {
+          "pains_alerts": [
+            "dhp_bis_amino_CN(19)"
+          ],
+          "brenk_alerts": [],
+          "reactive_alerts": [],
+          "aggregation_risk": "low"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "E.coli": 0.921875
+          },
+          "cytotoxicity_risk": 0.9088541865348816,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.4654947817325592,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.0234375
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "A_repurposing"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "NCC1CCC(N)C(OC2C(N)CC(N)C(OC3CC(N)C(O)C(CO)O3)C2O)O1",
+      "candidate_inchi_key": "HTUGCSJZMDOLQP-UHFFFAOYSA-N",
+      "channel": "C_organism_analog",
+      "max_tanimoto_to_organism_active": 0.5178571428571429,
+      "antibacterial_score": 0.9140625,
+      "antibacterial_score_std": 0.02376079186797142,
+      "cytotox_risk": 0.9036458134651184,
+      "artifact_risk": 0.44921875,
+      "failure_mode_probs": {
+        "inactive": 0.09560665488243103,
+        "cytotoxic": 0.9043933749198914,
+        "artifact": 1.3725409253595444e-08,
+        "organism_mismatch": 1.6880770559168923e-08,
+        "known_control_only": 1.7696420329116336e-08
+      },
+      "uncertainty_ensemble": 0.02376079186797142,
+      "final_discovery_score": 0.3274739682674408,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "high organism-conditioned antibacterial score for E.coli: 0.91"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.90"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "cytotoxic: probability 0.90"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_0141d0afe7",
+        "structure": {
+          "canonical_smiles": "NCC1CCC(N)C(OC2C(N)CC(N)C(OC3CC(N)C(O)C(CO)O3)C2O)O1",
+          "inchi_key": "HTUGCSJZMDOLQP-UHFFFAOYSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 435.52200000000016,
+          "clogp": -4.237399999999994,
+          "tpsa": 227.70999999999995,
+          "hbd": 8,
+          "hba": 12,
+          "formal_charge": 0,
+          "rotatable_bonds": 6,
+          "aromatic_ring_count": 0,
+          "fsp3": 1.0
+        },
+        "chemical_alerts": {
+          "pains_alerts": [],
+          "brenk_alerts": [],
+          "reactive_alerts": [],
+          "aggregation_risk": "low"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": 0.5178571428571429,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "E.coli": 0.9140625
+          },
+          "cytotoxicity_risk": 0.9036458134651184,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.44921875,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.02376079186797142
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "C_organism_analog"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "N#CC1=C(N)OC(CCl)=C(C(OCC)=O)C1C(C=C2)=CC=C2F",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.9114583134651184,
+      "antibacterial_score_std": 0.028258508071303368,
+      "cytotox_risk": 0.8984375,
+      "artifact_risk": 0.4505208432674408,
+      "failure_mode_probs": {
+        "inactive": 0.10288304090499878,
+        "cytotoxic": 0.8971168994903564,
+        "artifact": 1.527422455183114e-08,
+        "organism_mismatch": 2.0371132336549636e-08,
+        "known_control_only": 1.711497255030281e-08
+      },
+      "uncertainty_ensemble": 0.028258508071303368,
+      "final_discovery_score": 0.32708331048488615,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "high organism-conditioned antibacterial score for E.coli: 0.91"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.90"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "cytotoxic: probability 0.90"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_fa7555683d",
+        "structure": {
+          "canonical_smiles": "CCOC(=O)C1=C(CCl)OC(N)=C(C#N)C1c1ccc(F)cc1",
+          "inchi_key": "QVLADAOSQGWFHR-UHFFFAOYSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 336.75,
+          "clogp": 2.6893800000000008,
+          "tpsa": 85.34,
+          "hbd": 1,
+          "hba": 5,
+          "formal_charge": 0,
+          "rotatable_bonds": 4,
+          "aromatic_ring_count": 1,
+          "fsp3": 0.25
+        },
+        "chemical_alerts": {
+          "pains_alerts": [],
+          "brenk_alerts": [
+            "alkyl_halide"
+          ],
+          "reactive_alerts": [
+            "alkyl_halide",
+            "michael_acceptor"
+          ],
+          "aggregation_risk": "low"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "E.coli": 0.9114583134651184
+          },
+          "cytotoxicity_risk": 0.8984375,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.4505208432674408,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.028258508071303368
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "A_repurposing"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "N#CC1=C(C(F)(F)F)C=C(C2=CC=CS2)NC1=O",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.91796875,
+      "antibacterial_score_std": 0.01171875,
+      "cytotox_risk": 0.90625,
+      "artifact_risk": 0.4596354067325592,
+      "failure_mode_probs": {
+        "inactive": 0.09499358385801315,
+        "cytotoxic": 0.9050064086914062,
+        "artifact": 2.1209322298432198e-08,
+        "organism_mismatch": 2.8796444340173366e-08,
+        "known_control_only": 2.417032085588744e-08
+      },
+      "uncertainty_ensemble": 0.01171875,
+      "final_discovery_score": 0.32695312798023224,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "high organism-conditioned antibacterial score for E.coli: 0.92"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.91"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "cytotoxic: probability 0.91"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_56b0a14e7e",
+        "structure": {
+          "canonical_smiles": "N#Cc1c(C(F)(F)F)cc(-c2cccs2)[nH]c1=O",
+          "inchi_key": "UBBGOCKMIMCHLZ-UHFFFAOYSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 270.23500000000007,
+          "clogp": 2.9938800000000008,
+          "tpsa": 56.65,
+          "hbd": 1,
+          "hba": 3,
+          "formal_charge": 0,
+          "rotatable_bonds": 1,
+          "aromatic_ring_count": 2,
+          "fsp3": 0.09090909090909091
+        },
+        "chemical_alerts": {
+          "pains_alerts": [],
+          "brenk_alerts": [],
+          "reactive_alerts": [],
+          "aggregation_risk": "low"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "E.coli": 0.91796875
+          },
+          "cytotoxicity_risk": 0.90625,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.4596354067325592,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.01171875
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "A_repurposing"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    },
+    {
+      "candidate_smiles": "OCC1=CC=C[N+]([Pt+]2(C)([N+]3=C(C4=CC=C3)C5=C(C6=C4N=C7CCC=CC7=N6)C=CC=[N+]52)(C)C)=C1.F[P-](F)(F)(F)(F)F",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.9036458134651184,
+      "antibacterial_score_std": 0.031331274658441544,
+      "cytotox_risk": 0.890625,
+      "artifact_risk": 0.4420572817325592,
+      "failure_mode_probs": {
+        "inactive": 0.10894764214754105,
+        "cytotoxic": 0.8910523056983948,
+        "artifact": 1.1212475392596843e-08,
+        "organism_mismatch": 1.3465829340475466e-08,
+        "known_control_only": 1.5044342660530674e-08
+      },
+      "uncertainty_ensemble": 0.031331274658441544,
+      "final_discovery_score": 0.3257161289453506,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "high organism-conditioned antibacterial score for E.coli: 0.90"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted cytotoxicity: 0.89"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "cytotoxic: probability 0.89"
+        ]
+      },
+      "evidence_packet": {
+        "candidate_id": "CAND_9e8db0bb12",
+        "structure": {
+          "canonical_smiles": "F[P-](F)(F)(F)(F)F.[CH3][Pt+]1([CH3])([CH3])([n+]2cccc(CO)c2)[n+]2cccc3c4nc5c(nc4c4ccc[n+]1c4c32)CCC=C5",
+          "inchi_key": "DFHHLGICHFBWLO-UHFFFAOYSA-N",
+          "molecular_graph": "rdkit_mol_native"
+        },
+        "computed_descriptors": {
+          "molecular_weight": 778.5950000000005,
+          "clogp": 7.005500000000005,
+          "tpsa": 57.65,
+          "hbd": 1,
+          "hba": 3,
+          "formal_charge": 3,
+          "rotatable_bonds": 2,
+          "aromatic_ring_count": 5,
+          "fsp3": 0.2222222222222222
+        },
+        "chemical_alerts": {
+          "pains_alerts": [],
+          "brenk_alerts": [
+            "phosphor",
+            "Polycyclic_aromatic_hydrocarbon_3"
+          ],
+          "reactive_alerts": [],
+          "aggregation_risk": "high"
+        },
+        "similarity_evidence": {
+          "nearest_known_antibiotic_similarity": null,
+          "nearest_training_active_similarity": null,
+          "nearest_training_inactive_similarity": null,
+          "scaffold_novelty_score": null
+        },
+        "predicted_evidence": {
+          "antibacterial_scores_by_organism": {
+            "E.coli": 0.9036458134651184
+          },
+          "cytotoxicity_risk": 0.890625,
+          "hemolysis_risk": null,
+          "artifact_risk": 0.4420572817325592,
+          "synthesizability_score": null,
+          "uncertainty_score": 0.031331274658441544
+        },
+        "proposer_metadata": {
+          "proposer_sources": [
+            "A_repurposing"
+          ],
+          "seed_fragment_id": null,
+          "generation_guidance": {
+            "_unused": ""
+          }
+        }
+      }
+    }
+  ],
+  "locked_at_utc": "2026-05-12T03:56:29.143139+00:00"
+}
