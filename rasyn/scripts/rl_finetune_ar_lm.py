@@ -53,6 +53,9 @@ from train_smiles_ar_lm import (  # noqa: E402
 )
 from train_abx_ranker_v4 import ABXMultiHeadRankerV4  # noqa: E402
 from train_abx_ranker import condition_vector, tokenize as ranker_tok  # noqa: E402
+# The ranker uses h200_smiles_lm_pretrain VOCAB (different from the AR LM vocab).
+# Import that vocab size separately so we can construct the ranker with matching dims.
+from h200_smiles_lm_pretrain import VOCAB_SIZE as RANKER_VOCAB_SIZE  # noqa: E402
 
 
 def _log(msg: str) -> None:
@@ -88,8 +91,9 @@ def load_base_lm(ckpt_path: Path, device) -> ARSMILESLM:
 def load_ranker(ckpt_path: Path, device) -> ABXMultiHeadRankerV4:
     ckpt = torch.load(ckpt_path, map_location="cpu", weights_only=False)
     cargs = ckpt.get("args", {})
+    # Ranker uses h200_smiles_lm_pretrain vocab (43 tokens), NOT the AR LM vocab.
     model = ABXMultiHeadRankerV4(
-        VOCAB_SIZE, d_model=1024, n_heads=16, n_layers=16,
+        RANKER_VOCAB_SIZE, d_model=1024, n_heads=16, n_layers=16,
         max_len=cargs.get("max_len", 128),
     ).to(device)
     sd = {k.removeprefix("module."): v for k, v in ckpt["model"].items()}
