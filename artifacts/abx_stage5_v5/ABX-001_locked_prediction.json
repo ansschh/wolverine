@@ -1,0 +1,731 @@
+{
+  "case_id": "ABX-001",
+  "organism": "E.coli",
+  "n_pool": 1130,
+  "top_k": 20,
+  "top_candidates": [
+    {
+      "candidate_smiles": "Oc1c(Cl)cc(Cl)c2cccnc12",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.42578125,
+      "cytotox_risk": 0.1943359375,
+      "artifact_risk": 0.470703125,
+      "failure_mode_probs": {
+        "inactive": 0.8080151677131653,
+        "cytotoxic": 0.1919204294681549,
+        "artifact": 1.9944653104175813e-05,
+        "organism_mismatch": 2.123097328876611e-05,
+        "known_control_only": 2.3317661543842405e-05
+      },
+      "v4_base_score": 0.14628299595642602,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.34356373362243176,
+      "final_discovery_score": 0.19016789474335383,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for E.coli: 0.43"
+        ],
+        "selectivity_basis": [
+          "low predicted mammalian cytotoxicity: 0.19"
+        ],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.81"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "[N+](=O)([O-])c(cc1)ccc1c2ocnn2",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.40234375,
+      "cytotox_risk": 0.177734375,
+      "artifact_risk": 0.474609375,
+      "failure_mode_probs": {
+        "inactive": 0.8221718668937683,
+        "cytotoxic": 0.17780713737010956,
+        "artifact": 6.588526048290078e-06,
+        "organism_mismatch": 7.013449703663355e-06,
+        "known_control_only": 7.4657791628851555e-06
+      },
+      "v4_base_score": 0.14292356753139757,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.3552275076508522,
+      "final_discovery_score": 0.18580063779081685,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for E.coli: 0.40"
+        ],
+        "selectivity_basis": [
+          "low predicted mammalian cytotoxicity: 0.18"
+        ],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.82"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "c(c(O)ccc1C(O)=O)(c1)\\C=N\\c2cccc(cccn3)c23",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.45703125,
+      "cytotox_risk": 0.2080078125,
+      "artifact_risk": 0.51953125,
+      "failure_mode_probs": {
+        "inactive": 0.7905277609825134,
+        "cytotoxic": 0.2094690203666687,
+        "artifact": 9.564336096445913e-07,
+        "organism_mismatch": 1.0837812851605122e-06,
+        "known_control_only": 1.153679136223218e-06
+      },
+      "v4_base_score": 0.13773770349507686,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.30137480422854424,
+      "final_discovery_score": 0.17905901454359993,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for E.coli: 0.46"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.52"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.79",
+          "cytotoxic: probability 0.21"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "N(c(cc1)ccc1\\N=C\\c2ccccc2O)=Nc3ccccc3",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.419921875,
+      "cytotox_risk": 0.1875,
+      "artifact_risk": 0.50390625,
+      "failure_mode_probs": {
+        "inactive": 0.812861442565918,
+        "cytotoxic": 0.18713133037090302,
+        "artifact": 2.2865999653731706e-06,
+        "organism_mismatch": 2.2865999653731706e-06,
+        "known_control_only": 2.591057182144141e-06
+      },
+      "v4_base_score": 0.13752415776252747,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.3274993896484375,
+      "final_discovery_score": 0.1787814050912857,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for E.coli: 0.42"
+        ],
+        "selectivity_basis": [
+          "low predicted mammalian cytotoxicity: 0.19"
+        ],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.50"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.81"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "C(=O)(Nc(ccc(c12)OCO1)c2)c3cccs3",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.447265625,
+      "cytotox_risk": 0.2060546875,
+      "artifact_risk": 0.515625,
+      "failure_mode_probs": {
+        "inactive": 0.793100118637085,
+        "cytotoxic": 0.20689253509044647,
+        "artifact": 2.301830818396411e-06,
+        "organism_mismatch": 2.4502858195774024e-06,
+        "known_control_only": 2.608315753604984e-06
+      },
+      "v4_base_score": 0.13656154423370026,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.30532537400722504,
+      "final_discovery_score": 0.17753000750381034,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for E.coli: 0.45"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.52"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.79",
+          "cytotoxic: probability 0.21"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "C(=O)(c1cccc(c1)OC(NCC=C)=S)Nc2cccc(cccc3)c23",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.490234375,
+      "cytotox_risk": 0.232421875,
+      "artifact_risk": 0.53125,
+      "failure_mode_probs": {
+        "inactive": 0.7662913203239441,
+        "cytotoxic": 0.23370563983917236,
+        "artifact": 8.98586506536958e-07,
+        "organism_mismatch": 1.0182318419538205e-06,
+        "known_control_only": 1.083902247955848e-06
+      },
+      "v4_base_score": 0.13539113220758736,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.2761763334274292,
+      "final_discovery_score": 0.17600847186986357,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for E.coli: 0.49"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.53"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.77",
+          "cytotoxic: probability 0.23"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "C(=O)(c1ccc(c2c1)cccc2)Nc(ccc(c34)OCCO3)c4",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.48046875,
+      "cytotox_risk": 0.228515625,
+      "artifact_risk": 0.52734375,
+      "failure_mode_probs": {
+        "inactive": 0.7732113003730774,
+        "cytotoxic": 0.22678214311599731,
+        "artifact": 1.9497140328894602e-06,
+        "organism_mismatch": 2.2093154257163405e-06,
+        "known_control_only": 2.3518039142800262e-06
+      },
+      "v4_base_score": 0.1351651779259555,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.28131939470767975,
+      "final_discovery_score": 0.17571473130374216,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for E.coli: 0.48"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.53"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.77",
+          "cytotoxic: probability 0.23"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "Oc1c(Cl)cc(Cl)c(Cl)c1Cc1c(O)c(Cl)cc(Cl)c1Cl",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.45703125,
+      "cytotox_risk": 0.20703125,
+      "artifact_risk": 0.53125,
+      "failure_mode_probs": {
+        "inactive": 0.7943835258483887,
+        "cytotoxic": 0.20561467111110687,
+        "artifact": 5.307690003064636e-07,
+        "organism_mismatch": 6.014400923959329e-07,
+        "known_control_only": 6.402295866791974e-07
+      },
+      "v4_base_score": 0.13470984064042568,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.29474973678588867,
+      "final_discovery_score": 0.1751227928325534,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for E.coli: 0.46"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.53"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.79",
+          "cytotoxic: probability 0.21"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "[N+](=O)([O-])\\C=C\\c1ccc(cc1Cl)Cl",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.455078125,
+      "cytotox_risk": 0.2080078125,
+      "artifact_risk": 0.53515625,
+      "failure_mode_probs": {
+        "inactive": 0.7918204069137573,
+        "cytotoxic": 0.20817875862121582,
+        "artifact": 2.744708922364225e-07,
+        "organism_mismatch": 2.921727286775422e-07,
+        "known_control_only": 3.1101623676477175e-07
+      },
+      "v4_base_score": 0.1326889481206308,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.29157399758696556,
+      "final_discovery_score": 0.17249563255682007,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for E.coli: 0.46"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.54"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.79",
+          "cytotoxic: probability 0.21"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "C(=O)(c1ccc(cc1)OC)Oc2ccccc2\\C=N\\Nc3ccccc3",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.49609375,
+      "cytotox_risk": 0.23828125,
+      "artifact_risk": 0.5390625,
+      "failure_mode_probs": {
+        "inactive": 0.7634796500205994,
+        "cytotoxic": 0.23651495575904846,
+        "artifact": 1.6466892702737823e-06,
+        "organism_mismatch": 1.7528916487208335e-06,
+        "known_control_only": 1.9862864064634778e-06
+      },
+      "v4_base_score": 0.13267683098092675,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.26744306087493896,
+      "final_discovery_score": 0.17247988027520478,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for E.coli: 0.50"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.54"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.76",
+          "cytotoxic: probability 0.24"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "[O-][N+](=O)c1ccc(\\C=N\\N2CC(=O)NC2=O)o1",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.40625,
+      "cytotox_risk": 0.185546875,
+      "artifact_risk": 0.5078125,
+      "failure_mode_probs": {
+        "inactive": 0.8152287006378174,
+        "cytotoxic": 0.18476665019989014,
+        "artifact": 1.4350848687172402e-06,
+        "organism_mismatch": 1.5276398244168377e-06,
+        "known_control_only": 1.6261642485915218e-06
+      },
+      "v4_base_score": 0.13263438921421766,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.32648465037345886,
+      "final_discovery_score": 0.17242470597848297,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for E.coli: 0.41"
+        ],
+        "selectivity_basis": [
+          "low predicted mammalian cytotoxicity: 0.19"
+        ],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.51"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.82"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "[N+](=O)([O-])c(cc1)ccc1C(=O)Oc2cccc(cccn3)c23",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.3828125,
+      "cytotox_risk": 0.1748046875,
+      "artifact_risk": 0.494140625,
+      "failure_mode_probs": {
+        "inactive": 0.8300348520278931,
+        "cytotoxic": 0.16995441913604736,
+        "artifact": 3.3446031011408195e-06,
+        "organism_mismatch": 3.5603113701654365e-06,
+        "known_control_only": 3.789931724895723e-06
+      },
+      "v4_base_score": 0.13186496325943153,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.34446357749402523,
+      "final_discovery_score": 0.171424452237261,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for E.coli: 0.38"
+        ],
+        "selectivity_basis": [
+          "low predicted mammalian cytotoxicity: 0.17"
+        ],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.83"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "c1(O)c(OCC)cc(cc1I)\\C=N\\NC(COc(ccc(c2C)C)c2)=O",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.333984375,
+      "cytotox_risk": 0.1416015625,
+      "artifact_risk": 0.46484375,
+      "failure_mode_probs": {
+        "inactive": 0.8577629923820496,
+        "cytotoxic": 0.1422310322523117,
+        "artifact": 1.7379533119310508e-06,
+        "organism_mismatch": 1.9693591184477555e-06,
+        "known_control_only": 2.2315759906632593e-06
+      },
+      "v4_base_score": 0.1316996400928474,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.3943287469446659,
+      "final_discovery_score": 0.17120953212070164,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for E.coli: 0.33"
+        ],
+        "selectivity_basis": [
+          "low predicted mammalian cytotoxicity: 0.14"
+        ],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.86"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "c(cc(Cl)cc1Cl)(\\C=N\\c2cc(CC)ccc2O)c1O",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.515625,
+      "cytotox_risk": 0.255859375,
+      "artifact_risk": 0.5390625,
+      "failure_mode_probs": {
+        "inactive": 0.74465012550354,
+        "cytotoxic": 0.255341500043869,
+        "artifact": 2.5267142973461887e-06,
+        "organism_mismatch": 2.8631427539949073e-06,
+        "known_control_only": 3.0477992822852684e-06
+      },
+      "v4_base_score": 0.1316091357730329,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.2552419602870941,
+      "final_discovery_score": 0.17109187650494279,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for E.coli: 0.52"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.54"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.74",
+          "cytotoxic: probability 0.26"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "C(=O)(c1ccc(cc1)OC)Oc2cc(ccc2\\C=N\\c(cc3)ccc3OC)OC(=O)c4ccc(cc4)OC",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.4296875,
+      "cytotox_risk": 0.1953125,
+      "artifact_risk": 0.52734375,
+      "failure_mode_probs": {
+        "inactive": 0.8044041991233826,
+        "cytotoxic": 0.1955936700105667,
+        "artifact": 6.688852067782136e-07,
+        "organism_mismatch": 7.120245868463826e-07,
+        "known_control_only": 7.579462817375315e-07
+      },
+      "v4_base_score": 0.1315081398934126,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.30605530738830566,
+      "final_discovery_score": 0.17096058186143637,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for E.coli: 0.43"
+        ],
+        "selectivity_basis": [
+          "low predicted mammalian cytotoxicity: 0.20"
+        ],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.53"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.80"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "[N+](=O)([O-])c1cc(ccc1OC(c2ccccc2)=O)\\C=N\\c3cccc(OC)c3",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.40625,
+      "cytotox_risk": 0.1826171875,
+      "artifact_risk": 0.515625,
+      "failure_mode_probs": {
+        "inactive": 0.8210418224334717,
+        "cytotoxic": 0.17895540595054626,
+        "artifact": 9.044568400895514e-07,
+        "organism_mismatch": 9.627892723074183e-07,
+        "known_control_only": 1.02488377251575e-06
+      },
+      "v4_base_score": 0.13146982854232192,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.3236180394887924,
+      "final_discovery_score": 0.1709107771050185,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for E.coli: 0.41"
+        ],
+        "selectivity_basis": [
+          "low predicted mammalian cytotoxicity: 0.18"
+        ],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.52"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.82"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "C(/O)(\\c1ccc(cc1)OC)=C/C=N/c2cccc(Cl)c2",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.455078125,
+      "cytotox_risk": 0.2119140625,
+      "artifact_risk": 0.53515625,
+      "failure_mode_probs": {
+        "inactive": 0.7879283428192139,
+        "cytotoxic": 0.21206803619861603,
+        "artifact": 1.0972285053867381e-06,
+        "organism_mismatch": 1.2433227993824403e-06,
+        "known_control_only": 1.3235101050668163e-06
+      },
+      "v4_base_score": 0.1313832837549853,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.28870489820837975,
+      "final_discovery_score": 0.17079826888148092,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for E.coli: 0.46"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.54"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.79",
+          "cytotoxic: probability 0.21"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "[N+](=O)([O-])c1ccccc1\\C=N\\NC(=O)c2ccc(cc2)COc(cc3)ccc3C",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.392578125,
+      "cytotox_risk": 0.1787109375,
+      "artifact_risk": 0.50390625,
+      "failure_mode_probs": {
+        "inactive": 0.8233231902122498,
+        "cytotoxic": 0.17667049169540405,
+        "artifact": 1.9810045159829315e-06,
+        "organism_mismatch": 2.108768512698589e-06,
+        "known_control_only": 2.244772531412309e-06
+      },
+      "v4_base_score": 0.1313656836791779,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.334623035043478,
+      "final_discovery_score": 0.17077538878293128,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for E.coli: 0.39"
+        ],
+        "selectivity_basis": [
+          "low predicted mammalian cytotoxicity: 0.18"
+        ],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.50"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.82"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "COc1cc(C)c(Cc2cnc(N)nc2N)cc1OC",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.41015625,
+      "cytotox_risk": 0.193359375,
+      "artifact_risk": 0.5078125,
+      "failure_mode_probs": {
+        "inactive": 0.8092650175094604,
+        "cytotoxic": 0.19072143733501434,
+        "artifact": 4.253030056133866e-06,
+        "organism_mismatch": 4.527327291725669e-06,
+        "known_control_only": 4.819314654014306e-06
+      },
+      "v4_base_score": 0.1313530298648402,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.3202511966228485,
+      "final_discovery_score": 0.17075893882429227,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for E.coli: 0.41"
+        ],
+        "selectivity_basis": [
+          "low predicted mammalian cytotoxicity: 0.19"
+        ],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.51"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.81"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "C(Oc(cccc1C(=O)Nc(cc2)ccc2OCC)c1)(=S)Nc(cc3)ccc3OCC",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.47265625,
+      "cytotox_risk": 0.22265625,
+      "artifact_risk": 0.54296875,
+      "failure_mode_probs": {
+        "inactive": 0.7786474227905273,
+        "cytotoxic": 0.22135016322135925,
+        "artifact": 7.688869345656713e-07,
+        "organism_mismatch": 8.184758826246252e-07,
+        "known_control_only": 8.712630119589448e-07
+      },
+      "v4_base_score": 0.13053215970285237,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.27616721391677856,
+      "final_discovery_score": 0.16969180761370808,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for E.coli: 0.47"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.54"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.78",
+          "cytotoxic: probability 0.22"
+        ]
+      }
+    }
+  ],
+  "locked_at_utc": "2026-05-12T05:21:46.281141+00:00"
+}

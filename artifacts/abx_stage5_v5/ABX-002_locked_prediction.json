@@ -1,0 +1,735 @@
+{
+  "case_id": "ABX-002",
+  "organism": "A.baumannii",
+  "n_pool": 1153,
+  "top_k": 20,
+  "top_candidates": [
+    {
+      "candidate_smiles": "Cc1noc(NS(=O)(=O)c2ccc(N)cc2)c1C",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.5078125,
+      "cytotox_risk": 0.263671875,
+      "artifact_risk": 0.54296875,
+      "failure_mode_probs": {
+        "inactive": 0.7356345057487488,
+        "cytotoxic": 0.2643558084964752,
+        "artifact": 2.918263362516882e-06,
+        "organism_mismatch": 3.3068254197132774e-06,
+        "known_control_only": 3.5200976071791956e-06
+      },
+      "v4_base_score": 0.12583227886352688,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.2477927953004837,
+      "final_discovery_score": 0.16358196252258494,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for A.baumannii: 0.51"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.54"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.74",
+          "cytotoxic: probability 0.26"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "C(=O)(Nc(cc1)ccc1CC)c2cccs2",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.333984375,
+      "cytotox_risk": 0.15625,
+      "artifact_risk": 0.4765625,
+      "failure_mode_probs": {
+        "inactive": 0.8428474068641663,
+        "cytotoxic": 0.15713392198085785,
+        "artifact": 5.599437827186193e-06,
+        "organism_mismatch": 6.344994289975148e-06,
+        "known_control_only": 6.754210971848806e-06
+      },
+      "v4_base_score": 0.12445677816867828,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.37264251708984375,
+      "final_discovery_score": 0.16179381161928177,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for A.baumannii: 0.33"
+        ],
+        "selectivity_basis": [
+          "low predicted mammalian cytotoxicity: 0.16"
+        ],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.84"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "C(c1ccccc1)(=O)Oc2ccc(cc2OCC)\\C=N\\NC(CNc(cc3)ccc3C)=O",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.419921875,
+      "cytotox_risk": 0.2080078125,
+      "artifact_risk": 0.53515625,
+      "failure_mode_probs": {
+        "inactive": 0.793103814125061,
+        "cytotoxic": 0.20689348876476288,
+        "artifact": 8.207467772081145e-07,
+        "organism_mismatch": 9.300279657509236e-07,
+        "known_control_only": 9.900095392367803e-07
+      },
+      "v4_base_score": 0.12243829976796405,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.29157399758696556,
+      "final_discovery_score": 0.15916978969835327,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for A.baumannii: 0.42"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.54"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.79",
+          "cytotoxic: probability 0.21"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "C(/C(OCC)=O)(=N/c(cc1)ccc1c(cc2)ccc2\\N=C(/C(OCC)=O)\\C(F)(F)F)\\C(F)(F)F",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.3515625,
+      "cytotox_risk": 0.16796875,
+      "artifact_risk": 0.50390625,
+      "failure_mode_probs": {
+        "inactive": 0.8311396837234497,
+        "cytotoxic": 0.16885627806186676,
+        "artifact": 1.1941422144445824e-06,
+        "organism_mismatch": 1.3531404192690388e-06,
+        "known_control_only": 1.4404105286303093e-06
+      },
+      "v4_base_score": 0.12073844438418746,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.34343379735946655,
+      "final_discovery_score": 0.1569599776994437,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for A.baumannii: 0.35"
+        ],
+        "selectivity_basis": [
+          "low predicted mammalian cytotoxicity: 0.17"
+        ],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.50"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.83"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "S(=O)(=O)(c(cc1)ccc1[N+](=O)[O-])Oc2ccc(c3c2\\C=N\\c4ccc(cc4C)C)cccc3",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.419921875,
+      "cytotox_risk": 0.2001953125,
+      "artifact_risk": 0.55078125,
+      "failure_mode_probs": {
+        "inactive": 0.7981864809989929,
+        "cytotoxic": 0.20181314647197723,
+        "artifact": 1.0501496205961303e-07,
+        "organism_mismatch": 1.1178784831145094e-07,
+        "known_control_only": 1.266722193804526e-07
+      },
+      "v4_base_score": 0.12066859726473922,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.2873596362769604,
+      "final_discovery_score": 0.15686917644416098,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for A.baumannii: 0.42"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.55"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.80",
+          "cytotoxic: probability 0.20"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "C(=S)(Oc(cccc1C(=O)Nc(cc2)ccc2Br)c1)N3CCCCC3",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.41015625,
+      "cytotox_risk": 0.1982421875,
+      "artifact_risk": 0.54296875,
+      "failure_mode_probs": {
+        "inactive": 0.7994417548179626,
+        "cytotoxic": 0.20055754482746124,
+        "artifact": 1.9959678354553034e-07,
+        "organism_mismatch": 2.2617280137637863e-07,
+        "known_control_only": 2.407596753073449e-07
+      },
+      "v4_base_score": 0.12049849734466989,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.29378681257367134,
+      "final_discovery_score": 0.15664804654807085,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for A.baumannii: 0.41"
+        ],
+        "selectivity_basis": [
+          "low predicted mammalian cytotoxicity: 0.20"
+        ],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.54"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.80",
+          "cytotoxic: probability 0.20"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "S(=O)(=O)(c1ccc(cc1)\\N=C\\c2ccccc2O)Nc3nnc(CC)s3",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.40234375,
+      "cytotox_risk": 0.1982421875,
+      "artifact_risk": 0.53515625,
+      "failure_mode_probs": {
+        "inactive": 0.8019338846206665,
+        "cytotoxic": 0.1980637013912201,
+        "artifact": 7.556186005786003e-07,
+        "organism_mismatch": 8.043518278100237e-07,
+        "known_control_only": 8.562280413570988e-07
+      },
+      "v4_base_score": 0.12022385689488146,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.2988088093698025,
+      "final_discovery_score": 0.1562910139633459,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for A.baumannii: 0.40"
+        ],
+        "selectivity_basis": [
+          "low predicted mammalian cytotoxicity: 0.20"
+        ],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.54"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.80"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "n1c2c([nH]c1c3ccccc3)ccc(c2)\\N=C\\c(cccc4[N+](=O)[O-])c4",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.478515625,
+      "cytotox_risk": 0.2392578125,
+      "artifact_risk": 0.56640625,
+      "failure_mode_probs": {
+        "inactive": 0.7577935457229614,
+        "cytotoxic": 0.24220538139343262,
+        "artifact": 3.534692609719059e-07,
+        "organism_mismatch": 3.7626611515406694e-07,
+        "known_control_only": 4.0053311067822506e-07
+      },
+      "v4_base_score": 0.12007542678475147,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.25093313679099083,
+      "final_discovery_score": 0.1560980548201769,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for A.baumannii: 0.48"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.57"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.76",
+          "cytotoxic: probability 0.24"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "C(=O)(c1cccs1)Nc2c(OC)ccc(Cl)c2",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.40625,
+      "cytotox_risk": 0.189453125,
+      "artifact_risk": 0.55078125,
+      "failure_mode_probs": {
+        "inactive": 0.8092755675315857,
+        "cytotoxic": 0.19072392582893372,
+        "artifact": 1.623533307792968e-07,
+        "organism_mismatch": 1.8397042822471121e-07,
+        "known_control_only": 1.958354829412201e-07
+      },
+      "v4_base_score": 0.11989678023383021,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.29513053596019745,
+      "final_discovery_score": 0.15586581430397928,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for A.baumannii: 0.41"
+        ],
+        "selectivity_basis": [
+          "low predicted mammalian cytotoxicity: 0.19"
+        ],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.55"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.81"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "N(c1c(C)cccc1C)C(=O)C(=S)Nc(cc2)ccc2C(OC)=O",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.48046875,
+      "cytotox_risk": 0.24609375,
+      "artifact_risk": 0.56640625,
+      "failure_mode_probs": {
+        "inactive": 0.7490863800048828,
+        "cytotoxic": 0.25091251730918884,
+        "artifact": 3.132071810796333e-07,
+        "organism_mismatch": 3.5491021321831795e-07,
+        "known_control_only": 3.5491021321831795e-07
+      },
+      "v4_base_score": 0.1184084911365062,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.24644368886947632,
+      "final_discovery_score": 0.15393103847745807,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for A.baumannii: 0.48"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.57"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.75",
+          "cytotoxic: probability 0.25"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "CCc1oc2ccccc2c1C(=O)c1cc(Br)c(O)c(Br)c1",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.51953125,
+      "cytotox_risk": 0.275390625,
+      "artifact_risk": 0.56640625,
+      "failure_mode_probs": {
+        "inactive": 0.7248666882514954,
+        "cytotoxic": 0.2751283645629883,
+        "artifact": 1.3797027804685058e-06,
+        "organism_mismatch": 1.7715733520162757e-06,
+        "known_control_only": 1.7715733520162757e-06
+      },
+      "v4_base_score": 0.11827762256143615,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.22766219079494476,
+      "final_discovery_score": 0.153760909329867,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for A.baumannii: 0.52"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.57"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.72",
+          "cytotoxic: probability 0.28"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "c(c(O)ccc1Cl)(S2)c1OC2=O",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.515625,
+      "cytotox_risk": 0.2734375,
+      "artifact_risk": 0.56640625,
+      "failure_mode_probs": {
+        "inactive": 0.724869430065155,
+        "cytotoxic": 0.27512940764427185,
+        "artifact": 3.5433828315944993e-07,
+        "organism_mismatch": 4.2741359607134655e-07,
+        "known_control_only": 4.2741359607134655e-07
+      },
+      "v4_base_score": 0.11802199110388756,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.22889113426208496,
+      "final_discovery_score": 0.15342858843505383,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for A.baumannii: 0.52"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.57"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.72",
+          "cytotoxic: probability 0.28"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "O=C1N(Cc2ccc(OC(F)(F)F)cc2)C(C)=C(C)n(c13)cc([N+](=O)[O-])n3",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.287109375,
+      "cytotox_risk": 0.11767578125,
+      "artifact_risk": 0.474609375,
+      "failure_mode_probs": {
+        "inactive": 0.8824272751808167,
+        "cytotoxic": 0.11757206171751022,
+        "artifact": 1.6372480615700624e-07,
+        "organism_mismatch": 1.8552449887465627e-07,
+        "known_control_only": 1.9748981117118092e-07
+      },
+      "v4_base_score": 0.11743190153265459,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.40901451418176293,
+      "final_discovery_score": 0.15266147199245098,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for A.baumannii: 0.29"
+        ],
+        "selectivity_basis": [
+          "low predicted mammalian cytotoxicity: 0.12"
+        ],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.88"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "c(cc(I)cc1I)(\\C=N\\c2cccc(Cl)c2Cl)c1O",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.3359375,
+      "cytotox_risk": 0.1552734375,
+      "artifact_risk": 0.51171875,
+      "failure_mode_probs": {
+        "inactive": 0.8469539284706116,
+        "cytotoxic": 0.15304145216941833,
+        "artifact": 1.3788869637210155e-06,
+        "organism_mismatch": 1.562483589623298e-06,
+        "known_control_only": 1.6632551478323876e-06
+      },
+      "v4_base_score": 0.11704714779625647,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.3484194166958332,
+      "final_discovery_score": 0.1521612921351334,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for A.baumannii: 0.34"
+        ],
+        "selectivity_basis": [
+          "low predicted mammalian cytotoxicity: 0.16"
+        ],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.51"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.85"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "N1(c2ccccc2c3ccccc3)C(=O)c4c(cc(cc4)Oc(cc5)ccc5Oc(cccc6C(O)=O)c6)C1=O",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.326171875,
+      "cytotox_risk": 0.150390625,
+      "artifact_risk": 0.50390625,
+      "failure_mode_probs": {
+        "inactive": 0.8529331684112549,
+        "cytotoxic": 0.14706413447856903,
+        "artifact": 8.036724352677993e-07,
+        "organism_mismatch": 8.555048225389328e-07,
+        "known_control_only": 9.694140317151323e-07
+      },
+      "v4_base_score": 0.1168016176961828,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.3580983728170395,
+      "final_discovery_score": 0.15184210300503764,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for A.baumannii: 0.33"
+        ],
+        "selectivity_basis": [
+          "low predicted mammalian cytotoxicity: 0.15"
+        ],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.50"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.85"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "c1ccc(c(NC(c2ncccc2)=N)nc(c3ncccc3)c4)c4c1",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.3203125,
+      "cytotox_risk": 0.150390625,
+      "artifact_risk": 0.49609375,
+      "failure_mode_probs": {
+        "inactive": 0.8509564399719238,
+        "cytotoxic": 0.14903385937213898,
+        "artifact": 2.97908513857692e-06,
+        "organism_mismatch": 3.1712195323052583e-06,
+        "known_control_only": 3.5934624520450598e-06
+      },
+      "v4_base_score": 0.1165097375633195,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.36373771727085114,
+      "final_discovery_score": 0.15146265883231536,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for A.baumannii: 0.32"
+        ],
+        "selectivity_basis": [
+          "low predicted mammalian cytotoxicity: 0.15"
+        ],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.85"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "c(cc(I)cc1I)(\\C=N\\c2cccc(C)c2)c1O",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.279296875,
+      "cytotox_risk": 0.126953125,
+      "artifact_risk": 0.45703125,
+      "failure_mode_probs": {
+        "inactive": 0.8740499019622803,
+        "cytotoxic": 0.12591883540153503,
+        "artifact": 9.573680472385604e-06,
+        "organism_mismatch": 1.0191130058956333e-05,
+        "known_control_only": 1.1548063412192278e-05
+      },
+      "v4_base_score": 0.11558887470164336,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.4138566702604294,
+      "final_discovery_score": 0.1502655371121364,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for A.baumannii: 0.28"
+        ],
+        "selectivity_basis": [
+          "low predicted mammalian cytotoxicity: 0.13"
+        ],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.87"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "[N+](=O)([O-])c(cc1)cc(c1C(=O)Nc(cccn2)c2)Cl",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.361328125,
+      "cytotox_risk": 0.1669921875,
+      "artifact_risk": 0.5390625,
+      "failure_mode_probs": {
+        "inactive": 0.8365543484687805,
+        "cytotoxic": 0.163445383310318,
+        "artifact": 8.843802845603932e-08,
+        "organism_mismatch": 9.414178947508844e-08,
+        "known_control_only": 1.0021341267929529e-07
+      },
+      "v4_base_score": 0.11556916047993582,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.31984546035528183,
+      "final_discovery_score": 0.15023990862391656,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for A.baumannii: 0.36"
+        ],
+        "selectivity_basis": [
+          "low predicted mammalian cytotoxicity: 0.17"
+        ],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.54"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.84"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "C(=O)(N\\N=C\\c(cc1)ccc1OCc(cc2)ccc2C)C(=O)NC3CCCCC3",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.328125,
+      "cytotox_risk": 0.1474609375,
+      "artifact_risk": 0.515625,
+      "failure_mode_probs": {
+        "inactive": 0.851952314376831,
+        "cytotoxic": 0.14804710447788239,
+        "artifact": 1.848031416784579e-07,
+        "organism_mismatch": 1.9672191342579026e-07,
+        "known_control_only": 2.2291511925232044e-07
+      },
+      "v4_base_score": 0.11551798763684928,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.35205481946468353,
+      "final_discovery_score": 0.15017338392790408,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for A.baumannii: 0.33"
+        ],
+        "selectivity_basis": [
+          "low predicted mammalian cytotoxicity: 0.15"
+        ],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.52"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.85"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "c(non1)(c1n2)ncc2c(cc3OC)c(OC)c4c3OCO4",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.33203125,
+      "cytotox_risk": 0.1533203125,
+      "artifact_risk": 0.515625,
+      "failure_mode_probs": {
+        "inactive": 0.8459396958351135,
+        "cytotoxic": 0.1540570706129074,
+        "artifact": 1.007607238534547e-06,
+        "organism_mismatch": 1.0725922265919507e-06,
+        "known_control_only": 1.1417685072956374e-06
+      },
+      "v4_base_score": 0.11529194394825026,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.3472322076559067,
+      "final_discovery_score": 0.14987952713272534,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for A.baumannii: 0.33"
+        ],
+        "selectivity_basis": [
+          "low predicted mammalian cytotoxicity: 0.15"
+        ],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.52"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.85"
+        ]
+      }
+    }
+  ],
+  "locked_at_utc": "2026-05-12T05:21:57.574109+00:00"
+}

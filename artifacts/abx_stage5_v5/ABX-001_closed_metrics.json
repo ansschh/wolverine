@@ -1,0 +1,17 @@
+{
+  "case_id": "ABX-001",
+  "organism": "E.coli",
+  "library_size": 1130,
+  "hidden_hit_rank": 1067,
+  "hidden_hit_percentile": 94.42477876106194,
+  "top_1": false,
+  "top_10": false,
+  "top_50": false,
+  "top_100": false,
+  "top_1_pct": false,
+  "enrichment_at_top_100": 0.0,
+  "n_cytotoxic_in_top_100": 0,
+  "n_organism_mismatched_in_top_100": 0,
+  "n_known_controls_in_top_100": 0,
+  "verdict": "missed"
+}

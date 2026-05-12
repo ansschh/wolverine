@@ -1,0 +1,736 @@
+{
+  "case_id": "ABX-003",
+  "organism": "S.aureus",
+  "n_pool": 1071,
+  "top_k": 20,
+  "top_candidates": [
+    {
+      "candidate_smiles": "c(c(O)ccc1Cl)(S2)c1OC2=O",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.361328125,
+      "cytotox_risk": 0.1591796875,
+      "artifact_risk": 0.5078125,
+      "failure_mode_probs": {
+        "inactive": 0.8407815098762512,
+        "cytotoxic": 0.15921719372272491,
+        "artifact": 3.627059470545646e-07,
+        "organism_mismatch": 4.3750685563281877e-07,
+        "known_control_only": 4.657235876948107e-07
+      },
+      "v4_base_score": 0.1257299482676899,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.34796612709760666,
+      "final_discovery_score": 0.16344893274799688,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for S.aureus: 0.36"
+        ],
+        "selectivity_basis": [
+          "low predicted mammalian cytotoxicity: 0.16"
+        ],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.51"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.84"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "C(=O)(N\\N=C\\c1ccccc1OCc2ccccc2Cl)c3cccc(Br)c3",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.447265625,
+      "cytotox_risk": 0.2158203125,
+      "artifact_risk": 0.5546875,
+      "failure_mode_probs": {
+        "inactive": 0.7839874625205994,
+        "cytotoxic": 0.21601125597953796,
+        "artifact": 3.656872991086857e-07,
+        "organism_mismatch": 4.1437797904109175e-07,
+        "known_control_only": 4.695517930031201e-07
+      },
+      "v4_base_score": 0.12247898669738788,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.27383948117494583,
+      "final_discovery_score": 0.15922268270660425,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for S.aureus: 0.45"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.55"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.78",
+          "cytotoxic: probability 0.22"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "C(c1ccccc1)(=O)Oc(cc2)ccc2\\C=N\\NC(CNc3cccc(C)c3)=O",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.453125,
+      "cytotox_risk": 0.228515625,
+      "artifact_risk": 0.55078125,
+      "failure_mode_probs": {
+        "inactive": 0.7745816707611084,
+        "cytotoxic": 0.22541610896587372,
+        "artifact": 6.44086924239673e-07,
+        "organism_mismatch": 7.298460786842043e-07,
+        "known_control_only": 8.270239959529135e-07
+      },
+      "v4_base_score": 0.12115188292227685,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.26736967265605927,
+      "final_discovery_score": 0.1574974477989599,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for S.aureus: 0.45"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.55"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.77",
+          "cytotoxic: probability 0.23"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "COc1ccc2[n-]c(nc2c1)S(=O)Cc1ncc(C)c(OC)c1C.COc1ccc2[n-]c(nc2c1)S(=O)Cc1ncc(C)c(OC)c1C.[Mg+2]",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.42578125,
+      "cytotox_risk": 0.2021484375,
+      "artifact_risk": 0.55859375,
+      "failure_mode_probs": {
+        "inactive": 0.7981866598129272,
+        "cytotoxic": 0.20181319117546082,
+        "artifact": 4.446614099151702e-08,
+        "organism_mismatch": 5.3636405539236875e-08,
+        "known_control_only": 5.3636405539236875e-08
+      },
+      "v4_base_score": 0.11963801826641429,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.28098470345139503,
+      "final_discovery_score": 0.15552942374633857,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for S.aureus: 0.43"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.56"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.80",
+          "cytotoxic: probability 0.20"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "CCc1oc2ccccc2c1C(=O)c1cc(Br)c(O)c(Br)c1",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.416015625,
+      "cytotox_risk": 0.1982421875,
+      "artifact_risk": 0.5546875,
+      "failure_mode_probs": {
+        "inactive": 0.8031721711158752,
+        "cytotoxic": 0.1968258172273636,
+        "artifact": 5.623951437883079e-07,
+        "organism_mismatch": 6.783779440411308e-07,
+        "known_control_only": 7.221296414172684e-07
+      },
+      "v4_base_score": 0.119086060745758,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.28625381737947464,
+      "final_discovery_score": 0.15481187896948542,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for S.aureus: 0.42"
+        ],
+        "selectivity_basis": [
+          "low predicted mammalian cytotoxicity: 0.20"
+        ],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.55"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.80"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "S(=O)(=O)(Nc1ccccc1C)c2c(C)ccc(c2)C(=O)Nc3ccccc3C",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.333984375,
+      "cytotox_risk": 0.15234375,
+      "artifact_risk": 0.515625,
+      "failure_mode_probs": {
+        "inactive": 0.8509637117385864,
+        "cytotoxic": 0.14903512597084045,
+        "artifact": 3.9692804421065375e-07,
+        "organism_mismatch": 3.9692804421065375e-07,
+        "known_control_only": 4.497783834267466e-07
+      },
+      "v4_base_score": 0.11623780662193894,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.3480336666107178,
+      "final_discovery_score": 0.15110914860852062,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for S.aureus: 0.33"
+        ],
+        "selectivity_basis": [
+          "low predicted mammalian cytotoxicity: 0.15"
+        ],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.52"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.85"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "COc1cc(Cc2cnc(N)nc2N)cc(OC)c1OC",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.56640625,
+      "cytotox_risk": 0.310546875,
+      "artifact_risk": 0.5703125,
+      "failure_mode_probs": {
+        "inactive": 0.6893045902252197,
+        "cytotoxic": 0.3106939196586609,
+        "artifact": 4.463903735540953e-07,
+        "organism_mismatch": 5.058265628576919e-07,
+        "known_control_only": 5.384495693760982e-07
+      },
+      "v4_base_score": 0.11568851477932185,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.20425006747245789,
+      "final_discovery_score": 0.1503950692131184,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for S.aureus: 0.57"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.57"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.69",
+          "cytotoxic: probability 0.31"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "O=C1NC(C)=Cn(c12)cc([N+](=O)[O-])n2",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.4453125,
+      "cytotox_risk": 0.2158203125,
+      "artifact_risk": 0.578125,
+      "failure_mode_probs": {
+        "inactive": 0.7799926996231079,
+        "cytotoxic": 0.2200070470571518,
+        "artifact": 5.7565308964058204e-08,
+        "organism_mismatch": 6.943702146600117e-08,
+        "known_control_only": 6.943702146600117e-08
+      },
+      "v4_base_score": 0.11552603112068027,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.25942687690258026,
+      "final_discovery_score": 0.15018384045688435,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for S.aureus: 0.45"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.58"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.78",
+          "cytotoxic: probability 0.22"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "C(=O)(c1cccc(Br)c1)Nc(ccc(c23)cccc2)c3",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.462890625,
+      "cytotox_risk": 0.2265625,
+      "artifact_risk": 0.5859375,
+      "failure_mode_probs": {
+        "inactive": 0.7690798044204712,
+        "cytotoxic": 0.23091961443424225,
+        "artifact": 1.832232356946406e-07,
+        "organism_mismatch": 2.076191236710656e-07,
+        "known_control_only": 2.21009386791593e-07
+      },
+      "v4_base_score": 0.114655458368361,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.2476944923400879,
+      "final_discovery_score": 0.1490520958788693,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for S.aureus: 0.46"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.59"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.77",
+          "cytotoxic: probability 0.23"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "c1(NNC(C)=O)c(Cl)c(Cl)c(c(Cl)n1)C#N",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.482421875,
+      "cytotox_risk": 0.2392578125,
+      "artifact_risk": 0.58984375,
+      "failure_mode_probs": {
+        "inactive": 0.7549148201942444,
+        "cytotoxic": 0.2450849562883377,
+        "artifact": 6.412700059854615e-08,
+        "organism_mismatch": 7.735192752988951e-08,
+        "known_control_only": 8.234069071022532e-08
+      },
+      "v4_base_score": 0.11451208654762013,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.23736918345093727,
+      "final_discovery_score": 0.14886571251190617,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for S.aureus: 0.48"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.59"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.75",
+          "cytotoxic: probability 0.25"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "Cc1noc(NS(=O)(=O)c2ccc(N)cc2)c1C",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.361328125,
+      "cytotox_risk": 0.1708984375,
+      "artifact_risk": 0.5390625,
+      "failure_mode_probs": {
+        "inactive": 0.8300415277481079,
+        "cytotoxic": 0.169955775141716,
+        "artifact": 8.196367389246006e-07,
+        "organism_mismatch": 9.287701345783717e-07,
+        "known_control_only": 9.886707630357705e-07
+      },
+      "v4_base_score": 0.11448781755461823,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.31685277074575424,
+      "final_discovery_score": 0.1488341628210037,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for S.aureus: 0.36"
+        ],
+        "selectivity_basis": [
+          "low predicted mammalian cytotoxicity: 0.17"
+        ],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.54"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.83"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "S(=O)(=O)(c1ccc(cc1)C)Oc2cc(ccc2\\C=N\\NC(c3ccccc3)=O)OS(=O)(=O)c4ccc(cc4)C",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.384765625,
+      "cytotox_risk": 0.181640625,
+      "artifact_risk": 0.55859375,
+      "failure_mode_probs": {
+        "inactive": 0.8198931217193604,
+        "cytotoxic": 0.18010662496089935,
+        "artifact": 5.8648357281754215e-08,
+        "organism_mismatch": 6.243085692858585e-08,
+        "known_control_only": 7.074343244539705e-08
+      },
+      "v4_base_score": 0.11374252560199238,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.295615091919899,
+      "final_discovery_score": 0.1478652832825901,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for S.aureus: 0.38"
+        ],
+        "selectivity_basis": [
+          "low predicted mammalian cytotoxicity: 0.18"
+        ],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.56"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.82"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "C(=S)(c1ccc(cc1)N)N2CCCCC2",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.478515625,
+      "cytotox_risk": 0.2392578125,
+      "artifact_risk": 0.59375,
+      "failure_mode_probs": {
+        "inactive": 0.760650634765625,
+        "cytotoxic": 0.2393493354320526,
+        "artifact": 3.6816079074242225e-08,
+        "organism_mismatch": 4.4408672295048746e-08,
+        "known_control_only": 4.4408672295048746e-08
+      },
+      "v4_base_score": 0.11250310257310048,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.23510852456092834,
+      "final_discovery_score": 0.14625403334503062,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for S.aureus: 0.48"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.59"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.76",
+          "cytotoxic: probability 0.24"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "CCc1nc(N)nc(N)c1-c1ccc(Cl)cc1",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.52734375,
+      "cytotox_risk": 0.26953125,
+      "artifact_risk": 0.6015625,
+      "failure_mode_probs": {
+        "inactive": 0.727975070476532,
+        "cytotoxic": 0.2720244228839874,
+        "artifact": 1.5791033547429834e-07,
+        "organism_mismatch": 1.9047620014589484e-07,
+        "known_control_only": 1.9047620014589484e-07
+      },
+      "v4_base_score": 0.11211334029212594,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.21260011196136475,
+      "final_discovery_score": 0.14574734237976372,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for S.aureus: 0.53"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.60"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.73",
+          "cytotoxic: probability 0.27"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "C(=O)(c1cccs1)Nc2cc(C)ccc2OC",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.294921875,
+      "cytotox_risk": 0.130859375,
+      "artifact_risk": 0.498046875,
+      "failure_mode_probs": {
+        "inactive": 0.8679320812225342,
+        "cytotoxic": 0.13206587731838226,
+        "artifact": 5.983189907965425e-07,
+        "organism_mismatch": 6.779842465221009e-07,
+        "known_control_only": 7.682567684241803e-07
+      },
+      "v4_base_score": 0.1118279204092687,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.37917811423540115,
+      "final_discovery_score": 0.1453762965320493,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for S.aureus: 0.29"
+        ],
+        "selectivity_basis": [
+          "low predicted mammalian cytotoxicity: 0.13"
+        ],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.87"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "n1c2c([nH]c1c3ccccc3)ccc(c2)\\N=C\\c(cccc4[N+](=O)[O-])c4",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.349609375,
+      "cytotox_risk": 0.16015625,
+      "artifact_risk": 0.546875,
+      "failure_mode_probs": {
+        "inactive": 0.8407818078994751,
+        "cytotoxic": 0.1592172533273697,
+        "artifact": 2.5320963459307677e-07,
+        "organism_mismatch": 2.695402656627266e-07,
+        "known_control_only": 2.869241200187389e-07
+      },
+      "v4_base_score": 0.11173727689310908,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.31960606575012207,
+      "final_discovery_score": 0.1452584599610418,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for S.aureus: 0.35"
+        ],
+        "selectivity_basis": [
+          "low predicted mammalian cytotoxicity: 0.16"
+        ],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.55"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.84"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "n1c2c([nH]c1c3ccc(cc3)\\N=C\\c(cc4)ccc4Cl)ccc(c2)\\N=C\\c(cc5)ccc5Cl",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.33203125,
+      "cytotox_risk": 0.150390625,
+      "artifact_risk": 0.53515625,
+      "failure_mode_probs": {
+        "inactive": 0.8499704003334045,
+        "cytotoxic": 0.15002869069576263,
+        "artifact": 2.9926729894214077e-07,
+        "organism_mismatch": 2.9926729894214077e-07,
+        "known_control_only": 3.391142797681823e-07
+      },
+      "v4_base_score": 0.11141009599668905,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.3355409950017929,
+      "final_discovery_score": 0.14483312479569577,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "low antibacterial score for S.aureus: 0.33"
+        ],
+        "selectivity_basis": [
+          "low predicted mammalian cytotoxicity: 0.15"
+        ],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.54"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.85"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "N1(C)C=CC(c(cc([N+](=O)[O-])c2)c1c2)=N/c(ccc3C(Nc(ccc(c4)N=C(/C=CN5C)C=C5)c4)=O)cc3",
+      "candidate_inchi_key": NaN,
+      "channel": "A_repurposing",
+      "antibacterial_score": 0.400390625,
+      "cytotox_risk": 0.193359375,
+      "artifact_risk": 0.57421875,
+      "failure_mode_probs": {
+        "inactive": 0.8080672025680542,
+        "cytotoxic": 0.1919327974319458,
+        "artifact": 1.997598531033873e-08,
+        "organism_mismatch": 2.1264325411607388e-08,
+        "known_control_only": 2.4095637485288535e-08
+      },
+      "v4_base_score": 0.11092530054156668,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.2770427018404007,
+      "final_discovery_score": 0.1442028907040367,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for S.aureus: 0.40"
+        ],
+        "selectivity_basis": [
+          "low predicted mammalian cytotoxicity: 0.19"
+        ],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.57"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.81"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "c1(N(CC2)CCN2C)nc(N\\N=C\\c(cccc3[N+](=O)[O-])c3O)nc(Nc(cc4)ccc4[N+](=O)[O-])n1",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.4375,
+      "cytotox_risk": 0.2109375,
+      "artifact_risk": 0.59375,
+      "failure_mode_probs": {
+        "inactive": 0.7879311442375183,
+        "cytotoxic": 0.21206879615783691,
+        "artifact": 2.7042812433819563e-08,
+        "organism_mismatch": 3.064351972170698e-08,
+        "known_control_only": 3.261985881408691e-08
+      },
+      "v4_base_score": 0.11066091060638428,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.25293922424316406,
+      "final_discovery_score": 0.14385918378829957,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for S.aureus: 0.44"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.59"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.79",
+          "cytotoxic: probability 0.21"
+        ]
+      }
+    },
+    {
+      "candidate_smiles": "C(=S)(Oc(cc1)ccc1C(=O)Nc2cccc(cccc3)c23)N(C(C)C)C(C)C",
+      "candidate_inchi_key": NaN,
+      "channel": "B_screened_library",
+      "antibacterial_score": 0.43359375,
+      "cytotox_risk": 0.21875,
+      "artifact_risk": 0.58203125,
+      "failure_mode_probs": {
+        "inactive": 0.7826622724533081,
+        "cytotoxic": 0.2173374593257904,
+        "artifact": 6.245597461429497e-08,
+        "organism_mismatch": 6.648403427789162e-08,
+        "known_control_only": 7.077188257653688e-08
+      },
+      "v4_base_score": 0.11061318218708038,
+      "v4_novelty": 1.0,
+      "v4_is_memorization": false,
+      "v4_selectivity_factor": 0.2551078796386719,
+      "final_discovery_score": 0.1437971368432045,
+      "structured_rationale": {
+        "predicted_activity_basis": [
+          "moderate antibacterial score for S.aureus: 0.43"
+        ],
+        "selectivity_basis": [],
+        "novelty_basis": [],
+        "synthesizability_basis": [],
+        "risk_flags": [
+          "elevated predicted artifact / reactive risk: 0.58"
+        ],
+        "nearest_training_neighbors": [],
+        "possible_failure_modes": [
+          "inactive: probability 0.78",
+          "cytotoxic: probability 0.22"
+        ]
+      }
+    }
+  ],
+  "locked_at_utc": "2026-05-12T05:22:41.051044+00:00"
+}
