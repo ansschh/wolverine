@@ -147,31 +147,43 @@ def scrub_rows(rows: Iterable[dict], registry: ABXSealedCaseRegistry) -> tuple[l
     kept: list[dict] = []
     report = ABXDecontamReport(n_input=0, n_kept=0, n_removed_total=0)
 
+    def _str(v) -> str:
+        """NaN-safe lower-case stringifier (pandas may pass NaN floats for missing strings)."""
+        if v is None:
+            return ""
+        try:
+            import pandas as _pd
+            if _pd.isna(v):
+                return ""
+        except (TypeError, ValueError, ImportError):
+            pass
+        return str(v)
+
     for row in rows:
         report.n_input += 1
         reasons: list[str] = []
 
-        name = (row.get("name") or "").lower()
+        name = _str(row.get("name")).lower()
         if name and name in index["global_synonyms_lower"]:
             reasons.append("synonym_match")
 
-        doi = (row.get("doi") or "").lower()
+        doi = _str(row.get("doi")).lower()
         if doi and doi in index["global_dois"]:
             reasons.append("forbidden_doi")
 
-        pmid = str(row.get("pmid") or "")
+        pmid = _str(row.get("pmid"))
         if pmid and pmid in index["global_pmids"]:
             reasons.append("forbidden_pmid")
 
-        title = (row.get("document_title") or "").lower()
+        title = _str(row.get("document_title")).lower()
         if title:
             for frag in index["global_title_fragments_lower"]:
                 if frag and frag in title:
                     reasons.append(f"title_fragment:{frag}")
                     break
 
-        pubchem_cid = str(row.get("pubchem_cid") or "")
-        chembl_id = str(row.get("chembl_id") or "")
+        pubchem_cid = _str(row.get("pubchem_cid"))
+        chembl_id = _str(row.get("chembl_id"))
         for case_id, ci in index["per_case"].items():
             if pubchem_cid and pubchem_cid in ci["pubchem_cids"]:
                 reasons.append(f"pubchem_cid_match:{case_id}")
@@ -179,7 +191,7 @@ def scrub_rows(rows: Iterable[dict], registry: ABXSealedCaseRegistry) -> tuple[l
                 reasons.append(f"chembl_id_match:{case_id}")
 
         # Structural Tanimoto check
-        smi = row.get("canonical_smiles") or ""
+        smi = _str(row.get("canonical_smiles"))
         if smi and (index["answer_fps"] or index["answer_murckos"]):
             row_fp = _try_morgan_fp(smi)
             row_murcko = _try_murcko_smiles(smi)
