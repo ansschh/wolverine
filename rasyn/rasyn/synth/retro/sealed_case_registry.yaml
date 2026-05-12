@@ -1,0 +1,256 @@
+version: 0.1.0
+locked_at_utc: null
+spec_refs:
+  - RETRO.md §13 (decontamination)
+  - RETRO.md §14 (headline demos)
+  - RETRO_PLAN.md §8 (sealed-case detail)
+cases:
+  - case_id: RETRO-001
+    description: >
+      Literature-precedent recovery: oseltamivir (Tamiflu). Multi-step synthesis
+      with multiple published industrial routes (shikimic-acid Roche route,
+      Karpf/Trussardi 2001 route, Federspiel 1999 route). Tests whether the
+      system rediscovers a known canonical route to a marketed drug. RETRO_PLAN §8.
+    target_name: oseltamivir
+    target_canonical_smiles: CCC(CC)OC1C=C(CC(N)C1NC(C)=O)C(=O)OCC
+    target_inchi_key: VSZGPKBBMSAYNT-UHFFFAOYSA-N
+    max_steps: 12
+    must_terminate_in: commercially_available_building_blocks
+    scale_hint: "10-100 mg"
+    require_condition_prediction: true
+    require_forward_validation: true
+    hidden_solution:
+      name: oseltamivir
+      canonical_smiles: CCC(CC)OC1C=C(CC(N)C1NC(C)=O)C(=O)OCC
+      inchi_key: VSZGPKBBMSAYNT-UHFFFAOYSA-N
+      paper_doi: 10.1021/op0501390
+      paper_pmid: null
+      reference_route_step_count: 10
+      reference_reaction_class_sequence:
+        - protection_deprotection
+        - sn2
+        - sn_ar
+        - amide_coupling
+        - other_cross_coupling
+        - protection_deprotection
+      named_intermediates:
+        - name: shikimic_acid
+          canonical_smiles: OC1C=C(C(=O)O)CC(O)C1O
+          inchi_key: JXOHGGNKMLTUBP-UHFFFAOYSA-N
+        - name: shikimic_acid_ethyl_ester
+          canonical_smiles: CCOC(=O)C1=CC(O)C(O)C(O)C1
+          inchi_key: null
+        - name: epoxide_intermediate
+          canonical_smiles: null
+          inchi_key: null
+        - name: aziridine_intermediate
+          canonical_smiles: null
+          inchi_key: null
+        - name: GS4071_carboxylic_acid
+          canonical_smiles: null
+          inchi_key: null
+      notes: >
+        Decontamination removes shikimic-acid-route papers + Roche/Gilead
+        synthesis patents + reactions whose product Tanimoto >= 0.85 to
+        oseltamivir or any named intermediate. Template-level decontam drops
+        templates extracted from quarantined source reactions.
+    forbidden_identifiers:
+      synonyms:
+        - oseltamivir
+        - Tamiflu
+        - GS-4104
+        - GS4104
+        - GS-4071
+        - GS4071
+        - Ro 64-0796
+        - oseltamivir_phosphate
+      pubchem_cids:
+        - 65028
+        - 110438
+      chembl_ids:
+        - CHEMBL1226
+      drugbank_ids:
+        - DB00198
+      cas_numbers:
+        - "196618-13-0"
+        - "204255-11-8"
+    forbidden_documents:
+      dois:
+        - 10.1021/op0501390
+        - 10.1021/ja984528g
+        - 10.1021/ja981995o
+        - 10.1021/ol990626w
+        - 10.1021/op0501390
+      pmids: []
+      patent_numbers:
+        - US5763483
+        - US5866601
+        - WO9626933
+        - US5763483A
+      title_fragments:
+        - oseltamivir
+        - Tamiflu
+        - neuraminidase inhibitor synthesis
+        - shikimic acid route
+        - GS-4104
+        - GS-4071
+    forbidden_neighborhood:
+      tanimoto_to_answer: 0.85
+      tanimoto_to_intermediates: 0.85
+      template_source_tanimoto: 0.85
+      require_same_murcko_for_context: true
+    success_criteria:
+      max_steps: 12
+      min_forward_validation_rate: 0.8
+      require_all_leaves_buyable: true
+      literature_recovery_step_tolerance: 2
+      verdict_buckets:
+        - literature_optimal
+        - literature_competitive
+        - novel_valid
+        - missed
+
+  - case_id: RETRO-002
+    description: >
+      Novel-route discovery: nirmatrelvir (PF-07321332, Paxlovid active
+      ingredient). Recent target with a published Pfizer process route using
+      bespoke chemistry. Several short alternatives have been proposed
+      post-approval. Tests whether the system finds a novel valid alternative
+      the Pfizer route did not use. RETRO_PLAN §8.
+    target_name: nirmatrelvir
+    target_canonical_smiles: CC1(C2CC1C(=O)NC(CC3CCNC3=O)C#N)C
+    target_inchi_key: BFHAYPLBUQVNNJ-UHFFFAOYSA-N
+    max_steps: 8
+    must_terminate_in: commercially_available_building_blocks
+    scale_hint: "10-100 mg"
+    require_condition_prediction: true
+    require_forward_validation: true
+    hidden_solution:
+      name: nirmatrelvir
+      canonical_smiles: CC1(C2CC1C(=O)NC(CC3CCNC3=O)C#N)C
+      inchi_key: BFHAYPLBUQVNNJ-UHFFFAOYSA-N
+      paper_doi: 10.1126/science.abl4784
+      paper_pmid: null
+      reference_route_step_count: 7
+      reference_reaction_class_sequence:
+        - amide_coupling
+        - protection_deprotection
+        - amide_coupling
+        - sn_ar
+        - protection_deprotection
+      named_intermediates:
+        - name: bicyclic_proline_intermediate
+          canonical_smiles: null
+          inchi_key: null
+        - name: glutamine_lactam_intermediate
+          canonical_smiles: null
+          inchi_key: null
+        - name: tert_leucine_intermediate
+          canonical_smiles: null
+          inchi_key: null
+      notes: >
+        Pfizer process route is documented in WO2021250648 and the Owen et al.
+        Science 2021 paper. Decontamination removes these papers/patents and
+        all reactions whose product Tanimoto >= 0.85 to nirmatrelvir or any
+        named intermediate. Verdict 'novel_valid' awarded when the route
+        differs from Pfizer at >= 2 disconnection sites AND all steps forward-validate.
+    forbidden_identifiers:
+      synonyms:
+        - nirmatrelvir
+        - PF-07321332
+        - PF07321332
+        - Paxlovid
+        - paxlovid_active
+      pubchem_cids:
+        - 155903259
+      chembl_ids: []
+      drugbank_ids:
+        - DB16691
+      cas_numbers:
+        - "2628280-40-8"
+    forbidden_documents:
+      dois:
+        - 10.1126/science.abl4784
+        - 10.1021/acs.oprd.1c00432
+        - 10.1021/acs.orglett.1c03904
+      pmids: []
+      patent_numbers:
+        - WO2021250648
+        - WO2021250648A1
+        - US20210332034
+      title_fragments:
+        - nirmatrelvir
+        - PF-07321332
+        - Paxlovid
+        - oral SARS-CoV-2 Mpro inhibitor
+        - clinical candidate for the treatment of COVID-19
+    forbidden_neighborhood:
+      tanimoto_to_answer: 0.85
+      tanimoto_to_intermediates: 0.85
+      template_source_tanimoto: 0.85
+      require_same_murcko_for_context: true
+    success_criteria:
+      max_steps: 8
+      min_forward_validation_rate: 0.8
+      require_all_leaves_buyable: true
+      literature_recovery_step_tolerance: 1
+      verdict_buckets:
+        - literature_optimal
+        - literature_competitive
+        - novel_valid
+        - missed
+
+  - case_id: RETRO-003
+    description: >
+      Rasyn-designed molecule synthesis. Target selected post-R-2 from
+      artifacts/abx_round3_external_summary.json top-K (composite_score >= 0.85,
+      novelty >= 0.55, drug-like 8 <= heavy_atom_count <= 60, >= 1 ring) or
+      from de-novo AR-LM pool (MEMORY L48/L49). No literature answer exists.
+      Tests RETRO.md §14 Demo 1: "Rasyn designs a molecule and tells you how
+      to make it." RETRO_PLAN §8.
+    target_name: TBD_rasyn_designed
+    target_canonical_smiles: null
+    target_inchi_key: null
+    max_steps: 8
+    must_terminate_in: commercially_available_building_blocks
+    scale_hint: "10-100 mg"
+    require_condition_prediction: true
+    require_forward_validation: true
+    hidden_solution:
+      name: TBD_no_literature_baseline
+      canonical_smiles: null
+      inchi_key: null
+      paper_doi: null
+      paper_pmid: null
+      reference_route_step_count: null
+      reference_reaction_class_sequence: []
+      named_intermediates: []
+      notes: >
+        No literature answer exists. Verdict bucket is
+        'route_proposed_no_literature_baseline' (analogous to ABX-003
+        'not_measurable' verdict). Decontamination not required since there
+        is no literature route to leak.
+    forbidden_identifiers:
+      synonyms: []
+      pubchem_cids: []
+      chembl_ids: []
+      drugbank_ids: []
+      cas_numbers: []
+    forbidden_documents:
+      dois: []
+      pmids: []
+      patent_numbers: []
+      title_fragments: []
+    forbidden_neighborhood:
+      tanimoto_to_answer: 0.0
+      tanimoto_to_intermediates: 0.0
+      template_source_tanimoto: 0.0
+      require_same_murcko_for_context: false
+    success_criteria:
+      max_steps: 8
+      min_forward_validation_rate: 0.8
+      require_all_leaves_buyable: true
+      literature_recovery_step_tolerance: 0
+      verdict_buckets:
+        - route_proposed_no_literature_baseline
+        - missed
