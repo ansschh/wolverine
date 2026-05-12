@@ -1,0 +1,20 @@
+{
+  "ABX-001": {
+    "orig_rank": 1091,
+    "v4_rank": 1078,
+    "library_size": 1130,
+    "delta": -13
+  },
+  "ABX-002": {
+    "orig_rank": 1132,
+    "v4_rank": 1035,
+    "library_size": 1153,
+    "delta": -97
+  },
+  "ABX-003": {
+    "orig_rank": null,
+    "v4_rank": null,
+    "library_size": 1071,
+    "delta": null
+  }
+}
