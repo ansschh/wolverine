@@ -128,19 +128,41 @@ def extract_chembl_antibacterial(
             break
         df = pd.DataFrame(chunk, columns=cols)
         df["organism_tag"] = df["target_chembl_id"].map(target_to_org)
-        # Activity label: MIC <=4 ug/mL OR pchembl_value >=5 -> active
+        # Activity label: MIC <=4 ug/mL OR pchembl_value >=5 -> active.
+        # NaN-safe: pandas returns numpy NaN floats for missing strings.
+        def _safe_str(v) -> str:
+            if v is None:
+                return ""
+            try:
+                if pd.isna(v):
+                    return ""
+            except (TypeError, ValueError):
+                pass
+            return str(v).lower()
+
+        def _safe_float(v):
+            if v is None:
+                return None
+            try:
+                if pd.isna(v):
+                    return None
+                return float(v)
+            except (TypeError, ValueError):
+                return None
+
         def _label(r):
-            unit = (r.get("standard_units") or "").lower()
-            val = r.get("standard_value")
+            unit = _safe_str(r.get("standard_units"))
+            stype = _safe_str(r.get("standard_type"))
+            val = _safe_float(r.get("standard_value"))
             if val is None:
                 return "unknown"
-            if "mic" in (r.get("standard_type") or "").lower() or "min inhib" in (r.get("standard_type") or "").lower():
+            if "mic" in stype or "min inhib" in stype:
                 if unit in ("ug/ml", "ug.ml-1", "ug ml-1") and val <= 4.0:
                     return "active"
                 if unit in ("um", "umol/l") and val <= 8.0:
                     return "active"
                 return "inactive"
-            pchembl = r.get("pchembl_value")
+            pchembl = _safe_float(r.get("pchembl_value"))
             if pchembl is not None and pchembl >= 5.0:
                 return "active"
             return "weak"
