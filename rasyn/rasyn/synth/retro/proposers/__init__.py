@@ -12,5 +12,17 @@ All channels share the RetroProposer interface and return ProposerOutput.
 from __future__ import annotations
 
 from rasyn.synth.retro.proposers.base import RetroProposer
+from rasyn.synth.retro.proposers.diffusion import DiffusionProposer, DiffusionProposerConfig
+from rasyn.synth.retro.proposers.graphedit import GraphEditProposer, GraphEditProposerConfig
+from rasyn.synth.retro.proposers.retrieval import RetrievalProposer, RetrievalProposerConfig
+from rasyn.synth.retro.proposers.seq2seq import Seq2SeqProposer, Seq2SeqProposerConfig
+from rasyn.synth.retro.proposers.template import TemplateProposer, TemplateProposerConfig
 
-__all__ = ["RetroProposer"]
+__all__ = [
+    "RetroProposer",
+    "DiffusionProposer", "DiffusionProposerConfig",
+    "GraphEditProposer", "GraphEditProposerConfig",
+    "RetrievalProposer", "RetrievalProposerConfig",
+    "Seq2SeqProposer", "Seq2SeqProposerConfig",
+    "TemplateProposer", "TemplateProposerConfig",
+]
