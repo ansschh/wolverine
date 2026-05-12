@@ -1,0 +1,402 @@
+[
+  {
+    "smiles": "C[C@@H]1OC(=O)CN(C)C1=O",
+    "reward": 0.5997372269630432
+  },
+  {
+    "smiles": "Cc1ccc(S(=O)(=O)N2CCN(CCc3ccc(S(N)(=O)=O)cc3)CC2)cc1",
+    "reward": 0.5947798490524292
+  },
+  {
+    "smiles": "Cc1ccc(CCNC(=O)C(=O)NCCC(C)(C)C)cc1",
+    "reward": 0.5923177003860474
+  },
+  {
+    "smiles": "O=C1OC(O)C(O)=C1O",
+    "reward": 0.590462863445282
+  },
+  {
+    "smiles": "COc1ccccc1CN1CCN(C(=O)CN2C(=O)Cc3ccccc32)CC1",
+    "reward": 0.5891239643096924
+  },
+  {
+    "smiles": "Cc1ccc(S(=O)(=O)N2CCCN(C(=O)c3ccco3)CC2)cc1",
+    "reward": 0.5864552855491638
+  },
+  {
+    "smiles": "COc1ccccc1CN1CCCC(C(=O)NCCc2ccccc2)C1",
+    "reward": 0.5853994488716125
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1C1CCc2ccccc2O1",
+    "reward": 0.5816131234169006
+  },
+  {
+    "smiles": "Cc1ccc(CCNC(=O)C(O)c2ccccc2C)cc1",
+    "reward": 0.581250011920929
+  },
+  {
+    "smiles": "O=C1OCCOc2ccccc2O1",
+    "reward": 0.5804843902587891
+  },
+  {
+    "smiles": "Cc1ccccc1N1CCN(C(=O)C(C)Nc2cccc(C)c2)CC1",
+    "reward": 0.5804687738418579
+  },
+  {
+    "smiles": "O=C1Oc2ccccc2Cc2ccccc21",
+    "reward": 0.5802343487739563
+  },
+  {
+    "smiles": "O=C1Oc2ccccc2CNc2ccccc21",
+    "reward": 0.5790625214576721
+  },
+  {
+    "smiles": "C[C@H](Nc1ncc(F)c(N2C(=O)OC[C@@H]2[C@@H](C)O)n1)c1cccc(F)c1",
+    "reward": 0.5780526399612427
+  },
+  {
+    "smiles": "CCc1ccccc1Oc1ccc(Cc2ccccc2Cl)cc1",
+    "reward": 0.5779768228530884
+  },
+  {
+    "smiles": "O=C1Oc2ccccc2Oc2ccccc2C1=O",
+    "reward": 0.5771858096122742
+  },
+  {
+    "smiles": "COc1ccccc1CNc1ccc(-c2ccccc2C#N)cc1",
+    "reward": 0.5771316885948181
+  },
+  {
+    "smiles": "O=C1OCCCOc2ccccc21",
+    "reward": 0.576953113079071
+  },
+  {
+    "smiles": "O=C1OCc2ccccc2O1",
+    "reward": 0.5758383870124817
+  },
+  {
+    "smiles": "O=C1OCc2ccccc2O1",
+    "reward": 0.5758383870124817
+  },
+  {
+    "smiles": "COc1ccccc1CN1CCN(C(=O)c2ccc(CNC(=O)c3ccccc3OC)cc2)CC1",
+    "reward": 0.5754445195198059
+  },
+  {
+    "smiles": "O=C1OCCOc2ccccc21",
+    "reward": 0.5751302242279053
+  },
+  {
+    "smiles": "O=C1Oc2ccccc2Oc2ccccc21",
+    "reward": 0.5743806958198547
+  },
+  {
+    "smiles": "O=C1Oc2ccccc2COc2ccccc21",
+    "reward": 0.573598325252533
+  },
+  {
+    "smiles": "O=C1CCCN1c1ccccc1Oc1ccccc1",
+    "reward": 0.571484386920929
+  },
+  {
+    "smiles": "CCc1ccccc1Nc1nc(NC2CCCCC2)nc(Nc2ccc(C)cc2)n1",
+    "reward": 0.5712966918945312
+  },
+  {
+    "smiles": "CCc1ccccc1NC(=O)CN1C(=O)CCC1=O",
+    "reward": 0.5711934566497803
+  },
+  {
+    "smiles": "C[C@@H]1CN(C)CCN1c1ccccc1",
+    "reward": 0.5706640481948853
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Cc1ccccc1O",
+    "reward": 0.570437490940094
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Cc1ccccc1O",
+    "reward": 0.570437490940094
+  },
+  {
+    "smiles": "CCc1cc(N)c(O)cc1OCC(=O)Nc1ccc(N(C)C)cc1",
+    "reward": 0.5703392624855042
+  },
+  {
+    "smiles": "O=C1c2ccccc2Oc2ccccc21",
+    "reward": 0.5701227784156799
+  },
+  {
+    "smiles": "Cc1cccc(Cl)c1Nc1nccc(-c2c(-c3ccccc3)nc3ccccn23)n1",
+    "reward": 0.569140613079071
+  },
+  {
+    "smiles": "COc1ccccc1CNC(=O)CC1CCCC1=O",
+    "reward": 0.5684494972229004
+  },
+  {
+    "smiles": "O=C1OCc2ccccc21",
+    "reward": 0.568376362323761
+  },
+  {
+    "smiles": "O=C1OCc2ccccc21",
+    "reward": 0.568376362323761
+  },
+  {
+    "smiles": "O=C1OCc2ccccc21",
+    "reward": 0.568376362323761
+  },
+  {
+    "smiles": "O=C1OCc2ccccc21",
+    "reward": 0.568376362323761
+  },
+  {
+    "smiles": "Cc1ccc(C(=O)N2CCC(c3cc(C)c(C(=O)NS(=O)(=O)c4ccc(N(C)C)cc4)c(C)c3)CC2)cc1",
+    "reward": 0.5676382184028625
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1-c1ccccc1O",
+    "reward": 0.5674118995666504
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Cc1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.567241370677948
+  },
+  {
+    "smiles": "O=C1OC(c2ccccc2)c2ccccc21",
+    "reward": 0.5665364861488342
+  },
+  {
+    "smiles": "COc1ccccc1C(=O)NCc1ccc(N2CCCC2)cc1",
+    "reward": 0.5658593773841858
+  },
+  {
+    "smiles": "CCc1ccccc1C1CCCCN1C(=O)c1cccc(-c2ccccc2)c1",
+    "reward": 0.565591037273407
+  },
+  {
+    "smiles": "O=C1Oc2ccccc2C(c2ccccc2)=NC1O",
+    "reward": 0.5653125047683716
+  },
+  {
+    "smiles": "CCc1ccc(C(=O)NC(=S)NN)cc1",
+    "reward": 0.5653033256530762
+  },
+  {
+    "smiles": "Cc1cc(Cl)c(C)cc1NC(=O)c1cc(S(=O)(=O)N2CCOCC2)ccc1N1CCOCC1",
+    "reward": 0.565288245677948
+  },
+  {
+    "smiles": "Cc1ccc(Cl)cc1NC(=O)CN1CCC(N2CCCCC2)CC1",
+    "reward": 0.5638951063156128
+  },
+  {
+    "smiles": "O=C1Oc2ccccc2C(c2ccccc2)=N[C@@H]1c1ccccc1",
+    "reward": 0.5636386275291443
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1CNc1ccc(-c2ccccc2)cc1",
+    "reward": 0.5635044574737549
+  },
+  {
+    "smiles": "O=C1OC(O)=C(O)c2ccccc21",
+    "reward": 0.5628573894500732
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Cc1ccccc1O",
+    "reward": 0.562553882598877
+  },
+  {
+    "smiles": "Cc1ccc(S(=O)(=O)NCC(=O)NC2CCCCC2)cc1",
+    "reward": 0.5623635649681091
+  },
+  {
+    "smiles": "COc1ccccc1CN1CCC(O)(c2ccccc2)CC1",
+    "reward": 0.5620965957641602
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1COc1ccccc1Cc1ccccc1",
+    "reward": 0.5611718893051147
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1COc1ccccc1Cc1ccccc1",
+    "reward": 0.5611718893051147
+  },
+  {
+    "smiles": "COc1ccccc1C(=O)N1CCCC(Cc2ccccc2)C1",
+    "reward": 0.5611327886581421
+  },
+  {
+    "smiles": "COc1ccccc1Cc1ccccc1COc1ccccc1CC(=O)O",
+    "reward": 0.5609375238418579
+  },
+  {
+    "smiles": "COc1ccccc1C1C(C(=O)O)=C(c2ccccc2)C(=O)N1c1ccccc1",
+    "reward": 0.5606629848480225
+  },
+  {
+    "smiles": "COc1ccccc1CNc1ccccc1Nc1ccccc1C(=O)O",
+    "reward": 0.5605594515800476
+  },
+  {
+    "smiles": "CCc1ccccc1NC(=O)CSc1nc2ccccc2c(=O)n1Cc1ccccc1",
+    "reward": 0.5604186058044434
+  },
+  {
+    "smiles": "CCc1ccccc1CCCNC(=O)c1ccccc1OC",
+    "reward": 0.5603794455528259
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1C1OC(c2ccccc2)OC1OCc1ccccc1",
+    "reward": 0.559966504573822
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1COc1ccccc1Cc1ccccc1OCc1ccccc1",
+    "reward": 0.559912919998169
+  },
+  {
+    "smiles": "COc1ccccc1Cc1ccccc1OCC(O)CN1CCCCC1",
+    "reward": 0.559765636920929
+  },
+  {
+    "smiles": "COc1ccccc1CNC(=O)c1ccccc1OC",
+    "reward": 0.5596384406089783
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.5593345761299133
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.5593345761299133
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.5593345761299133
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.5593345761299133
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.5593345761299133
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.5593345761299133
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.5593345761299133
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.5593345761299133
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.5593345761299133
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.5593345761299133
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.5593345761299133
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.5593345761299133
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.5593345761299133
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.5593345761299133
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.5593345761299133
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.5593345761299133
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.5593345761299133
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.5593345761299133
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.5593345761299133
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.5593345761299133
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.5593345761299133
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.5593345761299133
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.5593345761299133
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.5593345761299133
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.5593345761299133
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.5593345761299133
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.5593345761299133
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.5593345761299133
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.5593345761299133
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.5593345761299133
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.5593345761299133
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.5593345761299133
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.5593345761299133
+  },
+  {
+    "smiles": "O=C(O)c1ccccc1Oc1ccccc1Oc1ccccc1",
+    "reward": 0.5593345761299133
+  }
+]

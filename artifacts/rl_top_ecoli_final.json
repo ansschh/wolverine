@@ -1,0 +1,402 @@
+[
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O=O.O.O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O=O.O.O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O=O.O.O.O.O=O.O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O.O=O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O=O.O.O.O.O=O.O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O=O.O.O.O.O=O.O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O=O.O.O.O.O=O.O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O.O=O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O.O=O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O=O.O.O.O.O=O.O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O=O.O.O.O.O=O.O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O.O=O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O.O=O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O.O=O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O.O=O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O.O=O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O.O=O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O.O=O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O.O=O.O.O.O=O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O.O=O.O.O.O=O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O.O=O.O.O.O=O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O.O=O.O.O.O=O.O",
+    "reward": 0.6089242696762085
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O=O.O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O=O.O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O=O.O.O.O.O=O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O=O.O.O=O.O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O=O.O.O.O.O=O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O=O.O.O.O.O=O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O=O.O.O.O.O=O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O=O.O.O.O.O=O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O=O.O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O=O.O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O=O.O.O.O.O=O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O=O.O.O=O.O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O=O.O.O=O.O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O=O.O.O.O.O=O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O=O.O.O.O=O.O.O=O.O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O=O.O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O=O.O.O.O=O.O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O=O.O.O.O.O=O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O=O.O.O.O.O=O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O=O.O.O.O=O.O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O=O.O.O=O.O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O=O.O.O.O=O.O.O=O.O",
+    "reward": 0.6065805554389954
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O=O.O.O=O.O.O.O.O.O.O",
+    "reward": 0.6038461327552795
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O=O.O.O.O=O.O.O.O.O.O",
+    "reward": 0.6038461327552795
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O.O=O.O.O.O",
+    "reward": 0.6038461327552795
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O.O=O.O.O.O",
+    "reward": 0.6038461327552795
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O.O=O.O.O.O",
+    "reward": 0.6038461327552795
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O.O=O.O.O.O",
+    "reward": 0.6038461327552795
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O.O=O.O.O.O",
+    "reward": 0.6038461327552795
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O.O=O.O.O.O",
+    "reward": 0.6038461327552795
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O.O=O.O.O.O",
+    "reward": 0.6038461327552795
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O.O=O.O.O.O",
+    "reward": 0.6038461327552795
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O.O=O.O.O.O",
+    "reward": 0.6038461327552795
+  },
+  {
+    "smiles": "O=C(O)O.O=O.O.O.O=O.O.O.O=O.O.O.O",
+    "reward": 0.6038461327552795
+  }
+]

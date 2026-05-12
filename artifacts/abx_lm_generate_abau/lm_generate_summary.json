@@ -1,0 +1,1528 @@
+{
+  "organism": "A.baumannii",
+  "n_ref_actives": 300,
+  "pool_stats": {
+    "n_sampled": 10000,
+    "n_valid_unique": 9141,
+    "validity_rate": 0.9141,
+    "ab_score": {
+      "mean": 0.18408724665641785,
+      "p50": 0.07470703125,
+      "p90": 0.59765625,
+      "p99": 0.9375,
+      "max": 0.9765625
+    },
+    "composite": {
+      "mean": 0.04470803216099739,
+      "p50": 0.034869953989982605,
+      "p99": 0.12668916583061218,
+      "max": 0.14883841574192047
+    }
+  },
+  "top_k_by_ab_score": [
+    {
+      "smiles": "COc1ccc(Oc2cc(CNC(=O)c3ccccc3-c3ccccc3)c(C(=O)O)s2)cc1",
+      "ab_score": 0.609375,
+      "cytotox_risk": 0.34375,
+      "artifact_risk": 0.53125,
+      "composite_score": 0.1230168342590332,
+      "max_tan_to_training_active": 0.23880597014925373,
+      "novelty": 0.7611940298507462,
+      "surprise_score": 0.09363967980911482
+    },
+    {
+      "smiles": "COc1ccccc1CC(=O)Nc1ccc(-c2nc3ccccc3o2)cc1",
+      "ab_score": 0.5703125,
+      "cytotox_risk": 0.31640625,
+      "artifact_risk": 0.5390625,
+      "composite_score": 0.1228431910276413,
+      "max_tan_to_training_active": 0.23170731707317074,
+      "novelty": 0.7682926829268293,
+      "surprise_score": 0.09437952481391954
+    },
+    {
+      "smiles": "COc1ccc(OCCN(C)C(=O)CSc2nc3ccccc3c(=O)n2-c2ccccc2)cc1",
+      "ab_score": 0.5703125,
+      "cytotox_risk": 0.30859375,
+      "artifact_risk": 0.55078125,
+      "composite_score": 0.12247215956449509,
+      "max_tan_to_training_active": 0.2564102564102564,
+      "novelty": 0.7435897435897436,
+      "surprise_score": 0.09106904172744507
+    },
+    {
+      "smiles": "Cc1ccc(NC(=O)c2cccn2-c2ccc(Oc3ccc(F)cc3)cc2)cc1-c1ccc(C(=O)O)cc1",
+      "ab_score": 0.55859375,
+      "cytotox_risk": 0.294921875,
+      "artifact_risk": 0.5625,
+      "composite_score": 0.12149226665496826,
+      "max_tan_to_training_active": 0.2804878048780488,
+      "novelty": 0.7195121951219512,
+      "surprise_score": 0.08741516747125765
+    },
+    {
+      "smiles": "Cc1cccc(C2=NN(C(=O)CCl)C(c3ccccc3)C2)c1",
+      "ab_score": 0.55859375,
+      "cytotox_risk": 0.30078125,
+      "artifact_risk": 0.55859375,
+      "composite_score": 0.12054818868637085,
+      "max_tan_to_training_active": 0.2564102564102564,
+      "novelty": 0.7435897435897436,
+      "surprise_score": 0.08963839671550654
+    },
+    {
+      "smiles": "COc1cc(-c2ccc(F)cc2)cc(C)c1C(=O)Nc1ccc(-c2nnn[nH]2)cc1",
+      "ab_score": 0.55078125,
+      "cytotox_risk": 0.291015625,
+      "artifact_risk": 0.56640625,
+      "composite_score": 0.12004262208938599,
+      "max_tan_to_training_active": 0.22935779816513763,
+      "novelty": 0.7706422018348624,
+      "surprise_score": 0.09250991060099471
+    },
+    {
+      "smiles": "Cc1cc(C)cc(-c2cc(=O)c3c(O)cc(O)cc3o2)c1",
+      "ab_score": 0.546875,
+      "cytotox_risk": 0.287109375,
+      "artifact_risk": 0.5390625,
+      "composite_score": 0.12810790538787842,
+      "max_tan_to_training_active": 0.18333333333333332,
+      "novelty": 0.8166666666666667,
+      "surprise_score": 0.10462145606676737
+    },
+    {
+      "smiles": "Cc1ccc(S(=O)(=O)Nc2ccc3c(C)cc(=O)oc3c2)cc1",
+      "ab_score": 0.546875,
+      "cytotox_risk": 0.291015625,
+      "artifact_risk": 0.53515625,
+      "composite_score": 0.12778161466121674,
+      "max_tan_to_training_active": 0.25,
+      "novelty": 0.75,
+      "surprise_score": 0.09583621099591255
+    },
+    {
+      "smiles": "O=c1cc(-c2ccccc2)oc2cc(OCC3CCNCC3)ccc12",
+      "ab_score": 0.546875,
+      "cytotox_risk": 0.291015625,
+      "artifact_risk": 0.54296875,
+      "composite_score": 0.12563402950763702,
+      "max_tan_to_training_active": 0.21428571428571427,
+      "novelty": 0.7857142857142857,
+      "surprise_score": 0.09871245175600052
+    },
+    {
+      "smiles": "Cc1cccc(C(=O)Nc2ccc(N3CCC(C)CC3)cc2)c1",
+      "ab_score": 0.53515625,
+      "cytotox_risk": 0.28125,
+      "artifact_risk": 0.56640625,
+      "composite_score": 0.11987243592739105,
+      "max_tan_to_training_active": 0.34545454545454546,
+      "novelty": 0.6545454545454545,
+      "surprise_score": 0.07846195806156506
+    },
+    {
+      "smiles": "COc1ccccc1C1(CNC(=O)Nc2ccc(C)cc2)CCOCC1",
+      "ab_score": 0.53125,
+      "cytotox_risk": 0.279296875,
+      "artifact_risk": 0.55078125,
+      "composite_score": 0.1239565908908844,
+      "max_tan_to_training_active": 0.25925925925925924,
+      "novelty": 0.7407407407407407,
+      "surprise_score": 0.09181969695621066
+    },
+    {
+      "smiles": "Cc1cc(Cl)ccc1NC(=O)CSc1nnc2n1N=C(c1ccccc1)CS2",
+      "ab_score": 0.515625,
+      "cytotox_risk": 0.2734375,
+      "artifact_risk": 0.5546875,
+      "composite_score": 0.12121177464723587,
+      "max_tan_to_training_active": 0.24390243902439024,
+      "novelty": 0.7560975609756098,
+      "surprise_score": 0.09164792717230029
+    },
+    {
+      "smiles": "Cc1ccc(OCCC(=O)Nc2ccc(-c3nc(C)cc(C)n3)cc2)cc1",
+      "ab_score": 0.515625,
+      "cytotox_risk": 0.271484375,
+      "artifact_risk": 0.55859375,
+      "composite_score": 0.120795339345932,
+      "max_tan_to_training_active": 0.3050847457627119,
+      "novelty": 0.6949152542372881,
+      "surprise_score": 0.08394252395225782
+    },
+    {
+      "smiles": "O=c1c2ccccc2nnn1Cc1ccc(F)cc1",
+      "ab_score": 0.50390625,
+      "cytotox_risk": 0.2490234375,
+      "artifact_risk": 0.52734375,
+      "composite_score": 0.13432224094867706,
+      "max_tan_to_training_active": 0.24193548387096775,
+      "novelty": 0.7580645161290323,
+      "surprise_score": 0.10182492459012615
+    },
+    {
+      "smiles": "COc1ccc(-c2cnc(N)nc2N)cc1",
+      "ab_score": 0.50390625,
+      "cytotox_risk": 0.255859375,
+      "artifact_risk": 0.52734375,
+      "composite_score": 0.13188795745372772,
+      "max_tan_to_training_active": 0.288135593220339,
+      "novelty": 0.711864406779661,
+      "surprise_score": 0.09388634259417905
+    },
+    {
+      "smiles": "Cc1cc(NC(=O)c2ccc(-c3ccccc3S(N)(=O)=O)s2)no1",
+      "ab_score": 0.50390625,
+      "cytotox_risk": 0.26171875,
+      "artifact_risk": 0.55078125,
+      "composite_score": 0.1233818531036377,
+      "max_tan_to_training_active": 0.2857142857142857,
+      "novelty": 0.7142857142857143,
+      "surprise_score": 0.08812989507402692
+    },
+    {
+      "smiles": "COc1ccc(Cn2c(=O)c(=O)c3c(=O)c4ccccc4c(=O)c=3c2=O)cc1",
+      "ab_score": 0.5,
+      "cytotox_risk": 0.255859375,
+      "artifact_risk": 0.51953125,
+      "composite_score": 0.13302865624427795,
+      "max_tan_to_training_active": 0.2903225806451613,
+      "novelty": 0.7096774193548387,
+      "surprise_score": 0.09440743346368113
+    },
+    {
+      "smiles": "COc1cc(Nc2ncc(C#N)c(Nc3ccc(F)c(F)c3)n2)cc(OC)c1OC",
+      "ab_score": 0.5,
+      "cytotox_risk": 0.255859375,
+      "artifact_risk": 0.53125,
+      "composite_score": 0.12978404760360718,
+      "max_tan_to_training_active": 0.2602739726027397,
+      "novelty": 0.7397260273972603,
+      "surprise_score": 0.09600463795335326
+    },
+    {
+      "smiles": "COc1cc(Nc2nccc(Oc3cccc(NC(=O)c4cc(OC)c(OC)c(OC)c4)c3)n2)cc(OC)c1OC",
+      "ab_score": 0.5,
+      "cytotox_risk": 0.25390625,
+      "artifact_risk": 0.53515625,
+      "composite_score": 0.129379004240036,
+      "max_tan_to_training_active": 0.30666666666666664,
+      "novelty": 0.6933333333333334,
+      "surprise_score": 0.08970277627309163
+    },
+    {
+      "smiles": "COc1cc(Nc2nccc(-c3ccc4c(c3)OCCO4)n2)cc(OC)c1OC",
+      "ab_score": 0.5,
+      "cytotox_risk": 0.25390625,
+      "artifact_risk": 0.53515625,
+      "composite_score": 0.129379004240036,
+      "max_tan_to_training_active": 0.2676056338028169,
+      "novelty": 0.7323943661971831,
+      "surprise_score": 0.09475645380960385
+    },
+    {
+      "smiles": "Cc1cccc(C(=O)Nc2ccc(C)c(NC(=O)COc3ccc(-c4ccc(CN5CCCCC5)s4)cc3)c2)c1",
+      "ab_score": 0.5,
+      "cytotox_risk": 0.2578125,
+      "artifact_risk": 0.55078125,
+      "composite_score": 0.12372434139251709,
+      "max_tan_to_training_active": 0.29213483146067415,
+      "novelty": 0.7078651685393258,
+      "surprise_score": 0.08758015177223119
+    },
+    {
+      "smiles": "COc1ccccc1-c1ccccc1N(C)C(=O)c1ccccc1",
+      "ab_score": 0.49609375,
+      "cytotox_risk": 0.255859375,
+      "artifact_risk": 0.51171875,
+      "composite_score": 0.13413554430007935,
+      "max_tan_to_training_active": 0.22033898305084745,
+      "novelty": 0.7796610169491526,
+      "surprise_score": 0.10458025487802797
+    },
+    {
+      "smiles": "COc1cc(NC(=O)CSc2nc3ccccc3c(=O)n2-c2ccccc2)cc(OC)c1OC",
+      "ab_score": 0.49609375,
+      "cytotox_risk": 0.2578125,
+      "artifact_risk": 0.515625,
+      "composite_score": 0.13236486911773682,
+      "max_tan_to_training_active": 0.27631578947368424,
+      "novelty": 0.7236842105263157,
+      "surprise_score": 0.09579036580888847
+    },
+    {
+      "smiles": "COc1ccc(Cn2c(CCCC(=O)NO)nc3ccccc32)cc1",
+      "ab_score": 0.49609375,
+      "cytotox_risk": 0.248046875,
+      "artifact_risk": 0.55859375,
+      "composite_score": 0.12381800264120102,
+      "max_tan_to_training_active": 0.26153846153846155,
+      "novelty": 0.7384615384615385,
+      "surprise_score": 0.09143483271965615
+    },
+    {
+      "smiles": "Cc1cc(C)cc(-c2nc(NCCCO)c3ccccc3n2)c1",
+      "ab_score": 0.494140625,
+      "cytotox_risk": 0.255859375,
+      "artifact_risk": 0.5546875,
+      "composite_score": 0.12184998393058777,
+      "max_tan_to_training_active": 0.2833333333333333,
+      "novelty": 0.7166666666666667,
+      "surprise_score": 0.08732582181692124
+    },
+    {
+      "smiles": "Cc1cccc(C(=O)Nc2ccc(F)c(Cl)c2)c1",
+      "ab_score": 0.4921875,
+      "cytotox_risk": 0.255859375,
+      "artifact_risk": 0.54296875,
+      "composite_score": 0.12456227093935013,
+      "max_tan_to_training_active": 0.40816326530612246,
+      "novelty": 0.5918367346938775,
+      "surprise_score": 0.07372052769879905
+    },
+    {
+      "smiles": "COc1cccc(NC(=O)CSc2nnc(-c3ccccc3)n2CCc2ccccc2)c1",
+      "ab_score": 0.4921875,
+      "cytotox_risk": 0.251953125,
+      "artifact_risk": 0.55078125,
+      "composite_score": 0.12372175604104996,
+      "max_tan_to_training_active": 0.24358974358974358,
+      "novelty": 0.7564102564102564,
+      "surprise_score": 0.09358440521053779
+    },
+    {
+      "smiles": "COc1cc(NC(=O)NCCCN2CCOCC2)ccc1Nc1ncc(Cl)c(-c2c(Cl)cccc2Cl)n1",
+      "ab_score": 0.4921875,
+      "cytotox_risk": 0.255859375,
+      "artifact_risk": 0.546875,
+      "composite_score": 0.12349763512611389,
+      "max_tan_to_training_active": 0.2631578947368421,
+      "novelty": 0.736842105263158,
+      "surprise_score": 0.09099825746134708
+    },
+    {
+      "smiles": "COc1cccc(N2CCN(C(=O)Cc3ccccc3)CC2)c1",
+      "ab_score": 0.490234375,
+      "cytotox_risk": 0.25,
+      "artifact_risk": 0.55078125,
+      "composite_score": 0.12387514114379883,
+      "max_tan_to_training_active": 0.2571428571428571,
+      "novelty": 0.7428571428571429,
+      "surprise_score": 0.0920215334211077
+    },
+    {
+      "smiles": "Cc1cc(CNC(=O)c2cc(-c3ccc(OCCN4CCCC4)cc3)cnc2N)ccc1F",
+      "ab_score": 0.490234375,
+      "cytotox_risk": 0.255859375,
+      "artifact_risk": 0.546875,
+      "composite_score": 0.12300756573677063,
+      "max_tan_to_training_active": 0.25301204819277107,
+      "novelty": 0.7469879518072289,
+      "surprise_score": 0.09188516958650336
+    },
+    {
+      "smiles": "COc1cc(C)c(Nc2ncc(Cl)c(Nc3cccc(S(=O)(=O)NCCO)c3)n2)cc1Cl",
+      "ab_score": 0.486328125,
+      "cytotox_risk": 0.25,
+      "artifact_risk": 0.54296875,
+      "composite_score": 0.12502527236938477,
+      "max_tan_to_training_active": 0.25,
+      "novelty": 0.75,
+      "surprise_score": 0.09376895427703857
+    },
+    {
+      "smiles": "COc1cccc(N2CCC(NC(=O)c3cccc(Nc4ncc(Cl)c(Nc5ccccc5S(=O)(=O)C(C)C)n4)c3)CC2)c1",
+      "ab_score": 0.486328125,
+      "cytotox_risk": 0.251953125,
+      "artifact_risk": 0.55859375,
+      "composite_score": 0.12012280523777008,
+      "max_tan_to_training_active": 0.21359223300970873,
+      "novelty": 0.7864077669902912,
+      "surprise_score": 0.09446550703164443
+    },
+    {
+      "smiles": "Cc1cc(C)cc(-c2nc3ccccc3o2)c1",
+      "ab_score": 0.478515625,
+      "cytotox_risk": 0.2451171875,
+      "artifact_risk": 0.53125,
+      "composite_score": 0.12781931459903717,
+      "max_tan_to_training_active": 0.275,
+      "novelty": 0.725,
+      "surprise_score": 0.09266900308430194
+    },
+    {
+      "smiles": "COc1cc(OC)cc(C(=O)/C=C/c2ccc(Cl)cc2)c1",
+      "ab_score": 0.4765625,
+      "cytotox_risk": 0.23046875,
+      "artifact_risk": 0.55078125,
+      "composite_score": 0.12677401304244995,
+      "max_tan_to_training_active": 0.32653061224489793,
+      "novelty": 0.6734693877551021,
+      "surprise_score": 0.0853784169469561
+    },
+    {
+      "smiles": "COc1ccc(-c2nc(SCC(=O)c3ccc4c(c3)CCC4)c3c(N)nccn23)cc1",
+      "ab_score": 0.474609375,
+      "cytotox_risk": 0.2412109375,
+      "artifact_risk": 0.5546875,
+      "composite_score": 0.12168675661087036,
+      "max_tan_to_training_active": 0.20833333333333334,
+      "novelty": 0.7916666666666666,
+      "surprise_score": 0.0963353489836057
+    },
+    {
+      "smiles": "COc1ccc(-c2nc3c(c(SC)nn3-c3ccccc3)c(=O)[nH]2)cc1",
+      "ab_score": 0.47265625,
+      "cytotox_risk": 0.23828125,
+      "artifact_risk": 0.53515625,
+      "composite_score": 0.1274798959493637,
+      "max_tan_to_training_active": 0.36363636363636365,
+      "novelty": 0.6363636363636364,
+      "surprise_score": 0.08112357014959509
+    },
+    {
+      "smiles": "Cc1cc(C)cc(S(=O)(=O)c2cc(C(=O)Nc3ccc(C(=O)O)cc3)cc(-c3ccccc3)c2)c1",
+      "ab_score": 0.47265625,
+      "cytotox_risk": 0.2421875,
+      "artifact_risk": 0.53125,
+      "composite_score": 0.12723606824874878,
+      "max_tan_to_training_active": 0.288135593220339,
+      "novelty": 0.711864406779661,
+      "surprise_score": 0.09057482824487201
+    },
+    {
+      "smiles": "COc1cccc(Cn2c(SCC(=O)c3ccccc3)nc3ccccc32)c1",
+      "ab_score": 0.470703125,
+      "cytotox_risk": 0.232421875,
+      "artifact_risk": 0.515625,
+      "composite_score": 0.13433030247688293,
+      "max_tan_to_training_active": 0.20833333333333334,
+      "novelty": 0.7916666666666666,
+      "surprise_score": 0.10634482279419899
+    },
+    {
+      "smiles": "COc1ccc(OC)c(NC(=O)c2nnn(-c3ccccc3)c2C)c1",
+      "ab_score": 0.470703125,
+      "cytotox_risk": 0.2431640625,
+      "artifact_risk": 0.5234375,
+      "composite_score": 0.12849032878875732,
+      "max_tan_to_training_active": 0.2777777777777778,
+      "novelty": 0.7222222222222222,
+      "surprise_score": 0.0927985707918803
+    },
+    {
+      "smiles": "Cc1cc(C)c(CNC(=O)c2cc(-c3cccc(F)c3)n(-c3ccccc3)n2)c(=O)[nH]1",
+      "ab_score": 0.46875,
+      "cytotox_risk": 0.236328125,
+      "artifact_risk": 0.5390625,
+      "composite_score": 0.12600764632225037,
+      "max_tan_to_training_active": 0.2077922077922078,
+      "novelty": 0.7922077922077921,
+      "surprise_score": 0.09982423929425029
+    },
+    {
+      "smiles": "COc1ccccc1-c1ccc(CNC(=O)C2CCN(C)CC2)o1",
+      "ab_score": 0.46875,
+      "cytotox_risk": 0.236328125,
+      "artifact_risk": 0.55859375,
+      "composite_score": 0.12066834419965744,
+      "max_tan_to_training_active": 0.22077922077922077,
+      "novelty": 0.7792207792207793,
+      "surprise_score": 0.09402728119453826
+    },
+    {
+      "smiles": "COc1cccc(-c2cccc(CNC(=O)c3ccc(C(=O)NO)cc3)c2)c1",
+      "ab_score": 0.466796875,
+      "cytotox_risk": 0.2353515625,
+      "artifact_risk": 0.52734375,
+      "composite_score": 0.1290021538734436,
+      "max_tan_to_training_active": 0.296875,
+      "novelty": 0.703125,
+      "surprise_score": 0.09070463944226503
+    },
+    {
+      "smiles": "COc1cc(Nc2ncnc3ccc(OC(F)(F)F)cc23)cc(OC)c1OC",
+      "ab_score": 0.46484375,
+      "cytotox_risk": 0.228515625,
+      "artifact_risk": 0.51953125,
+      "composite_score": 0.13293105363845825,
+      "max_tan_to_training_active": 0.29411764705882354,
+      "novelty": 0.7058823529411764,
+      "surprise_score": 0.09383368492126463
+    },
+    {
+      "smiles": "COc1cc(OCc2cccc(-c3ccc(C#N)cc3)c2C)c2cc(-c3cn4nc(OC)sc4n3)oc2c1",
+      "ab_score": 0.46484375,
+      "cytotox_risk": 0.2333984375,
+      "artifact_risk": 0.5390625,
+      "composite_score": 0.1259181797504425,
+      "max_tan_to_training_active": 0.17391304347826086,
+      "novelty": 0.8260869565217391,
+      "surprise_score": 0.10401936588080032
+    },
+    {
+      "smiles": "COc1cc(NC(=O)c2cccc(OCC(=O)NCc3ccccc3)c2)cc(OC)c1",
+      "ab_score": 0.462890625,
+      "cytotox_risk": 0.2353515625,
+      "artifact_risk": 0.53125,
+      "composite_score": 0.1268654316663742,
+      "max_tan_to_training_active": 0.3559322033898305,
+      "novelty": 0.6440677966101696,
+      "surprise_score": 0.08170993903935966
+    },
+    {
+      "smiles": "Cc1ccc(S(=O)(=O)NC(=O)c2ccc3nc(-c4ccco4)cn3c2)cc1",
+      "ab_score": 0.462890625,
+      "cytotox_risk": 0.2353515625,
+      "artifact_risk": 0.54296875,
+      "composite_score": 0.1236937940120697,
+      "max_tan_to_training_active": 0.2033898305084746,
+      "novelty": 0.7966101694915254,
+      "surprise_score": 0.09853573421300468
+    },
+    {
+      "smiles": "COc1ccc(OCC2CCN(C(=O)Cc3ccc4c(c3)OCO4)CC2)cc1",
+      "ab_score": 0.462890625,
+      "cytotox_risk": 0.2412109375,
+      "artifact_risk": 0.54296875,
+      "composite_score": 0.12180536240339279,
+      "max_tan_to_training_active": 0.2916666666666667,
+      "novelty": 0.7083333333333333,
+      "surprise_score": 0.08627879836906989
+    },
+    {
+      "smiles": "Cc1cc(C)cc(NC(=O)c2cnc3ccc(S(=O)(=O)N4CCCC4)cc3c2)c1",
+      "ab_score": 0.462890625,
+      "cytotox_risk": 0.2353515625,
+      "artifact_risk": 0.55078125,
+      "composite_score": 0.1215793639421463,
+      "max_tan_to_training_active": 0.2535211267605634,
+      "novelty": 0.7464788732394366,
+      "surprise_score": 0.09075642660470076
+    },
+    {
+      "smiles": "COc1ccc(-c2c(C(=O)Nc3ccc(C)cc3)n(C)c3ccccc23)cc1",
+      "ab_score": 0.45703125,
+      "cytotox_risk": 0.2294921875,
+      "artifact_risk": 0.50390625,
+      "composite_score": 0.1346057951450348,
+      "max_tan_to_training_active": 0.3,
+      "novelty": 0.7,
+      "surprise_score": 0.09422405660152434
+    },
+    {
+      "smiles": "COc1ccccc1CN1C(=O)CSC1c1ccccc1",
+      "ab_score": 0.45703125,
+      "cytotox_risk": 0.2294921875,
+      "artifact_risk": 0.51171875,
+      "composite_score": 0.1324860155582428,
+      "max_tan_to_training_active": 0.23636363636363636,
+      "novelty": 0.7636363636363637,
+      "surprise_score": 0.10117113915356724
+    }
+  ],
+  "top_k_by_composite": [
+    {
+      "smiles": "O=c1ccc2ccc(F)cc2[nH]1",
+      "ab_score": 0.39453125,
+      "cytotox_risk": 0.189453125,
+      "artifact_risk": 0.42578125,
+      "composite_score": 0.14883841574192047,
+      "max_tan_to_training_active": 0.21212121212121213,
+      "novelty": 0.7878787878787878,
+      "surprise_score": 0.1172666305845434
+    },
+    {
+      "smiles": "O=c1cc(Cn2ccnc2)c2ccccc2n1-c1ccccc1",
+      "ab_score": 0.43359375,
+      "cytotox_risk": 0.181640625,
+      "artifact_risk": 0.51171875,
+      "composite_score": 0.1417885720729828,
+      "max_tan_to_training_active": 0.21428571428571427,
+      "novelty": 0.7857142857142857,
+      "surprise_score": 0.11140530662877218
+    },
+    {
+      "smiles": "COc1ccc(-c2nc3ccc(F)cc3s2)cc1",
+      "ab_score": 0.388671875,
+      "cytotox_risk": 0.18359375,
+      "artifact_risk": 0.453125,
+      "composite_score": 0.14167194068431854,
+      "max_tan_to_training_active": 0.328125,
+      "novelty": 0.671875,
+      "surprise_score": 0.09518583514727652
+    },
+    {
+      "smiles": "O=C(O)COc1ccccc1C(=O)c1ccccc1OCCc1ccccc1",
+      "ab_score": 0.41796875,
+      "cytotox_risk": 0.177734375,
+      "artifact_risk": 0.515625,
+      "composite_score": 0.13688309490680695,
+      "max_tan_to_training_active": 0.2542372881355932,
+      "novelty": 0.7457627118644068,
+      "surprise_score": 0.10208230806609332
+    },
+    {
+      "smiles": "COc1ccc(-c2nc(SCc3ccccc3Cl)c3cc[nH]c3n2)cc1",
+      "ab_score": 0.3984375,
+      "cytotox_risk": 0.1826171875,
+      "artifact_risk": 0.490234375,
+      "composite_score": 0.13570059835910797,
+      "max_tan_to_training_active": 0.21794871794871795,
+      "novelty": 0.782051282051282,
+      "surprise_score": 0.10612482692186649
+    },
+    {
+      "smiles": "O=c1[nH]c2ccc(Br)cc2c2nc3ncccc3nc12",
+      "ab_score": 0.3515625,
+      "cytotox_risk": 0.1513671875,
+      "artifact_risk": 0.46484375,
+      "composite_score": 0.13549484312534332,
+      "max_tan_to_training_active": 0.25925925925925924,
+      "novelty": 0.7407407407407407,
+      "surprise_score": 0.10036655046321727
+    },
+    {
+      "smiles": "COc1ccc(-c2nc3ccccc3n2Cc2ccccc2)cc1OC",
+      "ab_score": 0.388671875,
+      "cytotox_risk": 0.1884765625,
+      "artifact_risk": 0.470703125,
+      "composite_score": 0.13548292219638824,
+      "max_tan_to_training_active": 0.22535211267605634,
+      "novelty": 0.7746478873239436,
+      "surprise_score": 0.10495155944790638
+    },
+    {
+      "smiles": "COc1cc(Nc2nccc(-c3cc4ccccc4o3)n2)cc(OC)c1OC",
+      "ab_score": 0.443359375,
+      "cytotox_risk": 0.2197265625,
+      "artifact_risk": 0.5,
+      "composite_score": 0.1349644958972931,
+      "max_tan_to_training_active": 0.29508196721311475,
+      "novelty": 0.7049180327868853,
+      "surprise_score": 0.09513890694399349
+    },
+    {
+      "smiles": "COc1ccc(-c2c(C(=O)Nc3ccc(C)cc3)n(C)c3ccccc23)cc1",
+      "ab_score": 0.45703125,
+      "cytotox_risk": 0.2294921875,
+      "artifact_risk": 0.50390625,
+      "composite_score": 0.1346057951450348,
+      "max_tan_to_training_active": 0.3,
+      "novelty": 0.7,
+      "surprise_score": 0.09422405660152434
+    },
+    {
+      "smiles": "COc1cccc(Cn2c(SCC(=O)c3ccccc3)nc3ccccc32)c1",
+      "ab_score": 0.470703125,
+      "cytotox_risk": 0.232421875,
+      "artifact_risk": 0.515625,
+      "composite_score": 0.13433030247688293,
+      "max_tan_to_training_active": 0.20833333333333334,
+      "novelty": 0.7916666666666666,
+      "surprise_score": 0.10634482279419899
+    },
+    {
+      "smiles": "O=c1c2ccccc2nnn1Cc1ccc(F)cc1",
+      "ab_score": 0.50390625,
+      "cytotox_risk": 0.2490234375,
+      "artifact_risk": 0.52734375,
+      "composite_score": 0.13432224094867706,
+      "max_tan_to_training_active": 0.24193548387096775,
+      "novelty": 0.7580645161290323,
+      "surprise_score": 0.10182492459012615
+    },
+    {
+      "smiles": "COc1ccccc1-c1ccccc1N(C)C(=O)c1ccccc1",
+      "ab_score": 0.49609375,
+      "cytotox_risk": 0.255859375,
+      "artifact_risk": 0.51171875,
+      "composite_score": 0.13413554430007935,
+      "max_tan_to_training_active": 0.22033898305084745,
+      "novelty": 0.7796610169491526,
+      "surprise_score": 0.10458025487802797
+    },
+    {
+      "smiles": "O=c1c2ccccc2nc(-c2ccccc2)n1Cc1cccc(-c2ccccc2Cl)c1",
+      "ab_score": 0.380859375,
+      "cytotox_risk": 0.166015625,
+      "artifact_risk": 0.494140625,
+      "composite_score": 0.1340017020702362,
+      "max_tan_to_training_active": 0.22033898305084745,
+      "novelty": 0.7796610169491526,
+      "surprise_score": 0.10447590330899773
+    },
+    {
+      "smiles": "COc1cccc(-c2ccccc2C(=O)NCCc2ccccc2)c1",
+      "ab_score": 0.3125,
+      "cytotox_risk": 0.140625,
+      "artifact_risk": 0.419921875,
+      "composite_score": 0.1338757574558258,
+      "max_tan_to_training_active": 0.31746031746031744,
+      "novelty": 0.6825396825396826,
+      "surprise_score": 0.09137551699365888
+    },
+    {
+      "smiles": "COc1ccc(-c2nc3ccccc3c(=O)n2-c2ccc(C(=O)O)cc2)cc1",
+      "ab_score": 0.4375,
+      "cytotox_risk": 0.2177734375,
+      "artifact_risk": 0.5,
+      "composite_score": 0.1338483989238739,
+      "max_tan_to_training_active": 0.29850746268656714,
+      "novelty": 0.7014925373134329,
+      "surprise_score": 0.09389365297644886
+    },
+    {
+      "smiles": "COc1ccccc1-c1cccc(C(=O)Nc2ccc(N(C)C)cc2)c1",
+      "ab_score": 0.421875,
+      "cytotox_risk": 0.2080078125,
+      "artifact_risk": 0.49609375,
+      "composite_score": 0.13334457576274872,
+      "max_tan_to_training_active": 0.35714285714285715,
+      "novelty": 0.6428571428571428,
+      "surprise_score": 0.08572151299033845
+    },
+    {
+      "smiles": "COc1ccccc1-c1cccc(C(=O)N(C)Cc2c(C)n(Cc3ccccc3)c3ccccc23)c1",
+      "ab_score": 0.412109375,
+      "cytotox_risk": 0.2021484375,
+      "artifact_risk": 0.4921875,
+      "composite_score": 0.13321712613105774,
+      "max_tan_to_training_active": 0.189873417721519,
+      "novelty": 0.810126582278481,
+      "surprise_score": 0.10792273509351513
+    },
+    {
+      "smiles": "COc1ccc(Cn2c(=O)c(=O)c3c(=O)c4ccccc4c(=O)c=3c2=O)cc1",
+      "ab_score": 0.5,
+      "cytotox_risk": 0.255859375,
+      "artifact_risk": 0.51953125,
+      "composite_score": 0.13302865624427795,
+      "max_tan_to_training_active": 0.2903225806451613,
+      "novelty": 0.7096774193548387,
+      "surprise_score": 0.09440743346368113
+    },
+    {
+      "smiles": "COc1cc(Nc2ncnc3ccc(OC(F)(F)F)cc23)cc(OC)c1OC",
+      "ab_score": 0.46484375,
+      "cytotox_risk": 0.228515625,
+      "artifact_risk": 0.51953125,
+      "composite_score": 0.13293105363845825,
+      "max_tan_to_training_active": 0.29411764705882354,
+      "novelty": 0.7058823529411764,
+      "surprise_score": 0.09383368492126463
+    },
+    {
+      "smiles": "COc1ccc(-c2nc3ccc(Cl)cc3n2C(=O)c2ccccc2Cl)cc1",
+      "ab_score": 0.41796875,
+      "cytotox_risk": 0.2060546875,
+      "artifact_risk": 0.49609375,
+      "composite_score": 0.13276228308677673,
+      "max_tan_to_training_active": 0.265625,
+      "novelty": 0.734375,
+      "surprise_score": 0.09749730164185166
+    },
+    {
+      "smiles": "COc1cc(OCc2ccc(OCCOc3ccccc3)cc2)c2cc(-c3ccnc(C)c3)oc2c1",
+      "ab_score": 0.37890625,
+      "cytotox_risk": 0.1728515625,
+      "artifact_risk": 0.48828125,
+      "composite_score": 0.13265694677829742,
+      "max_tan_to_training_active": 0.2328767123287671,
+      "novelty": 0.7671232876712328,
+      "surprise_score": 0.10176423314499528
+    },
+    {
+      "smiles": "COc1ccc(-c2nc(N)nc3ccc(Nc4cccc(-c5ccccc5)c4)cc23)cc1OC",
+      "ab_score": 0.390625,
+      "cytotox_risk": 0.1884765625,
+      "artifact_risk": 0.484375,
+      "composite_score": 0.1326465904712677,
+      "max_tan_to_training_active": 0.3,
+      "novelty": 0.7,
+      "surprise_score": 0.09285261332988738
+    },
+    {
+      "smiles": "COc1ccc(-c2ccc(Cn3c(=O)c4ccccc4c4ccccc43)cc2)cc1",
+      "ab_score": 0.375,
+      "cytotox_risk": 0.1826171875,
+      "artifact_risk": 0.470703125,
+      "composite_score": 0.13261163234710693,
+      "max_tan_to_training_active": 0.2857142857142857,
+      "novelty": 0.7142857142857143,
+      "surprise_score": 0.09472259453364781
+    },
+    {
+      "smiles": "O=C(O)c1cc(-c2ccc(O)cc2)ccc1O",
+      "ab_score": 0.32421875,
+      "cytotox_risk": 0.1416015625,
+      "artifact_risk": 0.4453125,
+      "composite_score": 0.13251478970050812,
+      "max_tan_to_training_active": 0.22448979591836735,
+      "novelty": 0.7755102040816326,
+      "surprise_score": 0.10276657160447568
+    },
+    {
+      "smiles": "COc1ccccc1CN1C(=O)CSC1c1ccccc1",
+      "ab_score": 0.45703125,
+      "cytotox_risk": 0.2294921875,
+      "artifact_risk": 0.51171875,
+      "composite_score": 0.1324860155582428,
+      "max_tan_to_training_active": 0.23636363636363636,
+      "novelty": 0.7636363636363637,
+      "surprise_score": 0.10117113915356724
+    },
+    {
+      "smiles": "COc1cc(NC(=O)CSc2nc3ccccc3c(=O)n2-c2ccccc2)cc(OC)c1OC",
+      "ab_score": 0.49609375,
+      "cytotox_risk": 0.2578125,
+      "artifact_risk": 0.515625,
+      "composite_score": 0.13236486911773682,
+      "max_tan_to_training_active": 0.27631578947368424,
+      "novelty": 0.7236842105263157,
+      "surprise_score": 0.09579036580888847
+    },
+    {
+      "smiles": "COc1ccc(Cn2cc(CC(=O)O)c3ccccc32)cc1",
+      "ab_score": 0.455078125,
+      "cytotox_risk": 0.228515625,
+      "artifact_risk": 0.51171875,
+      "composite_score": 0.1322544366121292,
+      "max_tan_to_training_active": 0.27586206896551724,
+      "novelty": 0.7241379310344828,
+      "surprise_score": 0.0957704540984384
+    },
+    {
+      "smiles": "COc1cc(OC)cc(C(=O)Nc2ccc(OCc3ccccc3)cc2)c1",
+      "ab_score": 0.390625,
+      "cytotox_risk": 0.1884765625,
+      "artifact_risk": 0.486328125,
+      "composite_score": 0.13214415311813354,
+      "max_tan_to_training_active": 0.38461538461538464,
+      "novelty": 0.6153846153846154,
+      "surprise_score": 0.08131947884192833
+    },
+    {
+      "smiles": "COc1ccc(OCC(=O)NNC(=O)CSc2nc(-c3ccccc3)cc(-c3ccccc3)c2-c2ccccc2)cc1",
+      "ab_score": 0.44921875,
+      "cytotox_risk": 0.2333984375,
+      "artifact_risk": 0.5,
+      "composite_score": 0.1319979727268219,
+      "max_tan_to_training_active": 0.2602739726027397,
+      "novelty": 0.7397260273972603,
+      "surprise_score": 0.09764233598970389
+    },
+    {
+      "smiles": "COc1ccc(-c2cnc(N)nc2N)cc1",
+      "ab_score": 0.50390625,
+      "cytotox_risk": 0.255859375,
+      "artifact_risk": 0.52734375,
+      "composite_score": 0.13188795745372772,
+      "max_tan_to_training_active": 0.288135593220339,
+      "novelty": 0.711864406779661,
+      "surprise_score": 0.09388634259417905
+    },
+    {
+      "smiles": "COc1ccc(-c2cc(=O)c3c(O)cc(OC)cc3o2)cc1",
+      "ab_score": 0.361328125,
+      "cytotox_risk": 0.162109375,
+      "artifact_risk": 0.48046875,
+      "composite_score": 0.13179171085357666,
+      "max_tan_to_training_active": 0.23214285714285715,
+      "novelty": 0.7678571428571428,
+      "surprise_score": 0.10119720654828207
+    },
+    {
+      "smiles": "O=C(O)COc1ccccc1C1=C(c2ccccc2)CC(O)=C(C(=O)O)C1=O",
+      "ab_score": 0.388671875,
+      "cytotox_risk": 0.17578125,
+      "artifact_risk": 0.50390625,
+      "composite_score": 0.13098810613155365,
+      "max_tan_to_training_active": 0.24285714285714285,
+      "novelty": 0.7571428571428571,
+      "surprise_score": 0.09917670892817633
+    },
+    {
+      "smiles": "COc1ccc(-c2nc3ccc(F)cc3s2)cc1NC(=O)c1ccc(C#N)cc1",
+      "ab_score": 0.3203125,
+      "cytotox_risk": 0.140625,
+      "artifact_risk": 0.447265625,
+      "composite_score": 0.1307542473077774,
+      "max_tan_to_training_active": 0.3333333333333333,
+      "novelty": 0.6666666666666667,
+      "surprise_score": 0.08716949820518495
+    },
+    {
+      "smiles": "COc1ccc(-c2cn(-c3ccccc3)c(-c3ccccc3)n2)cc1",
+      "ab_score": 0.34765625,
+      "cytotox_risk": 0.16015625,
+      "artifact_risk": 0.466796875,
+      "composite_score": 0.1307494044303894,
+      "max_tan_to_training_active": 0.3508771929824561,
+      "novelty": 0.6491228070175439,
+      "surprise_score": 0.08487242041972645
+    },
+    {
+      "smiles": "COc1ccc(Cn2c(CCNS(=O)(=O)c3cccc(C)c3)nc3ccccc32)cc1",
+      "ab_score": 0.45703125,
+      "cytotox_risk": 0.228515625,
+      "artifact_risk": 0.51953125,
+      "composite_score": 0.13069690763950348,
+      "max_tan_to_training_active": 0.2839506172839506,
+      "novelty": 0.7160493827160495,
+      "surprise_score": 0.09358544003816299
+    },
+    {
+      "smiles": "COc1ccc(-c2nn(-c3ccccc3)c(-c3ccc(Cl)cc3)c2C(N)=O)cc1OC",
+      "ab_score": 0.421875,
+      "cytotox_risk": 0.2080078125,
+      "artifact_risk": 0.5078125,
+      "composite_score": 0.13024353981018066,
+      "max_tan_to_training_active": 0.25396825396825395,
+      "novelty": 0.746031746031746,
+      "surprise_score": 0.09716581541394431
+    },
+    {
+      "smiles": "COc1ccc(-c2ccc3c(C(=O)O)cn(Cc4ccc(Cl)cc4)c3c2)cc1",
+      "ab_score": 0.404296875,
+      "cytotox_risk": 0.1943359375,
+      "artifact_risk": 0.50390625,
+      "composite_score": 0.13018834590911865,
+      "max_tan_to_training_active": 0.2857142857142857,
+      "novelty": 0.7142857142857143,
+      "surprise_score": 0.09299167564937047
+    },
+    {
+      "smiles": "COc1ccccc1-c1cc(NC(=O)c2ccc(C(F)(F)F)cc2)n(Cc2ccccc2)n1",
+      "ab_score": 0.439453125,
+      "cytotox_risk": 0.21484375,
+      "artifact_risk": 0.51953125,
+      "composite_score": 0.13016369938850403,
+      "max_tan_to_training_active": 0.2361111111111111,
+      "novelty": 0.7638888888888888,
+      "surprise_score": 0.09943060369955169
+    },
+    {
+      "smiles": "COc1cccc(-c2cc(C(F)(F)F)c3c(N)ncnn23)c1",
+      "ab_score": 0.294921875,
+      "cytotox_risk": 0.126953125,
+      "artifact_risk": 0.421875,
+      "composite_score": 0.12995825707912445,
+      "max_tan_to_training_active": 0.19736842105263158,
+      "novelty": 0.8026315789473684,
+      "surprise_score": 0.10430860107666567
+    },
+    {
+      "smiles": "O=c1cc(C(F)(F)F)cc2n1CCc1c-2[nH]c2ccccc12",
+      "ab_score": 0.296875,
+      "cytotox_risk": 0.1328125,
+      "artifact_risk": 0.41796875,
+      "composite_score": 0.129940927028656,
+      "max_tan_to_training_active": 0.26229508196721313,
+      "novelty": 0.7377049180327868,
+      "surprise_score": 0.09585806092277901
+    },
+    {
+      "smiles": "COc1ccccc1-c1ccc(NC(=O)Nc2ccccc2C(=O)O)cc1",
+      "ab_score": 0.318359375,
+      "cytotox_risk": 0.142578125,
+      "artifact_risk": 0.4453125,
+      "composite_score": 0.12982405722141266,
+      "max_tan_to_training_active": 0.2549019607843137,
+      "novelty": 0.7450980392156863,
+      "surprise_score": 0.09673165047869962
+    },
+    {
+      "smiles": "COc1ccc(-c2cnc3ccc(-c4cccc(F)c4)nn23)cc1",
+      "ab_score": 0.365234375,
+      "cytotox_risk": 0.1728515625,
+      "artifact_risk": 0.48046875,
+      "composite_score": 0.12982258200645447,
+      "max_tan_to_training_active": 0.22857142857142856,
+      "novelty": 0.7714285714285715,
+      "surprise_score": 0.10014884897640773
+    },
+    {
+      "smiles": "COc1cc(Nc2ncc(C#N)c(Nc3ccc(F)c(F)c3)n2)cc(OC)c1OC",
+      "ab_score": 0.5,
+      "cytotox_risk": 0.255859375,
+      "artifact_risk": 0.53125,
+      "composite_score": 0.12978404760360718,
+      "max_tan_to_training_active": 0.2602739726027397,
+      "novelty": 0.7397260273972603,
+      "surprise_score": 0.09600463795335326
+    },
+    {
+      "smiles": "O=C(O)c1cnc2ccc(-c3c(-c4ccccc4)nn4cccnc34)cn12",
+      "ab_score": 0.390625,
+      "cytotox_risk": 0.1787109375,
+      "artifact_risk": 0.5078125,
+      "composite_score": 0.12968288362026215,
+      "max_tan_to_training_active": 0.2328767123287671,
+      "novelty": 0.7671232876712328,
+      "surprise_score": 0.09948276003746137
+    },
+    {
+      "smiles": "COc1ccccc1N1CCN(C(=O)CC(c2ccccc2)c2ccccc2)CC1",
+      "ab_score": 0.3984375,
+      "cytotox_risk": 0.193359375,
+      "artifact_risk": 0.5,
+      "composite_score": 0.12962548434734344,
+      "max_tan_to_training_active": 0.21052631578947367,
+      "novelty": 0.7894736842105263,
+      "surprise_score": 0.10233590869527114
+    },
+    {
+      "smiles": "COc1cc(-c2cc(=O)c3ccccc3o2)ccc1OCc1ccccc1",
+      "ab_score": 0.359375,
+      "cytotox_risk": 0.177734375,
+      "artifact_risk": 0.466796875,
+      "composite_score": 0.12955817580223083,
+      "max_tan_to_training_active": 0.2641509433962264,
+      "novelty": 0.7358490566037736,
+      "surprise_score": 0.09533526143937741
+    },
+    {
+      "smiles": "COc1cc(CO)cc(C(C)=O)c1OCc1ccc(OCc2ccccc2)cc1",
+      "ab_score": 0.34375,
+      "cytotox_risk": 0.15625,
+      "artifact_risk": 0.470703125,
+      "composite_score": 0.12952977418899536,
+      "max_tan_to_training_active": 0.3103448275862069,
+      "novelty": 0.6896551724137931,
+      "surprise_score": 0.0893308787510313
+    },
+    {
+      "smiles": "O=c1c2ccccc2oc2cc(OCc3cn(Cc4ccccc4)nn3)ccc12",
+      "ab_score": 0.3828125,
+      "cytotox_risk": 0.16796875,
+      "artifact_risk": 0.51171875,
+      "composite_score": 0.1294003427028656,
+      "max_tan_to_training_active": 0.2857142857142857,
+      "novelty": 0.7142857142857143,
+      "surprise_score": 0.09242881621633257
+    },
+    {
+      "smiles": "COc1cc(Nc2nccc(Oc3cccc(NC(=O)c4cc(OC)c(OC)c(OC)c4)c3)n2)cc(OC)c1OC",
+      "ab_score": 0.5,
+      "cytotox_risk": 0.25390625,
+      "artifact_risk": 0.53515625,
+      "composite_score": 0.129379004240036,
+      "max_tan_to_training_active": 0.30666666666666664,
+      "novelty": 0.6933333333333334,
+      "surprise_score": 0.08970277627309163
+    },
+    {
+      "smiles": "COc1cc(Nc2nccc(-c3ccc4c(c3)OCCO4)n2)cc(OC)c1OC",
+      "ab_score": 0.5,
+      "cytotox_risk": 0.25390625,
+      "artifact_risk": 0.53515625,
+      "composite_score": 0.129379004240036,
+      "max_tan_to_training_active": 0.2676056338028169,
+      "novelty": 0.7323943661971831,
+      "surprise_score": 0.09475645380960385
+    }
+  ],
+  "top_k_by_surprise": [
+    {
+      "smiles": "O=c1ccc2ccc(F)cc2[nH]1",
+      "ab_score": 0.39453125,
+      "cytotox_risk": 0.189453125,
+      "artifact_risk": 0.42578125,
+      "composite_score": 0.14883841574192047,
+      "max_tan_to_training_active": 0.21212121212121213,
+      "novelty": 0.7878787878787878,
+      "surprise_score": 0.1172666305845434
+    },
+    {
+      "smiles": "O=c1cc(Cn2ccnc2)c2ccccc2n1-c1ccccc1",
+      "ab_score": 0.43359375,
+      "cytotox_risk": 0.181640625,
+      "artifact_risk": 0.51171875,
+      "composite_score": 0.1417885720729828,
+      "max_tan_to_training_active": 0.21428571428571427,
+      "novelty": 0.7857142857142857,
+      "surprise_score": 0.11140530662877218
+    },
+    {
+      "smiles": "COc1ccccc1-c1cccc(C(=O)N(C)Cc2c(C)n(Cc3ccccc3)c3ccccc23)c1",
+      "ab_score": 0.412109375,
+      "cytotox_risk": 0.2021484375,
+      "artifact_risk": 0.4921875,
+      "composite_score": 0.13321712613105774,
+      "max_tan_to_training_active": 0.189873417721519,
+      "novelty": 0.810126582278481,
+      "surprise_score": 0.10792273509351513
+    },
+    {
+      "smiles": "COc1cccc(Cn2c(SCC(=O)c3ccccc3)nc3ccccc32)c1",
+      "ab_score": 0.470703125,
+      "cytotox_risk": 0.232421875,
+      "artifact_risk": 0.515625,
+      "composite_score": 0.13433030247688293,
+      "max_tan_to_training_active": 0.20833333333333334,
+      "novelty": 0.7916666666666666,
+      "surprise_score": 0.10634482279419899
+    },
+    {
+      "smiles": "COc1ccc(-c2nc(SCc3ccccc3Cl)c3cc[nH]c3n2)cc1",
+      "ab_score": 0.3984375,
+      "cytotox_risk": 0.1826171875,
+      "artifact_risk": 0.490234375,
+      "composite_score": 0.13570059835910797,
+      "max_tan_to_training_active": 0.21794871794871795,
+      "novelty": 0.782051282051282,
+      "surprise_score": 0.10612482692186649
+    },
+    {
+      "smiles": "COc1ccc(-c2nc3ccccc3n2Cc2ccccc2)cc1OC",
+      "ab_score": 0.388671875,
+      "cytotox_risk": 0.1884765625,
+      "artifact_risk": 0.470703125,
+      "composite_score": 0.13548292219638824,
+      "max_tan_to_training_active": 0.22535211267605634,
+      "novelty": 0.7746478873239436,
+      "surprise_score": 0.10495155944790638
+    },
+    {
+      "smiles": "Cc1cc(C)cc(-c2cc(=O)c3c(O)cc(O)cc3o2)c1",
+      "ab_score": 0.546875,
+      "cytotox_risk": 0.287109375,
+      "artifact_risk": 0.5390625,
+      "composite_score": 0.12810790538787842,
+      "max_tan_to_training_active": 0.18333333333333332,
+      "novelty": 0.8166666666666667,
+      "surprise_score": 0.10462145606676737
+    },
+    {
+      "smiles": "COc1ccccc1-c1ccccc1N(C)C(=O)c1ccccc1",
+      "ab_score": 0.49609375,
+      "cytotox_risk": 0.255859375,
+      "artifact_risk": 0.51171875,
+      "composite_score": 0.13413554430007935,
+      "max_tan_to_training_active": 0.22033898305084745,
+      "novelty": 0.7796610169491526,
+      "surprise_score": 0.10458025487802797
+    },
+    {
+      "smiles": "COc1ccccc1-c1ccc(Cn2c(=O)n(Cc3ccccc3F)c(=O)c3ccccc32)cc1",
+      "ab_score": 0.357421875,
+      "cytotox_risk": 0.171875,
+      "artifact_risk": 0.47265625,
+      "composite_score": 0.12926076352596283,
+      "max_tan_to_training_active": 0.19117647058823528,
+      "novelty": 0.8088235294117647,
+      "surprise_score": 0.10454914696952876
+    },
+    {
+      "smiles": "O=c1c2ccccc2nc(-c2ccccc2)n1Cc1cccc(-c2ccccc2Cl)c1",
+      "ab_score": 0.380859375,
+      "cytotox_risk": 0.166015625,
+      "artifact_risk": 0.494140625,
+      "composite_score": 0.1340017020702362,
+      "max_tan_to_training_active": 0.22033898305084745,
+      "novelty": 0.7796610169491526,
+      "surprise_score": 0.10447590330899773
+    },
+    {
+      "smiles": "COc1cccc(-c2cc(C(F)(F)F)c3c(N)ncnn23)c1",
+      "ab_score": 0.294921875,
+      "cytotox_risk": 0.126953125,
+      "artifact_risk": 0.421875,
+      "composite_score": 0.12995825707912445,
+      "max_tan_to_training_active": 0.19736842105263158,
+      "novelty": 0.8026315789473684,
+      "surprise_score": 0.10430860107666567
+    },
+    {
+      "smiles": "COc1cc(OCc2cccc(-c3ccc(C#N)cc3)c2C)c2cc(-c3cn4nc(OC)sc4n3)oc2c1",
+      "ab_score": 0.46484375,
+      "cytotox_risk": 0.2333984375,
+      "artifact_risk": 0.5390625,
+      "composite_score": 0.1259181797504425,
+      "max_tan_to_training_active": 0.17391304347826086,
+      "novelty": 0.8260869565217391,
+      "surprise_score": 0.10401936588080032
+    },
+    {
+      "smiles": "COc1ccc(C(C)(C)C)cc1-c1ccc(F)c2c1CN(C(=O)Cc1cccc(F)c1)CC2",
+      "ab_score": 0.318359375,
+      "cytotox_risk": 0.140625,
+      "artifact_risk": 0.46875,
+      "composite_score": 0.12490563094615936,
+      "max_tan_to_training_active": 0.17525773195876287,
+      "novelty": 0.8247422680412371,
+      "surprise_score": 0.1030149533576572
+    },
+    {
+      "smiles": "O=C(O)c1cc(-c2ccc(O)cc2)ccc1O",
+      "ab_score": 0.32421875,
+      "cytotox_risk": 0.1416015625,
+      "artifact_risk": 0.4453125,
+      "composite_score": 0.13251478970050812,
+      "max_tan_to_training_active": 0.22448979591836735,
+      "novelty": 0.7755102040816326,
+      "surprise_score": 0.10276657160447568
+    },
+    {
+      "smiles": "COc1ccccc1N1CCN(C(=O)CC(c2ccccc2)c2ccccc2)CC1",
+      "ab_score": 0.3984375,
+      "cytotox_risk": 0.193359375,
+      "artifact_risk": 0.5,
+      "composite_score": 0.12962548434734344,
+      "max_tan_to_training_active": 0.21052631578947367,
+      "novelty": 0.7894736842105263,
+      "surprise_score": 0.10233590869527114
+    },
+    {
+      "smiles": "COc1ccc(CCn2c(=O)c3ccccc3n(CCCN(C)C)c2=O)cc1OC",
+      "ab_score": 0.451171875,
+      "cytotox_risk": 0.228515625,
+      "artifact_risk": 0.53125,
+      "composite_score": 0.12587444484233856,
+      "max_tan_to_training_active": 0.1875,
+      "novelty": 0.8125,
+      "surprise_score": 0.10227298643440008
+    },
+    {
+      "smiles": "COc1cc(OC)cc(N(CCNCc2cccc(C#N)c2)c2ccc3ncn(C)c3c2)c1",
+      "ab_score": 0.32421875,
+      "cytotox_risk": 0.1435546875,
+      "artifact_risk": 0.470703125,
+      "composite_score": 0.12587420642375946,
+      "max_tan_to_training_active": 0.1875,
+      "novelty": 0.8125,
+      "surprise_score": 0.10227279271930456
+    },
+    {
+      "smiles": "COc1cc(OC)cc(N(CCN(CCO)Cc2ccc(O)cc2)C(=O)COc2ccccc2C(=O)c2ccccc2)c1",
+      "ab_score": 0.43359375,
+      "cytotox_risk": 0.21875,
+      "artifact_risk": 0.51953125,
+      "composite_score": 0.12715347111225128,
+      "max_tan_to_training_active": 0.1958762886597938,
+      "novelty": 0.8041237113402062,
+      "surprise_score": 0.1022471211005732
+    },
+    {
+      "smiles": "O=C(O)COc1ccccc1C(=O)c1ccccc1OCCc1ccccc1",
+      "ab_score": 0.41796875,
+      "cytotox_risk": 0.177734375,
+      "artifact_risk": 0.515625,
+      "composite_score": 0.13688309490680695,
+      "max_tan_to_training_active": 0.2542372881355932,
+      "novelty": 0.7457627118644068,
+      "surprise_score": 0.10208230806609332
+    },
+    {
+      "smiles": "O=c1c2ccccc2nnn1Cc1ccc(F)cc1",
+      "ab_score": 0.50390625,
+      "cytotox_risk": 0.2490234375,
+      "artifact_risk": 0.52734375,
+      "composite_score": 0.13432224094867706,
+      "max_tan_to_training_active": 0.24193548387096775,
+      "novelty": 0.7580645161290323,
+      "surprise_score": 0.10182492459012615
+    },
+    {
+      "smiles": "COc1cc(OCc2ccc(OCCOc3ccccc3)cc2)c2cc(-c3ccnc(C)c3)oc2c1",
+      "ab_score": 0.37890625,
+      "cytotox_risk": 0.1728515625,
+      "artifact_risk": 0.48828125,
+      "composite_score": 0.13265694677829742,
+      "max_tan_to_training_active": 0.2328767123287671,
+      "novelty": 0.7671232876712328,
+      "surprise_score": 0.10176423314499528
+    },
+    {
+      "smiles": "COc1ccc(-c2cc(=O)c3c(O)cc(OC)cc3o2)cc1",
+      "ab_score": 0.361328125,
+      "cytotox_risk": 0.162109375,
+      "artifact_risk": 0.48046875,
+      "composite_score": 0.13179171085357666,
+      "max_tan_to_training_active": 0.23214285714285715,
+      "novelty": 0.7678571428571428,
+      "surprise_score": 0.10119720654828207
+    },
+    {
+      "smiles": "COc1ccccc1CN1C(=O)CSC1c1ccccc1",
+      "ab_score": 0.45703125,
+      "cytotox_risk": 0.2294921875,
+      "artifact_risk": 0.51171875,
+      "composite_score": 0.1324860155582428,
+      "max_tan_to_training_active": 0.23636363636363636,
+      "novelty": 0.7636363636363637,
+      "surprise_score": 0.10117113915356724
+    },
+    {
+      "smiles": "COc1cc(-c2ccccc2)ccc1C(=O)N1CCC(c2c[nH]c3ccccc23)CC1",
+      "ab_score": 0.328125,
+      "cytotox_risk": 0.150390625,
+      "artifact_risk": 0.455078125,
+      "composite_score": 0.1290660947561264,
+      "max_tan_to_training_active": 0.21739130434782608,
+      "novelty": 0.782608695652174,
+      "surprise_score": 0.10100824807001198
+    },
+    {
+      "smiles": "COc1ccc(-c2ccc(Nc3nccc(Nc4ccccc4)n3)cc2)cc1C(=O)Nc1ccccc1C(F)(F)F",
+      "ab_score": 0.3203125,
+      "cytotox_risk": 0.1474609375,
+      "artifact_risk": 0.447265625,
+      "composite_score": 0.12868233025074005,
+      "max_tan_to_training_active": 0.2159090909090909,
+      "novelty": 0.7840909090909091,
+      "surprise_score": 0.10089864531023936
+    },
+    {
+      "smiles": "COc1ccccc1-c1cnc(N(C)Cc2ccccc2)nc1",
+      "ab_score": 0.30078125,
+      "cytotox_risk": 0.134765625,
+      "artifact_risk": 0.447265625,
+      "composite_score": 0.12446142733097076,
+      "max_tan_to_training_active": 0.1896551724137931,
+      "novelty": 0.8103448275862069,
+      "surprise_score": 0.10085667387164872
+    },
+    {
+      "smiles": "COc1cc(OC)c(F)c(N2Cc3cnc(-c4cncc(NC5CCOCC5)n4)cc3C(C#N)C2=O)c1F",
+      "ab_score": 0.404296875,
+      "cytotox_risk": 0.197265625,
+      "artifact_risk": 0.5390625,
+      "composite_score": 0.12008427828550339,
+      "max_tan_to_training_active": 0.16393442622950818,
+      "novelty": 0.8360655737704918,
+      "surprise_score": 0.1003983310255848
+    },
+    {
+      "smiles": "O=c1[nH]c2ccc(Br)cc2c2nc3ncccc3nc12",
+      "ab_score": 0.3515625,
+      "cytotox_risk": 0.1513671875,
+      "artifact_risk": 0.46484375,
+      "composite_score": 0.13549484312534332,
+      "max_tan_to_training_active": 0.25925925925925924,
+      "novelty": 0.7407407407407407,
+      "surprise_score": 0.10036655046321727
+    },
+    {
+      "smiles": "COc1ccc(-c2cnc3ccc(-c4cccc(F)c4)nn23)cc1",
+      "ab_score": 0.365234375,
+      "cytotox_risk": 0.1728515625,
+      "artifact_risk": 0.48046875,
+      "composite_score": 0.12982258200645447,
+      "max_tan_to_training_active": 0.22857142857142856,
+      "novelty": 0.7714285714285715,
+      "surprise_score": 0.10014884897640773
+    },
+    {
+      "smiles": "COc1cc(OC)c(F)c(N2Cc3cnc(-c4cncc(N5CCN(C)CC5)n4)cc3C(F)(F)C2)c1F",
+      "ab_score": 0.41796875,
+      "cytotox_risk": 0.2001953125,
+      "artifact_risk": 0.54296875,
+      "composite_score": 0.12219616770744324,
+      "max_tan_to_training_active": 0.18181818181818182,
+      "novelty": 0.8181818181818181,
+      "surprise_score": 0.09997868266972627
+    },
+    {
+      "smiles": "COc1cccc(C2C(C(=O)c3ccco3)=C(O)c3ccccc32)c1",
+      "ab_score": 0.333984375,
+      "cytotox_risk": 0.14453125,
+      "artifact_risk": 0.48046875,
+      "composite_score": 0.1269831508398056,
+      "max_tan_to_training_active": 0.21311475409836064,
+      "novelty": 0.7868852459016393,
+      "surprise_score": 0.0999211678739454
+    },
+    {
+      "smiles": "O=c1nc(N2CCOCC2)oc2cc(-c3ccc(F)cc3)ccc12",
+      "ab_score": 0.384765625,
+      "cytotox_risk": 0.17578125,
+      "artifact_risk": 0.5078125,
+      "composite_score": 0.12865060567855835,
+      "max_tan_to_training_active": 0.22388059701492538,
+      "novelty": 0.7761194029850746,
+      "surprise_score": 0.09984823127291097
+    },
+    {
+      "smiles": "Cc1cc(C)c(CNC(=O)c2cc(-c3cccc(F)c3)n(-c3ccccc3)n2)c(=O)[nH]1",
+      "ab_score": 0.46875,
+      "cytotox_risk": 0.236328125,
+      "artifact_risk": 0.5390625,
+      "composite_score": 0.12600764632225037,
+      "max_tan_to_training_active": 0.2077922077922078,
+      "novelty": 0.7922077922077921,
+      "surprise_score": 0.09982423929425029
+    },
+    {
+      "smiles": "O=C(O)c1cnc2ccc(-c3c(-c4ccccc4)nn4cccnc34)cn12",
+      "ab_score": 0.390625,
+      "cytotox_risk": 0.1787109375,
+      "artifact_risk": 0.5078125,
+      "composite_score": 0.12968288362026215,
+      "max_tan_to_training_active": 0.2328767123287671,
+      "novelty": 0.7671232876712328,
+      "surprise_score": 0.09948276003746137
+    },
+    {
+      "smiles": "COc1ccccc1-c1cc(NC(=O)c2ccc(C(F)(F)F)cc2)n(Cc2ccccc2)n1",
+      "ab_score": 0.439453125,
+      "cytotox_risk": 0.21484375,
+      "artifact_risk": 0.51953125,
+      "composite_score": 0.13016369938850403,
+      "max_tan_to_training_active": 0.2361111111111111,
+      "novelty": 0.7638888888888888,
+      "surprise_score": 0.09943060369955169
+    },
+    {
+      "smiles": "O=C(O)COc1ccccc1C1=C(c2ccccc2)CC(O)=C(C(=O)O)C1=O",
+      "ab_score": 0.388671875,
+      "cytotox_risk": 0.17578125,
+      "artifact_risk": 0.50390625,
+      "composite_score": 0.13098810613155365,
+      "max_tan_to_training_active": 0.24285714285714285,
+      "novelty": 0.7571428571428571,
+      "surprise_score": 0.09917670892817633
+    },
+    {
+      "smiles": "COc1ccc(CCn2c(=O)c(OCCCO)c(COc3cccc4ccccc34)c3ccccc32)cc1",
+      "ab_score": 0.310546875,
+      "cytotox_risk": 0.138671875,
+      "artifact_risk": 0.451171875,
+      "composite_score": 0.1264447420835495,
+      "max_tan_to_training_active": 0.21794871794871795,
+      "novelty": 0.782051282051282,
+      "surprise_score": 0.09888627265508358
+    },
+    {
+      "smiles": "O=c1cc(-c2ccccc2)oc2cc(OCC3CCNCC3)ccc12",
+      "ab_score": 0.546875,
+      "cytotox_risk": 0.291015625,
+      "artifact_risk": 0.54296875,
+      "composite_score": 0.12563402950763702,
+      "max_tan_to_training_active": 0.21428571428571427,
+      "novelty": 0.7857142857142857,
+      "surprise_score": 0.09871245175600052
+    },
+    {
+      "smiles": "COc1ccc(-c2cn3ccc(C4CCCCC4)cc3n2)cc1",
+      "ab_score": 0.390625,
+      "cytotox_risk": 0.1767578125,
+      "artifact_risk": 0.52734375,
+      "composite_score": 0.12512977421283722,
+      "max_tan_to_training_active": 0.2112676056338028,
+      "novelty": 0.7887323943661972,
+      "surprise_score": 0.09869390642139274
+    },
+    {
+      "smiles": "COc1ccccc1-c1ccc(-c2ccccc2C(=O)N2CCCC2)o1",
+      "ab_score": 0.392578125,
+      "cytotox_risk": 0.1884765625,
+      "artifact_risk": 0.50390625,
+      "composite_score": 0.12826022505760193,
+      "max_tan_to_training_active": 0.23076923076923078,
+      "novelty": 0.7692307692307692,
+      "surprise_score": 0.0986617115827707
+    },
+    {
+      "smiles": "Cc1ccc(S(=O)(=O)NC(=O)c2ccc3nc(-c4ccco4)cn3c2)cc1",
+      "ab_score": 0.462890625,
+      "cytotox_risk": 0.2353515625,
+      "artifact_risk": 0.54296875,
+      "composite_score": 0.1236937940120697,
+      "max_tan_to_training_active": 0.2033898305084746,
+      "novelty": 0.7966101694915254,
+      "surprise_score": 0.09853573421300468
+    },
+    {
+      "smiles": "COc1ccc(C(=O)N2CCC(c3nc(-c4ccc(O)cc4)c4c(N)nccn34)CC2)cc1",
+      "ab_score": 0.396484375,
+      "cytotox_risk": 0.1904296875,
+      "artifact_risk": 0.53515625,
+      "composite_score": 0.12079312652349472,
+      "max_tan_to_training_active": 0.18666666666666668,
+      "novelty": 0.8133333333333334,
+      "surprise_score": 0.09824507623910904
+    },
+    {
+      "smiles": "COc1cc(OC)c(F)c(N2Cc3cnc4[nH]ccc4c3N(Cc3ccc(F)cc3)C2=O)c1F",
+      "ab_score": 0.32421875,
+      "cytotox_risk": 0.146484375,
+      "artifact_risk": 0.490234375,
+      "composite_score": 0.12040142714977264,
+      "max_tan_to_training_active": 0.18518518518518517,
+      "novelty": 0.8148148148148149,
+      "surprise_score": 0.09810486656648142
+    },
+    {
+      "smiles": "COc1ccc2c(c1)N(CCc1cc(-c3ccc(OC)nc3)ccc1C(=O)C(F)(F)F)CC(C)(C)O2",
+      "ab_score": 0.2890625,
+      "cytotox_risk": 0.12353515625,
+      "artifact_risk": 0.455078125,
+      "composite_score": 0.1210026890039444,
+      "max_tan_to_training_active": 0.192,
+      "novelty": 0.808,
+      "surprise_score": 0.09777017271518708
+    },
+    {
+      "smiles": "COc1ccc(OCC(=O)NNC(=O)CSc2nc(-c3ccccc3)cc(-c3ccccc3)c2-c2ccccc2)cc1",
+      "ab_score": 0.44921875,
+      "cytotox_risk": 0.2333984375,
+      "artifact_risk": 0.5,
+      "composite_score": 0.1319979727268219,
+      "max_tan_to_training_active": 0.2602739726027397,
+      "novelty": 0.7397260273972603,
+      "surprise_score": 0.09764233598970389
+    },
+    {
+      "smiles": "COc1cc(Nc2ncc(C(F)(F)F)c(Nc3ccc(N4CCN(C)CC4)cc3OC)n2)cc(OC)c1",
+      "ab_score": 0.423828125,
+      "cytotox_risk": 0.2080078125,
+      "artifact_risk": 0.546875,
+      "composite_score": 0.12046186625957489,
+      "max_tan_to_training_active": 0.18947368421052632,
+      "novelty": 0.8105263157894737,
+      "surprise_score": 0.09763751265249754
+    },
+    {
+      "smiles": "COc1ccc(Cn2c(=O)n3ncnc3c3cc(OCc4cccc(Cl)c4)ccc32)cc1",
+      "ab_score": 0.375,
+      "cytotox_risk": 0.1787109375,
+      "artifact_risk": 0.50390625,
+      "composite_score": 0.12548363208770752,
+      "max_tan_to_training_active": 0.2222222222222222,
+      "novelty": 0.7777777777777778,
+      "surprise_score": 0.09759838051266141
+    },
+    {
+      "smiles": "COc1ccc(-c2nc3ccc(Cl)cc3n2C(=O)c2ccccc2Cl)cc1",
+      "ab_score": 0.41796875,
+      "cytotox_risk": 0.2060546875,
+      "artifact_risk": 0.49609375,
+      "composite_score": 0.13276228308677673,
+      "max_tan_to_training_active": 0.265625,
+      "novelty": 0.734375,
+      "surprise_score": 0.09749730164185166
+    },
+    {
+      "smiles": "O=c1[nH]c(-c2cccc(OCC3CCCCC3)c2)nc2c1c(=O)n(Cc1ccccc1)c(=O)n2Cc1ccccc1",
+      "ab_score": 0.291015625,
+      "cytotox_risk": 0.130859375,
+      "artifact_risk": 0.44921875,
+      "composite_score": 0.12108087539672852,
+      "max_tan_to_training_active": 0.1951219512195122,
+      "novelty": 0.8048780487804879,
+      "surprise_score": 0.09745533873395222
+    },
+    {
+      "smiles": "COc1cc(-c2cnn(CCCCO)c2)cc(C)c1O",
+      "ab_score": 0.318359375,
+      "cytotox_risk": 0.1435546875,
+      "artifact_risk": 0.48046875,
+      "composite_score": 0.12131893634796143,
+      "max_tan_to_training_active": 0.19696969696969696,
+      "novelty": 0.803030303030303,
+      "surprise_score": 0.0974227822188175
+    }
+  ]
+}
