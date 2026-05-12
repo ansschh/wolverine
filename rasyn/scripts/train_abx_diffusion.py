@@ -218,14 +218,22 @@ def build_rows_for_stage(stage: int, molecules_df, gen_df, facts_df, counter_df)
         df = gen_df.rename(columns={"organism_context": "organism", "full_molecule_smiles": "canonical_smiles"}).copy()
         df["spectrum_goal"] = "unknown"
         df["selectivity_label"] = "unknown"
-        # Join cytotox / artifact labels from counter_screens if available.
-        if counter_df is not None and not counter_df.empty:
-            cyto = counter_df[counter_df["counter_screen_type"] == "mammalian_cytotoxicity"][
-                ["inchi_key", "outcome"]
-            ].rename(columns={"outcome": "cyto_outcome"})
+        # Join cytotox labels from counter_screens. Our actual schema:
+        #   counter_screen_type ∈ {"cytotoxicity", "hemolysis"}
+        #   activity_label      ∈ {"cytotox_counter_screen", "hemolysis_counter_screen",
+        #                          "active", "inactive", ...} for CO-ADD CC50 rows.
+        # A molecule that appears in any cytotoxicity counter-screen row is treated
+        # as non-selective; molecules absent from counter_screens default to selective.
+        if (counter_df is not None and not counter_df.empty
+                and "counter_screen_type" in counter_df.columns
+                and "inchi_key" in counter_df.columns):
+            cyto = counter_df[counter_df["counter_screen_type"] == "cytotoxicity"][
+                ["inchi_key"]
+            ].drop_duplicates()
+            cyto["cyto_outcome"] = "cytotoxic"
             df = df.merge(cyto, left_on="full_molecule_inchi_key", right_on="inchi_key", how="left")
             df["selectivity_label"] = df["cyto_outcome"].apply(
-                lambda x: "non_selective" if x == "cytotoxic" else ("selective" if x in ("clean", None) else "unknown")
+                lambda x: "non_selective" if x == "cytotoxic" else "selective"
             )
         if stage == 4:
             df = df[df["selectivity_label"] != "non_selective"]
