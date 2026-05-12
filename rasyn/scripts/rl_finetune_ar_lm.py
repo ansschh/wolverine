@@ -103,11 +103,27 @@ def load_ranker(ckpt_path: Path, device) -> ABXMultiHeadRankerV4:
 
 
 def validate_smiles(smi: str) -> str | None:
-    """RDKit-validate; return canonical SMILES if valid, None otherwise."""
+    """RDKit-validate AND drug-likeness-filter to prevent reward hacking.
+
+    Rejects:
+      - Multi-fragment SMILES (containing '.')
+      - Fewer than 8 heavy atoms (too small to be a real drug)
+      - Zero rings (too floppy / linear chains)
+      - Too-large molecules (>60 heavy atoms — likely polymer)
+      - SMILES > 150 chars (likely junk)
+    """
+    if not smi or "." in smi or len(smi) > 150:
+        return None
     try:
         from rdkit import Chem
+        from rdkit.Chem import rdMolDescriptors
         m = Chem.MolFromSmiles(smi)
-        if m is None or m.GetNumAtoms() < 3:
+        if m is None:
+            return None
+        n_heavy = m.GetNumHeavyAtoms()
+        if n_heavy < 8 or n_heavy > 60:
+            return None
+        if rdMolDescriptors.CalcNumRings(m) < 1:
             return None
         return Chem.MolToSmiles(m, canonical=True)
     except Exception:
@@ -297,13 +313,23 @@ def main() -> int:
                 iter=iteration, mean_reward=mean_r, baseline=baseline,
                 n_valid=int(n_keep))
 
-            # Save best-of-iter samples
+            # Save best-of-iter samples — *preserve historical bests via a deduped
+            # all-time-best buffer*. Reward-hack collapses can't displace earlier wins.
             for s, r in zip(smiles, rewards):
                 if r > 0.5:
-                    samples_buffer.append((s, float(r)))
-                    if len(samples_buffer) > 500:
-                        samples_buffer.sort(key=lambda x: -x[1])
-                        samples_buffer = samples_buffer[:300]
+                    canonical = validate_smiles(s)
+                    if canonical is None:
+                        continue  # double-guard against the bug we just fixed
+                    samples_buffer.append((canonical, float(r)))
+            # Periodically dedupe + trim
+            if len(samples_buffer) > 1500:
+                seen = {}
+                for s, r in samples_buffer:
+                    if s not in seen or seen[s] < r:
+                        seen[s] = r
+                samples_buffer = [(s, r) for s, r in seen.items()]
+                samples_buffer.sort(key=lambda x: -x[1])
+                samples_buffer = samples_buffer[:500]
 
             if iteration % args.ckpt_every == 0 and iteration > 0:
                 _save(policy, args, iteration, samples_buffer)
