@@ -177,6 +177,8 @@ def build_evidence_packet(
         "proposer_metadata": {
             "proposer_sources": proposer_sources or [],
             "seed_fragment_id": seed_fragment_id,
-            "generation_guidance": generation_guidance or {},
+            # PyArrow can't write an empty struct; use a sentinel "_unused" key when no
+            # guidance was supplied so the parquet schema is valid.
+            "generation_guidance": generation_guidance or {"_unused": ""},
         },
     }
