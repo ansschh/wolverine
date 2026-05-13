@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
 #SBATCH --job-name=retro-r1-curation
 #SBATCH --account=tensorlab
-#SBATCH --partition=sunshine
-#SBATCH --nodelist=hpc-79-11
-#SBATCH --gres=gpu:v100:8
+#SBATCH --partition=gpu
+#SBATCH --gres=gpu:h100:4
 #SBATCH --cpus-per-task=32
-#SBATCH --mem=512G
+#SBATCH --mem=256G
 #SBATCH --time=1-00:00:00
 #SBATCH --output=/resnick/scratch/atiwari2/rasyn-retro/logs/r1_curation_%j.out
 #SBATCH --error=/resnick/scratch/atiwari2/rasyn-retro/logs/r1_curation_%j.err
