@@ -23,19 +23,20 @@ import io
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Iterator
-from urllib.request import urlretrieve
+
+from ._download import download_validated
 
 DEFAULT_RAW_DIR = Path("rasyn/data/raw/buyables")
 
-ZINC22_INSTOCK_LIST_URL = (
-    "https://files.docking.org/zinc22/zinc-22-in-stock.smi.gz"
-)
-ENAMINE_REAL_BB_FREE_URL = (
-    "https://enamine.net/files/REAL_BB_Database/Enamine_Building_Blocks_Stock.sdf"
-)
-EMOLECULES_FREE_URL = (
-    "https://downloads.emolecules.com/free/2026-05-01/version.smi.gz"
-)
+ZINC22_INSTOCK_URLS: list[str] = [
+    "https://files.docking.org/zinc22/zinc-22-in-stock.smi.gz",
+]
+ENAMINE_REAL_BB_URLS: list[str] = [
+    "https://enamine.net/files/REAL_BB_Database/Enamine_Building_Blocks_Stock.sdf",
+]
+EMOLECULES_FREE_URLS: list[str] = [
+    "https://downloads.emolecules.com/free/2026-05-01/version.smi.gz",
+]
 
 
 @dataclass
@@ -64,9 +65,12 @@ def _classify_cost_tier(cost_per_g_usd: float | None) -> str:
 def download_zinc22(cfg: BuyablesConfig) -> Path:
     _ensure_dir(cfg.raw_dir)
     target = cfg.raw_dir / "zinc22_instock.smi.gz"
-    if not target.exists():
-        urlretrieve(ZINC22_INSTOCK_LIST_URL, target)
-    return target
+    return download_validated(
+        ZINC22_INSTOCK_URLS,
+        target,
+        kind="gz",
+        min_bytes=512 * 1024,
+    )
 
 
 def stream_zinc22(cfg: BuyablesConfig) -> Iterator[dict]:
@@ -101,9 +105,12 @@ def stream_zinc22(cfg: BuyablesConfig) -> Iterator[dict]:
 def download_enamine_bb(cfg: BuyablesConfig) -> Path:
     _ensure_dir(cfg.raw_dir)
     target = cfg.raw_dir / "Enamine_BB_Stock.sdf"
-    if not target.exists():
-        urlretrieve(ENAMINE_REAL_BB_FREE_URL, target)
-    return target
+    return download_validated(
+        ENAMINE_REAL_BB_URLS,
+        target,
+        kind=None,  # SDF is text; we validate via min_bytes only
+        min_bytes=1024 * 1024,
+    )
 
 
 def stream_enamine_bb(cfg: BuyablesConfig) -> Iterator[dict]:
@@ -146,9 +153,12 @@ def stream_enamine_bb(cfg: BuyablesConfig) -> Iterator[dict]:
 def download_emolecules(cfg: BuyablesConfig) -> Path:
     _ensure_dir(cfg.raw_dir)
     target = cfg.raw_dir / "emolecules_free.smi.gz"
-    if not target.exists():
-        urlretrieve(EMOLECULES_FREE_URL, target)
-    return target
+    return download_validated(
+        EMOLECULES_FREE_URLS,
+        target,
+        kind="gz",
+        min_bytes=512 * 1024,
+    )
 
 
 def stream_emolecules(cfg: BuyablesConfig) -> Iterator[dict]:

@@ -25,7 +25,7 @@ echo "[smoke] curation smoke (200 USPTO-50K rows, no atom-mapping, no downloads-
 python -m scripts.run_retro_curation \
   --smoke --skip-atom-mapping \
   --out-dir rasyn/data/clean/retro_smoke \
-  --audit-dir artifacts/retro_decontam_audit_smoke || true
+  --audit-dir artifacts/retro_decontam_audit_smoke
 
 echo "[smoke] planner smoke (ibuprofen, no checkpoints, heuristic fallback)"
 python -m scripts.run_retro_smoke --layer smoke --skip-forward-validation --time-budget-s 30

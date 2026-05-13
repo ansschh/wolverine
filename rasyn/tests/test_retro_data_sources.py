@@ -63,6 +63,63 @@ def test_split_rxn_smiles_rejects_bad_format():
         uspto_src._split_rxn_smiles("CCO+CCN")
 
 
+# ===== USPTO-50K parquet parser (HF mirror format) =====
+
+def _build_uspto_50k_parquet(tmp_path: Path) -> Path:
+    """Mimic the HuggingFace `sagawa/USPTO-50K` parquet schema."""
+    pa = pytest.importorskip("pyarrow")
+    pq = pytest.importorskip("pyarrow.parquet")
+    rows = [
+        {
+            "id": "r0",
+            "reactants>reagents>production": "CCO.CC(=O)Cl>>CCOC(C)=O",
+            "class": 6,
+            "split": "train",
+        },
+        {
+            "id": "r1",
+            "reactants>reagents>production": "c1ccccc1Br.c1ccccc1B(O)O>>c1ccccc1-c1ccccc1",
+            "class": 3,
+            "split": "train",
+        },
+    ]
+    table = pa.Table.from_pylist(rows)
+    parquet_path = tmp_path / "uspto_50k.parquet"
+    pq.write_table(table, parquet_path)
+    return parquet_path
+
+
+def test_uspto_50k_parquet_parser_basic(tmp_path):
+    parquet_path = _build_uspto_50k_parquet(tmp_path)
+    rows = list(uspto_src.iter_uspto_50k(parquet_path))
+    assert len(rows) == 2
+    assert rows[0]["source"] == "uspto_50k"
+    assert rows[0]["product"] == "CCOC(C)=O"
+    assert rows[0]["reactants"] == ["CCO", "CC(=O)Cl"]
+    assert rows[0]["split"] == "train"
+    assert rows[0]["mapped_rxn_smiles"] == rows[0]["rxn_smiles"]
+
+
+def test_uspto_50k_dispatch_by_extension(tmp_path):
+    """iter_uspto_50k dispatches to parquet vs zip based on suffix."""
+    zip_path = _build_uspto_50k_zip(tmp_path)
+    parquet_path = _build_uspto_50k_parquet(tmp_path)
+    zip_rows = list(uspto_src.iter_uspto_50k(zip_path))
+    parquet_rows = list(uspto_src.iter_uspto_50k(parquet_path))
+    # Both formats should produce equivalent row counts on these fixtures.
+    assert len(zip_rows) == len(parquet_rows) == 2
+
+
+def test_uspto_50k_parquet_raises_on_unrecognised_columns(tmp_path):
+    pa = pytest.importorskip("pyarrow")
+    pq = pytest.importorskip("pyarrow.parquet")
+    table = pa.Table.from_pylist([{"some_other_col": "x"}])
+    bad = tmp_path / "no_rxn.parquet"
+    pq.write_table(table, bad)
+    with pytest.raises(RuntimeError, match="no recognised reaction column"):
+        list(uspto_src.iter_uspto_50k(bad))
+
+
 # ===== USPTO-full parser =====
 
 def _build_uspto_full_tarball(tmp_path: Path) -> Path:

@@ -8,17 +8,23 @@ Account: `tensorlab`. Scratch: `/resnick/scratch/atiwari2/rasyn-retro/`.
 ```bash
 # Login node, one-time
 cd /resnick/scratch/atiwari2/rasyn-retro
-bash cluster/caltech/00_setup_env.sh   # ~5-10 min: modules + venv + pip deps + pytest
+bash cluster/caltech/00_setup_env.sh         # ~5-10 min: modules + venv + pip + pytest
 
-# Validate
-bash cluster/caltech/01_smoke_local.sh # ~30s: imports + curation smoke + planner smoke
+# Login node — pre-download raw data (compute nodes have restricted egress)
+bash cluster/caltech/02_predownload_login.sh # ~1.5-4 h depending on figshare/zinc speed
 
-# Launch R-1 (data curation) on the idle V100 DGX
+# Validate (login node)
+bash cluster/caltech/01_smoke_local.sh       # ~30s: imports + curation smoke + planner smoke
+
+# Launch R-1 (data curation) on the gpu partition (H100x4)
 sbatch cluster/caltech/10_sbatch_r1_curation.sh
 squeue -u $USER
 ```
 
 Logs land at `/resnick/scratch/atiwari2/rasyn-retro/logs/r1_curation_<jobid>.{out,err}`.
+
+The sbatch preflight refuses to start if `artifacts/retro_predownload_manifest.json`
+is missing or any listed archive fails validation (size, zip/tar/gz integrity).
 
 ## Module stack (verified 2026-05-12)
 
@@ -42,7 +48,8 @@ Logs land at `/resnick/scratch/atiwari2/rasyn-retro/logs/r1_curation_<jobid>.{ou
 
 | Phase | Script | Pod | Time |
 |---|---|---|---|
-| R-1 data curation | `10_sbatch_r1_curation.sh` | V100 x8, sunshine | 8–16 h |
+| Pre-download raw data (login node) | `02_predownload_login.sh` | login node, no GPU | 1.5–4 h |
+| R-1 data curation | `10_sbatch_r1_curation.sh` | H100 x4, gpu partition | 3–5 h |
 | R-2 template proposer | TBD | A100/H100 | 4–8 h |
 | R-2 graphedit | TBD | A100/H100 | 12–24 h |
 | R-2 seq2seq | TBD | A100/H100 x4-5 | 24–48 h |
